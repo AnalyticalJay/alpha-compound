@@ -121,10 +121,16 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
   };
 
   const onSubmit = (data: any) => {
+    // HTML inputs always return strings — coerce numeric fields before sending
+    const payload = {
+      ...data,
+      stockQuantity: parseInt(String(data.stockQuantity ?? 0), 10) || 0,
+      categoryId: data.categoryId ? parseInt(String(data.categoryId), 10) : undefined,
+    };
     if (isNew) {
-      create.mutate(data as any);
+      create.mutate(payload as any);
     } else {
-      update.mutate({ id: parseInt(productId!), ...data } as any);
+      update.mutate({ id: parseInt(productId!), ...payload } as any);
     }
   };
 
