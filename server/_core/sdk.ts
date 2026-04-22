@@ -268,6 +268,15 @@ class SDKServer {
 
     const sessionUserId = session.openId;
     const signedInAt = new Date();
+
+    // Support numeric ID-based sessions (email/password auth)
+    const numericId = parseInt(sessionUserId, 10);
+    if (!isNaN(numericId)) {
+      const user = await db.getUserById(numericId);
+      if (!user) throw ForbiddenError("User not found");
+      return user;
+    }
+
     let user = await db.getUserByOpenId(sessionUserId);
 
     // If user not in DB, sync from OAuth server automatically
@@ -293,7 +302,7 @@ class SDKServer {
     }
 
     await db.upsertUser({
-      openId: user.openId,
+      openId: user.openId ?? sessionUserId,
       lastSignedIn: signedInAt,
     });
 

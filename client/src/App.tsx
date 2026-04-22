@@ -5,33 +5,116 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+import Account from "./pages/Account";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminProductEdit from "./pages/admin/AdminProductEdit";
+import ApprovalPending from "./pages/ApprovalPending";
+import OrderDetail from "./pages/OrderDetail";
+import OrderCancelled from "./pages/OrderCancelled";
+import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      {/* Public */}
+      <Route path="/" component={Home} />
+      <Route path="/register" component={Register} />
+      <Route path="/login" component={Login} />
+      <Route path="/products" component={Products} />
+      <Route path="/products/:slug" component={ProductDetail} />
+
+      {/* Authenticated */}
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/order-success/:orderId" component={OrderSuccess} />
+      <Route path="/account" component={Account} />
+      <Route path="/account/:tab" component={Account} />
+      <Route path="/approval-pending" component={ApprovalPending} />
+      <Route path="/orders/:orderId" component={OrderDetail} />
+      <Route path="/order-cancelled" component={OrderCancelled} />
+
+      {/* Admin */}
+      <Route path="/admin">
+        {() => (
+          <AdminLayout>
+            <AdminDashboard />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/users">
+        {() => (
+          <AdminLayout>
+            <AdminUsers />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/products">
+        {() => (
+          <AdminLayout>
+            <AdminProducts />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/products/new">
+        {() => (
+          <AdminLayout>
+            <AdminProductEdit />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/products/:id/edit">
+        {(params) => (
+          <AdminLayout>
+            <AdminProductEdit productId={parseInt((params as any).id)} />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/categories">
+        {() => (
+          <AdminLayout>
+            <AdminCategories />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/orders">
+        {() => (
+          <AdminLayout>
+            <AdminOrders />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/orders/:orderId">
+        {() => (
+          <AdminLayout>
+            <AdminOrderDetail />
+          </AdminLayout>
+        )}
+      </Route>
+
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
-          <Toaster />
+          <Toaster richColors position="top-right" />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
