@@ -75,3 +75,15 @@
 - [ ] Set PAYFAST_MERCHANT_KEY secret
 - [ ] Set PAYFAST_PASSPHRASE secret
 - [ ] Update PAYFAST_NOTIFY_URL to production domain
+
+## Phase 8: HD Labs Brand Restyling
+- [x] Global CSS theme updated to HD Labs palette (black + electric blue #0EA5E9 + bold red #E11D48)
+- [x] Navbar restyled with HD Labs brand identity
+- [x] Homepage hero restyled with HD Labs brand identity
+- [x] ProductCard restyled with HD Labs brand colors
+- [x] Footer restyled with HD Labs brand colors
+- [x] Admin panel sidebar restyled with HD Labs brand colors
+- [x] Login page restyled with HD Labs brand identity
+- [x] Register page restyled with HD Labs brand identity
+- [x] Products catalog page restyled with HD Labs brand colors
+- [x] Account dashboard restyled with HD Labs brand colors

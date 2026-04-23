@@ -3,6 +3,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── HD Labs Brand Palette ─────────────────────────────────────────────────
+   Background : #0A0A0A  near-pure black
+   Card       : #111111  dark surface
+   Blue       : #0EA5E9  electric brand blue (sky-500)
+   Red        : #E11D48  bold brand red (rose-600)
+   White      : #F8FAFC  foreground text
+   Muted      : #64748B  slate-500 secondary text
+   Border     : #1E293B  slate-800 subtle borders
+──────────────────────────────────────────────────────────────────────────── */
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -43,67 +53,160 @@
 }
 
 :root {
-  /* ─── Alpha Compound Dark Gold Theme ─── */
-  --radius: 0.5rem;
-  --background: oklch(0.09 0.005 264);
-  --foreground: oklch(0.96 0.005 90);
-  --card: oklch(0.13 0.006 264);
-  --card-foreground: oklch(0.96 0.005 90);
-  --popover: oklch(0.13 0.006 264);
-  --popover-foreground: oklch(0.96 0.005 90);
-  /* Gold primary */
-  --primary: oklch(0.78 0.12 85);
-  --primary-foreground: oklch(0.09 0.005 264);
-  --secondary: oklch(0.18 0.008 264);
-  --secondary-foreground: oklch(0.96 0.005 90);
-  --muted: oklch(0.16 0.007 264);
-  --muted-foreground: oklch(0.60 0.01 264);
-  --accent: oklch(0.20 0.010 264);
-  --accent-foreground: oklch(0.96 0.005 90);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.96 0.005 90);
-  --border: oklch(0.22 0.008 264);
-  --input: oklch(0.18 0.008 264);
-  --ring: oklch(0.78 0.12 85);
-  --chart-1: oklch(0.78 0.12 85);
-  --chart-2: oklch(0.65 0.10 85);
-  --chart-3: oklch(0.55 0.08 85);
-  --chart-4: oklch(0.45 0.06 85);
-  --chart-5: oklch(0.35 0.04 85);
-  --sidebar: oklch(0.11 0.006 264);
-  --sidebar-foreground: oklch(0.96 0.005 90);
-  --sidebar-primary: oklch(0.78 0.12 85);
-  --sidebar-primary-foreground: oklch(0.09 0.005 264);
-  --sidebar-accent: oklch(0.20 0.010 264);
-  --sidebar-accent-foreground: oklch(0.96 0.005 90);
-  --sidebar-border: oklch(0.22 0.008 264);
-  --sidebar-ring: oklch(0.78 0.12 85);
+  /* ─── HD Labs Dark Theme ─── */
+  --radius: 0.375rem;
+
+  /* Jet black background */
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.97 0 0);
+
+  /* Dark card surfaces */
+  --card: oklch(0.11 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.11 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+
+  /* Primary = Electric Blue #0EA5E9 */
+  --primary: oklch(0.65 0.19 220);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Secondary = Dark surface */
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+
+  /* Muted */
+  --muted: oklch(0.17 0 0);
+  --muted-foreground: oklch(0.55 0.01 220);
+
+  /* Accent = Red #E11D48 */
+  --accent: oklch(0.50 0.22 15);
+  --accent-foreground: oklch(1 0 0);
+
+  /* Destructive = Red */
+  --destructive: oklch(0.50 0.22 15);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* Borders & inputs */
+  --border: oklch(0.20 0.02 220);
+  --input: oklch(0.13 0.01 220);
+  --ring: oklch(0.65 0.19 220);
+
+  /* Charts */
+  --chart-1: oklch(0.65 0.19 220);
+  --chart-2: oklch(0.50 0.22 15);
+  --chart-3: oklch(0.70 0.15 150);
+  --chart-4: oklch(0.75 0.12 60);
+  --chart-5: oklch(0.65 0.18 280);
+
+  /* Sidebar */
+  --sidebar: oklch(0.09 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-primary: oklch(0.65 0.19 220);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.13 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(0.18 0.02 220);
+  --sidebar-ring: oklch(0.65 0.19 220);
 }
 
-/* Gold gradient utilities */
-.gold-gradient {
-  background: linear-gradient(135deg, oklch(0.82 0.14 85) 0%, oklch(0.65 0.09 85) 100%);
+/* ─── HD Labs Brand Utility Classes ─────────────────────────────────────── */
+
+/* Blue gradient (primary CTA) */
+.blue-gradient {
+  background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
 }
-.gold-text {
-  background: linear-gradient(135deg, oklch(0.88 0.15 85) 0%, oklch(0.70 0.10 85) 100%);
+
+/* Red gradient (accent / danger) */
+.red-gradient {
+  background: linear-gradient(135deg, #F43F5E 0%, #BE123C 100%);
+}
+
+/* Legacy gold-gradient alias → now blue for backwards compat */
+.gold-gradient {
+  background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+}
+
+/* Blue text */
+.blue-text {
+  background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.glass-card {
-  background: oklch(0.13 0.006 264 / 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid oklch(0.78 0.12 85 / 0.18);
+
+/* Legacy gold-text alias → now blue */
+.gold-text {
+  background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+/* Red text */
+.red-text {
+  color: #E11D48;
+}
+
+/* Glass card — dark surface with blue border glow */
+.glass-card {
+  background: rgba(14, 165, 233, 0.04);
+  border: 1px solid rgba(14, 165, 233, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* Red-accent glass card */
+.glass-card-red {
+  background: rgba(225, 29, 72, 0.05);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* Hexagonal background texture — HD Labs signature pattern */
+.hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0-2l26-15V18L28 2 2 18v31l26 15z' fill='%230EA5E9' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Blue glow effect */
+.blue-glow {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3), 0 0 40px rgba(14, 165, 233, 0.1);
+}
+
+/* Red glow effect */
+.red-glow {
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.35), 0 0 40px rgba(225, 29, 72, 0.1);
+}
+
+/* HD Labs dual-stripe top accent (red | blue) */
+.brand-stripe-top {
+  position: relative;
+}
+.brand-stripe-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #E11D48 0%, #E11D48 35%, #0EA5E9 35%, #0EA5E9 100%);
+  z-index: 10;
+}
+
+/* Price blur for unapproved users */
 .price-blur {
   filter: blur(8px);
   user-select: none;
   pointer-events: none;
 }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: oklch(0.11 0.006 264); }
-::-webkit-scrollbar-thumb { background: oklch(0.28 0.01 264); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.78 0.12 85 / 0.5); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+
+/* Selection */
+::selection {
+  background: rgba(14, 165, 233, 0.3);
+  color: #F8FAFC;
+}
 
 @layer base {
   * {
@@ -112,6 +215,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -127,24 +231,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -155,16 +246,16 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }

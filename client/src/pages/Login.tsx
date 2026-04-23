@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Lock, Shield } from "lucide-react";
 import { useState } from "react";
 
 const schema = z.object({
@@ -36,88 +36,113 @@ export default function Login() {
   });
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-[#0A0A0A] flex">
       {/* Left Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background to-card" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 70% 50%, oklch(0.78 0.12 85) 0%, transparent 60%)`,
-          }}
-        />
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-[#080808]">
+        {/* Hex pattern */}
+        <div className="absolute inset-0 hex-pattern opacity-80" />
+        {/* Blue glow */}
+        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #0EA5E9 0%, transparent 70%)" }} />
+        {/* Red glow */}
+        <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full opacity-10 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #E11D48 0%, transparent 70%)" }} />
+
         <div className="relative z-10 flex flex-col justify-center p-16">
-          <Link href="/" className="flex items-center gap-2 mb-16 no-underline">
-            <div className="w-8 h-8 rounded-sm gold-gradient flex items-center justify-center">
-              <span className="text-black font-black text-sm">AC</span>
+          <Link href="/" className="flex items-center gap-2.5 mb-16 no-underline">
+            <div className="w-9 h-9 rounded flex items-center justify-center font-black text-sm text-white"
+              style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)" }}>
+              AC
             </div>
-            <span className="font-bold text-lg">
-              <span className="gold-text">Alpha</span>
-              <span className="text-foreground"> Compound</span>
-            </span>
+            <div>
+              <span className="font-black text-white text-base tracking-widest uppercase">Alpha</span>
+              <span className="font-black text-base tracking-widest uppercase ml-1.5" style={{ color: "#0EA5E9" }}>Compound</span>
+            </div>
           </Link>
-          <h2 className="text-4xl font-black mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Welcome <span className="gold-text">Back</span>
+
+          <h2 className="text-5xl font-black uppercase tracking-tight leading-tight mb-4">
+            <span className="text-white">Welcome</span>
+            <br />
+            <span style={{ color: "#0EA5E9" }}>Back</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-[#64748B] leading-relaxed max-w-xs">
             Sign in to access your approved account and browse our exclusive catalog of premium HD Labs compounds.
           </p>
+
+          {/* Features */}
+          <div className="mt-10 space-y-3">
+            {[
+              { icon: Shield, text: "Verified HD Labs products" },
+              { icon: Lock, text: "Gated access — approved members only" },
+            ].map(({ icon: Icon, text }) => (
+              <div key={text} className="flex items-center gap-3 text-[#64748B]">
+                <Icon className="h-4 w-4 text-[#0EA5E9]" />
+                <span className="text-sm">{text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Right Panel */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-[#0A0A0A]">
         <div className="w-full max-w-md">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 no-underline">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-[#64748B] hover:text-white mb-8 no-underline transition-colors">
             <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
 
-          <h1 className="text-3xl font-black mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+          {/* HD Labs stripe */}
+          <div className="h-[3px] w-16 mb-6" style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
+
+          <h1 className="text-3xl font-black uppercase tracking-tight text-white mb-2">
             Sign In
           </h1>
-          <p className="text-muted-foreground text-sm mb-8">
+          <p className="text-[#64748B] text-sm mb-8">
             Don't have an account?{" "}
-            <Link href="/register" className="text-primary hover:underline no-underline">Apply for access</Link>
+            <Link href="/register" className="font-bold no-underline hover:underline" style={{ color: "#0EA5E9" }}>
+              Apply for access
+            </Link>
           </p>
 
           <form onSubmit={handleSubmit((data) => login.mutate(data))} className="space-y-4">
             <div>
-              <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
+              <Label htmlFor="email" className="text-sm font-bold uppercase tracking-wide text-[#94A3B8]">Email Address</Label>
               <Input
                 id="email"
                 type="email"
                 {...register("email")}
                 placeholder="john@example.com"
-                className="mt-1.5 bg-input border-border"
+                className="mt-1.5 bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50"
               />
-              {errors.email && <p className="text-destructive text-xs mt-1">{errors.email.message}</p>}
+              {errors.email && <p className="text-[#E11D48] text-xs mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
-              <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+              <Label htmlFor="password" className="text-sm font-bold uppercase tracking-wide text-[#94A3B8]">Password</Label>
               <div className="relative mt-1.5">
                 <Input
                   id="password"
                   type={showPass ? "text" : "password"}
                   {...register("password")}
                   placeholder="Your password"
-                  className="bg-input border-border pr-10"
+                  className="bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50 pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-white transition-colors"
                 >
                   {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.password && <p className="text-destructive text-xs mt-1">{errors.password.message}</p>}
+              {errors.password && <p className="text-[#E11D48] text-xs mt-1">{errors.password.message}</p>}
             </div>
 
             <Button
               type="submit"
-              className="w-full gold-gradient text-black font-bold mt-2 hover:opacity-90"
+              className="w-full text-white font-bold uppercase tracking-widest mt-2 h-11"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
               disabled={login.isPending}
             >
               {login.isPending ? "Signing In..." : "Sign In"}

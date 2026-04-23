@@ -1,392 +1,255 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { motion } from "framer-motion";
-import {
-  Shield,
-  Zap,
-  Package,
-  Eye,
-  Lock,
-  CheckCircle,
-  ArrowRight,
-  Star,
-  Truck,
-} from "lucide-react";
-import { Link } from "wouter";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.12 } },
-};
+import { Link } from "wouter";
+import { getLoginUrl } from "@/const";
+import { Shield, Truck, CreditCard, Lock, ChevronRight, Star, Package } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
   const { user, isAuthenticated } = useAuth();
   const isApproved = (user as any)?.status === "approved";
+  const isPending = (user as any)?.status === "pending";
 
-  const featuredQuery = trpc.products.list.useQuery({ featuredOnly: true });
-  const featured = featuredQuery.data?.slice(0, 6) ?? [];
+  const featuredQuery = trpc.products.list.useQuery(
+    { featuredOnly: true },
+    { enabled: isApproved }
+  );
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-[#0A0A0A]">
 
-      {/* ─── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/95" />
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, oklch(0.78 0.12 85) 0%, transparent 50%), radial-gradient(circle at 80% 20%, oklch(0.78 0.12 85) 0%, transparent 40%)`,
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 40px, oklch(0.78 0.12 85) 40px, oklch(0.78 0.12 85) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, oklch(0.78 0.12 85) 40px, oklch(0.78 0.12 85) 41px)`,
-          }}
-        />
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        {/* Hex pattern background */}
+        <div className="absolute inset-0 hex-pattern opacity-60" />
 
-        <div className="container relative z-10 pt-24 pb-16">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="max-w-4xl"
-          >
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-medium mb-6">
-              <Lock className="h-3 w-3" />
-              Restricted Access Platform
-            </motion.div>
+        {/* Blue glow top-right */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #0EA5E9 0%, transparent 70%)" }} />
 
-            <motion.h1
-              variants={fadeUp}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Unlock Your Next{" "}
-              <span className="gold-text">Phase of</span>
+        {/* Red glow bottom-left */}
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #E11D48 0%, transparent 70%)" }} />
+
+        <div className="container relative z-10 py-24 md:py-36">
+          <div className="max-w-3xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 mb-6">
+              <Lock className="h-3.5 w-3.5 text-[#0EA5E9]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0EA5E9]">Restricted Access Platform</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] mb-6">
+              <span className="text-white">Unlock Your</span>
               <br />
-              Performance
-            </motion.h1>
+              <span className="text-white">Next </span>
+              <span style={{
+                background: "linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #E11D48 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>Phase</span>
+              <br />
+              <span className="text-white">of Performance</span>
+            </h1>
 
-            <motion.p
-              variants={fadeUp}
-              className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
-            >
-              Premium compounds. Controlled access. Built for serious athletes who demand the highest quality from HD Labs.
-            </motion.p>
+            <p className="text-[#94A3B8] text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+              Premium pharmaceutical-grade compounds by <strong className="text-white">HD Labs</strong>. Controlled access. Built for serious athletes who demand the highest quality.
+            </p>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-              {!isAuthenticated ? (
-                <>
-                  <Link href="/register">
-                    <Button size="lg" className="gold-gradient text-black font-bold px-8 hover:opacity-90 transition-opacity">
-                      Apply for Access
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link href="/login">
-                    <Button size="lg" variant="outline" className="border-border/60 px-8">
-                      Login
-                    </Button>
-                  </Link>
-                </>
-              ) : isApproved ? (
-                <Link href="/products">
-                  <Button size="lg" className="gold-gradient text-black font-bold px-8 hover:opacity-90">
-                    Browse Products
-                    <ArrowRight className="ml-2 h-4 w-4" />
+            {/* CTA */}
+            {!isAuthenticated ? (
+              <div className="flex flex-wrap gap-3">
+                <Link href="/register" className="no-underline">
+                  <Button size="lg" className="text-white font-bold uppercase tracking-widest px-8 h-12"
+                    style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+                    Apply for Access
+                    <ChevronRight className="h-4 w-4 ml-1" />
                   </Button>
                 </Link>
-              ) : (
-                <div className="flex items-center gap-3 px-5 py-3 rounded-lg border border-primary/30 bg-primary/5">
-                  <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-                  <span className="text-sm text-muted-foreground">Your application is pending approval</span>
-                </div>
-              )}
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="mt-12 flex items-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-primary" />
-                <span>Verified Products</span>
+                <Link href="/login" className="no-underline">
+                  <Button size="lg" variant="outline"
+                    className="border-[#1E293B] text-[#94A3B8] hover:text-white hover:border-[#0EA5E9]/50 font-bold uppercase tracking-widest px-8 h-12 bg-transparent">
+                    Sign In
+                  </Button>
+                </Link>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-primary" />
-                <span>Secure Payments</span>
+            ) : isPending ? (
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded border border-[#E11D48]/30 bg-[#E11D48]/10">
+                <div className="w-2 h-2 rounded-full bg-[#E11D48] animate-pulse" />
+                <span className="text-[#E11D48] font-bold uppercase tracking-wide text-sm">Application Pending Review</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-primary" />
-                <span>Discreet Delivery</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Exclusive Access ─────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40">
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="grid lg:grid-cols-2 gap-16 items-center"
-          >
-            <motion.div variants={fadeUp}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-medium mb-6">
-                <Shield className="h-3 w-3" />
-                Exclusive Platform
-              </div>
-              <h2 className="text-4xl font-black mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Not Everyone Gets <span className="gold-text">Access</span>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Alpha Compound is a restricted platform. Every account is manually reviewed and approved before gaining access to our product catalog and pricing. This ensures our community remains exclusive and our products reach only serious athletes.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Register and submit your application",
-                  "Admin review within 24 hours",
-                  "Approved members unlock full catalog",
-                  "Secure checkout with PayFast",
-                ].map((step, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm">
-                    <div className="w-6 h-6 rounded-full gold-gradient flex items-center justify-center text-black font-bold text-xs shrink-0">
-                      {i + 1}
-                    </div>
-                    <span className="text-muted-foreground">{step}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-4">
-              {[
-                { icon: Lock, title: "Gated Access", desc: "Manual approval required for all members" },
-                { icon: Eye, title: "Hidden Pricing", desc: "Prices visible only to approved members" },
-                { icon: Shield, title: "18+ Verified", desc: "Age verification on every registration" },
-                { icon: Star, title: "Premium Quality", desc: "HD Labs certified compounds only" },
-              ].map((item, i) => (
-                <div key={i} className="glass-card rounded-xl p-5">
-                  <item.icon className="h-6 w-6 text-primary mb-3" />
-                  <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Featured Products ─────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40">
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="text-center mb-12">
-              <h2 className="text-4xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Featured <span className="gold-text">Products</span>
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                {isApproved
-                  ? "Browse our premium selection of HD Labs compounds."
-                  : "Get approved to view pricing and place orders."}
-              </p>
-            </motion.div>
-
-            {featuredQuery.isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="glass-card rounded-xl h-72 animate-pulse" />
-                ))}
-              </div>
-            ) : featured.length > 0 ? (
-              <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {featured.map((product) => (
-                  <motion.div key={product.id} variants={fadeUp}>
-                    <ProductCard product={product} isApproved={isApproved} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            ) : (
-              <div className="text-center py-16 text-muted-foreground">
-                <Package className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                <p>Products coming soon. Check back after approval.</p>
-              </div>
-            )}
-
-            <motion.div variants={fadeUp} className="text-center mt-10">
-              <Link href="/products">
-                <Button variant="outline" size="lg" className="border-primary/30 text-primary hover:bg-primary/5">
-                  View All Products
-                  <ArrowRight className="ml-2 h-4 w-4" />
+            ) : isApproved ? (
+              <Link href="/products" className="no-underline">
+                <Button size="lg" className="text-white font-bold uppercase tracking-widest px-8 h-12"
+                  style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+                  Browse Products
+                  <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+            ) : null}
 
-      {/* ─── Why Alpha Compound ────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40 bg-card/30">
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="text-center mb-12">
-              <h2 className="text-4xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Why <span className="gold-text">Alpha Compound</span>
-              </h2>
-            </motion.div>
-
-            <motion.div variants={stagger} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Trust badges */}
+            <div className="flex flex-wrap gap-6 mt-10 pt-8 border-t border-[#1E293B]">
               {[
-                { icon: Star, title: "Premium Quality", desc: "Pharmaceutical-grade HD Labs compounds with verified purity" },
-                { icon: Package, title: "Reliable Stock", desc: "Consistent inventory management ensuring products are always available" },
-                { icon: Zap, title: "Fast Delivery", desc: "2–3 business days nationwide delivery across South Africa" },
-                { icon: Shield, title: "Discreet Service", desc: "All orders shipped in plain, unmarked packaging for your privacy" },
-              ].map((item, i) => (
-                <motion.div key={i} variants={fadeUp} className="glass-card rounded-xl p-6 text-center">
-                  <div className="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="h-5 w-5 text-black" />
-                  </div>
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
-                </motion.div>
+                { icon: Shield, label: "Verified Products" },
+                { icon: CreditCard, label: "Secure Payments" },
+                { icon: Truck, label: "Discreet Delivery" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 text-[#64748B]">
+                  <Icon className="h-4 w-4 text-[#0EA5E9]" />
+                  <span className="text-sm font-medium">{label}</span>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ─── Delivery ──────────────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40">
+      {/* ── Featured Products (approved only) ───────────────────────────── */}
+      {isApproved && (
+        <section className="py-20 border-t border-[#1E293B]">
+          <div className="container">
+            <div className="flex items-center justify-between mb-10">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-0.5" style={{ background: "#E11D48" }} />
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Featured</span>
+                </div>
+                <h2 className="text-3xl font-black uppercase tracking-tight text-white">
+                  Top <span style={{ color: "#0EA5E9" }}>Compounds</span>
+                </h2>
+              </div>
+              <Link href="/products" className="no-underline">
+                <Button variant="ghost" size="sm"
+                  className="text-[#0EA5E9] hover:text-white hover:bg-[#0EA5E9]/10 font-bold uppercase tracking-wide text-xs">
+                  View All <ChevronRight className="h-3.5 w-3.5 ml-1" />
+                </Button>
+              </Link>
+            </div>
+
+            {featuredQuery.isLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="h-72 rounded-lg bg-[#111111] animate-pulse border border-[#1E293B]" />
+                ))}
+              </div>
+            ) : featuredQuery.data && featuredQuery.data.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {featuredQuery.data.map((product: any) => (
+                  <ProductCard key={product.id} product={product} isApproved={isApproved} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 text-[#64748B]">
+                <Package className="h-12 w-12 mx-auto mb-3 opacity-30" />
+                <p>No featured products yet.</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ── Features Grid ────────────────────────────────────────────────── */}
+      <section className={`py-20 ${isApproved ? "" : "border-t border-[#1E293B]"}`}>
         <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.div variants={fadeUp}>
-              <Truck className="h-10 w-10 text-primary mx-auto mb-4" />
-              <h2 className="text-4xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Nationwide <span className="gold-text">Delivery</span>
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-                We deliver across South Africa within 2–3 business days. All orders are shipped discreetly in plain packaging.
-              </p>
-            </motion.div>
-          </motion.div>
+          <div className="text-center mb-14">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <div className="w-8 h-0.5" style={{ background: "#E11D48" }} />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Why Alpha Compound</span>
+              <div className="w-8 h-0.5" style={{ background: "#0EA5E9" }} />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">
+              Built for <span style={{ color: "#0EA5E9" }}>Serious</span> Athletes
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Shield,
+                color: "#0EA5E9",
+                title: "Pharmaceutical Grade",
+                desc: "Every compound is sourced directly from HD Labs — tested, verified, and manufactured to the highest pharmaceutical standards.",
+              },
+              {
+                icon: Lock,
+                color: "#E11D48",
+                title: "Gated Access",
+                desc: "Not open to the public. Every account is manually reviewed and approved before gaining access to pricing and purchasing.",
+              },
+              {
+                icon: Truck,
+                color: "#0EA5E9",
+                title: "Discreet Delivery",
+                desc: "Free delivery to Port Elizabeth. Flat R150 nationwide. All orders shipped in plain, unmarked packaging.",
+              },
+              {
+                icon: CreditCard,
+                color: "#E11D48",
+                title: "Secure Payments",
+                desc: "All transactions processed securely via PayFast in South African Rand. No foreign exchange fees.",
+              },
+              {
+                icon: Star,
+                color: "#0EA5E9",
+                title: "HD Labs Exclusive",
+                desc: "Authorised distributor of HD Labs products. Authentic compounds with full batch verification available.",
+              },
+              {
+                icon: Package,
+                color: "#E11D48",
+                title: "100+ Products",
+                desc: "Injectables, orals, peptides, ancillaries and PCT — everything you need in one controlled-access platform.",
+              },
+            ].map(({ icon: Icon, color, title, desc }) => (
+              <div key={title}
+                className="p-6 rounded-lg border border-[#1E293B] bg-[#111111] hover:border-[#0EA5E9]/30 transition-colors group">
+                <div className="w-10 h-10 rounded flex items-center justify-center mb-4"
+                  style={{ background: `${color}15`, border: `1px solid ${color}30` }}>
+                  <Icon className="h-5 w-5" style={{ color }} />
+                </div>
+                <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-2">{title}</h3>
+                <p className="text-[#64748B] text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ─── How It Works ──────────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40 bg-card/30">
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="text-center mb-12">
-              <h2 className="text-4xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-                How It <span className="gold-text">Works</span>
-              </h2>
-            </motion.div>
+      {/* ── CTA Banner ───────────────────────────────────────────────────── */}
+      {!isAuthenticated && (
+        <section className="py-16 border-t border-[#1E293B]">
+          <div className="container">
+            <div className="relative rounded-xl overflow-hidden p-10 md:p-16 text-center"
+              style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #0d1a2e 50%, #0A0A0A 100%)", border: "1px solid #0EA5E9/20" }}>
+              {/* Hex texture */}
+              <div className="absolute inset-0 hex-pattern opacity-40" />
+              {/* Blue glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] rounded-full opacity-15 blur-3xl pointer-events-none"
+                style={{ background: "radial-gradient(ellipse, #0EA5E9 0%, transparent 70%)" }} />
 
-            <motion.div variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { step: "01", title: "Register", desc: "Create your account with full details and confirm you are 18+" },
-                { step: "02", title: "Get Approved", desc: "Our team reviews your application within 24 hours" },
-                { step: "03", title: "Access Products", desc: "Browse the full catalog with pricing unlocked" },
-                { step: "04", title: "Order Securely", desc: "Checkout with PayFast and receive discreet delivery" },
-              ].map((item, i) => (
-                <motion.div key={i} variants={fadeUp} className="relative">
-                  <div className="text-5xl font-black gold-text opacity-30 mb-3">{item.step}</div>
-                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                  {i < 3 && (
-                    <div className="hidden lg:block absolute top-8 right-0 translate-x-1/2 text-border">
-                      <ArrowRight className="h-5 w-5" />
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Final CTA ─────────────────────────────────────────────────────── */}
-      <section className="py-24 border-t border-border/40">
-        <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.h2
-              variants={fadeUp}
-              className="text-4xl sm:text-5xl font-black mb-6"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Ready to Elevate Your <span className="gold-text">Performance?</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-muted-foreground max-w-xl mx-auto mb-8 text-lg">
-              Join South Africa's most exclusive performance compound platform. Apply today and get approved within 24 hours.
-            </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4 justify-center">
-              {!isAuthenticated ? (
-                <>
-                  <Link href="/register">
-                    <Button size="lg" className="gold-gradient text-black font-bold px-10 hover:opacity-90">
-                      Apply Now
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link href="/login">
-                    <Button size="lg" variant="outline" className="border-border/60 px-10">
-                      Login
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <Link href="/products">
-                  <Button size="lg" className="gold-gradient text-black font-bold px-10 hover:opacity-90">
-                    Browse Products
-                    <ArrowRight className="ml-2 h-4 w-4" />
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                  Ready to <span style={{ color: "#0EA5E9" }}>Elevate</span>?
+                </h2>
+                <p className="text-[#94A3B8] text-lg mb-8 max-w-xl mx-auto">
+                  Apply for access today. Approvals are reviewed within 24 hours.
+                </p>
+                <Link href="/register" className="no-underline">
+                  <Button size="lg" className="text-white font-bold uppercase tracking-widest px-10 h-12"
+                    style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+                    Apply Now
+                    <ChevronRight className="h-4 w-4 ml-1" />
                   </Button>
                 </Link>
-              )}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <Footer />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

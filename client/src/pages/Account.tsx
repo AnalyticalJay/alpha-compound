@@ -12,28 +12,49 @@ import {
   XCircle,
   ShoppingBag,
   ChevronRight,
+  LogOut,
 } from "lucide-react";
 import { Link, useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 
 function StatusBadge({ status }: { status: string }) {
-  if (status === "approved") return <Badge className="bg-green-500/20 text-green-400 border-green-500/30">Approved</Badge>;
-  if (status === "rejected") return <Badge className="bg-destructive/20 text-destructive border-destructive/30">Rejected</Badge>;
-  return <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">Pending Approval</Badge>;
+  if (status === "approved") return (
+    <Badge className="text-[10px] font-bold uppercase tracking-widest border"
+      style={{ background: "#16A34A20", color: "#4ADE80", borderColor: "#16A34A40" }}>
+      Approved
+    </Badge>
+  );
+  if (status === "rejected") return (
+    <Badge className="text-[10px] font-bold uppercase tracking-widest border"
+      style={{ background: "#E11D4820", color: "#F87171", borderColor: "#E11D4840" }}>
+      Rejected
+    </Badge>
+  );
+  return (
+    <Badge className="text-[10px] font-bold uppercase tracking-widest border"
+      style={{ background: "#F59E0B20", color: "#FCD34D", borderColor: "#F59E0B40" }}>
+      Pending Approval
+    </Badge>
+  );
 }
 
 function OrderStatusBadge({ status }: { status: string }) {
-  const map: Record<string, { color: string; label: string }> = {
-    pending: { color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30", label: "Pending" },
-    paid: { color: "bg-blue-500/20 text-blue-400 border-blue-500/30", label: "Paid" },
-    processing: { color: "bg-purple-500/20 text-purple-400 border-purple-500/30", label: "Processing" },
-    shipped: { color: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30", label: "Shipped" },
-    delivered: { color: "bg-green-500/20 text-green-400 border-green-500/30", label: "Delivered" },
-    cancelled: { color: "bg-destructive/20 text-destructive border-destructive/30", label: "Cancelled" },
+  const map: Record<string, { bg: string; color: string; border: string; label: string }> = {
+    pending:    { bg: "#F59E0B20", color: "#FCD34D", border: "#F59E0B40", label: "Pending" },
+    paid:       { bg: "#0EA5E920", color: "#38BDF8", border: "#0EA5E940", label: "Paid" },
+    processing: { bg: "#8B5CF620", color: "#C4B5FD", border: "#8B5CF640", label: "Processing" },
+    shipped:    { bg: "#06B6D420", color: "#67E8F9", border: "#06B6D440", label: "Shipped" },
+    delivered:  { bg: "#16A34A20", color: "#4ADE80", border: "#16A34A40", label: "Delivered" },
+    cancelled:  { bg: "#E11D4820", color: "#F87171", border: "#E11D4840", label: "Cancelled" },
   };
-  const s = map[status] ?? { color: "bg-muted text-muted-foreground", label: status };
-  return <Badge className={s.color}>{s.label}</Badge>;
+  const s = map[status] ?? { bg: "#1E293B", color: "#94A3B8", border: "#1E293B", label: status };
+  return (
+    <Badge className="text-[10px] font-bold uppercase tracking-widest border"
+      style={{ background: s.bg, color: s.color, borderColor: s.border }}>
+      {s.label}
+    </Badge>
+  );
 }
 
 export default function Account() {
@@ -48,12 +69,17 @@ export default function Account() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#0A0A0A]">
         <Navbar />
         <div className="pt-24 container text-center py-24">
-          <User className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-30" />
-          <h2 className="text-2xl font-bold mb-2">Sign In Required</h2>
-          <Link href="/login"><Button className="gold-gradient text-black font-bold">Sign In</Button></Link>
+          <User className="h-16 w-16 mx-auto mb-4 text-[#334155]" />
+          <h2 className="text-2xl font-black uppercase tracking-tight text-white mb-4">Sign In Required</h2>
+          <Link href="/login" className="no-underline">
+            <Button className="text-white font-bold uppercase tracking-widest"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+              Sign In
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -62,56 +88,69 @@ export default function Account() {
   const activeTab = tab ?? "profile";
   const u = user as any;
 
+  const navItems = [
+    { id: "profile", label: "Profile", icon: User },
+    { id: "orders", label: "Orders", icon: ShoppingBag },
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <Navbar />
       <div className="pt-20">
         <div className="container py-8">
-          <h1 className="text-3xl font-black mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-            My <span className="gold-text">Account</span>
-          </h1>
+
+          {/* Header */}
+          <div className="mb-8">
+            <div className="h-[3px] w-16 mb-4" style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
+            <h1 className="text-3xl font-black uppercase tracking-tight text-white">
+              My <span style={{ color: "#0EA5E9" }}>Account</span>
+            </h1>
+          </div>
 
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar */}
-            <div className="glass-card rounded-xl p-4 h-fit">
-              <div className="flex items-center gap-3 mb-6 p-3">
-                <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center">
-                  <span className="text-black font-bold text-sm">{u?.fullName?.charAt(0) ?? "U"}</span>
+            <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 h-fit">
+              <div className="flex items-center gap-3 mb-6 p-3 rounded border border-[#1E293B] bg-[#0A0A0A]">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                  style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+                  {u?.fullName?.charAt(0)?.toUpperCase() ?? "U"}
                 </div>
                 <div className="min-w-0">
-                  <p className="font-semibold text-sm truncate">{u?.fullName}</p>
-                  <p className="text-xs text-muted-foreground truncate">{u?.email}</p>
+                  <p className="font-bold text-sm text-white truncate">{u?.fullName}</p>
+                  <p className="text-xs text-[#64748B] truncate">{u?.email}</p>
                 </div>
               </div>
-              <nav className="space-y-1">
-                {[
-                  { id: "profile", label: "Profile", icon: User },
-                  { id: "orders", label: "Orders", icon: ShoppingBag },
-                ].map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`/account/${item.id}`}
-                    className="no-underline"
-                  >
-                    <button
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                        activeTab === item.id
-                          ? "bg-primary/10 text-primary"
-                          : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                      }`}
-                    >
-                      <item.icon className="h-4 w-4" />
-                      {item.label}
-                      <ChevronRight className="h-3 w-3 ml-auto" />
-                    </button>
-                  </Link>
-                ))}
+
+              <nav className="space-y-0.5">
+                {navItems.map((item) => {
+                  const active = activeTab === item.id;
+                  return (
+                    <Link key={item.id} href={`/account/${item.id}`} className="no-underline">
+                      <button
+                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-sm font-bold uppercase tracking-wide transition-all ${
+                          active ? "" : "text-[#64748B] hover:text-white hover:bg-white/5"
+                        }`}
+                        style={active ? {
+                          background: "#0EA5E912",
+                          color: "#0EA5E9",
+                          borderLeft: "2px solid #0EA5E9",
+                        } : {}}
+                      >
+                        <item.icon className="h-4 w-4" />
+                        <span className="flex-1 text-left text-xs">{item.label}</span>
+                        {active && <ChevronRight className="h-3 w-3" />}
+                      </button>
+                    </Link>
+                  );
+                })}
               </nav>
-              <div className="mt-4 pt-4 border-t border-border">
+
+              <div className="mt-4 pt-4 border-t border-[#1E293B]">
                 <button
                   onClick={logout}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-destructive hover:bg-destructive/10 transition-colors"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded text-xs font-bold uppercase tracking-wide text-[#64748B] hover:text-[#E11D48] hover:bg-[#E11D48]/5 transition-colors"
                 >
+                  <LogOut className="h-4 w-4" />
                   Sign Out
                 </button>
               </div>
@@ -120,24 +159,32 @@ export default function Account() {
             {/* Content */}
             <div className="lg:col-span-3">
               {activeTab === "profile" && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                  <div className="glass-card rounded-xl p-6 mb-6">
-                    <h2 className="font-bold text-lg mb-6">Account Status</h2>
-                    <div className="flex items-center gap-4 p-4 rounded-lg bg-accent/30">
-                      <div className="w-12 h-12 rounded-full gold-gradient flex items-center justify-center shrink-0">
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+                  {/* Status card */}
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                    <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Account Status</h2>
+                    <div className="flex items-center gap-4 p-4 rounded border border-[#1E293B] bg-[#0A0A0A]">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: u?.status === "approved"
+                            ? "linear-gradient(135deg, #16A34A, #15803D)"
+                            : u?.status === "rejected"
+                            ? "linear-gradient(135deg, #E11D48, #BE123C)"
+                            : "linear-gradient(135deg, #F59E0B, #D97706)"
+                        }}>
                         {u?.status === "approved" ? (
-                          <CheckCircle className="h-6 w-6 text-black" />
+                          <CheckCircle className="h-6 w-6 text-white" />
                         ) : u?.status === "rejected" ? (
-                          <XCircle className="h-6 w-6 text-black" />
+                          <XCircle className="h-6 w-6 text-white" />
                         ) : (
-                          <Clock className="h-6 w-6 text-black" />
+                          <Clock className="h-6 w-6 text-white" />
                         )}
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1.5">
                           <StatusBadge status={u?.status ?? "pending"} />
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-[#64748B]">
                           {u?.status === "approved"
                             ? "Your account is approved. You have full access to the catalog."
                             : u?.status === "rejected"
@@ -148,9 +195,10 @@ export default function Account() {
                     </div>
                   </div>
 
-                  <div className="glass-card rounded-xl p-6">
-                    <h2 className="font-bold text-lg mb-6">Profile Details</h2>
-                    <div className="grid sm:grid-cols-2 gap-4">
+                  {/* Profile details */}
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                    <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Profile Details</h2>
+                    <div className="grid sm:grid-cols-2 gap-3">
                       {[
                         { label: "Full Name", value: u?.fullName },
                         { label: "Email", value: u?.email },
@@ -159,9 +207,9 @@ export default function Account() {
                         { label: "Member Since", value: u?.createdAt ? format(new Date(u.createdAt), "d MMM yyyy") : "—" },
                         { label: "Role", value: u?.role === "admin" ? "Administrator" : "Member" },
                       ].map((field) => (
-                        <div key={field.label} className="p-3 rounded-lg bg-accent/20">
-                          <p className="text-xs text-muted-foreground mb-1">{field.label}</p>
-                          <p className="text-sm font-medium">{field.value}</p>
+                        <div key={field.label} className="p-3 rounded border border-[#1E293B] bg-[#0A0A0A]">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] mb-1">{field.label}</p>
+                          <p className="text-sm font-semibold text-white">{field.value}</p>
                         </div>
                       ))}
                     </div>
@@ -171,39 +219,45 @@ export default function Account() {
 
               {activeTab === "orders" && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                  <div className="glass-card rounded-xl p-6">
-                    <h2 className="font-bold text-lg mb-6">Order History</h2>
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                    <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Order History</h2>
                     {ordersQuery.isLoading ? (
                       <div className="space-y-3">
                         {[...Array(3)].map((_, i) => (
-                          <div key={i} className="h-16 bg-accent/20 rounded-lg animate-pulse" />
+                          <div key={i} className="h-16 bg-[#1E293B] rounded animate-pulse" />
                         ))}
                       </div>
                     ) : orders.length === 0 ? (
                       <div className="text-center py-12">
-                        <Package className="h-12 w-12 mx-auto mb-3 text-muted-foreground opacity-30" />
-                        <p className="text-muted-foreground">No orders yet</p>
-                        <Link href="/products" className="mt-4 inline-block">
-                          <Button size="sm" className="gold-gradient text-black font-semibold">Browse Products</Button>
+                        <Package className="h-12 w-12 mx-auto mb-3 text-[#334155]" />
+                        <p className="text-[#64748B] mb-4">No orders yet</p>
+                        <Link href="/products" className="no-underline">
+                          <Button size="sm" className="text-white font-bold uppercase tracking-wide"
+                            style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+                            Browse Products
+                          </Button>
                         </Link>
                       </div>
                     ) : (
                       <div className="space-y-3">
                         {orders.map((order) => (
-                          <div key={order.id} className="flex items-center gap-4 p-4 rounded-lg border border-border/40 hover:border-primary/20 transition-colors">
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-semibold text-sm">Order #{order.id}</span>
-                                <OrderStatusBadge status={order.status} />
+                          <Link key={order.id} href={`/orders/${order.id}`} className="no-underline block">
+                            <div className="flex items-center gap-4 p-4 rounded border border-[#1E293B] bg-[#0A0A0A] hover:border-[#0EA5E9]/30 transition-colors cursor-pointer">
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-bold text-sm text-white">Order #{order.id}</span>
+                                  <OrderStatusBadge status={order.status} />
+                                </div>
+                                <p className="text-xs text-[#64748B]">
+                                  {format(new Date(order.createdAt), "d MMM yyyy")}
+                                </p>
                               </div>
-              <p className="text-xs text-muted-foreground">
-                              {format(new Date(order.createdAt), "d MMM yyyy")}
-                            </p>
+                              <div className="text-right">
+                                <p className="font-black text-white">R{parseFloat(order.totalAmount).toFixed(2)}</p>
+                              </div>
+                              <ChevronRight className="h-4 w-4 text-[#334155]" />
                             </div>
-                            <div className="text-right">
-                              <p className="font-bold text-primary">R{parseFloat(order.totalAmount).toFixed(2)}</p>
-                            </div>
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     )}

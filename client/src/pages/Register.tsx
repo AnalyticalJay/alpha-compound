@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
-import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 
 const schema = z.object({
@@ -32,7 +32,7 @@ export default function Register() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const register = trpc.auth.register.useMutation({
+  const registerMutation = trpc.auth.register.useMutation({
     onSuccess: () => setSuccess(true),
     onError: (err) => toast.error(err.message),
   });
@@ -46,19 +46,25 @@ export default function Register() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="max-w-md w-full text-center">
-          <div className="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mx-auto mb-6">
-            <span className="text-black font-black text-2xl">✓</span>
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+        <div className="max-w-md w-full text-center p-10 rounded-lg border border-[#1E293B] bg-[#111111]">
+          {/* HD Labs stripe */}
+          <div className="h-[3px] w-24 mx-auto mb-8" style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+            style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+            <CheckCircle2 className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-2xl font-black mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h2 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
             Application Submitted!
           </h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <p className="text-[#64748B] mb-6 leading-relaxed text-sm">
             Your application is now under review. You'll be notified once approved — typically within 24 hours.
           </p>
-          <Link href="/login">
-            <Button className="gold-gradient text-black font-bold">Go to Login</Button>
+          <Link href="/login" className="no-underline">
+            <Button className="text-white font-bold uppercase tracking-widest"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
+              Go to Login
+            </Button>
           </Link>
         </div>
       </div>
@@ -66,36 +72,44 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-[#0A0A0A] flex">
       {/* Left Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background to-card" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 30% 50%, oklch(0.78 0.12 85) 0%, transparent 60%)`,
-          }}
-        />
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-[#080808]">
+        <div className="absolute inset-0 hex-pattern opacity-80" />
+        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full opacity-12 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #0EA5E9 0%, transparent 70%)" }} />
+        <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] rounded-full opacity-10 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #E11D48 0%, transparent 70%)" }} />
+
         <div className="relative z-10 flex flex-col justify-center p-16">
-          <Link href="/" className="flex items-center gap-2 mb-16 no-underline">
-            <div className="w-8 h-8 rounded-sm gold-gradient flex items-center justify-center">
-              <span className="text-black font-black text-sm">AC</span>
+          <Link href="/" className="flex items-center gap-2.5 mb-16 no-underline">
+            <div className="w-9 h-9 rounded flex items-center justify-center font-black text-sm text-white"
+              style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)" }}>
+              AC
             </div>
-            <span className="font-bold text-lg">
-              <span className="gold-text">Alpha</span>
-              <span className="text-foreground"> Compound</span>
-            </span>
+            <div>
+              <span className="font-black text-white text-base tracking-widest uppercase">Alpha</span>
+              <span className="font-black text-base tracking-widest uppercase ml-1.5" style={{ color: "#0EA5E9" }}>Compound</span>
+            </div>
           </Link>
-          <h2 className="text-4xl font-black mb-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Join the <span className="gold-text">Elite</span>
+
+          <h2 className="text-5xl font-black uppercase tracking-tight leading-tight mb-4">
+            <span className="text-white">Join the</span>
+            <br />
+            <span style={{ color: "#0EA5E9" }}>Elite</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">
+          <p className="text-[#64748B] leading-relaxed mb-8 max-w-xs">
             Apply for exclusive access to South Africa's premium performance compound platform. Every application is reviewed by our team.
           </p>
           <ul className="space-y-3">
-            {["Manual approval process", "Exclusive pricing for members", "Discreet nationwide delivery", "18+ verified platform"].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            {[
+              "Manual approval process",
+              "Exclusive pricing for members",
+              "Discreet nationwide delivery",
+              "18+ verified platform",
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-3 text-sm text-[#64748B]">
+                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#0EA5E9" }} />
                 {item}
               </li>
             ))}
@@ -104,79 +118,90 @@ export default function Register() {
       </div>
 
       {/* Right Panel */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
-        <div className="w-full max-w-md">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 no-underline">
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-[#0A0A0A] overflow-y-auto">
+        <div className="w-full max-w-md py-8">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-[#64748B] hover:text-white mb-8 no-underline transition-colors">
             <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
 
-          <h1 className="text-3xl font-black mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+          {/* HD Labs stripe */}
+          <div className="h-[3px] w-16 mb-6" style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
+
+          <h1 className="text-3xl font-black uppercase tracking-tight text-white mb-2">
             Apply for Access
           </h1>
-          <p className="text-muted-foreground text-sm mb-8">
+          <p className="text-[#64748B] text-sm mb-8">
             Already have an account?{" "}
-            <Link href="/login" className="text-primary hover:underline no-underline">Login here</Link>
+            <Link href="/login" className="font-bold no-underline hover:underline" style={{ color: "#0EA5E9" }}>
+              Login here
+            </Link>
           </p>
 
-          <form onSubmit={handleSubmit((data) => register.mutate(data))} className="space-y-4">
+          <form onSubmit={handleSubmit((data) => registerMutation.mutate(data))} className="space-y-4">
             <div>
-              <Label htmlFor="fullName" className="text-sm font-medium">Full Name</Label>
-              <Input id="fullName" {...reg("fullName")} placeholder="John Smith" className="mt-1.5 bg-input border-border" />
-              {errors.fullName && <p className="text-destructive text-xs mt-1">{errors.fullName.message}</p>}
+              <Label htmlFor="fullName" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Full Name</Label>
+              <Input id="fullName" {...reg("fullName")} placeholder="John Smith"
+                className="mt-1.5 bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50" />
+              {errors.fullName && <p className="text-[#E11D48] text-xs mt-1">{errors.fullName.message}</p>}
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
-              <Input id="email" type="email" {...reg("email")} placeholder="john@example.com" className="mt-1.5 bg-input border-border" />
-              {errors.email && <p className="text-destructive text-xs mt-1">{errors.email.message}</p>}
+              <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Email Address</Label>
+              <Input id="email" type="email" {...reg("email")} placeholder="john@example.com"
+                className="mt-1.5 bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50" />
+              {errors.email && <p className="text-[#E11D48] text-xs mt-1">{errors.email.message}</p>}
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
-                <Input id="phone" {...reg("phone")} placeholder="+27 82 000 0000" className="mt-1.5 bg-input border-border" />
-                {errors.phone && <p className="text-destructive text-xs mt-1">{errors.phone.message}</p>}
+                <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Phone</Label>
+                <Input id="phone" {...reg("phone")} placeholder="+27 82 000 0000"
+                  className="mt-1.5 bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50" />
+                {errors.phone && <p className="text-[#E11D48] text-xs mt-1">{errors.phone.message}</p>}
               </div>
               <div>
-                <Label htmlFor="city" className="text-sm font-medium">City</Label>
-                <Input id="city" {...reg("city")} placeholder="Johannesburg" className="mt-1.5 bg-input border-border" />
-                {errors.city && <p className="text-destructive text-xs mt-1">{errors.city.message}</p>}
+                <Label htmlFor="city" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">City</Label>
+                <Input id="city" {...reg("city")} placeholder="Johannesburg"
+                  className="mt-1.5 bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50" />
+                {errors.city && <p className="text-[#E11D48] text-xs mt-1">{errors.city.message}</p>}
               </div>
             </div>
 
             <div>
-              <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+              <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Password</Label>
               <div className="relative mt-1.5">
                 <Input
                   id="password"
                   type={showPass ? "text" : "password"}
                   {...reg("password")}
                   placeholder="Min. 8 characters"
-                  className="bg-input border-border pr-10"
+                  className="bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50 pr-10"
                 />
-                <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                <button type="button" onClick={() => setShowPass(!showPass)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-white transition-colors">
                   {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.password && <p className="text-destructive text-xs mt-1">{errors.password.message}</p>}
+              {errors.password && <p className="text-[#E11D48] text-xs mt-1">{errors.password.message}</p>}
             </div>
 
             <div>
-              <Label htmlFor="confirmPassword" className="text-sm font-medium">Confirm Password</Label>
+              <Label htmlFor="confirmPassword" className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Confirm Password</Label>
               <div className="relative mt-1.5">
                 <Input
                   id="confirmPassword"
                   type={showConfirm ? "text" : "password"}
                   {...reg("confirmPassword")}
                   placeholder="Repeat password"
-                  className="bg-input border-border pr-10"
+                  className="bg-[#111111] border-[#1E293B] text-white placeholder:text-[#334155] focus:border-[#0EA5E9]/50 pr-10"
                 />
-                <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                <button type="button" onClick={() => setShowConfirm(!showConfirm)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-white transition-colors">
                   {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.confirmPassword && <p className="text-destructive text-xs mt-1">{errors.confirmPassword.message}</p>}
+              {errors.confirmPassword && <p className="text-[#E11D48] text-xs mt-1">{errors.confirmPassword.message}</p>}
             </div>
 
             <div className="flex items-start gap-3 pt-1">
@@ -184,20 +209,21 @@ export default function Register() {
                 id="isOver18"
                 checked={isOver18}
                 onCheckedChange={(v) => setValue("isOver18", v === true)}
-                className="mt-0.5"
+                className="mt-0.5 border-[#1E293B] data-[state=checked]:bg-[#0EA5E9] data-[state=checked]:border-[#0EA5E9]"
               />
-              <Label htmlFor="isOver18" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                I confirm that I am <strong className="text-foreground">18 years of age or older</strong> and agree to the terms of service.
+              <Label htmlFor="isOver18" className="text-sm text-[#64748B] leading-relaxed cursor-pointer">
+                I confirm that I am <strong className="text-white">18 years of age or older</strong> and agree to the terms of service.
               </Label>
             </div>
-            {errors.isOver18 && <p className="text-destructive text-xs">{errors.isOver18.message}</p>}
+            {errors.isOver18 && <p className="text-[#E11D48] text-xs">{errors.isOver18.message}</p>}
 
             <Button
               type="submit"
-              className="w-full gold-gradient text-black font-bold mt-2 hover:opacity-90"
-              disabled={register.isPending}
+              className="w-full text-white font-bold uppercase tracking-widest mt-2 h-11"
+              style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}
+              disabled={registerMutation.isPending}
             >
-              {register.isPending ? "Submitting Application..." : "Submit Application"}
+              {registerMutation.isPending ? "Submitting Application..." : "Submit Application"}
             </Button>
           </form>
         </div>
