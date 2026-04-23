@@ -17,8 +17,8 @@ export default function AdminDashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Admin <span className="gold-text">Dashboard</span>
+        <h1 className="text-2xl font-black" >
+          Admin <span style={{ color: "#0EA5E9" }}>Dashboard</span>
         </h1>
         <p className="text-muted-foreground text-sm mt-1">Overview of Alpha Compound platform</p>
       </div>
@@ -86,7 +86,7 @@ function PendingUsersList() {
     <div className="space-y-2">
       {pending.map((user) => (
         <div key={user.id} className="flex items-center gap-3 p-3 rounded-lg border border-border/40">
-          <div className="w-8 h-8 rounded-full gold-gradient flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0">
             <span className="text-black font-bold text-xs">{user.fullName?.charAt(0) ?? "U"}</span>
           </div>
           <div className="flex-1 min-w-0">

@@ -23,13 +23,13 @@ export default function AdminProducts() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Product <span className="gold-text">Management</span>
+          <h1 className="text-2xl font-black" >
+            Product <span style={{ color: "#0EA5E9" }}>Management</span>
           </h1>
           <p className="text-muted-foreground text-sm mt-1">{products.length} products in catalog</p>
         </div>
         <Link href="/admin/products/new">
-          <Button className="gold-gradient text-black font-semibold">
+          <Button className="text-white font-semibold">
             <Plus className="h-4 w-4 mr-2" />
             Add Product
           </Button>
@@ -51,7 +51,7 @@ export default function AdminProducts() {
             <Package className="h-12 w-12 mx-auto mb-3 text-muted-foreground opacity-30" />
             <p className="text-muted-foreground mb-4">No products yet</p>
             <Link href="/admin/products/new">
-              <Button size="sm" className="gold-gradient text-black font-semibold">Add First Product</Button>
+              <Button size="sm" className="text-white font-semibold">Add First Product</Button>
             </Link>
           </div>
         ) : (

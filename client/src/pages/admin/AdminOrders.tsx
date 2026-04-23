@@ -36,8 +36,8 @@ export default function AdminOrders() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Order <span className="gold-text">Management</span>
+        <h1 className="text-2xl font-black" >
+          Order <span style={{ color: "#0EA5E9" }}>Management</span>
         </h1>
         <p className="text-muted-foreground text-sm mt-1">{orders.length} total orders</p>
       </div>

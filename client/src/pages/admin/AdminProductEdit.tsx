@@ -143,8 +143,8 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
           </button>
         </Link>
         <div>
-          <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-            {isNew ? "New" : "Edit"} <span className="gold-text">Product</span>
+          <h1 className="text-2xl font-black" >
+            {isNew ? "New" : "Edit"} <span style={{ color: "#0EA5E9" }}>Product</span>
           </h1>
         </div>
       </div>
@@ -294,7 +294,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
 
             <Button
               type="submit"
-              className="w-full gold-gradient text-black font-bold hover:opacity-90"
+              className="w-full text-white font-bold"
               disabled={create.isPending || update.isPending}
             >
               {create.isPending || update.isPending ? "Saving..." : isNew ? "Create Product" : "Save Changes"}

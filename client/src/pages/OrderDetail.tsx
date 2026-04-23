@@ -53,7 +53,7 @@ export default function OrderDetail() {
         <main className="flex-1 container py-12 text-center">
           <p className="text-muted-foreground">Order not found.</p>
           <Link href="/account">
-            <Button className="mt-4 gold-gradient text-black font-bold">Back to Account</Button>
+            <Button className="mt-4 text-white font-bold">Back to Account</Button>
           </Link>
         </main>
         <Footer />
@@ -73,8 +73,8 @@ export default function OrderDetail() {
               </button>
             </Link>
             <div>
-              <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Order <span className="gold-text">#{order.id}</span>
+              <h1 className="text-2xl font-black" >
+                Order <span style={{ color: "#0EA5E9" }}>#{order.id}</span>
               </h1>
               <p className="text-sm text-muted-foreground">
                 Placed {format(new Date(order.createdAt), "d MMMM yyyy")}

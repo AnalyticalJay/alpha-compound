@@ -58,7 +58,7 @@ export default function AdminOrderDetail() {
       <div className="text-center py-12">
         <p className="text-muted-foreground">Order not found.</p>
         <Link href="/admin/orders">
-          <Button className="mt-4 gold-gradient text-black font-bold">Back to Orders</Button>
+          <Button className="mt-4 text-white font-bold">Back to Orders</Button>
         </Link>
       </div>
     );
@@ -74,8 +74,8 @@ export default function AdminOrderDetail() {
           </button>
         </Link>
         <div>
-          <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Order <span className="gold-text">#{order.id}</span>
+          <h1 className="text-2xl font-black" >
+            Order <span style={{ color: "#0EA5E9" }}>#{order.id}</span>
           </h1>
           <p className="text-sm text-muted-foreground">
             {format(new Date(order.createdAt), "d MMMM yyyy, HH:mm")}
@@ -99,7 +99,7 @@ export default function AdminOrderDetail() {
             </SelectContent>
           </Select>
           <Button
-            className="gold-gradient text-black font-bold"
+            className="text-white font-bold"
             disabled={!newStatus || updateStatus.isPending}
             onClick={() => {
               if (newStatus) {

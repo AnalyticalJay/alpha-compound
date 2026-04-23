@@ -32,8 +32,8 @@ export default function AdminCategories() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Category <span className="gold-text">Management</span>
+        <h1 className="text-2xl font-black" >
+          Category <span style={{ color: "#0EA5E9" }}>Management</span>
         </h1>
         <p className="text-muted-foreground text-sm mt-1">Organize your product catalog</p>
       </div>
@@ -67,7 +67,7 @@ export default function AdminCategories() {
             <Button
               onClick={() => create.mutate({ name: newName, slug: newName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), description: newDesc || undefined })}
               disabled={!newName.trim() || create.isPending}
-              className="w-full gold-gradient text-black font-semibold"
+              className="w-full text-white font-semibold"
             >
               {create.isPending ? "Creating..." : "Create Category"}
             </Button>

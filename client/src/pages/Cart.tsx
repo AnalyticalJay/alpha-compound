@@ -37,7 +37,7 @@ export default function Cart() {
           <ShoppingCart className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-30" />
           <h2 className="text-2xl font-bold mb-2">Sign In Required</h2>
           <p className="text-muted-foreground mb-6">Please sign in to view your cart.</p>
-          <Link href="/login"><Button className="gold-gradient text-black font-bold">Sign In</Button></Link>
+          <Link href="/login"><Button className="text-white font-bold">Sign In</Button></Link>
         </div>
       </div>
     );
@@ -62,8 +62,8 @@ export default function Cart() {
       <Navbar />
       <div className="pt-20">
         <div className="container py-8">
-          <h1 className="text-3xl font-black mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Shopping <span className="gold-text">Cart</span>
+          <h1 className="text-3xl font-black mb-8" >
+            Shopping <span style={{ color: "#0EA5E9" }}>Cart</span>
           </h1>
 
           {items.length === 0 ? (
@@ -72,7 +72,7 @@ export default function Cart() {
               <h2 className="text-xl font-bold mb-2">Your cart is empty</h2>
               <p className="text-muted-foreground mb-6">Browse our catalog and add items to get started.</p>
               <Link href="/products">
-                <Button className="gold-gradient text-black font-bold">Browse Products</Button>
+                <Button className="text-white font-bold">Browse Products</Button>
               </Link>
             </div>
           ) : (
@@ -158,7 +158,7 @@ export default function Cart() {
                   </div>
                 </div>
                 <Button
-                  className="w-full gold-gradient text-black font-bold hover:opacity-90"
+                  className="w-full text-white font-bold"
                   onClick={() => navigate("/checkout")}
                 >
                   Proceed to Checkout

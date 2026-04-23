@@ -38,8 +38,8 @@ export default function AdminUsers() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-          User <span className="gold-text">Management</span>
+        <h1 className="text-2xl font-black" >
+          User <span style={{ color: "#0EA5E9" }}>Management</span>
         </h1>
         <p className="text-muted-foreground text-sm mt-1">Review and manage member applications</p>
       </div>
@@ -57,7 +57,7 @@ export default function AdminUsers() {
               size="sm"
               variant={filter === f ? "default" : "outline"}
               onClick={() => setFilter(f)}
-              className={filter === f ? "gold-gradient text-black font-semibold" : "border-border/60 capitalize"}
+              className={filter === f ? "text-white font-semibold" : "border-border/60 capitalize"}
             >
               {f}
             </Button>
@@ -94,7 +94,7 @@ export default function AdminUsers() {
                   <tr key={user.id} className="border-b border-border/20 hover:bg-accent/10 transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full gold-gradient flex items-center justify-center shrink-0">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                           <span className="text-black font-bold text-xs">{user.fullName?.charAt(0) ?? "U"}</span>
                         </div>
                         <div className="min-w-0">

@@ -24,7 +24,7 @@ export default function OrderSuccess() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", duration: 0.6 }}
           >
-            <div className="w-24 h-24 rounded-full gold-gradient flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-12 w-12 text-black" />
             </div>
           </motion.div>
@@ -34,8 +34,8 @@ export default function OrderSuccess() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h1 className="text-4xl font-black mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Order <span className="gold-text">Confirmed!</span>
+            <h1 className="text-4xl font-black mb-3" >
+              Order <span style={{ color: "#0EA5E9" }}>Confirmed!</span>
             </h1>
             <p className="text-muted-foreground mb-2">
               Thank you for your order. Your payment has been processed successfully.
@@ -59,7 +59,7 @@ export default function OrderSuccess() {
                   "All orders are shipped in discreet, plain packaging",
                 ].map((step, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="w-5 h-5 rounded-full gold-gradient flex items-center justify-center text-black font-bold text-xs shrink-0">
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-black font-bold text-xs shrink-0">
                       {i + 1}
                     </div>
                     {step}
@@ -75,7 +75,7 @@ export default function OrderSuccess() {
                 </Button>
               </Link>
               <Link href="/products">
-                <Button className="gold-gradient text-black font-bold hover:opacity-90">
+                <Button className="text-white font-bold">
                   Continue Shopping
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

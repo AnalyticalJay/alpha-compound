@@ -45,12 +45,7 @@ export default function Home() {
               <span className="text-white">Unlock Your</span>
               <br />
               <span className="text-white">Next </span>
-              <span style={{
-                background: "linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #E11D48 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>Phase</span>
+              <span style={{ color: "#0EA5E9" }}>Phase</span>
               <br />
               <span className="text-white">of Performance</span>
             </h1>

@@ -95,7 +95,7 @@ export default function Checkout() {
           <Lock className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-30" />
           <h2 className="text-2xl font-bold mb-2">Access Required</h2>
           <p className="text-muted-foreground mb-6">You must be an approved member to checkout.</p>
-          <Link href="/login"><Button className="gold-gradient text-black font-bold">Sign In</Button></Link>
+          <Link href="/login"><Button className="text-white font-bold">Sign In</Button></Link>
         </div>
       </div>
     );
@@ -107,7 +107,7 @@ export default function Checkout() {
         <Navbar />
         <div className="pt-24 container text-center py-24">
           <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-          <Link href="/products"><Button className="gold-gradient text-black font-bold">Browse Products</Button></Link>
+          <Link href="/products"><Button className="text-white font-bold">Browse Products</Button></Link>
         </div>
       </div>
     );
@@ -123,8 +123,8 @@ export default function Checkout() {
             Back to Cart
           </Link>
 
-          <h1 className="text-3xl font-black mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-            <span className="gold-text">Checkout</span>
+          <h1 className="text-3xl font-black mb-8" >
+            <span style={{ color: "#0EA5E9" }}>Checkout</span>
           </h1>
 
           <form onSubmit={handleSubmit((data: FormData) => createOrder.mutate({ shipping: data }))}>
@@ -220,7 +220,7 @@ export default function Checkout() {
 
                 <Button
                   type="submit"
-                  className="w-full gold-gradient text-black font-bold hover:opacity-90"
+                  className="w-full text-white font-bold"
                   disabled={createOrder.isPending}
                 >
                   <CreditCard className="h-4 w-4 mr-2" />
