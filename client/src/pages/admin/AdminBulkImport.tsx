@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, CheckCircle, AlertCircle, Download } from "lucide-react";
+import { Loader2, CheckCircle, AlertCircle, Download, FileUp } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 
@@ -11,6 +11,7 @@ export default function AdminBulkImport() {
   const [csvContent, setCsvContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [uploadMode, setUploadMode] = useState<'paste' | 'excel'>('paste');
 
   const bulkImportMutation = trpc.products.bulkImportCSV.useMutation({
     onSuccess: (data: any) => {
@@ -26,7 +27,7 @@ export default function AdminBulkImport() {
 
   const handleImport = async () => {
     if (!csvContent.trim()) {
-      toast.error("Please paste CSV content");
+      toast.error("Please paste CSV content or upload Excel file");
       return;
     }
 
@@ -35,6 +36,55 @@ export default function AdminBulkImport() {
       await bulkImportMutation.mutateAsync({ csvData: csvContent });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleExcelUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const buffer = await file.arrayBuffer();
+      const uint8Array = new Uint8Array(buffer);
+      
+      // Dynamically import xlsx
+      const XLSX = await import('xlsx');
+      const workbook = XLSX.read(uint8Array, { type: 'array' });
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+
+      // Extract products from Excel
+      let csvLines = ['name,category,dosageInfo,description,brand'];
+      let currentCategory = '';
+
+      for (const row of data) {
+        if (!row || row.length === 0) continue;
+        
+        const cell = String(row[0]).trim();
+        
+        // Check if this is a category header (ends with colon)
+        if (cell.endsWith(':')) {
+          currentCategory = cell.replace(':', '').trim();
+        } else if (cell && currentCategory) {
+          // This is a product
+          const productName = cell;
+          const dosage = row[1] ? String(row[1]).trim() : '';
+          
+          // Determine brand based on current category or file name
+          const brand = file.name.includes('HD') ? 'HD Labs' : file.name.includes('BP') ? 'BP Pharma' : 'Unknown';
+          
+          csvLines.push(`"${productName}","${currentCategory}","${dosage}","${brand} - ${currentCategory}","${brand}"`);
+        }
+      }
+
+      if (csvLines.length > 1) {
+        setCsvContent(csvLines.join('\n'));
+        toast.success(`Extracted ${csvLines.length - 1} products from Excel`);
+      } else {
+        toast.error('No products found in Excel file');
+      }
+    } catch (error: any) {
+      toast.error(`Failed to read Excel file: ${error.message}`);
     }
   };
 
@@ -69,6 +119,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               <CardDescription>Paste your CSV content below (name, category, dosageInfo, description, brand)</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+            {uploadMode === 'paste' ? (
               <Textarea
                 placeholder="Paste CSV content here...&#10;name,category,dosageInfo,description,brand&#10;Product Name,Category,Dosage,Description,Brand"
                 value={csvContent}
@@ -76,6 +127,22 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
                 className="min-h-64 bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                 disabled={isLoading}
               />
+            ) : (
+              <div className="min-h-64 bg-gray-800 border border-gray-700 rounded-md flex items-center justify-center">
+                <label className="cursor-pointer text-center">
+                  <FileUp className="h-12 w-12 mx-auto mb-3 text-blue-400" />
+                  <p className="text-white font-semibold mb-1">Click to upload Excel file</p>
+                  <p className="text-gray-400 text-sm">or drag and drop</p>
+                  <input
+                    type="file"
+                    accept=".xlsx,.xls"
+                    onChange={handleExcelUpload}
+                    className="hidden"
+                    disabled={isLoading}
+                  />
+                </label>
+              </div>
+            )}
 
               <div className="flex gap-2">
                 <Button
@@ -93,14 +160,22 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
                   )}
                 </Button>
 
-                <Button
-                  onClick={downloadTemplate}
-                  variant="outline"
-                  className="border-gray-700 text-gray-300 hover:bg-gray-800"
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Template
-                </Button>
+              <Button
+                onClick={() => setUploadMode(uploadMode === 'paste' ? 'excel' : 'paste')}
+                variant="outline"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              >
+                {uploadMode === 'paste' ? 'Upload Excel' : 'Paste CSV'}
+              </Button>
+
+              <Button
+                onClick={downloadTemplate}
+                variant="outline"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Template
+              </Button>
 
                 <Button
                   onClick={() => {
