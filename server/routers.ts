@@ -266,6 +266,76 @@ export const appRouter = router({
     deleteImage: adminProcedure
       .input(z.object({ imageId: z.number() }))
       .mutation(({ input }) => deleteProductImage(input.imageId)),
+
+    bulkImportCSV: adminProcedure
+      .input(z.object({ csvData: z.string() }))
+      .mutation(async ({ input }) => {
+        const lines = input.csvData.trim().split('\n');
+        if (lines.length < 2) throw new TRPCError({ code: 'BAD_REQUEST', message: 'CSV must have header and products' });
+
+        const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+        const nameIdx = headers.indexOf('name');
+        const categoryIdx = headers.indexOf('category');
+        const dosageIdx = headers.indexOf('dosageinfo');
+        const descIdx = headers.indexOf('description');
+
+        if (nameIdx === -1 || categoryIdx === -1) {
+          throw new TRPCError({ code: 'BAD_REQUEST', message: 'CSV needs name and category columns' });
+        }
+
+        let imported = 0, skipped = 0;
+        const errors: string[] = [];
+
+        const catSet = new Set<string>();
+        for (let i = 1; i < lines.length; i++) {
+          const parts = lines[i].split(',');
+          if (parts[categoryIdx]) catSet.add(parts[categoryIdx].trim());
+        }
+
+        const catMap: Record<string, number> = {};
+        for (const catName of Array.from(catSet)) {
+          try {
+            const slug = catName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            await createCategory({ name: catName, slug });
+            const cats = await getAllCategories();
+            const found = cats.find((c: any) => c.name === catName);
+            if (found) catMap[catName] = found.id;
+          } catch (e: any) {
+            const cats = await getAllCategories();
+            const found = cats.find((c: any) => c.name === catName);
+            if (found) catMap[catName] = found.id;
+          }
+        }
+
+        for (let i = 1; i < lines.length; i++) {
+          try {
+            const parts = lines[i].split(',').map(p => p.trim());
+            const name = parts[nameIdx];
+            const category = parts[categoryIdx];
+            const dosage = parts[dosageIdx] || '';
+            const desc = parts[descIdx] || '';
+
+            if (!name || !category) { skipped++; continue; }
+
+            const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            const categoryId = catMap[category];
+
+            if (!categoryId) {
+              errors.push(`Row ${i + 1}: Category not found`);
+              skipped++;
+              continue;
+            }
+
+            await createProduct({ name, slug, categoryId, price: '0', stockQuantity: 100, description: desc, dosageInfo: dosage, isActive: true, isFeatured: false });
+            imported++;
+          } catch (e: any) {
+            if (!e.message?.includes('Duplicate')) errors.push(`Row ${i + 1}: ${e.message}`);
+            skipped++;
+          }
+        }
+
+        return { imported, skipped, errors: errors.slice(0, 5), message: `Imported ${imported}, skipped ${skipped}` };
+      }),
   }),
 
   // ─── Cart ─────────────────────────────────────────────────────────────────

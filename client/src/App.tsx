@@ -24,6 +24,7 @@ import ApprovalPending from "./pages/ApprovalPending";
 import OrderDetail from "./pages/OrderDetail";
 import OrderCancelled from "./pages/OrderCancelled";
 import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
+import AdminBulkImport from "./pages/admin/AdminBulkImport";
 
 function Router() {
   return (
@@ -78,6 +79,13 @@ function Router() {
         {(params) => (
           <AdminLayout>
             <AdminProductEdit productId={parseInt((params as any).id)} />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/bulk-import">
+        {() => (
+          <AdminLayout>
+            <AdminBulkImport />
           </AdminLayout>
         )}
       </Route>
