@@ -56,7 +56,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-[#0A0A0A] flex">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-60 bg-[#090909] border-r border-[#1E293B] flex flex-col transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 z-50 w-[min(82vw,15rem)] bg-[#090909] border-r border-[#1E293B] flex flex-col overscroll-contain transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
@@ -127,8 +127,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Mobile overlay */}
       {sidebarOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
+        <div aria-label="Close admin navigation" className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -137,7 +136,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="flex-1 lg:ml-60 flex flex-col min-h-screen">
         {/* Mobile header */}
         <header className="lg:hidden flex items-center justify-between p-4 border-b border-[#1E293B] bg-[#090909]">
-          <button onClick={() => setSidebarOpen(true)} className="p-1.5 rounded hover:bg-white/5 text-[#94A3B8]">
+          <button aria-label="Open admin navigation" onClick={() => setSidebarOpen(true)} className="flex h-11 w-11 items-center justify-center rounded hover:bg-white/5 text-[#94A3B8]">
             <Menu className="h-5 w-5" />
           </button>
           <span className="font-black text-sm uppercase tracking-widest">
@@ -147,7 +146,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="w-8" />
         </header>
 
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 min-w-0 overflow-x-hidden p-4 sm:p-6">
           {children}
         </main>
       </div>

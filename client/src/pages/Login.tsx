@@ -61,7 +61,7 @@ export default function Login() {
             </div>
           </Link>
 
-          <h2 className="text-5xl font-black uppercase tracking-tight leading-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight leading-tight mb-4 break-words">
             <span className="text-white">Welcome</span>
             <br />
             <span style={{ color: "#0EA5E9" }}>Back</span>

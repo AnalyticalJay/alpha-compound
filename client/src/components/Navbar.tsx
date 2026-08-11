@@ -148,7 +148,10 @@ export default function Navbar() {
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden p-2 rounded hover:bg-white/5 text-[#94A3B8] hover:text-white transition-colors"
+              type="button"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileOpen}
+              className="flex h-11 w-11 items-center justify-center rounded hover:bg-white/5 text-[#94A3B8] hover:text-white transition-colors md:hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -158,7 +161,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-[#1E293B] py-3 space-y-1">
+          <div className="md:hidden max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-[#1E293B] py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -177,7 +180,7 @@ export default function Navbar() {
               <Link
                 href="/admin"
                 onClick={() => setMobileOpen(false)}
-                className="block px-4 py-2.5 text-sm font-semibold uppercase tracking-wide rounded no-underline transition-colors flex items-center gap-2"
+                className="block min-h-11 px-4 py-3 text-sm font-semibold uppercase tracking-wide rounded no-underline transition-colors flex items-center gap-2"
                 style={{ color: "#E11D48" }}
               >
                 <Shield className="h-4 w-4" />
@@ -186,7 +189,7 @@ export default function Navbar() {
             )}
             {isApproved && (
               <Link href="/cart" onClick={() => setMobileOpen(false)}
-                className="block px-4 py-2.5 text-sm font-semibold uppercase tracking-wide rounded no-underline transition-colors text-[#94A3B8] hover:text-white hover:bg-white/5 flex items-center gap-2">
+                className="block min-h-11 px-4 py-3 text-sm font-semibold uppercase tracking-wide rounded no-underline transition-colors text-[#94A3B8] hover:text-white hover:bg-white/5 flex items-center gap-2">
                 <ShoppingCart className="h-4 w-4" />
                 Cart {cartCount > 0 && `(${cartCount})`}
               </Link>

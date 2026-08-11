@@ -50,7 +50,7 @@ export default function AdminUsers() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search users..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9 bg-input border-border" />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {(["all", "pending", "approved", "rejected"] as const).map((f) => (
             <Button
               key={f}
@@ -78,7 +78,7 @@ export default function AdminUsers() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[700px]">
               <thead>
                 <tr className="border-b border-border/40 text-xs text-muted-foreground">
                   <th className="text-left p-4 font-medium">User</th>
@@ -113,7 +113,7 @@ export default function AdminUsers() {
                           <button
                             onClick={() => approve.mutate({ userId: user.id })}
                             disabled={approve.isPending}
-                            className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors"
+                            className="flex min-h-10 items-center gap-1 rounded bg-green-500/20 px-3 py-2 text-xs text-green-400 hover:bg-green-500/30 transition-colors"
                           >
                             <CheckCircle className="h-3 w-3" />
                             Approve
@@ -123,7 +123,7 @@ export default function AdminUsers() {
                           <button
                             onClick={() => reject.mutate({ userId: user.id })}
                             disabled={reject.isPending}
-                            className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-destructive/20 text-destructive hover:bg-destructive/30 transition-colors"
+                            className="flex min-h-10 items-center gap-1 rounded bg-destructive/20 px-3 py-2 text-xs text-destructive hover:bg-destructive/30 transition-colors"
                           >
                             <XCircle className="h-3 w-3" />
                             Reject

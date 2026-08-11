@@ -21,7 +21,7 @@ export default function AdminProducts() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-black" >
             Product <span style={{ color: "#0EA5E9" }}>Management</span>
@@ -29,14 +29,14 @@ export default function AdminProducts() {
           <p className="text-muted-foreground text-sm mt-1">{products.length} products in catalog</p>
         </div>
         <Link href="/admin/products/new">
-          <Button className="text-white font-semibold">
+          <Button className="min-h-11 w-full text-white font-semibold sm:w-auto">
             <Plus className="h-4 w-4 mr-2" />
             Add Product
           </Button>
         </Link>
       </div>
 
-      <div className="relative max-w-sm mb-6">
+      <div className="relative mb-6 w-full max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input placeholder="Search products..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9 bg-input border-border" />
       </div>
@@ -56,7 +56,7 @@ export default function AdminProducts() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[720px]">
               <thead>
                 <tr className="border-b border-border/40 text-xs text-muted-foreground">
                   <th className="text-left p-4 font-medium">Product</th>
@@ -106,7 +106,7 @@ export default function AdminProducts() {
                     <td className="p-4">
                       <div className="flex gap-2">
                         <Link href={`/admin/products/${product.id}/edit`}>
-                          <button className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-accent hover:bg-accent/80 transition-colors">
+                          <button className="flex min-h-10 items-center gap-1 rounded bg-accent px-3 py-2 text-xs hover:bg-accent/80 transition-colors">
                             <Edit className="h-3 w-3" />
                             Edit
                           </button>
@@ -117,7 +117,7 @@ export default function AdminProducts() {
                               deleteProduct.mutate({ id: product.id });
                             }
                           }}
-                          className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-destructive/20 text-destructive hover:bg-destructive/30 transition-colors"
+                          className="flex min-h-10 items-center gap-1 rounded bg-destructive/20 px-3 py-2 text-xs text-destructive hover:bg-destructive/30 transition-colors"
                         >
                           <Trash2 className="h-3 w-3" />
                           Delete

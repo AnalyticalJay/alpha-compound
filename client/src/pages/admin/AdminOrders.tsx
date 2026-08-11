@@ -54,7 +54,7 @@ export default function AdminOrders() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[780px]">
               <thead>
                 <tr className="border-b border-border/40 text-xs text-muted-foreground">
                   <th className="text-left p-4 font-medium">Order</th>
@@ -95,7 +95,7 @@ export default function AdminOrders() {
                           updateStatus.mutate({ orderId: order.id, status: val as typeof ORDER_STATUSES[number] })
                         }
                       >
-                        <SelectTrigger className="h-7 text-xs w-32 bg-input border-border">
+                        <SelectTrigger className="h-10 w-32 bg-input border-border text-xs">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>

@@ -103,3 +103,14 @@
 - [x] Ensure mobile-friendly drawer/toggle for sidebar filters
 - [x] Verify functionality with automated tests and save a checkpoint
 - [ ] Save a new checkpoint for the completed product search and filter sidebar after passing tests and browser verification
+
+## Phase 12: Mobile Optimization & Responsive Polish
+- [x] Audit and enhance Navbar mobile menu drawer, touch targets, and overflow
+- [x] Ensure product grids, checkout, account, and admin dashboards (tables, cards, modals) scale gracefully on mobile screens
+- [x] Run full test suite, verify responsiveness, and save a checkpoint
+- [x] Audit and fix mobile responsiveness on the frontend Products grid and filter interactions at small breakpoints
+- [x] Audit and fix mobile responsiveness on the Checkout page, including form layout, summary card, and payment actions
+- [x] Audit modal/dialog/mobile overlay behavior across admin and storefront flows, and add tests or explicit verification for narrow screens
+- [x] Re-run TypeScript/tests and save a checkpoint after completing the remaining mobile responsiveness work
+- [x] Save a new checkpoint for the completed mobile responsiveness optimization after the latest responsive fixes
+- [x] Perform explicit browser/mobile verification of the updated responsive storefront and dashboards, then update todo.md

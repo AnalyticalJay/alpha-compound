@@ -191,7 +191,7 @@ export default function AdminBulkImages() {
           <CardTitle className="flex items-center gap-2 text-white"><UploadCloud className="h-5 w-5 text-[#0EA5E9]" /> Select product images</CardTitle>
           <CardDescription className="text-[#64748B]">Recommended naming: the exact product name, for example <span className="text-[#94A3B8]">Testosterone Enanthate 250mg HD Labs.jpg</span>.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 p-4 sm:p-6">
           <label className="flex min-h-36 cursor-pointer flex-col items-center justify-center rounded border border-dashed border-[#0EA5E9]/50 bg-[#0EA5E9]/5 px-6 text-center transition-colors hover:border-[#0EA5E9] hover:bg-[#0EA5E9]/10">
             <UploadCloud className="mb-3 h-8 w-8 text-[#0EA5E9]" />
             <span className="text-sm font-bold uppercase tracking-wide text-white">Choose multiple images</span>
@@ -199,21 +199,21 @@ export default function AdminBulkImages() {
             <input type="file" multiple accept="image/*" className="hidden" onChange={selectFiles} disabled={isUploading || isMatching} />
           </label>
 
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={matchFiles} disabled={!files.length || isMatching || isUploading} className="bg-[#0EA5E9] font-bold uppercase tracking-wide text-white hover:bg-[#0284C7]">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+            <Button onClick={matchFiles} disabled={!files.length || isMatching || isUploading} className="min-h-11 bg-[#0EA5E9] font-bold uppercase tracking-wide text-white hover:bg-[#0284C7]">
               {isMatching ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Matching...</> : <><Search className="mr-2 h-4 w-4" /> Match to products</>}
             </Button>
-            <Button onClick={uploadMatchedImages} disabled={!matchedFiles.length || isMatching || isUploading} className="bg-[#E11D48] font-bold uppercase tracking-wide text-white hover:bg-[#BE123C]">
+            <Button onClick={uploadMatchedImages} disabled={!matchedFiles.length || isMatching || isUploading} className="min-h-11 bg-[#E11D48] font-bold uppercase tracking-wide text-white hover:bg-[#BE123C]">
               {isUploading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Uploading {Math.min(uploadIndex + 1, matchedFiles.length)}/{matchedFiles.length}</> : <><UploadCloud className="mr-2 h-4 w-4" /> Upload matched images</>}
             </Button>
-            <Button onClick={clearFiles} disabled={!files.length || isUploading} variant="outline" className="border-[#1E293B] text-[#94A3B8] hover:bg-white/5 hover:text-white">Clear</Button>
+            <Button onClick={clearFiles} disabled={!files.length || isUploading} variant="outline" className="min-h-11 border-[#1E293B] text-[#94A3B8] hover:bg-white/5 hover:text-white">Clear</Button>
           </div>
         </CardContent>
       </Card>
 
       {files.length > 0 && (
         <>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
             <Card className="border-[#1E293B] bg-[#111111]"><CardContent className="p-4"><p className="text-xs uppercase tracking-wide text-[#64748B]">Selected</p><p className="mt-1 text-2xl font-black text-white">{files.length}</p></CardContent></Card>
             <Card className="border-[#1E293B] bg-[#111111]"><CardContent className="p-4"><p className="text-xs uppercase tracking-wide text-[#64748B]">Matched</p><p className="mt-1 text-2xl font-black text-[#10B981]">{matchedFiles.length}</p></CardContent></Card>
             <Card className="border-[#1E293B] bg-[#111111]"><CardContent className="p-4"><p className="text-xs uppercase tracking-wide text-[#64748B]">Unmatched</p><p className="mt-1 text-2xl font-black text-[#E11D48]">{unmatchedFiles.length}</p></CardContent></Card>
@@ -228,9 +228,9 @@ export default function AdminBulkImages() {
           )}
 
           <Card className="border-[#1E293B] bg-[#111111]">
-            <CardHeader className="flex-row items-center justify-between gap-4 space-y-0">
+            <CardHeader className="flex-col items-stretch gap-3 space-y-0 sm:flex-row sm:items-center sm:justify-between">
               <div><CardTitle className="text-white">Image review</CardTitle><CardDescription className="text-[#64748B]">Review the filename-to-product matches before uploading.</CardDescription></div>
-              <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Filter files" className="w-44 rounded border border-[#1E293B] bg-[#0A0A0A] px-3 py-2 text-sm text-white outline-none focus:border-[#0EA5E9]" />
+              <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Filter files" className="min-h-11 w-full rounded border border-[#1E293B] bg-[#0A0A0A] px-3 py-2 text-sm text-white outline-none focus:border-[#0EA5E9] sm:w-44" />
             </CardHeader>
             <CardContent>
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

@@ -38,9 +38,9 @@ export default function AdminCategories() {
         <p className="text-muted-foreground text-sm mt-1">Organize your product catalog</p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
         {/* Create Form */}
-        <div className="glass-card rounded-xl p-6">
+        <div className="glass-card rounded-xl p-4 sm:p-6">
           <h2 className="font-bold mb-4 flex items-center gap-2">
             <Plus className="h-4 w-4 text-primary" />
             Add Category
@@ -75,7 +75,7 @@ export default function AdminCategories() {
         </div>
 
         {/* Categories List */}
-        <div className="glass-card rounded-xl p-6">
+        <div className="glass-card rounded-xl p-4 sm:p-6">
           <h2 className="font-bold mb-4 flex items-center gap-2">
             <Tag className="h-4 w-4 text-primary" />
             Existing Categories ({categories.length})
@@ -100,11 +100,11 @@ export default function AdminCategories() {
                       />
                       <button
                         onClick={() => update.mutate({ id: cat.id, name: editName })}
-                        className="text-green-400 hover:text-green-300"
+                        className="flex h-11 w-11 items-center justify-center text-green-400 hover:text-green-300"
                       >
                         <Check className="h-4 w-4" />
                       </button>
-                      <button onClick={() => setEditId(null)} className="text-muted-foreground hover:text-foreground">
+                      <button onClick={() => setEditId(null)} className="flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-foreground">
                         <X className="h-4 w-4" />
                       </button>
                     </>
@@ -116,13 +116,13 @@ export default function AdminCategories() {
                       </div>
                       <button
                         onClick={() => { setEditId(cat.id); setEditName(cat.name); }}
-                        className="text-muted-foreground hover:text-foreground"
+                        className="flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-foreground"
                       >
                         <Edit className="h-3.5 w-3.5" />
                       </button>
                       <button
                         onClick={() => { if (confirm(`Delete "${cat.name}"?`)) remove.mutate({ id: cat.id }); }}
-                        className="text-muted-foreground hover:text-destructive"
+                        className="flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-destructive"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>

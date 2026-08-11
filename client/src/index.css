@@ -209,13 +209,33 @@
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border outline-ring/50;
+  }
+  html,
+  body,
+  #root {
+    min-width: 320px;
+    width: 100%;
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+  }
+  button,
+  [role="button"],
+  a[href] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  img,
+  svg,
+  video {
+    max-width: 100%;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -248,6 +268,13 @@
     .container {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 

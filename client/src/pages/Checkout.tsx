@@ -117,7 +117,7 @@ export default function Checkout() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="pt-20">
-        <div className="container py-8">
+        <div className="container px-4 py-6 sm:py-8">
           <Link href="/cart" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 no-underline">
             <ArrowLeft className="h-4 w-4" />
             Back to Cart
@@ -128,10 +128,10 @@ export default function Checkout() {
           </h1>
 
           <form onSubmit={handleSubmit((data: FormData) => createOrder.mutate({ shipping: data }))}>
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
               {/* Shipping Form */}
               <div className="lg:col-span-2 space-y-6">
-                <div className="glass-card rounded-xl p-6">
+                <div className="glass-card rounded-xl p-4 sm:p-6">
                   <div className="flex items-center gap-2 mb-6">
                     <Truck className="h-5 w-5 text-primary" />
                     <h2 className="font-bold text-lg">Shipping Details</h2>
@@ -175,7 +175,7 @@ export default function Checkout() {
 
                 {/* Delivery Info */}
                 {city?.length > 1 && (
-                  <div className="glass-card rounded-xl p-4 flex items-center gap-3">
+                  <div className="glass-card flex flex-wrap items-center gap-3 rounded-xl p-4">
                     <Truck className="h-5 w-5 text-primary shrink-0" />
                     <div>
                       <p className="text-sm font-medium">
@@ -191,7 +191,7 @@ export default function Checkout() {
               </div>
 
               {/* Order Summary */}
-              <div className="glass-card rounded-xl p-6 h-fit sticky top-24">
+              <div className="glass-card h-fit rounded-xl p-4 sm:p-6 lg:sticky lg:top-24">
                 <h2 className="font-bold text-lg mb-4">Order Summary</h2>
                 <div className="space-y-3 mb-4">
                   {items.map((item) => (
@@ -220,7 +220,7 @@ export default function Checkout() {
 
                 <Button
                   type="submit"
-                  className="w-full text-white font-bold"
+                  className="min-h-11 w-full text-white font-bold"
                   disabled={createOrder.isPending}
                 >
                   <CreditCard className="h-4 w-4 mr-2" />

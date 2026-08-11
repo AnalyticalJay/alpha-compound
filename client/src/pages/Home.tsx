@@ -51,7 +51,7 @@ export default function Home() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tight leading-[0.9] mb-6 break-words">
                 <span className="text-white">Unlock Your</span>
                 <br />
                 <span className="text-white">Next </span>

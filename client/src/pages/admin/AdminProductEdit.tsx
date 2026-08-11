@@ -138,7 +138,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
     <div>
       <div className="flex items-center gap-3 mb-6">
         <Link href="/admin/products" className="no-underline">
-          <button className="p-1.5 rounded-md hover:bg-accent">
+          <button aria-label="Back to products" className="flex h-11 w-11 items-center justify-center rounded-md hover:bg-accent">
             <ArrowLeft className="h-4 w-4" />
           </button>
         </Link>
@@ -150,10 +150,10 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
           {/* Main Form */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="glass-card rounded-xl p-6">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <h2 className="font-bold mb-4">Product Details</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2">
@@ -190,7 +190,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
                     value={watch("categoryId")?.toString() ?? ""}
                     onValueChange={(v) => setValue("categoryId", parseInt(v))}
                   >
-                    <SelectTrigger className="mt-1.5 bg-input border-border">
+                    <SelectTrigger className="mt-1.5 min-h-11 bg-input border-border">
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -220,7 +220,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
             </div>
 
             {/* Settings */}
-            <div className="glass-card rounded-xl p-6">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <h2 className="font-bold mb-4">Settings</h2>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -243,7 +243,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
 
           {/* Images */}
           <div className="space-y-6">
-            <div className="glass-card rounded-xl p-6">
+            <div className="glass-card rounded-xl p-4 sm:p-6">
               <h2 className="font-bold mb-4">Product Images</h2>
               {isNew ? (
                 <p className="text-sm text-muted-foreground">Save the product first, then upload images.</p>

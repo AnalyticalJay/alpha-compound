@@ -97,7 +97,7 @@ export default function Account() {
     <div className="min-h-screen bg-[#0A0A0A]">
       <Navbar />
       <div className="pt-20">
-        <div className="container py-8">
+        <div className="container px-4 py-6 sm:py-8">
 
           {/* Header */}
           <div className="mb-8">
@@ -107,9 +107,9 @@ export default function Account() {
             </h1>
           </div>
 
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 lg:grid-cols-4 lg:gap-8">
             {/* Sidebar */}
-            <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 h-fit">
+            <div className="h-fit rounded-lg border border-[#1E293B] bg-[#111111] p-4">
               <div className="flex items-center gap-3 mb-6 p-3 rounded border border-[#1E293B] bg-[#0A0A0A]">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
                   style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
@@ -157,13 +157,13 @@ export default function Account() {
             </div>
 
             {/* Content */}
-            <div className="lg:col-span-3">
+            <div className="min-w-0 lg:col-span-3">
               {activeTab === "profile" && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
                   {/* Status card */}
-                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 sm:p-6">
                     <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Account Status</h2>
-                    <div className="flex items-center gap-4 p-4 rounded border border-[#1E293B] bg-[#0A0A0A]">
+                    <div className="flex flex-col items-start gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-4 sm:flex-row sm:items-center sm:gap-4">
                       <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{
                           background: u?.status === "approved"
@@ -196,7 +196,7 @@ export default function Account() {
                   </div>
 
                   {/* Profile details */}
-                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 sm:p-6">
                     <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Profile Details</h2>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -209,7 +209,7 @@ export default function Account() {
                       ].map((field) => (
                         <div key={field.label} className="p-3 rounded border border-[#1E293B] bg-[#0A0A0A]">
                           <p className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] mb-1">{field.label}</p>
-                          <p className="text-sm font-semibold text-white">{field.value}</p>
+                          <p className="break-words text-sm font-semibold text-white">{field.value}</p>
                         </div>
                       ))}
                     </div>
@@ -219,7 +219,7 @@ export default function Account() {
 
               {activeTab === "orders" && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-6">
+                  <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 sm:p-6">
                     <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Order History</h2>
                     {ordersQuery.isLoading ? (
                       <div className="space-y-3">
@@ -242,7 +242,7 @@ export default function Account() {
                       <div className="space-y-3">
                         {orders.map((order) => (
                           <Link key={order.id} href={`/orders/${order.id}`} className="no-underline block">
-                            <div className="flex items-center gap-4 p-4 rounded border border-[#1E293B] bg-[#0A0A0A] hover:border-[#0EA5E9]/30 transition-colors cursor-pointer">
+                            <div className="flex items-center gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-3 transition-colors hover:border-[#0EA5E9]/30 cursor-pointer sm:gap-4 sm:p-4">
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
                                   <span className="font-bold text-sm text-white">Order #{order.id}</span>
@@ -252,7 +252,7 @@ export default function Account() {
                                   {format(new Date(order.createdAt), "d MMM yyyy")}
                                 </p>
                               </div>
-                              <div className="text-right">
+                              <div className="shrink-0 text-right">
                                 <p className="font-black text-white">R{parseFloat(order.totalAmount).toFixed(2)}</p>
                               </div>
                               <ChevronRight className="h-4 w-4 text-[#334155]" />

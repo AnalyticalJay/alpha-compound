@@ -110,7 +110,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
         <p className="text-gray-400">Import multiple products at once using a CSV file</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Import Card */}
         <div className="lg:col-span-2">
           <Card className="bg-gray-900 border-blue-500/30">
@@ -118,7 +118,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               <CardTitle className="text-white">CSV Import</CardTitle>
               <CardDescription>Paste your CSV content below (name, category, dosageInfo, description, brand)</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 p-4 sm:p-6">
             {uploadMode === 'paste' ? (
               <Textarea
                 placeholder="Paste CSV content here...&#10;name,category,dosageInfo,description,brand&#10;Product Name,Category,Dosage,Description,Brand"
@@ -144,11 +144,11 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               </div>
             )}
 
-              <div className="flex gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 <Button
                   onClick={handleImport}
                   disabled={isLoading || !csvContent.trim()}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="min-h-11 bg-blue-600 text-white hover:bg-blue-700"
                 >
                   {isLoading ? (
                     <>
@@ -163,7 +163,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               <Button
                 onClick={() => setUploadMode(uploadMode === 'paste' ? 'excel' : 'paste')}
                 variant="outline"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                className="min-h-11 border-gray-700 text-gray-300 hover:bg-gray-800"
               >
                 {uploadMode === 'paste' ? 'Upload Excel' : 'Paste CSV'}
               </Button>
@@ -171,7 +171,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               <Button
                 onClick={downloadTemplate}
                 variant="outline"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                className="min-h-11 border-gray-700 text-gray-300 hover:bg-gray-800"
               >
                 <Download className="mr-2 h-4 w-4" />
                 Template
@@ -183,7 +183,7 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
                     setResult(null);
                   }}
                   variant="outline"
-                  className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                  className="min-h-11 border-gray-700 text-gray-300 hover:bg-gray-800"
                   disabled={isLoading}
                 >
                   Clear
@@ -246,8 +246,8 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
               )}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-3 gap-4">
+          <CardContent className="space-y-4 p-4 sm:p-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-gray-400 text-sm">Imported</p>
                 <p className="text-2xl font-bold text-green-400">{result.imported}</p>
