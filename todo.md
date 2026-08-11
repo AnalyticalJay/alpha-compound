@@ -92,3 +92,8 @@
 - [x] Bulk image upload page with normalized product-name matching, S3-backed storage, preview, unmatched-file handling, and Vitest coverage
 - [x] Fix bulk image preview lifecycle so object URLs remain valid during matching and upload state updates
 - [x] Add Vitest coverage for router-level matching, unmatched files, and S3-backed upload behavior
+
+## Phase 10: Anabolics Africa Rebrand
+- [x] Create Anabolics Africa logo asset (HD Labs style: red, blue, black)
+- [x] Update all "Alpha Compound" references to "Anabolics Africa" across the application
+- [x] Update site metadata, header, footer, and admin branding

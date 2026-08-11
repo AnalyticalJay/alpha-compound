@@ -10,13 +10,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded flex items-center justify-center font-black text-sm text-white"
-                style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)" }}>
-                AC
+              <div className="w-10 h-10 rounded flex items-center justify-center overflow-hidden border border-[#1E293B] bg-black">
+                <img src="/manus-storage/anabolics-africa-logo_2013ad4b.png" alt="Anabolics Africa logo" className="h-full w-full object-contain" />
               </div>
               <div>
-                <span className="font-black text-white text-base tracking-widest uppercase">Alpha</span>
-                <span className="font-black text-base tracking-widest uppercase ml-1.5" style={{ color: "#0EA5E9" }}>Compound</span>
+                <span className="font-black text-white text-base tracking-widest uppercase">Anabolics</span>
+                <span className="font-black text-base tracking-widest uppercase ml-1.5" style={{ color: "#0EA5E9" }}>Africa</span>
               </div>
             </div>
             <p className="text-[#64748B] text-sm leading-relaxed max-w-xs mb-5">
@@ -86,7 +85,7 @@ export default function Footer() {
           <div className="h-[2px] w-24 mb-5" style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[#475569] text-xs">
-              © {new Date().getFullYear()} Alpha Compound. All rights reserved.
+              © {new Date().getFullYear()} Anabolics Africa. All rights reserved.
             </p>
             <p className="text-[#475569] text-xs">
               Powered by <span style={{ color: "#0EA5E9" }} className="font-bold">HD Labs</span>. For adults 18+ only.

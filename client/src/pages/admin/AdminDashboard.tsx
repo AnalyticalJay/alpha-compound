@@ -18,9 +18,9 @@ export default function AdminDashboard() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-black" >
-          Admin <span style={{ color: "#0EA5E9" }}>Dashboard</span>
+          Anabolics Africa <span style={{ color: "#0EA5E9" }}>Dashboard</span>
         </h1>
-        <p className="text-muted-foreground text-sm mt-1">Overview of Alpha Compound platform</p>
+        <p className="text-muted-foreground text-sm mt-1">Overview of the Anabolics Africa platform</p>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">

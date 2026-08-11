@@ -251,7 +251,7 @@ export default function Home() {
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-2 mb-3">
               <div className="w-8 h-0.5" style={{ background: "#E11D48" }} />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Why Alpha Compound</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Why Anabolics Africa</span>
               <div className="w-8 h-0.5" style={{ background: "#0EA5E9" }} />
             </div>
             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">

@@ -69,7 +69,7 @@ export default function Checkout() {
       notify_url: `${window.location.origin}/api/trpc/orders.payfastItn`,
       m_payment_id: orderData.payfastReference,
       amount: parseFloat(orderData.total).toFixed(2),
-      item_name: `Alpha Compound Order #${orderData.orderId}`,
+      item_name: `Anabolics Africa Order #${orderData.orderId}`,
       email_address: (user as any)?.email ?? "",
       name_first: ((user as any)?.fullName ?? "").split(" ")[0] ?? "",
       name_last: ((user as any)?.fullName ?? "").split(" ").slice(1).join(" ") || ".",

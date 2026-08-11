@@ -66,14 +66,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="p-5 border-b border-[#1E293B]">
           <Link href="/" className="flex items-center gap-2.5 no-underline">
-            <div className="w-8 h-8 rounded flex items-center justify-center font-black text-xs text-white"
-              style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)" }}>
-              AC
-            </div>
-            <div>
-              <span className="font-black text-white text-sm tracking-widest uppercase">Alpha</span>
-              <span className="font-black text-sm tracking-widest uppercase ml-1" style={{ color: "#0EA5E9" }}>Admin</span>
-            </div>
+              <div className="w-9 h-9 rounded flex items-center justify-center overflow-hidden border border-[#1E293B] bg-black">
+                <img src="/manus-storage/anabolics-africa-logo_2013ad4b.png" alt="Anabolics Africa logo" className="h-full w-full object-contain" />
+              </div>
+              <div>
+                <span className="font-black text-white text-sm tracking-widest uppercase">Anabolics</span>
+                <span className="font-black text-sm tracking-widest uppercase ml-1" style={{ color: "#0EA5E9" }}>Africa</span>
+              </div>
           </Link>
         </div>
 
@@ -142,8 +141,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Menu className="h-5 w-5" />
           </button>
           <span className="font-black text-sm uppercase tracking-widest">
-            <span className="text-white">Alpha </span>
-            <span style={{ color: "#0EA5E9" }}>Admin</span>
+            <span className="text-white">Anabolics </span>
+            <span style={{ color: "#0EA5E9" }}>Africa</span>
           </span>
           <div className="w-8" />
         </header>
