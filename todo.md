@@ -97,3 +97,9 @@
 - [x] Create Anabolics Africa logo asset (HD Labs style: red, blue, black)
 - [x] Update all "Alpha Compound" references to "Anabolics Africa" across the application
 - [x] Update site metadata, header, footer, and admin branding
+
+## Phase 11: Product Search & Filter Sidebar
+- [x] Add brand-aware search and filter sidebar on frontend products page (HD Labs, BP Pharma, categories, search query)
+- [x] Ensure mobile-friendly drawer/toggle for sidebar filters
+- [x] Verify functionality with automated tests and save a checkpoint
+- [ ] Save a new checkpoint for the completed product search and filter sidebar after passing tests and browser verification
