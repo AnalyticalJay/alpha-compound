@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowLeft, Eye, EyeOff, Lock, Shield } from "lucide-react";
 import { useState } from "react";
+import { getLoginUrl } from "@/const";
 
 const schema = z.object({
   email: z.string().email("Valid email required"),
@@ -20,6 +21,7 @@ type FormData = z.infer<typeof schema>;
 export default function Login() {
   const [, navigate] = useLocation();
   const [showPass, setShowPass] = useState(false);
+
   const utils = trpc.useUtils();
 
   const login = trpc.auth.login.useMutation({
@@ -147,6 +149,25 @@ export default function Login() {
             >
               {login.isPending ? "Signing In..." : "Sign In"}
             </Button>
+
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-[#1E293B]"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-[#111111] text-[#64748B]">or</span>
+              </div>
+            </div>
+
+            <a href={getLoginUrl()}>
+              <Button
+                type="button"
+                className="w-full text-white font-bold uppercase tracking-widest h-11"
+                style={{ background: "linear-gradient(135deg, #E11D48, #DC2626)" }}
+              >
+                Sign In with Manus
+              </Button>
+            </a>
           </form>
         </div>
       </div>

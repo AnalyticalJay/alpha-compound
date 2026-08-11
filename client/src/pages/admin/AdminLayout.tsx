@@ -12,6 +12,7 @@ import {
   X,
   Shield,
   Upload,
+  FileImage,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/admin/users", label: "Users", icon: Users, color: "#E11D48" },
   { href: "/admin/products", label: "Products", icon: Package, color: "#0EA5E9" },
   { href: "/admin/bulk-import", label: "Bulk Import", icon: Upload, color: "#10B981" },
+  { href: "/admin/bulk-images", label: "Bulk Images", icon: FileImage, color: "#E11D48" },
   { href: "/admin/categories", label: "Categories", icon: Tag, color: "#0EA5E9" },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag, color: "#E11D48" },
 ];

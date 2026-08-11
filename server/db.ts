@@ -341,6 +341,66 @@ export async function getProductImages(productId: number) {
   return db.select().from(productImages).where(eq(productImages.productId, productId));
 }
 
+export async function getProductsForImageMatching() {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({ id: products.id, name: products.name, slug: products.slug, isActive: products.isActive })
+    .from(products)
+    .where(eq(products.isActive, true))
+    .orderBy(products.name);
+}
+
+export function normalizeProductImageKey(value: string) {
+  return value
+    .replace(/\.[a-z0-9]{2,5}$/i, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+export function getProductImageMatchKeys(product: { name: string; slug: string }) {
+  return [normalizeProductImageKey(product.name), normalizeProductImageKey(product.slug)];
+}
+
+export async function saveProductImage(data: {
+  productId: number;
+  imageUrl: string;
+  imageKey: string;
+  isPrimary: boolean;
+}) {
+  return addProductImage(data);
+}
+
+export async function getProductImageCount(productId: number) {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select({ id: productImages.id }).from(productImages).where(eq(productImages.productId, productId));
+  return rows.length;
+}
+
+export async function setPrimaryImageIfNeeded(productId: number) {
+  const db = await getDb();
+  if (!db) return;
+  const primary = await db
+    .select({ id: productImages.id })
+    .from(productImages)
+    .where(and(eq(productImages.productId, productId), eq(productImages.isPrimary, true)))
+    .limit(1);
+  if (!primary[0]) {
+    const first = await db
+      .select({ id: productImages.id })
+      .from(productImages)
+      .where(eq(productImages.productId, productId))
+      .orderBy(productImages.createdAt)
+      .limit(1);
+    if (first[0]) await db.update(productImages).set({ isPrimary: true }).where(eq(productImages.id, first[0].id));
+  }
+}
+
+
 export async function setPrimaryImage(imageId: number, productId: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");

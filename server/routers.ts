@@ -28,6 +28,9 @@ import {
   getProductBySlug,
   getProductImages,
   getProducts,
+  getProductsForImageMatching,
+  getProductImageMatchKeys,
+  normalizeProductImageKey,
   getUserByEmail,
   getUserById,
   removeCartItem,
@@ -237,6 +240,38 @@ export const appRouter = router({
     delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(({ input }) => deleteProduct(input.id)),
+
+    matchImageFiles: adminProcedure
+      .input(z.object({ fileNames: z.array(z.string().min(1)).min(1).max(500) }))
+      .mutation(async ({ input }) => {
+        const products = await getProductsForImageMatching();
+        const exactNameMap = new Map<string, typeof products[number]>();
+        const exactSlugMap = new Map<string, typeof products[number]>();
+        const duplicateKeys = new Set<string>();
+
+        for (const product of products) {
+          const [nameKey, slugKey] = getProductImageMatchKeys(product);
+          if (exactNameMap.has(nameKey)) duplicateKeys.add(nameKey);
+          else exactNameMap.set(nameKey, product);
+          if (exactSlugMap.has(slugKey)) duplicateKeys.add(slugKey);
+          else exactSlugMap.set(slugKey, product);
+        }
+
+        return input.fileNames.map((fileName) => {
+          const key = normalizeProductImageKey(fileName);
+          const product = duplicateKeys.has(key)
+            ? undefined
+            : exactNameMap.get(key) ?? exactSlugMap.get(key);
+          return {
+            fileName,
+            normalizedKey: key,
+            product: product
+              ? { id: product.id, name: product.name, slug: product.slug }
+              : null,
+            status: product ? "matched" as const : "unmatched" as const,
+          };
+        });
+      }),
 
     // Image upload: receives base64 data URL
     uploadImage: adminProcedure

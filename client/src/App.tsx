@@ -25,6 +25,7 @@ import OrderDetail from "./pages/OrderDetail";
 import OrderCancelled from "./pages/OrderCancelled";
 import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
 import AdminBulkImport from "./pages/admin/AdminBulkImport";
+import AdminBulkImages from "./pages/admin/AdminBulkImages";
 
 function Router() {
   return (
@@ -86,6 +87,13 @@ function Router() {
         {() => (
           <AdminLayout>
             <AdminBulkImport />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/bulk-images">
+        {() => (
+          <AdminLayout>
+            <AdminBulkImages />
           </AdminLayout>
         )}
       </Route>

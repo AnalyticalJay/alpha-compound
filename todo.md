@@ -87,3 +87,8 @@
 - [x] Register page restyled with HD Labs brand identity
 - [x] Products catalog page restyled with HD Labs brand colors
 - [x] Account dashboard restyled with HD Labs brand colors
+
+## Phase 9: Bulk Product Image Management
+- [x] Bulk image upload page with normalized product-name matching, S3-backed storage, preview, unmatched-file handling, and Vitest coverage
+- [x] Fix bulk image preview lifecycle so object URLs remain valid during matching and upload state updates
+- [x] Add Vitest coverage for router-level matching, unmatched files, and S3-backed upload behavior
