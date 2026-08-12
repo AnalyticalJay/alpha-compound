@@ -39,6 +39,11 @@ export default function OrderDetail() {
   );
   const order = orderQuery.data;
 
+  const payfastForm = trpc.orders.payfastForm.useMutation({
+    onSuccess: (data) => submitPayFast(data),
+    onError: (error) => toast.error(error.message),
+  });
+
   const choosePayment = trpc.orders.choosePayment.useMutation({
     onSuccess: (data) => {
       if (data.method === "eft") {
@@ -50,29 +55,16 @@ export default function OrderDetail() {
         toast.error("PayFast reference could not be created.");
         return;
       }
-      submitPayFast({ orderId: data.orderId, payfastReference: data.payfastReference, total: data.total });
+      payfastForm.mutate({ orderId: data.orderId, origin: window.location.origin });
     },
     onError: (error) => toast.error(error.message),
   });
 
-  const submitPayFast = (payment: { orderId: number; payfastReference: string; total: string }) => {
+  function submitPayFast(payment: { action: string; fields: Record<string, string> }) {
     const form = document.createElement("form");
     form.method = "POST";
-    form.action = "https://www.payfast.co.za/eng/process";
-    const params: Record<string, string> = {
-      merchant_id: import.meta.env.VITE_PAYFAST_MERCHANT_ID || "10000100",
-      merchant_key: import.meta.env.VITE_PAYFAST_MERCHANT_KEY || "46f0cd694581a",
-      return_url: `${window.location.origin}/order-success/${payment.orderId}`,
-      cancel_url: `${window.location.origin}/orders/${payment.orderId}`,
-      notify_url: `${window.location.origin}/api/trpc/orders.payfastItn`,
-      m_payment_id: payment.payfastReference,
-      amount: parseFloat(payment.total).toFixed(2),
-      item_name: `Anabolics Africa Approved Quote #${payment.orderId}`,
-      email_address: (user as any)?.email ?? "",
-      name_first: ((user as any)?.fullName ?? "").split(" ")[0] ?? "",
-      name_last: ((user as any)?.fullName ?? "").split(" ").slice(1).join(" ") || ".",
-    };
-    Object.entries(params).forEach(([key, value]) => {
+    form.action = payment.action;
+    Object.entries(payment.fields).forEach(([key, value]) => {
       const input = document.createElement("input");
       input.type = "hidden";
       input.name = key;
@@ -81,7 +73,7 @@ export default function OrderDetail() {
     });
     document.body.appendChild(form);
     form.submit();
-  };
+  }
 
   if (orderQuery.isLoading) {
     return <div className="min-h-screen flex flex-col bg-background"><Navbar /><main className="flex-1 container py-12"><div className="max-w-3xl mx-auto space-y-4">{[...Array(4)].map((_, i) => <div key={i} className="h-24 bg-accent/20 rounded-xl animate-pulse" />)}</div></main><Footer /></div>;

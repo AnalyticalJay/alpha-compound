@@ -1,0 +1,44 @@
+import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { buildPayFastFormConfig, createPayFastSignature, verifyPayFastSignature } from "./payfast";
+
+describe("PayFast runtime configuration", () => {
+  it("builds the real payment form from managed server credentials without exposing the passphrase", () => {
+    const config = buildPayFastFormConfig({
+      origin: "https://anabolicsafrica.co.za/",
+      orderId: 42,
+      payfastReference: "AA-42-123",
+      total: "450.00",
+      email: "buyer@example.com",
+      fullName: "Buyer Example",
+    });
+
+    expect(config.action).toBe("https://www.payfast.co.za/eng/process");
+    expect(config.fields.merchant_id).toBe(process.env.PAYFAST_MERCHANT_ID);
+    expect(config.fields.merchant_key).toBe(process.env.PAYFAST_MERCHANT_KEY);
+    expect(config.fields.notify_url).toBe("https://anabolicsafrica.co.za/api/payfast/itn");
+    expect(config.fields.amount).toBe("450.00");
+    expect(config.fields).not.toHaveProperty("passphrase");
+  });
+
+  it("wires OrderDetail to the runtime server configuration path", () => {
+    const source = readFileSync(new URL("../client/src/pages/OrderDetail.tsx", import.meta.url), "utf8");
+    expect(source).toContain("trpc.orders.payfastForm.useMutation");
+    expect(source).toContain("window.location.origin");
+    expect(source).not.toContain("VITE_PAYFAST_MERCHANT_ID");
+    expect(source).not.toContain("10000100");
+    expect(source).not.toContain("46f0cd694581a");
+  });
+
+  it("creates and verifies the signature used by the ITN route", () => {
+    const payload = {
+      amount_gross: "450.00",
+      m_payment_id: "AA-42-123",
+      payment_status: "COMPLETE",
+    };
+    const signedPayload = { ...payload, signature: createPayFastSignature(payload) };
+
+    expect(verifyPayFastSignature(signedPayload)).toBe(true);
+    expect(verifyPayFastSignature({ ...signedPayload, amount_gross: "451.00" })).toBe(false);
+  });
+});

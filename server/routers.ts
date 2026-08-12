@@ -42,7 +42,6 @@ import {
   setPrimaryImage,
   updateCategory,
   updateOrderStatus,
-  updateOrderPayment,
   updateProduct,
   updateUserStatus,
   upsertCartItem,
@@ -53,6 +52,7 @@ import { eq } from "drizzle-orm";
 import { ENV } from "./_core/env";
 import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
+import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
 
@@ -505,6 +505,25 @@ export const appRouter = router({
         return { ...payment, orderId: input.orderId, method: input.method };
       }),
 
+    payfastForm: approvedProcedure
+      .input(z.object({ orderId: z.number(), origin: z.string().url() }))
+      .mutation(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
+        if (quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast" || !quote.payfastReference) {
+          throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
+        }
+        return buildPayFastFormConfig({
+          origin: input.origin,
+          orderId: input.orderId,
+          payfastReference: quote.payfastReference,
+          total: quote.totalAmount,
+          email: ctx.user.email ?? "",
+          fullName: ctx.user.fullName ?? "",
+        });
+      }),
+
     review: adminProcedure
       .input(z.object({ orderId: z.number(), decision: z.enum(["quote_approved", "quote_rejected"]), notes: z.string().max(2000).optional() }))
       .mutation(async ({ ctx, input }) => {
@@ -530,9 +549,7 @@ export const appRouter = router({
         signature: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        const status = input.payment_status === "COMPLETE" ? "paid" : "failed";
-        await updateOrderPayment(input.m_payment_id, status);
-        return { success: true };
+        return handlePayFastItn(input);
       }),
 
     // Admin

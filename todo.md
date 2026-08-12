@@ -176,10 +176,10 @@
 - [x] Fix homepage responsive enhancement JSX regression and restore clean TypeScript compilation
 
 ## Phase 21: PayFast Credential Configuration
-- [ ] Configure the supplied PayFast merchant ID, merchant key, passphrase, and notify URL through managed secrets
-- [ ] Validate PayFast configuration without exposing credential values and rerun the full test suite
-- [ ] Save a checkpoint after PayFast configuration validation
-- [ ] Deliver the PayFast configuration result and note any remaining deployment-only URL requirement
+- [x] Configure the supplied PayFast merchant ID, merchant key, and passphrase through managed secrets; derive the notify URL from the active site origin and document the production endpoint
+- [x] Validate PayFast configuration without exposing credential values and rerun the full test suite
+- [x] Save a checkpoint after PayFast configuration validation
+- [x] Deliver the PayFast configuration result and note any remaining deployment-only URL requirement
 
 ## Phase 22: HD Labs Source Image Import
 - [x] Audit the four supplied HD Labs source files and live source pages against existing product records
@@ -209,4 +209,16 @@
 - [x] Document the custom HD Labs-inspired mark treatment and its source palette
 - [x] Tighten HD Labs brand detection so only true HD Labs catalogue products receive the card badge
 - [x] Browser-verify actual price and popularity reordering with appropriate approved-user data or deterministic catalogue evidence
-- [ ] Save the final checkpoint only after the corrected branding and sorting verification is complete
+- [x] Save the final checkpoint only after the corrected branding and sorting verification is complete
+
+## Phase 26: PayFast Runtime Wiring Follow-up
+- [x] Wire the runtime payment form to managed PayFast secrets instead of VITE fallback demo values
+- [x] Add an integration-style test that exercises the runtime PayFast configuration path without exposing secrets
+- [x] Validate the PayFast payment-flow contract and document the production notify URL dependency
+- [x] Save a checkpoint after the PayFast runtime wiring and validation are complete
+
+## Phase 27: PayFast Evidence and Delivery Follow-up
+- [x] Add a route-level Vitest that posts a signed PayFast ITN payload through `/api/payfast/itn`
+- [x] Write a PayFast validation note documenting the dynamic notify URL and production-domain whitelist requirement
+- [ ] Save a post-wiring checkpoint after route-level validation passes
+- [ ] Deliver the final PayFast configuration outcome and remaining deployment-only requirement
