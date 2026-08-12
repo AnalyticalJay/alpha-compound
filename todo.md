@@ -174,3 +174,18 @@
 - [x] Verify homepage and admin analytics across viewports and save checkpoint
 - [x] Deliver the homepage and admin analytics enhancement
 - [x] Fix homepage responsive enhancement JSX regression and restore clean TypeScript compilation
+
+## Phase 21: PayFast Credential Configuration
+- [ ] Configure the supplied PayFast merchant ID, merchant key, passphrase, and notify URL through managed secrets
+- [ ] Validate PayFast configuration without exposing credential values and rerun the full test suite
+- [ ] Save a checkpoint after PayFast configuration validation
+- [ ] Deliver the PayFast configuration result and note any remaining deployment-only URL requirement
+
+## Phase 22: HD Labs Source Image Import
+- [x] Audit the four supplied HD Labs source files and live source pages against existing product records
+- [x] Build deterministic source-image matching with explicit aliases and verified amps corrections
+- [x] Upload every verified source image to its matching HD Labs product without duplicate rows
+- [x] Preserve ambiguous or unmatched source images in a review report instead of guessing
+- [x] Add unit test coverage for source normalization, aliases, and correction mappings
+- [x] Run image integrity audit, browser verification, and save a checkpoint
+- [x] Deliver the HD Labs image import summary and review list

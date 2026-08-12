@@ -1,0 +1,13 @@
+# HD Labs Source Verification
+
+The supplied SARMS source page was opened at https://take.app/hdlabsinternational/c/cm8rp768q0002ky03yk17ea2i. It rendered seven cards: Anabolicum (LGD-4033), Andarine (S4), Cardarine (GW-501516), Nutrobal (MK-677), Ostarine (MK-2866), Stenabolic (SR-9009), and Testolone (RAD-140). The live page exposed image URLs matching the attached SARMS notes and JSON oral entries.
+
+The supplied injectables source page was opened at https://take.app/hdlabsinternational/c/cm8ppj2d70000l80347gq1adn. It rendered the 20 cards represented by hdlabs-injectables-source.json. The first cards visibly and textually matched Testoviron 250, Sustanon 250, Deca-Durabolin 100, Superbulk 600, Supercutmix 300, Supersize 500, Supertest 500, Trestolone/Ment, Trinaject, Tren Acetate, Tren Enanthate, Testaject 250, Sustaject 325, Stanoject 50, Propioject 100, and Nebidoject 250, with the same source image URLs as the attachment.
+
+The existing catalogue contains 73 products in the requested category/name scope. The dry-run importer found 40 source items, 31 direct matches, 5 cases needing explicit alias/category mapping, and 4 source products with no verified existing catalogue match. No database rows were changed during the dry run.
+
+The live oral source page at https://take.app/hdlabsinternational/c/cm8pnqtn50003l80341ogzaw1 confirmed 20 cards and two separate Clenbuterol cards with distinct image URLs. Those two records are treated as review-only because the existing catalogue has one matching Clenbuterol product and the source does not establish whether the two card assets are alternate pack images or separate records.
+
+The live amps source page at https://take.app/hdlabsinternational/c/cm8pre95g0009ky039zx1oxe7 confirmed the three cards and the attached amps notes. The source card URL order is not treated as sufficient for Sustanon versus Deca-Durabolin assignment; the attached verification notes identify the visually corrected mapping: Sustanon receives asset cm8prkijv000003jpc0d6hik8 and Deca-Durabolin receives asset cm8prhvxq000703l1gofx4x1z.
+
+The public Anabolics Africa catalogue now renders imported HD Labs image assets on product cards. Sequential product-page verification confirms that HD SUS 250mg 1ml AMP displays the Sustanon package image at `/manus-storage/products/30003/hd-labs-cm8prkijv000003jpc0d6hik8-hd-sus-250mg-1ml-amp_59f6aa57.png`, while HD DECA DURABOLIN 100mg 1ml AMP displays the Deca-Durabolin package image at `/manus-storage/products/30002/hd-labs-cm8prhvxq000703l1gofx4x1z-hd-deca-durabolin-100mg-1ml-amp_f4b4dced.png`. The product catalogue card view also displayed Testoviron, Deca-Durabolin, and Sustanon images correctly.
