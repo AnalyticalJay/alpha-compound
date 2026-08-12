@@ -222,3 +222,19 @@
 - [x] Write a PayFast validation note documenting the dynamic notify URL and production-domain whitelist requirement
 - [x] Save a post-wiring checkpoint after route-level validation passes
 - [x] Deliver the final PayFast configuration outcome and remaining deployment-only requirement
+
+## Phase 28: PayFast Whitelist and Genuine Popularity Data
+- [x] Confirm that PayFast merchant settings require the client account and document the correct login path
+- [x] Prepare and report the production ITN, return, and cancel URLs for the client to whitelist
+- [x] Determine that genuine order exports are required for popularity data and synthetic order seeding is not permitted
+- [x] Report the PayFast whitelist limitation and required genuine-order data next step
+
+## Phase 29: PayFast Payment UX
+- [x] Add a secure-payment badge beside the PayFast payment action
+- [x] Add a polished PayFast redirect loading state with duplicate-submit protection
+- [x] Add regression coverage for secure badge and redirect states
+- [x] Verify the available quote-detail payment state responsively, validate the pre-redirect UI contract, and save a checkpoint
+
+## Phase 30: PayFast Payment UX Verification Follow-up
+- [x] Verify the available authenticated quote-detail state in-browser and cover the quote-approved secure badge/loading state with the dedicated UI contract test
+- [x] Save a post-UX checkpoint after browser and contract verification

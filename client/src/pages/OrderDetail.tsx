@@ -1,9 +1,10 @@
 import { trpc } from "@/lib/trpc";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Banknote, CheckCircle2, CreditCard, Lock, MapPin, Package, Send, Truck } from "lucide-react";
+import { ArrowLeft, Banknote, CheckCircle2, CreditCard, LoaderCircle, Lock, MapPin, Package, Send, ShieldCheck, Truck } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { format } from "date-fns";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -32,6 +33,7 @@ export default function OrderDetail() {
   const { isAuthenticated, user } = useAuth();
   const utils = trpc.useUtils();
   const parsedOrderId = parseInt(orderId ?? "0");
+  const [isPayFastRedirecting, setIsPayFastRedirecting] = useState(false);
 
   const orderQuery = trpc.orders.detail.useQuery(
     { orderId: parsedOrderId },
@@ -41,7 +43,10 @@ export default function OrderDetail() {
 
   const payfastForm = trpc.orders.payfastForm.useMutation({
     onSuccess: (data) => submitPayFast(data),
-    onError: (error) => toast.error(error.message),
+    onError: (error) => {
+      setIsPayFastRedirecting(false);
+      toast.error(error.message);
+    },
   });
 
   const choosePayment = trpc.orders.choosePayment.useMutation({
@@ -57,8 +62,24 @@ export default function OrderDetail() {
       }
       payfastForm.mutate({ orderId: data.orderId, origin: window.location.origin });
     },
-    onError: (error) => toast.error(error.message),
+    onError: (error) => {
+      setIsPayFastRedirecting(false);
+      toast.error(error.message);
+    },
   });
+
+  const paymentPending = choosePayment.isPending || payfastForm.isPending || isPayFastRedirecting;
+
+  function handlePayFastPayment() {
+    if (paymentPending) return;
+    setIsPayFastRedirecting(true);
+    choosePayment.mutate({ orderId: parsedOrderId, method: "payfast" });
+  }
+
+  function handleEftPayment() {
+    if (paymentPending) return;
+    choosePayment.mutate({ orderId: parsedOrderId, method: "eft" });
+  }
 
   function submitPayFast(payment: { action: string; fields: Record<string, string> }) {
     const form = document.createElement("form");
@@ -72,7 +93,7 @@ export default function OrderDetail() {
       form.appendChild(input);
     });
     document.body.appendChild(form);
-    form.submit();
+    window.setTimeout(() => form.submit(), 220);
   }
 
   if (orderQuery.isLoading) {
@@ -120,8 +141,22 @@ export default function OrderDetail() {
 
               {order.status === "quote_pending" && <div className="mt-5 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-200"><Lock className="inline h-4 w-4 mr-2" />Payment will become available after an admin reviews and approves this quote.</div>}
               {order.status === "quote_rejected" && <div className="mt-5 rounded-lg border border-red-500/20 bg-red-500/5 p-4 text-sm text-red-200">This quote was not approved. {order.rejectionReason || "Please contact the store if you need clarification."}</div>}
-              {isApprovedForPayment && <div className="mt-5 grid gap-3 sm:grid-cols-2"><Button className="min-h-11 text-white font-bold" onClick={() => choosePayment.mutate({ orderId: order.id, method: "payfast" })} disabled={choosePayment.isPending}><CreditCard className="h-4 w-4 mr-2" />Pay via PayFast</Button><Button variant="outline" className="min-h-11 font-bold border-[#0EA5E9]/40" onClick={() => choosePayment.mutate({ orderId: order.id, method: "eft" })} disabled={choosePayment.isPending}><Banknote className="h-4 w-4 mr-2" />Pay via EFT</Button></div>}
+              {isApprovedForPayment && <>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <Button className="min-h-11 text-white font-bold" onClick={handlePayFastPayment} disabled={paymentPending} aria-busy={isPayFastRedirecting}>
+                    {isPayFastRedirecting ? <LoaderCircle className="h-4 w-4 mr-2 animate-spin" /> : <CreditCard className="h-4 w-4 mr-2" />}
+                    {isPayFastRedirecting ? "Connecting to PayFast…" : "Pay via PayFast"}
+                  </Button>
+                  <Button variant="outline" className="min-h-11 font-bold border-[#0EA5E9]/40" onClick={handleEftPayment} disabled={paymentPending}><Banknote className="h-4 w-4 mr-2" />Pay via EFT</Button>
+                </div>
+                <div className="mt-4 flex items-center gap-3 rounded-lg border border-emerald-400/20 bg-emerald-400/5 px-3 py-2.5" aria-label="Secure PayFast payment">
+                  <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400" />
+                  <div className="min-w-0 flex-1"><p className="text-xs font-bold text-emerald-300">Secure PayFast checkout</p><p className="text-[11px] text-muted-foreground">Encrypted payment handoff in ZAR</p></div>
+                  <Badge className="shrink-0 border-emerald-400/30 bg-emerald-400/10 text-[10px] text-emerald-300">Protected</Badge>
+                </div>
+              </>}
               {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />EFT payment selected</div><p className="text-muted-foreground">Please use the banking details provided by Anabolics Africa in your approval instructions and include Quote #{order.id} as the payment reference. Send proof of payment to the store for confirmation.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}</div>}
+              {isPayFastRedirecting && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 px-5 backdrop-blur-sm" role="status" aria-live="polite"><div className="w-full max-w-sm rounded-2xl border border-[#0EA5E9]/30 bg-[#07111f] p-6 text-center shadow-2xl shadow-cyan-950/40"><div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10"><LoaderCircle className="h-7 w-7 animate-spin text-[#38BDF8]" /></div><p className="font-bold text-white">Connecting securely to PayFast</p><p className="mt-2 text-sm text-slate-300">Your approved quote is ready. Please keep this window open while we transfer you to the protected payment page.</p><div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-800"><div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#E11D48]" /></div></div></div>}
             </div>
 
             {order.quoteNotes && order.status !== "awaiting_payment" && <div className="glass-card rounded-xl p-6"><h2 className="font-bold mb-2">Review Notes</h2><p className="text-sm text-muted-foreground whitespace-pre-wrap">{order.quoteNotes}</p></div>}
