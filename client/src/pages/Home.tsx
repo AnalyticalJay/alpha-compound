@@ -28,7 +28,7 @@ export default function Home() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-16">
+      <section className="relative overflow-hidden pt-12 sm:pt-16">
         {/* Hex pattern background */}
         <div className="absolute inset-0 hex-pattern opacity-60" />
 
@@ -40,18 +40,18 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8 blur-3xl pointer-events-none"
           style={{ background: "radial-gradient(circle, #E11D48 0%, transparent 70%)" }} />
 
-        <div className="container relative z-10 py-20 md:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 py-14 sm:py-20 md:py-28">
+          <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
             {/* Left: Text */}
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 mb-6">
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 px-3 py-1.5">
                 <Lock className="h-3.5 w-3.5 text-[#0EA5E9]" />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#0EA5E9]">Restricted Access Platform</span>
+                <span className="truncate text-[10px] font-bold uppercase tracking-[0.16em] text-[#0EA5E9] sm:text-xs">Restricted Access Platform</span>
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tight leading-[0.9] mb-6 break-words">
+              <h1 className="mb-5 break-words text-[2.6rem] font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
                 <span className="text-white">Unlock Your</span>
                 <br />
                 <span className="text-white">Next </span>
@@ -60,23 +60,24 @@ export default function Home() {
                 <span className="text-white">of Performance</span>
               </h1>
 
-              <p className="text-[#94A3B8] text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+              <p className="mb-7 max-w-xl text-base leading-relaxed text-[#94A3B8] sm:text-lg md:text-xl">
                 Premium pharmaceutical-grade compounds by <strong className="text-white">HD Labs</strong>. Controlled access. Built for serious athletes who demand the highest quality.
               </p>
 
               {/* CTA */}
               {!isAuthenticated ? (
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-col gap-3 xs:flex-row xs:flex-wrap">
                   <Link href="/register" className="no-underline">
-                    <Button size="lg" className="text-white font-bold uppercase tracking-widest px-8 h-12"
+                    <Button size="lg"
+                      className="h-12 w-full px-6 font-bold uppercase tracking-widest text-white xs:w-auto sm:px-8"
                       style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
                       Apply for Access
-                      <ChevronRight className="h-4 w-4 ml-1" />
+                      <ChevronRight className="ml-1 h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/login" className="no-underline">
                     <Button size="lg" variant="outline"
-                      className="border-[#1E293B] text-[#94A3B8] hover:text-white hover:border-[#0EA5E9]/50 font-bold uppercase tracking-widest px-8 h-12 bg-transparent">
+                      className="h-12 w-full border-[#1E293B] bg-transparent px-6 font-bold uppercase tracking-widest text-[#94A3B8] hover:border-[#0EA5E9]/50 hover:text-white xs:w-auto sm:px-8">
                       Sign In
                     </Button>
                   </Link>
@@ -97,7 +98,7 @@ export default function Home() {
               ) : null}
 
               {/* Trust badges */}
-              <div className="flex flex-wrap gap-6 mt-10 pt-8 border-t border-[#1E293B]">
+              <div className="mt-8 flex flex-wrap gap-x-4 gap-y-3 border-t border-[#1E293B] pt-6 sm:mt-10 sm:gap-6 sm:pt-8">
                 {[
                   { icon: Shield, label: "Verified Products" },
                   { icon: CreditCard, label: "Secure Payments" },
@@ -105,11 +106,31 @@ export default function Home() {
                 ].map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-2 text-[#64748B]">
                     <Icon className="h-4 w-4 text-[#0EA5E9]" />
-                    <span className="text-sm font-medium">{label}</span>
+                    <span className="text-xs font-medium sm:text-sm">{label}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
+
+            {/* Compact mobile brand panel */}
+            <div className="rounded-xl border border-[#0EA5E9]/20 bg-[#0A0A0A] p-4 shadow-[0_0_40px_rgba(14,165,233,0.06)] lg:hidden">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-gradient-to-br from-[#0EA5E9] to-[#0284C7] font-black text-white">HD</div>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-black uppercase tracking-widest text-white">HD Labs</p>
+                    <p className="truncate text-[10px] uppercase tracking-widest text-[#64748B]">Pharmaceutical Grade</p>
+                  </div>
+                </div>
+                <span className="shrink-0 rounded border border-[#E11D48]/30 bg-[#E11D48]/10 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-[#E11D48]">Members Only</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {[["Injectables", Syringe, "#0EA5E9"], ["Orals", Pill, "#E11D48"], ["Peptides", FlaskConical, "#0EA5E9"]].map(([label, Icon, color]) => {
+                  const CategoryIcon = Icon as typeof Syringe;
+                  return <div key={label as string} className="flex min-w-0 flex-col items-center gap-1.5 rounded border border-[#1E293B] bg-[#111111] p-2.5"><CategoryIcon className="h-4 w-4" style={{ color: color as string }} /><span className="truncate text-[9px] font-bold uppercase tracking-wider text-[#64748B]">{label as string}</span></div>;
+                })}
+              </div>
+            </div>
 
             {/* Right: Visual panel */}
             <motion.div
@@ -191,21 +212,21 @@ export default function Home() {
       </section>
 
       {/* ── Featured Products ────────────────────────────────────────────── */}
-      <section className="py-20 border-t border-[#1E293B]">
+      <section className="border-t border-[#1E293B] py-14 sm:py-20">
         <div className="container">
-          <div className="flex items-center justify-between mb-10">
+          <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-0.5" style={{ background: "#E11D48" }} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Featured</span>
               </div>
-              <h2 className="text-3xl font-black uppercase tracking-tight text-white">
+              <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
                 Top <span style={{ color: "#0EA5E9" }}>Compounds</span>
               </h2>
             </div>
             <Link href="/products" className="no-underline">
               <Button variant="ghost" size="sm"
-                className="text-[#0EA5E9] hover:text-white hover:bg-[#0EA5E9]/10 font-bold uppercase tracking-wide text-xs">
+                className="self-start text-xs font-bold uppercase tracking-wide text-[#0EA5E9] hover:bg-[#0EA5E9]/10 hover:text-white sm:self-auto">
                 View All <ChevronRight className="h-3.5 w-3.5 ml-1" />
               </Button>
             </Link>
@@ -246,15 +267,15 @@ export default function Home() {
       </section>
 
       {/* ── Features Grid ────────────────────────────────────────────────── */}
-      <section className="py-20 border-t border-[#1E293B]">
+      <section className="border-t border-[#1E293B] py-14 sm:py-20">
         <div className="container">
-          <div className="text-center mb-14">
+          <div className="mb-10 text-center sm:mb-14">
             <div className="flex items-center justify-center gap-2 mb-3">
               <div className="w-8 h-0.5" style={{ background: "#E11D48" }} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Why Anabolics Africa</span>
               <div className="w-8 h-0.5" style={{ background: "#0EA5E9" }} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl md:text-4xl">
               Built for <span style={{ color: "#0EA5E9" }}>Serious</span> Athletes
             </h2>
           </div>
@@ -320,8 +341,8 @@ export default function Home() {
       {/* ── Delivery Info Banner ─────────────────────────────────────────── */}
       <section className="py-12 border-t border-[#1E293B]">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-5">
-            <div className="flex items-center gap-5 p-6 rounded-lg border border-[#0EA5E9]/20 bg-[#0EA5E9]/5">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-5">
+            <div className="flex items-start gap-4 rounded-lg border border-[#0EA5E9]/20 bg-[#0EA5E9]/5 p-4 sm:items-center sm:gap-5 sm:p-6">
               <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0"
                 style={{ background: "#0EA5E915", border: "1px solid #0EA5E930" }}>
                 <Truck className="h-6 w-6" style={{ color: "#0EA5E9" }} />
@@ -331,7 +352,7 @@ export default function Home() {
                 <div className="text-[#64748B] text-sm">All orders within Port Elizabeth ship free, no minimum order required.</div>
               </div>
             </div>
-            <div className="flex items-center gap-5 p-6 rounded-lg border border-[#E11D48]/20 bg-[#E11D48]/5">
+            <div className="flex items-start gap-4 rounded-lg border border-[#E11D48]/20 bg-[#E11D48]/5 p-4 sm:items-center sm:gap-5 sm:p-6">
               <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0"
                 style={{ background: "#E11D4815", border: "1px solid #E11D4830" }}>
                 <Truck className="h-6 w-6" style={{ color: "#E11D48" }} />
@@ -349,7 +370,7 @@ export default function Home() {
       {!isAuthenticated && (
         <section className="py-16 border-t border-[#1E293B]">
           <div className="container">
-            <div className="relative rounded-xl overflow-hidden p-10 md:p-16 text-center"
+            <div className="relative overflow-hidden rounded-xl p-6 text-center sm:p-10 md:p-16"
               style={{ background: "linear-gradient(135deg, #080808 0%, #0d1a2e 50%, #080808 100%)", border: "1px solid rgba(14,165,233,0.15)" }}>
               <div className="absolute inset-0 hex-pattern opacity-40" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] rounded-full opacity-15 blur-3xl pointer-events-none"
@@ -358,14 +379,14 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="h-[3px] w-16 mx-auto mb-6"
                   style={{ background: "linear-gradient(90deg, #E11D48 0%, #E11D48 50%, #0EA5E9 50%, #0EA5E9 100%)" }} />
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                <h2 className="mb-4 text-2xl font-black uppercase tracking-tight text-white sm:text-3xl md:text-5xl">
                   Ready to <span style={{ color: "#0EA5E9" }}>Elevate</span>?
                 </h2>
-                <p className="text-[#94A3B8] text-lg mb-8 max-w-xl mx-auto">
+                <p className="mx-auto mb-7 max-w-xl text-base text-[#94A3B8] sm:mb-8 sm:text-lg">
                   Apply for access today. Approvals are reviewed within 24 hours.
                 </p>
                 <Link href="/register" className="no-underline">
-                  <Button size="lg" className="text-white font-bold uppercase tracking-widest px-10 h-12"
+                  <Button size="lg"                     className="h-12 w-full px-8 text-white font-bold uppercase tracking-widest xs:w-auto sm:px-10"
                     style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
                     Apply Now
                     <ChevronRight className="h-4 w-4 ml-1" />
