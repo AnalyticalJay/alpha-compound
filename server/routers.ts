@@ -429,7 +429,7 @@ export const appRouter = router({
         const total = subtotal + delivery.fee;
         const quoteId = await createOrder({
           userId: ctx.user.id,
-          items: cartRows.map((item) => ({ productId: item.productId, quantity: item.quantity, priceAtPurchase: item.productPrice })),
+          items: cartRows.map((item) => ({ productId: item.productId, quantity: item.quantity, priceAtPurchase: String(item.productPrice ?? "0") })),
           totalAmount: total.toFixed(2),
           deliveryFee: delivery.fee.toFixed(2),
           deliveryType: delivery.type,

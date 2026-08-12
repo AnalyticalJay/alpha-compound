@@ -143,4 +143,5 @@
 - [x] Build quote conversation component with threaded message list and message input form
 - [x] Integrate quote conversation into customer quote details (`/orders/:orderId`) and admin quote detail view
 - [x] Add unit test coverage for comment authorization and message persistence
-- [ ] Save checkpoint and deliver result
+- [x] Save checkpoint and deliver result
+- [ ] Deliver quote comments feature summary with checkpoint b62d4a8e

@@ -531,7 +531,7 @@ export async function createOrder(data: {
       orderId,
       productId: item.productId,
       quantity: item.quantity,
-      priceAtPurchase: item.priceAtPurchase,
+      priceAtPurchase: typeof item.priceAtPurchase === "number" ? (item.priceAtPurchase as number).toFixed(2) : String(item.priceAtPurchase ?? "0"),
     }))
   );
 
