@@ -1,7 +1,7 @@
 export const mobileNavItems = [
   { href: "/", label: "Home", icon: "home" },
   { href: "/products", label: "Products", icon: "products" },
-  { href: "/cart", label: "Cart", icon: "cart" },
+  { href: "/cart", label: "Quote Cart", icon: "cart" },
   { href: "/account", label: "Account", icon: "account" },
 ] as const;
 

@@ -499,6 +499,8 @@ export async function createOrder(data: {
   totalAmount: string;
   deliveryFee: string;
   deliveryType: "free" | "flat_rate";
+  quoteNotes?: string;
+  status?: "pending" | "quote_pending";
   shipping: {
     fullName: string;
     phone: string;
@@ -517,8 +519,9 @@ export async function createOrder(data: {
     totalAmount: data.totalAmount,
     deliveryFee: data.deliveryFee,
     deliveryType: data.deliveryType,
-    status: "pending",
+    status: data.status ?? "quote_pending",
     paymentStatus: "pending",
+    quoteNotes: data.quoteNotes ?? null,
   });
   const orderId = (orderResult as unknown as { insertId: number }).insertId;
 
@@ -534,6 +537,49 @@ export async function createOrder(data: {
   await db.insert(shippingDetails).values({ orderId, ...data.shipping });
 
   return orderId;
+}
+
+export async function reviewQuote(
+  orderId: number,
+  adminId: number,
+  decision: "quote_approved" | "quote_rejected",
+  notes?: string,
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const order = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
+  if (!order[0]) throw new Error("Quote not found");
+  if (order[0].status !== "quote_pending") throw new Error("Quote has already been reviewed");
+
+  await db.update(orders).set({
+    status: decision,
+    quoteNotes: decision === "quote_approved" ? notes ?? null : order[0].quoteNotes,
+    rejectionReason: decision === "quote_rejected" ? notes ?? null : null,
+    reviewedBy: adminId,
+    reviewedAt: new Date(),
+  }).where(eq(orders.id, orderId));
+}
+
+export async function chooseQuotePayment(
+  orderId: number,
+  userId: number,
+  method: "eft" | "payfast",
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const order = await db.select().from(orders).where(and(eq(orders.id, orderId), eq(orders.userId, userId))).limit(1);
+  if (!order[0]) throw new Error("Quote not found");
+  if (order[0].status !== "quote_approved") throw new Error("Quote is not approved for payment");
+
+  const payfastReference = method === "payfast" ? `AA-${orderId}-${Date.now()}` : null;
+  await db.update(orders).set({
+    paymentMethod: method,
+    status: "awaiting_payment",
+    paymentStatus: method === "eft" ? "awaiting_eft" : "pending",
+    payfastReference,
+  }).where(eq(orders.id, orderId));
+
+  return { payfastReference, total: order[0].totalAmount };
 }
 
 export async function getUserOrders(userId: number) {
@@ -585,7 +631,11 @@ export async function getAllOrders() {
       deliveryType: orders.deliveryType,
       status: orders.status,
       paymentStatus: orders.paymentStatus,
+      paymentMethod: orders.paymentMethod,
       payfastReference: orders.payfastReference,
+      quoteNotes: orders.quoteNotes,
+      rejectionReason: orders.rejectionReason,
+      reviewedAt: orders.reviewedAt,
       createdAt: orders.createdAt,
       userId: orders.userId,
       userFullName: users.fullName,
@@ -598,7 +648,7 @@ export async function getAllOrders() {
 
 export async function updateOrderStatus(
   orderId: number,
-  status: "pending" | "paid" | "processing" | "shipped" | "completed" | "cancelled",
+  status: "pending" | "quote_pending" | "quote_approved" | "quote_rejected" | "awaiting_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled",
   notes?: string
 ) {
   const db = await getDb();
@@ -607,6 +657,16 @@ export async function updateOrderStatus(
     .update(orders)
     .set({ status, trackingNotes: notes ?? undefined })
     .where(eq(orders.id, orderId));
+}
+
+export async function confirmEftPayment(orderId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(orders).set({
+    paymentStatus: "paid",
+    status: "paid",
+    paymentMethod: "eft",
+  }).where(eq(orders.id, orderId));
 }
 
 export async function updateOrderPayment(

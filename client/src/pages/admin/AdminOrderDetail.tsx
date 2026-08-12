@@ -8,18 +8,22 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 import { useState } from "react";
 
-const ORDER_STATUSES = ["pending", "paid", "processing", "shipped", "completed", "cancelled"];
+const ORDER_STATUSES = ["quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"];
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
     pending: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+    quote_pending: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+    quote_approved: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    quote_rejected: "bg-red-500/20 text-red-400 border-red-500/30",
+    awaiting_payment: "bg-orange-500/20 text-orange-400 border-orange-500/30",
     paid: "bg-blue-500/20 text-blue-400 border-blue-500/30",
     processing: "bg-purple-500/20 text-purple-400 border-purple-500/30",
     shipped: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
     completed: "bg-green-500/20 text-green-400 border-green-500/30",
     cancelled: "bg-destructive/20 text-destructive border-destructive/30",
   };
-  return <Badge className={`${map[status] ?? "bg-muted text-muted-foreground"} text-xs capitalize`}>{status}</Badge>;
+  return <Badge className={`${map[status] ?? "bg-muted text-muted-foreground"} text-xs capitalize`}>{status.replaceAll("_", " ")}</Badge>;
 }
 
 export default function AdminOrderDetail() {
@@ -32,6 +36,15 @@ export default function AdminOrderDetail() {
     { enabled: !!orderId }
   );
   const order = orderQuery.data;
+
+  const confirmEft = trpc.orders.confirmEft.useMutation({
+    onSuccess: () => {
+      toast.success("EFT payment confirmed");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+      utils.orders.adminList.invalidate();
+    },
+    onError: (e) => toast.error(e.message),
+  });
 
   const updateStatus = trpc.orders.adminUpdateStatus.useMutation({
     onSuccess: () => {
@@ -150,12 +163,14 @@ export default function AdminOrderDetail() {
                   : `R${parseFloat(order.deliveryFee).toFixed(2)}`}
               </span>
             </div>
+            {order.paymentMethod && <div className="flex justify-between"><span className="text-muted-foreground">Method</span><span className="uppercase">{order.paymentMethod}</span></div>}
             {order.payfastReference && (
               <div className="flex justify-between">
                 <span className="text-muted-foreground">PayFast Ref</span>
                 <span className="font-mono text-xs">{order.payfastReference}</span>
               </div>
             )}
+            {order.status === "awaiting_payment" && order.paymentMethod === "eft" && <Button className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold" onClick={() => confirmEft.mutate({ orderId: order.id })} disabled={confirmEft.isPending}>{confirmEft.isPending ? "Confirming..." : "Confirm EFT Payment"}</Button>}
           </div>
         </div>
       </div>
@@ -206,6 +221,14 @@ export default function AdminOrderDetail() {
             <p className="text-muted-foreground">{order.shipping.country}</p>
             <p className="text-muted-foreground mt-2">📞 {order.shipping.phone}</p>
           </div>
+        </div>
+      )}
+
+      {(order.quoteNotes || order.rejectionReason) && (
+        <div className="glass-card rounded-xl p-6">
+          <h2 className="font-bold mb-2">Quote Review Notes</h2>
+          {order.quoteNotes && <p className="text-sm text-muted-foreground whitespace-pre-wrap">{order.quoteNotes}</p>}
+          {order.rejectionReason && <p className="text-sm text-red-300 whitespace-pre-wrap">Rejection reason: {order.rejectionReason}</p>}
         </div>
       )}
 

@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const addToCart = trpc.cart.upsert.useMutation({
     onSuccess: () => {
       utils.cart.get.invalidate();
-      toast.success(`${product?.name} added to cart`);
+      toast.success(`${product?.name} added to quote cart`);
     },
     onError: (err) => toast.error(err.message),
   });
@@ -187,7 +187,7 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              {/* Add to Cart */}
+              {/* Add to Quote */}
               {isApproved && product.stockQuantity > 0 && (
                 <div className="flex items-center gap-4">
                   <div className="flex items-center border border-[#1E293B] rounded overflow-hidden bg-[#111111]">
@@ -212,7 +212,7 @@ export default function ProductDetail() {
                     disabled={addToCart.isPending}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
-                    {addToCart.isPending ? "Adding..." : "Add to Cart"}
+                    {addToCart.isPending ? "Adding..." : "Add to Quote"}
                   </Button>
                 </div>
               )}

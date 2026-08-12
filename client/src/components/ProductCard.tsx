@@ -27,7 +27,7 @@ export default function ProductCard({
   const addToCart = trpc.cart.upsert.useMutation({
     onSuccess: () => {
       utils.cart.get.invalidate();
-      toast.success(`${product.name} added to cart`);
+      toast.success(`${product.name} added to quote cart`);
     },
     onError: (err) => toast.error(err.message),
   });
@@ -103,7 +103,7 @@ export default function ProductCard({
                   disabled={addToCart.isPending}
                 >
                   <ShoppingCart className="h-3.5 w-3.5 mr-1" />
-                  {addToCart.isPending ? "..." : "Add"}
+                  {addToCart.isPending ? "..." : "Add to Quote"}
                 </Button>
               ) : null}
             </>

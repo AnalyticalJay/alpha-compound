@@ -120,3 +120,11 @@
 - [x] Integrate MobileBottomNav into App layout with bottom body padding to prevent overlapping page content
 - [x] Add unit test coverage for mobile navigation routes, cart count, and active state
 - [x] Verify functionality with TypeScript, Vitest, and browser preview, then save checkpoint
+
+## Phase 14: Admin-Reviewed Quote Workflow
+- [x] Add quote request and review statuses (quote_pending, quote_approved, quote_rejected, awaiting_payment, paid) to database and backend APIs
+- [x] Update frontend cart and checkout flows to submit quote requests instead of direct orders
+- [x] Build admin quote management interface for reviewing, approving, and rejecting quotes
+- [x] Build user quote history and approved payment portal supporting EFT confirmation and PayFast
+- [x] Add Vitest coverage for quote submission, approval gating, and payment selection, then verify and checkpoint
+- [ ] Save a new checkpoint for the completed quote cart, admin review, EFT, and PayFast workflow

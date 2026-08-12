@@ -43,7 +43,7 @@ export default function Footer() {
                 { href: "/", label: "Home" },
                 { href: "/products", label: "Products" },
                 { href: "/account", label: "My Account" },
-                { href: "/cart", label: "Cart" },
+                { href: "/cart", label: "Quote Cart" },
                 { href: "/register", label: "Apply for Access" },
               ].map(({ href, label }) => (
                 <li key={href}>
@@ -74,7 +74,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-bold mt-0.5" style={{ color: "#0EA5E9" }}>✓</span>
-                <span>PayFast — ZAR only</span>
+                <span>EFT or PayFast — ZAR only</span>
               </li>
             </ul>
           </div>

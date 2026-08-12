@@ -142,7 +142,7 @@ export default function Products() {
         {!isApproved && (
           <div className="border-b py-3" style={{ borderColor: "#0EA5E9" + "30", background: "#0EA5E9" + "08" }}>
             <div className="container flex flex-col items-stretch gap-3 py-1 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-2 text-sm text-[#64748B]"><Lock className="h-4 w-4 flex-shrink-0" style={{ color: "#0EA5E9" }} /><span>Prices are hidden. <strong className="text-white">Get approved</strong> to view pricing and add items to cart.</span></div>
+              <div className="flex items-center gap-2 text-sm text-[#64748B]"><Lock className="h-4 w-4 flex-shrink-0" style={{ color: "#0EA5E9" }} /><span>Prices are hidden. <strong className="text-white">Get approved</strong> to view pricing and add products to your quote cart.</span></div>
               <Link href="/register" className="no-underline"><Button size="sm" className="h-10 w-full flex-shrink-0 px-4 text-xs font-bold uppercase tracking-wide text-white sm:w-auto" style={{ background: "linear-gradient(135deg, #E11D48, #BE123C)" }}>Apply Now</Button></Link>
             </div>
           </div>

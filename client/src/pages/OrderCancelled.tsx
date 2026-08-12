@@ -17,13 +17,13 @@ export default function OrderCancelled() {
             Payment <span className="text-destructive">Cancelled</span>
           </h1>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            Your payment was cancelled or did not complete successfully. Your cart items are still saved — you can try again at any time.
+            Your payment attempt was cancelled or did not complete successfully. Your approved quote remains available in your account so you can choose a payment method again.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/cart">
               <Button className="text-white font-bold px-8">
                 <ShoppingCart className="h-4 w-4 mr-2" />
-                Return to Cart
+                Return to Quote
               </Button>
             </Link>
             <Link href="/products">

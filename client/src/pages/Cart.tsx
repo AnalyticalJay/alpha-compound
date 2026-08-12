@@ -63,14 +63,14 @@ export default function Cart() {
       <div className="pt-20">
         <div className="container py-8">
           <h1 className="text-3xl font-black mb-8" >
-            Shopping <span style={{ color: "#0EA5E9" }}>Cart</span>
+            Quote <span style={{ color: "#0EA5E9" }}>Cart</span>
           </h1>
 
           {items.length === 0 ? (
             <div className="text-center py-24">
               <ShoppingCart className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-30" />
-              <h2 className="text-xl font-bold mb-2">Your cart is empty</h2>
-              <p className="text-muted-foreground mb-6">Browse our catalog and add items to get started.</p>
+              <h2 className="text-xl font-bold mb-2">Your quote cart is empty</h2>
+              <p className="text-muted-foreground mb-6">Browse our catalog and add products to request a quote.</p>
               <Link href="/products">
                 <Button className="text-white font-bold">Browse Products</Button>
               </Link>
@@ -140,7 +140,7 @@ export default function Cart() {
 
               {/* Summary */}
               <div className="glass-card rounded-xl p-6 h-fit sticky top-24">
-                <h2 className="font-bold text-lg mb-4">Order Summary</h2>
+                <h2 className="font-bold text-lg mb-4">Quote Summary</h2>
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal ({items.length} items)</span>
@@ -148,7 +148,7 @@ export default function Cart() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Delivery</span>
-                    <span className="text-muted-foreground">Calculated at checkout</span>
+                    <span className="text-muted-foreground">Confirmed during review</span>
                   </div>
                 </div>
                 <div className="border-t border-border pt-4 mb-6">
@@ -161,7 +161,7 @@ export default function Cart() {
                   className="w-full text-white font-bold"
                   onClick={() => navigate("/checkout")}
                 >
-                  Proceed to Checkout
+                  Submit Quote Request
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Link href="/products" className="block text-center text-sm text-muted-foreground hover:text-foreground mt-4 no-underline">

@@ -41,8 +41,12 @@ function StatusBadge({ status }: { status: string }) {
 
 function OrderStatusBadge({ status }: { status: string }) {
   const map: Record<string, { bg: string; color: string; border: string; label: string }> = {
-    pending:    { bg: "#F59E0B20", color: "#FCD34D", border: "#F59E0B40", label: "Pending" },
-    paid:       { bg: "#0EA5E920", color: "#38BDF8", border: "#0EA5E940", label: "Paid" },
+    pending:          { bg: "#F59E0B20", color: "#FCD34D", border: "#F59E0B40", label: "Pending Review" },
+    quote_pending:    { bg: "#F59E0B20", color: "#FCD34D", border: "#F59E0B40", label: "Quote Under Review" },
+    quote_approved:   { bg: "#0EA5E920", color: "#38BDF8", border: "#0EA5E940", label: "Quote Approved" },
+    quote_rejected:   { bg: "#E11D4820", color: "#F87171", border: "#E11D4840", label: "Quote Rejected" },
+    awaiting_payment: { bg: "#F9731620", color: "#FDBA74", border: "#F9731640", label: "Awaiting Payment" },
+    paid:             { bg: "#16A34A20", color: "#4ADE80", border: "#16A34A40", label: "Paid" },
     processing: { bg: "#8B5CF620", color: "#C4B5FD", border: "#8B5CF640", label: "Processing" },
     shipped:    { bg: "#06B6D420", color: "#67E8F9", border: "#06B6D440", label: "Shipped" },
     delivered:  { bg: "#16A34A20", color: "#4ADE80", border: "#16A34A40", label: "Delivered" },
@@ -220,7 +224,7 @@ export default function Account() {
               {activeTab === "orders" && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                   <div className="rounded-lg border border-[#1E293B] bg-[#111111] p-4 sm:p-6">
-                    <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Order History</h2>
+                    <h2 className="font-black text-sm uppercase tracking-widest text-[#94A3B8] mb-5">Quote & Payment History</h2>
                     {ordersQuery.isLoading ? (
                       <div className="space-y-3">
                         {[...Array(3)].map((_, i) => (
@@ -230,7 +234,7 @@ export default function Account() {
                     ) : orders.length === 0 ? (
                       <div className="text-center py-12">
                         <Package className="h-12 w-12 mx-auto mb-3 text-[#334155]" />
-                        <p className="text-[#64748B] mb-4">No orders yet</p>
+                        <p className="text-[#64748B] mb-4">No quote requests yet</p>
                         <Link href="/products" className="no-underline">
                           <Button size="sm" className="text-white font-bold uppercase tracking-wide"
                             style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
@@ -245,11 +249,12 @@ export default function Account() {
                             <div className="flex items-center gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-3 transition-colors hover:border-[#0EA5E9]/30 cursor-pointer sm:gap-4 sm:p-4">
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className="font-bold text-sm text-white">Order #{order.id}</span>
+                                  <span className="font-bold text-sm text-white">Quote #{order.id}</span>
                                   <OrderStatusBadge status={order.status} />
                                 </div>
                                 <p className="text-xs text-[#64748B]">
                                   {format(new Date(order.createdAt), "d MMM yyyy")}
+                                  {order.paymentMethod ? ` · ${order.paymentMethod.toUpperCase()}` : ""}
                                 </p>
                               </div>
                               <div className="shrink-0 text-right">

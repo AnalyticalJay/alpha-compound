@@ -283,7 +283,7 @@ export default function Home() {
                 icon: CreditCard,
                 color: "#E11D48",
                 title: "Secure Payments",
-                desc: "All transactions processed securely via PayFast in South African Rand. No foreign exchange fees.",
+                desc: "Approved quotes can be settled securely by EFT or PayFast in South African Rand.",
               },
               {
                 icon: Star,

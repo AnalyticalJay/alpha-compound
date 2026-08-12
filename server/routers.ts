@@ -9,6 +9,8 @@ import { storagePut } from "./storage";
 import {
   addProductImage,
   calculateDelivery,
+  chooseQuotePayment,
+  confirmEftPayment,
   clearCart,
   createCategory,
   createEmailUser,
@@ -34,6 +36,7 @@ import {
   getUserByEmail,
   getUserById,
   removeCartItem,
+  reviewQuote,
   setPrimaryImage,
   updateCategory,
   updateOrderStatus,
@@ -394,7 +397,7 @@ export const appRouter = router({
 
   // ─── Orders ───────────────────────────────────────────────────────────────
   orders: router({
-    create: approvedProcedure
+    submitQuote: approvedProcedure
       .input(z.object({
         shipping: z.object({
           fullName: z.string().min(2),
@@ -405,14 +408,14 @@ export const appRouter = router({
           postalCode: z.string().min(4),
           country: z.string().default("South Africa"),
         }),
+        notes: z.string().max(2000).optional(),
       }))
       .mutation(async ({ ctx, input }) => {
         const cartRows = await getCartItems(ctx.user.id);
         if (cartRows.length === 0) {
-          throw new TRPCError({ code: "BAD_REQUEST", message: "Cart is empty" });
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Quote cart is empty" });
         }
 
-        // Validate stock and calculate totals
         for (const item of cartRows) {
           if (item.quantity > item.productStock) {
             throw new TRPCError({ code: "BAD_REQUEST", message: `Insufficient stock for ${item.productName}` });
@@ -422,39 +425,29 @@ export const appRouter = router({
         const subtotal = cartRows.reduce((sum, item) => sum + parseFloat(item.productPrice) * item.quantity, 0);
         const delivery = calculateDelivery(input.shipping.city);
         const total = subtotal + delivery.fee;
-
-        const orderId = await createOrder({
+        const quoteId = await createOrder({
           userId: ctx.user.id,
-          items: cartRows.map((item) => ({
-            productId: item.productId,
-            quantity: item.quantity,
-            priceAtPurchase: item.productPrice,
-          })),
+          items: cartRows.map((item) => ({ productId: item.productId, quantity: item.quantity, priceAtPurchase: item.productPrice })),
           totalAmount: total.toFixed(2),
           deliveryFee: delivery.fee.toFixed(2),
           deliveryType: delivery.type,
-          shipping: {
-            fullName: input.shipping.fullName,
-            phone: input.shipping.phone,
-            addressLine1: input.shipping.addressLine1,
-            addressLine2: input.shipping.addressLine2,
-            city: input.shipping.city,
-            postalCode: input.shipping.postalCode,
-            country: input.shipping.country,
-          },
+          quoteNotes: input.notes,
+          status: "quote_pending",
+          shipping: input.shipping,
         });
 
-        // Set payfast reference
-        const payfastRef = `AC-${orderId}-${Date.now()}`;
-        const db = await getDb();
-        if (db) {
-          await db.update(orders).set({ payfastReference: payfastRef }).where(eq(orders.id, orderId));
-        }
-
         await clearCart(ctx.user.id);
+        await notifyOwner({
+          title: "New Quote Request",
+          content: `Quote #${quoteId} submitted by ${ctx.user.fullName} (${ctx.user.email}) for review.`,
+        }).catch(() => {});
 
-        return { orderId, payfastReference: payfastRef, total: total.toFixed(2), deliveryFee: delivery.fee.toFixed(2) };
+        return { quoteId, total: total.toFixed(2), deliveryFee: delivery.fee.toFixed(2), status: "quote_pending" as const };
       }),
+
+    create: approvedProcedure.mutation(() => {
+      throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Direct checkout is disabled. Submit a quote for admin review first." });
+    }),
 
     myOrders: protectedProcedure.query(async ({ ctx }) => {
       const { getUserOrders } = await import("./db");
@@ -470,6 +463,33 @@ export const appRouter = router({
           throw new TRPCError({ code: "FORBIDDEN" });
         }
         return order;
+      }),
+
+    choosePayment: approvedProcedure
+      .input(z.object({ orderId: z.number(), method: z.enum(["eft", "payfast"]) }))
+      .mutation(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
+        if (quote.status !== "quote_approved") {
+          throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Quote must be approved before payment" });
+        }
+        const payment = await chooseQuotePayment(input.orderId, ctx.user.id, input.method);
+        return { ...payment, orderId: input.orderId, method: input.method };
+      }),
+
+    review: adminProcedure
+      .input(z.object({ orderId: z.number(), decision: z.enum(["quote_approved", "quote_rejected"]), notes: z.string().max(2000).optional() }))
+      .mutation(async ({ ctx, input }) => {
+        await reviewQuote(input.orderId, ctx.user.id, input.decision, input.notes);
+        return { success: true };
+      }),
+
+    confirmEft: adminProcedure
+      .input(z.object({ orderId: z.number() }))
+      .mutation(async ({ input }) => {
+        await confirmEftPayment(input.orderId);
+        return { success: true };
       }),
 
     // PayFast ITN webhook (public, verified by signature)
@@ -498,7 +518,7 @@ export const appRouter = router({
     adminUpdateStatus: adminProcedure
       .input(z.object({
         orderId: z.number(),
-        status: z.enum(["pending", "paid", "processing", "shipped", "completed", "cancelled"]),
+        status: z.enum(["pending", "quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"]),
         notes: z.string().optional(),
       }))
       .mutation(({ input }) => updateOrderStatus(input.orderId, input.status, input.notes)),
