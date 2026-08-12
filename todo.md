@@ -189,3 +189,9 @@
 - [x] Add unit test coverage for source normalization, aliases, and correction mappings
 - [x] Run image integrity audit, browser verification, and save a checkpoint
 - [x] Deliver the HD Labs image import summary and review list
+
+## Phase 23: Dedicated HD Labs Catalog Filter
+- [x] Add a dedicated HD Labs brand filter to the catalog page
+- [x] Preserve filter composition with search, category, clear-all, and mobile filter drawer behavior
+- [x] Add regression coverage and verify the filter on desktop and mobile
+- [x] Save a checkpoint for the dedicated HD Labs catalog filter

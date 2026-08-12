@@ -149,10 +149,20 @@ export default function Products() {
         )}
 
         <div className="container py-8">
-          <div className="mb-6 flex items-center justify-between gap-3 lg:hidden">
-            <button onClick={() => setMobileFiltersOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded border border-[#1E293B] bg-[#111111] px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-white hover:border-[#0EA5E9]/50">
-              <SlidersHorizontal className="h-4 w-4 text-[#0EA5E9]" /> Filters {activeFilterCount > 0 && <span className="rounded-full bg-[#E11D48] px-2 py-0.5 text-[10px]">{activeFilterCount}</span>}
-            </button>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <button onClick={() => setMobileFiltersOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded border border-[#1E293B] bg-[#111111] px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-white hover:border-[#0EA5E9]/50 lg:hidden">
+                <SlidersHorizontal className="h-4 w-4 text-[#0EA5E9]" /> Filters {activeFilterCount > 0 && <span className="rounded-full bg-[#E11D48] px-2 py-0.5 text-[10px]">{activeFilterCount}</span>}
+              </button>
+              <button
+                onClick={() => setSelectedBrand(selectedBrand === "HD Labs" ? "all" : "HD Labs")}
+                className={`inline-flex min-h-11 items-center gap-2 rounded border px-4 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${selectedBrand === "HD Labs" ? "border-[#0EA5E9] bg-[#0EA5E9]/20 text-white shadow-lg shadow-[#0EA5E9]/10" : "border-[#1E293B] bg-[#111111] text-[#94A3B8] hover:border-[#0EA5E9]/50 hover:text-white"}`}
+              >
+                <Tag className={`h-4 w-4 ${selectedBrand === "HD Labs" ? "text-[#0EA5E9]" : "text-[#E11D48]"}`} />
+                <span>{selectedBrand === "HD Labs" ? "Showing HD Labs Only" : "Filter HD Labs"}</span>
+                {selectedBrand === "HD Labs" && <span className="ml-1 rounded-full bg-[#0EA5E9] px-1.5 py-0.5 text-[10px] font-extrabold text-black">ACTIVE</span>}
+              </button>
+            </div>
             <span className="text-xs font-semibold uppercase tracking-wide text-[#64748B]">{filteredProducts.length} results</span>
           </div>
 
