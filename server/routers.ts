@@ -51,6 +51,7 @@ import { z } from "zod";
 import { orders, users } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 import { ENV } from "./_core/env";
+import { countPendingQuotes } from "../shared/adminStats";
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
 
@@ -573,7 +574,7 @@ export const appRouter = router({
 
     stats: adminProcedure.query(async () => {
       const db = await getDb();
-      if (!db) return { totalUsers: 0, pendingUsers: 0, totalOrders: 0, revenue: 0 };
+      if (!db) return { totalUsers: 0, pendingUsers: 0, pendingQuotes: 0, totalOrders: 0, revenue: 0 };
       const allUsers = await getAllUsers();
       const allOrders = await getAllOrders();
       const revenue = allOrders
@@ -582,6 +583,7 @@ export const appRouter = router({
       return {
         totalUsers: allUsers.length,
         pendingUsers: allUsers.filter((u) => u.status === "pending").length,
+        pendingQuotes: countPendingQuotes(allOrders),
         approvedUsers: allUsers.filter((u) => u.status === "approved").length,
         totalOrders: allOrders.length,
         paidOrders: allOrders.filter((o) => o.paymentStatus === "paid").length,

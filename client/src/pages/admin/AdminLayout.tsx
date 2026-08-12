@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true, color: "#0EA5E9" },
@@ -31,6 +32,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const { user, isAuthenticated, logout } = useAuth();
   const [location] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const statsQuery = trpc.admin.stats.useQuery(undefined, { refetchInterval: 30000 });
+  const pendingQuotes = statsQuery.data?.pendingQuotes ?? 0;
 
   if (!isAuthenticated || (user as any)?.role !== "admin") {
     return (
@@ -96,6 +99,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 >
                   <item.icon className="h-4 w-4 flex-shrink-0" />
                   <span className="flex-1 font-semibold uppercase tracking-wide text-xs">{item.label}</span>
+                  {item.href === "/admin/orders" && pendingQuotes > 0 && (
+                    <span aria-label={`${pendingQuotes} pending quote${pendingQuotes === 1 ? "" : "s"}`} className="min-w-5 rounded-full bg-[#E11D48] px-1.5 py-0.5 text-center text-[10px] font-black leading-none text-white">
+                      {pendingQuotes > 99 ? "99+" : pendingQuotes}
+                    </span>
+                  )}
                   {active && <ChevronRight className="h-3 w-3" />}
                 </div>
               </Link>
@@ -143,7 +151,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span className="text-white">Anabolics </span>
             <span style={{ color: "#0EA5E9" }}>Africa</span>
           </span>
-          <div className="w-8" />
+          <div className="flex items-center gap-2">
+            {pendingQuotes > 0 && <span aria-label={`${pendingQuotes} pending quote${pendingQuotes === 1 ? "" : "s"}`} className="rounded-full bg-[#E11D48] px-2 py-1 text-[10px] font-black text-white">{pendingQuotes > 99 ? "99+" : pendingQuotes}</span>}
+            <div className="w-8" />
+          </div>
         </header>
 
         <main className="flex-1 min-w-0 overflow-x-hidden p-4 sm:p-6">

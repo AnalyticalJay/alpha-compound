@@ -147,7 +147,14 @@
 - [x] Deliver quote comments feature summary with checkpoint b62d4a8e
 
 ## Phase 17: Synced Preview Quote Submission Investigation & Fix
-- [ ] Inspect synced createOrder and orderItems insert mapping in server/db.ts
-- [ ] Ensure order_items insert values avoid Drizzle default/auto-increment type inference errors
-- [ ] Run test suite and TypeScript check
+- [x] Inspect synced createOrder and orderItems insert mapping in server/db.ts
+- [x] Ensure order_items insert values avoid Drizzle default/auto-increment type inference errors
+- [x] Run test suite and TypeScript check
+- [x] Save checkpoint and deliver result
+- [x] Deliver quote submission fix with checkpoint ad67cf45
+
+## Phase 18: Admin Dashboard Pending Quote Alert
+- [x] Add pending quote count query and prominent dashboard alert banner
+- [x] Add badge indicators for pending quote requests in the admin sidebar and dashboard stats
+- [x] Add Vitest coverage for admin pending quote count aggregation
 - [ ] Save checkpoint and deliver result
