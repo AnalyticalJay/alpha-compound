@@ -7,14 +7,16 @@ export type ProductSearchRecord = {
 };
 
 export function getProductBrand(product: ProductSearchRecord) {
-  const text = [product.name, product.slug, product.description]
+  const nameAndSlug = [product.name, product.slug]
     .filter(Boolean)
     .join(" ")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ");
+  const description = (product.description ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ");
+  const combined = `${nameAndSlug} ${description}`;
 
-  if (text.includes("bp pharma") || /\bbp\b/.test(text)) return "BP Pharma" as const;
-  if (text.includes("hd labs") || /\bhd\b/.test(text)) return "HD Labs" as const;
+  if (combined.includes("bp pharma") || /\bbp\b/.test(nameAndSlug)) return "BP Pharma" as const;
+  if (description.includes("hd labs") || nameAndSlug.includes("hd labs") || /\bhd\b/.test(nameAndSlug)) return "HD Labs" as const;
   return "Other" as const;
 }
 

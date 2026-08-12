@@ -5,11 +5,14 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, SlidersHorizontal, Lock, X, RotateCcw, ChevronDown, Tag } from "lucide-react";
+import { Search, SlidersHorizontal, Lock, X, RotateCcw, ChevronDown, Tag, ArrowDownUp } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { BrandFilter, matchesBrand } from "@/lib/productFilters";
+import { CatalogSort, sortCatalogProducts } from "@/lib/catalogSorting";
+import HdLabsMark from "@/components/HdLabsMark";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function Products() {
   const { user } = useAuth();
@@ -18,6 +21,7 @@ export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState<number | undefined>();
   const [selectedBrand, setSelectedBrand] = useState<BrandFilter>("all");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [selectedSort, setSelectedSort] = useState<CatalogSort>("featured");
 
   const categoriesQuery = trpc.categories.list.useQuery();
   const productsQuery = trpc.products.list.useQuery({
@@ -28,9 +32,9 @@ export default function Products() {
   const products = productsQuery.data ?? [];
   const categories = categoriesQuery.data ?? [];
   const filteredProducts = useMemo(() => {
-    if (selectedBrand === "all") return products;
-    return products.filter((product) => matchesBrand(product, selectedBrand));
-  }, [products, selectedBrand]);
+    const brandFiltered = selectedBrand === "all" ? products : products.filter((product) => matchesBrand(product, selectedBrand));
+    return sortCatalogProducts(brandFiltered, selectedSort);
+  }, [products, selectedBrand, selectedSort]);
 
   const activeFilterCount = Number(Boolean(search)) + Number(selectedCategory !== undefined) + Number(selectedBrand !== "all");
   const selectedCategoryName = categories.find((category) => category.id === selectedCategory)?.name;
@@ -155,15 +159,33 @@ export default function Products() {
                 <SlidersHorizontal className="h-4 w-4 text-[#0EA5E9]" /> Filters {activeFilterCount > 0 && <span className="rounded-full bg-[#E11D48] px-2 py-0.5 text-[10px]">{activeFilterCount}</span>}
               </button>
               <button
+                aria-pressed={selectedBrand === "HD Labs"}
                 onClick={() => setSelectedBrand(selectedBrand === "HD Labs" ? "all" : "HD Labs")}
-                className={`inline-flex min-h-11 items-center gap-2 rounded border px-4 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${selectedBrand === "HD Labs" ? "border-[#0EA5E9] bg-[#0EA5E9]/20 text-white shadow-lg shadow-[#0EA5E9]/10" : "border-[#1E293B] bg-[#111111] text-[#94A3B8] hover:border-[#0EA5E9]/50 hover:text-white"}`}
+                className={`inline-flex min-h-11 items-center gap-2 rounded border px-3 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${selectedBrand === "HD Labs" ? "border-[#0EA5E9] bg-[#0EA5E9]/20 text-white shadow-lg shadow-[#0EA5E9]/10" : "border-[#1E293B] bg-[#111111] text-[#94A3B8] hover:border-[#0EA5E9]/50 hover:text-white"}`}
               >
-                <Tag className={`h-4 w-4 ${selectedBrand === "HD Labs" ? "text-[#0EA5E9]" : "text-[#E11D48]"}`} />
+                <HdLabsMark size="sm" />
                 <span>{selectedBrand === "HD Labs" ? "Showing HD Labs Only" : "Filter HD Labs"}</span>
                 {selectedBrand === "HD Labs" && <span className="ml-1 rounded-full bg-[#0EA5E9] px-1.5 py-0.5 text-[10px] font-extrabold text-black">ACTIVE</span>}
               </button>
             </div>
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#64748B]">{filteredProducts.length} results</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#64748B]">
+                <ArrowDownUp className="h-3.5 w-3.5 text-[#0EA5E9]" />
+                <span className="hidden sm:inline">Sort</span>
+              </div>
+              <Select value={selectedSort} onValueChange={(value) => setSelectedSort(value as CatalogSort)}>
+                <SelectTrigger aria-label="Sort products" size="sm" className="h-11 min-w-[172px] border-[#1E293B] bg-[#111111] text-xs font-bold uppercase tracking-wide text-white">
+                  <SelectValue placeholder="Sort products" />
+                </SelectTrigger>
+                <SelectContent className="border-[#1E293B] bg-[#111111] text-white">
+                  <SelectItem value="featured">Featured first</SelectItem>
+                  <SelectItem value="popularity">Most popular</SelectItem>
+                  <SelectItem value="price-asc" disabled={!isApproved}>Price: Low to High</SelectItem>
+                  <SelectItem value="price-desc" disabled={!isApproved}>Price: High to Low</SelectItem>
+                </SelectContent>
+              </Select>
+              <span className="hidden text-[10px] font-semibold uppercase tracking-wide text-[#475569] sm:inline">{filteredProducts.length} results</span>
+            </div>
           </div>
 
           {mobileFiltersOpen && (

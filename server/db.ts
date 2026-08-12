@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   cartItems,
@@ -245,7 +245,24 @@ export async function getProducts(opts?: {
     );
   }
 
-  return filtered.map((r) => ({ ...r, primaryImage: imageMap.get(r.id) ?? null }));
+  const popularityRows = productIds.length > 0
+    ? await db
+        .select({
+          productId: orderItems.productId,
+          salesCount: sql<number>`COALESCE(SUM(${orderItems.quantity}), 0)`,
+        })
+        .from(orderItems)
+        .innerJoin(orders, eq(orderItems.orderId, orders.id))
+        .where(and(inArray(orderItems.productId, productIds), sql`${orders.status} NOT IN ('cancelled', 'quote_rejected')`))
+        .groupBy(orderItems.productId)
+    : [];
+  const popularityMap = new Map(popularityRows.map((row) => [row.productId, Number(row.salesCount ?? 0)]));
+
+  return filtered.map((r) => ({
+    ...r,
+    primaryImage: imageMap.get(r.id) ?? null,
+    salesCount: popularityMap.get(r.id) ?? 0,
+  }));
 }
 
 export async function getProductBySlug(slug: string) {

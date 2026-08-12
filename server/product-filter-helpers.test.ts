@@ -15,6 +15,11 @@ describe("product brand filters", () => {
     expect(matchesBrand({ name: "Unlabelled compound" }, "all")).toBe(true);
   });
 
+  it("recognizes explicit HD product naming but ignores generic description wording", () => {
+    expect(getProductBrand({ name: "HD ZMA 10mg Zinc" })).toBe("HD Labs");
+    expect(getProductBrand({ name: "Unlabelled compound", description: "High definition presentation" })).toBe("Other");
+  });
+
   it("filters products to the selected brand", () => {
     expect(matchesBrand({ name: "HD Labs product" }, "HD Labs")).toBe(true);
     expect(matchesBrand({ name: "BP Pharma product" }, "HD Labs")).toBe(false);

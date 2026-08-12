@@ -2,6 +2,8 @@ import { trpc } from "@/lib/trpc";
 import { ShoppingCart, Lock, Eye } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "./ui/button";
+import HdLabsMark from "./HdLabsMark";
+import { getProductBrand } from "@/lib/productFilters";
 import { toast } from "sonner";
 
 type Product = {
@@ -14,6 +16,7 @@ type Product = {
   categoryName?: string | null;
   isFeatured?: boolean | null;
   stockQuantity: number;
+  salesCount?: number | null;
 };
 
 export default function ProductCard({
@@ -33,6 +36,7 @@ export default function ProductCard({
   });
 
   const inStock = product.stockQuantity > 0;
+  const isHdLabs = getProductBrand(product) === "HD Labs";
 
   return (
     <div className="rounded-lg border border-[#1E293B] bg-[#111111] overflow-hidden group hover:border-[#0EA5E9]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all duration-200 flex flex-col h-full">
@@ -51,6 +55,12 @@ export default function ProductCard({
               <div className="w-16 h-16 rounded-full bg-[#1E293B] flex items-center justify-center">
                 <ShoppingCart className="h-7 w-7 text-[#334155]" />
               </div>
+            </div>
+          )}
+
+          {isHdLabs && (
+            <div className="absolute right-2.5 top-2.5 rounded border border-[#0EA5E9]/40 bg-[#080808]/90 px-2 py-1 backdrop-blur-sm">
+              <HdLabsMark size="sm" />
             </div>
           )}
 

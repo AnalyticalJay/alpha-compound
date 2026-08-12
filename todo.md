@@ -195,3 +195,18 @@
 - [x] Preserve filter composition with search, category, clear-all, and mobile filter drawer behavior
 - [x] Add regression coverage and verify the filter on desktop and mobile
 - [x] Save a checkpoint for the dedicated HD Labs catalog filter
+
+## Phase 24: HD Labs Branding and Catalog Sorting
+- [x] Add a custom HD Labs-inspired brand mark to the quick-filter button
+- [x] Display the custom HD Labs brand mark on HD Labs product cards only
+- [x] Add catalog sorting for price and popularity with deterministic ordering
+- [x] Preserve search, brand, category, clear-all, and mobile filter behavior
+- [x] Add unit and UI contract coverage for branding and sorting
+- [x] Verify the branded cards and sorting dropdown on desktop and mobile
+- [x] Save a checkpoint for the HD Labs branding and sorting enhancement
+
+## Phase 25: HD Labs Brand Verification Follow-up
+- [x] Document the custom HD Labs-inspired mark treatment and its source palette
+- [x] Tighten HD Labs brand detection so only true HD Labs catalogue products receive the card badge
+- [x] Browser-verify actual price and popularity reordering with appropriate approved-user data or deterministic catalogue evidence
+- [ ] Save the final checkpoint only after the corrected branding and sorting verification is complete
