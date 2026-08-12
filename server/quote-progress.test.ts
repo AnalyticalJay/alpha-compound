@@ -5,8 +5,8 @@ describe("quote progress tracker", () => {
   it("starts with submission current and later steps upcoming", () => {
     const steps = getQuoteProgress("quote_pending");
     expect(steps.map((step) => step.state)).toEqual([
+      "complete",
       "current",
-      "upcoming",
       "upcoming",
       "upcoming",
       "upcoming",

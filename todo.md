@@ -133,4 +133,6 @@
 - [x] Add visual quote progress tracker component showing submission, review, approval/rejection, payment selection, and paid stages
 - [x] Integrate progress tracker into customer quote detail view (`/orders/:orderId`)
 - [x] Add unit test coverage for quote progress step completion and rejection states
-- [ ] Save checkpoint and deliver result
+- [x] Save checkpoint and deliver result
+- [x] Correct quote progress semantics so quote_pending marks Submitted complete and Under Review current
+- [ ] Save a follow-up checkpoint for the corrected quote tracker stage semantics

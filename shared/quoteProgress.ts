@@ -21,7 +21,7 @@ export function getQuoteProgress(status: string, paymentStatus?: string): QuoteP
         ? 2
         : isRejected
           ? 1
-          : 0;
+          : 1;
 
   const metadata: Record<StepKey, Pick<QuoteProgressStep, "label" | "description">> = {
     submitted: { label: "Submitted", description: "Your quote request was received." },
