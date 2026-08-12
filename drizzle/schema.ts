@@ -159,3 +159,14 @@ export const deliveryRules = mysqlTable("delivery_rules", {
 });
 
 export type DeliveryRule = typeof deliveryRules.$inferSelect;
+
+// ─── Quote Comments ────────────────────────────────────────────────────────────
+export const orderComments = mysqlTable("order_comments", {
+  id: int("id").autoincrement().primaryKey(),
+  orderId: int("orderId").notNull().references(() => orders.id),
+  userId: int("userId").notNull().references(() => users.id),
+  body: text("body").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type OrderComment = typeof orderComments.$inferSelect;

@@ -7,6 +7,7 @@ import { ArrowLeft, Package, MapPin, CreditCard, Truck, User } from "lucide-reac
 import { format } from "date-fns";
 import { toast } from "sonner";
 import { useState } from "react";
+import QuoteConversation from "@/components/QuoteConversation";
 
 const ORDER_STATUSES = ["quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"];
 
@@ -223,6 +224,8 @@ export default function AdminOrderDetail() {
           </div>
         </div>
       )}
+
+      <QuoteConversation orderId={order.id} comments={order.comments} viewerRole="admin" />
 
       {(order.quoteNotes || order.rejectionReason) && (
         <div className="glass-card rounded-xl p-6">

@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import QuoteProgressTracker from "@/components/QuoteProgressTracker";
+import QuoteConversation from "@/components/QuoteConversation";
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
@@ -106,6 +107,7 @@ export default function OrderDetail() {
 
           <div className="grid gap-6">
             <QuoteProgressTracker status={order.status} paymentStatus={order.paymentStatus} />
+            <QuoteConversation orderId={order.id} comments={order.comments} viewerRole={user?.role === "admin" ? "admin" : "user"} />
 
             <div className="glass-card rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4"><Package className="h-4 w-4 text-primary" /><h2 className="font-bold">Products in Quote</h2></div>

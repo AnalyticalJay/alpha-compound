@@ -15,6 +15,7 @@ import {
   createCategory,
   createEmailUser,
   createOrder,
+  createOrderComment,
   createProduct,
   deleteCategory,
   deleteProduct,
@@ -26,6 +27,7 @@ import {
   getCategories,
   getDb,
   getOrderById,
+  getOrderComments,
   getProductById,
   getProductBySlug,
   getProductImages,
@@ -463,6 +465,29 @@ export const appRouter = router({
           throw new TRPCError({ code: "FORBIDDEN" });
         }
         return order;
+      }),
+
+    listComments: protectedProcedure
+      .input(z.object({ orderId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        const order = await getOrderById(input.orderId);
+        if (!order) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (order.userId !== ctx.user.id && ctx.user.role !== "admin") {
+          throw new TRPCError({ code: "FORBIDDEN", message: "You cannot view this quote conversation" });
+        }
+        return getOrderComments(input.orderId);
+      }),
+
+    addComment: protectedProcedure
+      .input(z.object({ orderId: z.number(), body: z.string().trim().min(1).max(2000) }))
+      .mutation(async ({ ctx, input }) => {
+        const order = await getOrderById(input.orderId);
+        if (!order) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (order.userId !== ctx.user.id && ctx.user.role !== "admin") {
+          throw new TRPCError({ code: "FORBIDDEN", message: "You cannot comment on this quote" });
+        }
+        const commentId = await createOrderComment({ orderId: input.orderId, userId: ctx.user.id, body: input.body });
+        return { success: true, commentId };
       }),
 
     choosePayment: approvedProcedure

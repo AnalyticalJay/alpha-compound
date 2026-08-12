@@ -135,4 +135,12 @@
 - [x] Add unit test coverage for quote progress step completion and rejection states
 - [x] Save checkpoint and deliver result
 - [x] Correct quote progress semantics so quote_pending marks Submitted complete and Under Review current
-- [ ] Save a follow-up checkpoint for the corrected quote tracker stage semantics
+- [x] Save a follow-up checkpoint for the corrected quote tracker stage semantics
+
+## Phase 16: Customer-Admin Quote Comments
+- [x] Create order_comments table in database schema and run migration
+- [x] Add backend API procedures for listing quote comments and posting new messages (with admin/owner authorization)
+- [x] Build quote conversation component with threaded message list and message input form
+- [x] Integrate quote conversation into customer quote details (`/orders/:orderId`) and admin quote detail view
+- [x] Add unit test coverage for comment authorization and message persistence
+- [ ] Save checkpoint and deliver result

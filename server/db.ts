@@ -1,10 +1,11 @@
-import { and, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   cartItems,
   categories,
   deliveryRules,
   InsertUser,
+  orderComments,
   orderItems,
   orders,
   productImages,
@@ -617,7 +618,34 @@ export async function getOrderById(orderId: number) {
     .where(eq(shippingDetails.orderId, orderId))
     .limit(1);
 
-  return { ...orderResult[0], items, shipping: shipping[0] ?? null };
+  const comments = await getOrderComments(orderId);
+  return { ...orderResult[0], items, shipping: shipping[0] ?? null, comments };
+}
+
+export async function getOrderComments(orderId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: orderComments.id,
+      orderId: orderComments.orderId,
+      userId: orderComments.userId,
+      body: orderComments.body,
+      createdAt: orderComments.createdAt,
+      authorName: users.fullName,
+      authorRole: users.role,
+    })
+    .from(orderComments)
+    .innerJoin(users, eq(orderComments.userId, users.id))
+    .where(eq(orderComments.orderId, orderId))
+    .orderBy(desc(orderComments.createdAt));
+}
+
+export async function createOrderComment(data: { orderId: number; userId: number; body: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const result = await db.insert(orderComments).values(data);
+  return (result as unknown as { insertId: number }).insertId;
 }
 
 export async function getAllOrders() {
