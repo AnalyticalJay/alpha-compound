@@ -12,11 +12,14 @@ import {
   XCircle,
   ShoppingBag,
   ChevronRight,
+  BellRing,
+  ArrowRight,
   LogOut,
 } from "lucide-react";
 import { Link, useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
+import { countPaymentReadyQuotes, isPaymentReadyQuote } from "../../../shared/adminStats";
 
 function StatusBadge({ status }: { status: string }) {
   if (status === "approved") return (
@@ -70,6 +73,8 @@ export default function Account() {
     enabled: isAuthenticated && (user as any)?.status === "approved",
   });
   const orders = ordersQuery.data ?? [];
+  const paymentReadyQuotes = orders.filter(isPaymentReadyQuote);
+  const paymentReadyCount = countPaymentReadyQuotes(orders);
 
   if (!isAuthenticated) {
     return (
@@ -111,6 +116,21 @@ export default function Account() {
             </h1>
           </div>
 
+          {paymentReadyCount > 0 && (
+            <div className="mb-6 flex flex-col gap-4 rounded-xl border border-[#F97316]/50 bg-[#F97316]/10 p-4 shadow-[0_0_24px_rgba(249,115,22,0.12)] sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#F97316]/20 text-[#FDBA74]"><BellRing className="h-5 w-5" /></span>
+                <div>
+                  <p className="text-sm font-black uppercase tracking-wide text-white">Your quote is ready for payment</p>
+                  <p className="mt-1 text-xs leading-relaxed text-[#FDBA74]">{paymentReadyCount} approved quote{paymentReadyCount === 1 ? "" : "s"} {paymentReadyCount === 1 ? "is" : "are"} waiting for your payment choice.</p>
+                </div>
+              </div>
+              <Link href={`/orders/${paymentReadyQuotes[0]?.id}`} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-[#F97316] px-4 py-2 text-xs font-black uppercase tracking-wide text-white transition hover:bg-[#EA580C]">
+                Make payment <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
+
           <div className="grid gap-6 lg:grid-cols-4 lg:gap-8">
             {/* Sidebar */}
             <div className="h-fit rounded-lg border border-[#1E293B] bg-[#111111] p-4">
@@ -142,6 +162,11 @@ export default function Account() {
                       >
                         <item.icon className="h-4 w-4" />
                         <span className="flex-1 text-left text-xs">{item.label}</span>
+                        {item.id === "orders" && paymentReadyCount > 0 && (
+                          <span aria-label={`${paymentReadyCount} quote${paymentReadyCount === 1 ? "" : "s"} ready for payment`} className="min-w-5 rounded-full bg-[#F97316] px-1.5 py-0.5 text-center text-[10px] font-black leading-none text-white">
+                            {paymentReadyCount > 99 ? "99+" : paymentReadyCount}
+                          </span>
+                        )}
                         {active && <ChevronRight className="h-3 w-3" />}
                       </button>
                     </Link>

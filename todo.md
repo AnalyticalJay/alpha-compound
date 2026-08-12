@@ -157,4 +157,11 @@
 - [x] Add pending quote count query and prominent dashboard alert banner
 - [x] Add badge indicators for pending quote requests in the admin sidebar and dashboard stats
 - [x] Add Vitest coverage for admin pending quote count aggregation
+- [x] Save checkpoint and deliver result
+- [x] Deliver admin pending quote alert summary with checkpoint 00ad1dc1
+
+## Phase 19: Customer Account Approved Quote Notification
+- [x] Add approved-for-payment quote counter helper to shared statistics
+- [x] Add prominent alert banner and payment-ready badge to customer account dashboard
+- [x] Add unit test coverage for customer approved quote counting
 - [ ] Save checkpoint and deliver result
