@@ -127,4 +127,10 @@
 - [x] Build admin quote management interface for reviewing, approving, and rejecting quotes
 - [x] Build user quote history and approved payment portal supporting EFT confirmation and PayFast
 - [x] Add Vitest coverage for quote submission, approval gating, and payment selection, then verify and checkpoint
-- [ ] Save a new checkpoint for the completed quote cart, admin review, EFT, and PayFast workflow
+- [x] Save a new checkpoint for the completed quote cart, admin review, EFT, and PayFast workflow
+
+## Phase 15: Customer Quote Progress Tracker
+- [x] Add visual quote progress tracker component showing submission, review, approval/rejection, payment selection, and paid stages
+- [x] Integrate progress tracker into customer quote detail view (`/orders/:orderId`)
+- [x] Add unit test coverage for quote progress step completion and rejection states
+- [ ] Save checkpoint and deliver result

@@ -8,6 +8,7 @@ import { Link, useParams } from "wouter";
 import { format } from "date-fns";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
+import QuoteProgressTracker from "@/components/QuoteProgressTracker";
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
@@ -104,6 +105,8 @@ export default function OrderDetail() {
           </div>
 
           <div className="grid gap-6">
+            <QuoteProgressTracker status={order.status} paymentStatus={order.paymentStatus} />
+
             <div className="glass-card rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4"><Package className="h-4 w-4 text-primary" /><h2 className="font-bold">Products in Quote</h2></div>
               <div className="space-y-3">{order.items.map((item) => <div key={item.id} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0"><div><p className="font-medium text-sm">{item.productName}</p><p className="text-xs text-muted-foreground">Qty: {item.quantity}</p></div><p className="font-bold text-sm text-primary">R{(parseFloat(item.priceAtPurchase) * item.quantity).toFixed(2)}</p></div>)}</div>
