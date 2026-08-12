@@ -144,4 +144,10 @@
 - [x] Integrate quote conversation into customer quote details (`/orders/:orderId`) and admin quote detail view
 - [x] Add unit test coverage for comment authorization and message persistence
 - [x] Save checkpoint and deliver result
-- [ ] Deliver quote comments feature summary with checkpoint b62d4a8e
+- [x] Deliver quote comments feature summary with checkpoint b62d4a8e
+
+## Phase 17: Synced Preview Quote Submission Investigation & Fix
+- [ ] Inspect synced createOrder and orderItems insert mapping in server/db.ts
+- [ ] Ensure order_items insert values avoid Drizzle default/auto-increment type inference errors
+- [ ] Run test suite and TypeScript check
+- [ ] Save checkpoint and deliver result

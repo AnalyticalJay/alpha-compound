@@ -526,14 +526,14 @@ export async function createOrder(data: {
   });
   const orderId = (orderResult as unknown as { insertId: number }).insertId;
 
-  await db.insert(orderItems).values(
-    data.items.map((item) => ({
+  for (const item of data.items) {
+    await db.insert(orderItems).values({
       orderId,
       productId: item.productId,
       quantity: item.quantity,
       priceAtPurchase: typeof item.priceAtPurchase === "number" ? (item.priceAtPurchase as number).toFixed(2) : String(item.priceAtPurchase ?? "0"),
-    }))
-  );
+    });
+  }
 
   await db.insert(shippingDetails).values({ orderId, ...data.shipping });
 
