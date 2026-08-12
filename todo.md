@@ -102,7 +102,7 @@
 - [x] Add brand-aware search and filter sidebar on frontend products page (HD Labs, BP Pharma, categories, search query)
 - [x] Ensure mobile-friendly drawer/toggle for sidebar filters
 - [x] Verify functionality with automated tests and save a checkpoint
-- [ ] Save a new checkpoint for the completed product search and filter sidebar after passing tests and browser verification
+- [x] Save a new checkpoint for the completed product search and filter sidebar after passing tests and browser verification
 
 ## Phase 12: Mobile Optimization & Responsive Polish
 - [x] Audit and enhance Navbar mobile menu drawer, touch targets, and overflow
@@ -114,3 +114,9 @@
 - [x] Re-run TypeScript/tests and save a checkpoint after completing the remaining mobile responsiveness work
 - [x] Save a new checkpoint for the completed mobile responsiveness optimization after the latest responsive fixes
 - [x] Perform explicit browser/mobile verification of the updated responsive storefront and dashboards, then update todo.md
+
+## Phase 13: Mobile Sticky Bottom Navigation
+- [x] Create MobileBottomNav component with Home, Products, Cart (with badge), active route detection, and mobile-only visibility (hidden on admin routes)
+- [x] Integrate MobileBottomNav into App layout with bottom body padding to prevent overlapping page content
+- [x] Add unit test coverage for mobile navigation routes, cart count, and active state
+- [x] Verify functionality with TypeScript, Vitest, and browser preview, then save checkpoint

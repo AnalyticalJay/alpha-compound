@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -26,6 +26,8 @@ import OrderCancelled from "./pages/OrderCancelled";
 import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
 import AdminBulkImport from "./pages/admin/AdminBulkImport";
 import AdminBulkImages from "./pages/admin/AdminBulkImages";
+import MobileBottomNav from "./components/MobileBottomNav";
+import { shouldShowMobileNav } from "@shared/mobileNav";
 
 function Router() {
   return (
@@ -125,13 +127,25 @@ function Router() {
   );
 }
 
+function AppShell() {
+  const [location] = useLocation();
+  const showMobileNav = shouldShowMobileNav(location);
+
+  return (
+    <div className={showMobileNav ? "min-h-screen pb-[calc(4.75rem+env(safe-area-inset-bottom))] md:pb-0" : "min-h-screen"}>
+      <Router />
+      <MobileBottomNav />
+    </div>
+  );
+}
+
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster richColors position="top-right" />
-          <Router />
+          <AppShell />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
