@@ -71,10 +71,10 @@
 - [x] Vitest tests (23 passing)
 
 ## PayFast Configuration (Post-Deploy)
-- [ ] Set PAYFAST_MERCHANT_ID secret
-- [ ] Set PAYFAST_MERCHANT_KEY secret
-- [ ] Set PAYFAST_PASSPHRASE secret
-- [ ] Update PAYFAST_NOTIFY_URL to production domain
+- [x] Set PAYFAST_MERCHANT_ID secret through managed project configuration
+- [x] Set PAYFAST_MERCHANT_KEY secret through managed project configuration
+- [x] Set PAYFAST_PASSPHRASE secret through managed project configuration
+- [x] Derive the active production notify URL as `/api/payfast/itn` and document the PayFast merchant-dashboard whitelist requirement
 
 ## Phase 8: HD Labs Brand Restyling
 - [x] Global CSS theme updated to HD Labs palette (black + electric blue #0EA5E9 + bold red #E11D48)
@@ -220,5 +220,5 @@
 ## Phase 27: PayFast Evidence and Delivery Follow-up
 - [x] Add a route-level Vitest that posts a signed PayFast ITN payload through `/api/payfast/itn`
 - [x] Write a PayFast validation note documenting the dynamic notify URL and production-domain whitelist requirement
-- [ ] Save a post-wiring checkpoint after route-level validation passes
-- [ ] Deliver the final PayFast configuration outcome and remaining deployment-only requirement
+- [x] Save a post-wiring checkpoint after route-level validation passes
+- [x] Deliver the final PayFast configuration outcome and remaining deployment-only requirement
