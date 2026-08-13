@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, sql } from "drizzle-orm";
+import { eq, and, asc, desc, inArray, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   cartItems,
@@ -7,6 +7,7 @@ import {
   InsertUser,
   orderComments,
   orderItems,
+  paymentEvents,
   orders,
   productImages,
   products,
@@ -553,8 +554,51 @@ export async function createOrder(data: {
   }
 
   await db.insert(shippingDetails).values({ orderId, ...data.shipping });
+  await recordPaymentEvent({
+    orderId,
+    eventType: "quote_submitted",
+    paymentStatus: "pending",
+    amount: data.totalAmount,
+    actorUserId: data.userId,
+    note: "Quote request submitted for admin review.",
+  });
 
   return orderId;
+}
+
+export async function recordPaymentEvent(data: {
+  orderId: number;
+  eventType: string;
+  paymentStatus: string;
+  paymentMethod?: "eft" | "payfast" | null;
+  amount?: string | null;
+  reference?: string | null;
+  note?: string | null;
+  actorUserId?: number | null;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const result = await db.insert(paymentEvents).values({
+    orderId: data.orderId,
+    eventType: data.eventType,
+    paymentStatus: data.paymentStatus,
+    paymentMethod: data.paymentMethod ?? null,
+    amount: data.amount ?? null,
+    reference: data.reference ?? null,
+    note: data.note ?? null,
+    actorUserId: data.actorUserId ?? null,
+  });
+  return (result as unknown as { insertId: number }).insertId;
+}
+
+export async function getPaymentEvents(orderId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(paymentEvents)
+    .where(eq(paymentEvents.orderId, orderId))
+    .orderBy(asc(paymentEvents.createdAt));
 }
 
 export async function reviewQuote(
@@ -576,6 +620,15 @@ export async function reviewQuote(
     reviewedBy: adminId,
     reviewedAt: new Date(),
   }).where(eq(orders.id, orderId));
+  await recordPaymentEvent({
+    orderId,
+    eventType: decision,
+    paymentStatus: order[0].paymentStatus,
+    paymentMethod: order[0].paymentMethod ?? null,
+    amount: order[0].totalAmount,
+    actorUserId: adminId,
+    note: notes ?? null,
+  });
 }
 
 export async function chooseQuotePayment(
@@ -590,12 +643,23 @@ export async function chooseQuotePayment(
   if (order[0].status !== "quote_approved") throw new Error("Quote is not approved for payment");
 
   const payfastReference = method === "payfast" ? `AA-${orderId}-${Date.now()}` : null;
+  const paymentStatus = method === "eft" ? "awaiting_eft" : "pending";
   await db.update(orders).set({
     paymentMethod: method,
     status: "awaiting_payment",
-    paymentStatus: method === "eft" ? "awaiting_eft" : "pending",
+    paymentStatus,
     payfastReference,
   }).where(eq(orders.id, orderId));
+  await recordPaymentEvent({
+    orderId,
+    eventType: "payment_method_selected",
+    paymentStatus,
+    paymentMethod: method,
+    amount: order[0].totalAmount,
+    reference: payfastReference,
+    actorUserId: userId,
+    note: `${method === "eft" ? "EFT" : "PayFast"} selected for approved quote.`,
+  });
 
   return { payfastReference, total: order[0].totalAmount };
 }
@@ -636,7 +700,8 @@ export async function getOrderById(orderId: number) {
     .limit(1);
 
   const comments = await getOrderComments(orderId);
-  return { ...orderResult[0], items, shipping: shipping[0] ?? null, comments };
+  const paymentHistory = await getPaymentEvents(orderId);
+  return { ...orderResult[0], items, shipping: shipping[0] ?? null, comments, paymentHistory };
 }
 
 export async function getOrderComments(orderId: number) {
@@ -682,6 +747,7 @@ export async function getAllOrders() {
       rejectionReason: orders.rejectionReason,
       reviewedAt: orders.reviewedAt,
       createdAt: orders.createdAt,
+      updatedAt: orders.updatedAt,
       userId: orders.userId,
       userFullName: users.fullName,
       userEmail: users.email,
@@ -707,11 +773,22 @@ export async function updateOrderStatus(
 export async function confirmEftPayment(orderId: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+  const order = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
+  if (!order[0]) throw new Error("Order not found");
   await db.update(orders).set({
     paymentStatus: "paid",
     status: "paid",
     paymentMethod: "eft",
   }).where(eq(orders.id, orderId));
+  await recordPaymentEvent({
+    orderId,
+    eventType: "payment_received",
+    paymentStatus: "paid",
+    paymentMethod: "eft",
+    amount: order[0].totalAmount,
+    actorUserId: null,
+    note: "EFT payment confirmed by an administrator.",
+  });
 }
 
 export async function updateOrderPayment(
@@ -720,6 +797,8 @@ export async function updateOrderPayment(
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+  const order = await db.select().from(orders).where(eq(orders.payfastReference, payfastReference)).limit(1);
+  if (!order[0]) return;
   await db
     .update(orders)
     .set({
@@ -728,4 +807,13 @@ export async function updateOrderPayment(
       payfastReference,
     })
     .where(eq(orders.payfastReference, payfastReference));
+  await recordPaymentEvent({
+    orderId: order[0].id,
+    eventType: paymentStatus === "paid" ? "payment_received" : "payment_failed",
+    paymentStatus,
+    paymentMethod: "payfast",
+    amount: order[0].totalAmount,
+    reference: payfastReference,
+    note: paymentStatus === "paid" ? "PayFast ITN confirmed payment." : "PayFast ITN reported a failed payment.",
+  });
 }

@@ -238,3 +238,20 @@
 ## Phase 30: PayFast Payment UX Verification Follow-up
 - [x] Verify the available authenticated quote-detail state in-browser and cover the quote-approved secure badge/loading state with the dedicated UI contract test
 - [x] Save a post-UX checkpoint after browser and contract verification
+
+## Phase 31: Payment Status History Panels
+- [x] Audit existing order payment fields and customer/admin payment views
+- [x] Add authorization-safe payment history data using real transaction state only
+- [x] Add customer payment-status history panel to quote details
+- [x] Add administrator payment-status history panel to transaction/order management
+- [x] Add unit, authorization, responsive, and UI contract coverage
+- [x] Verify customer and admin panels in the browser and save a checkpoint
+
+## Phase 32: Legacy Payment Timeline Completeness
+- [x] Include the real quote-approved milestone in derived payment history for legacy orders that progressed into payment
+- [x] Add regression coverage and re-verify the customer/admin timelines
+
+## Phase 33: Payment History Coverage Follow-up
+- [x] Add authorization regression tests proving owners/admins can access payment history while unrelated customers cannot
+- [x] Extend automated responsive/UI contract coverage for the customer panel and administrator Payments ledger at narrow widths
+- [x] Save a new checkpoint after the payment-history coverage additions and browser verification

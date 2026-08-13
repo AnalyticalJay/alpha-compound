@@ -29,6 +29,13 @@
       "when": 1786521921105,
       "tag": "0003_jazzy_alice",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1786589012948,
+      "tag": "0004_dry_celestials",
+      "breakpoints": true
     }
   ]
 }

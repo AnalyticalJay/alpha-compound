@@ -11,6 +11,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import QuoteProgressTracker from "@/components/QuoteProgressTracker";
 import QuoteConversation from "@/components/QuoteConversation";
+import PaymentHistoryPanel from "@/components/PaymentHistoryPanel";
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
@@ -120,6 +121,7 @@ export default function OrderDetail() {
 
           <div className="grid gap-6">
             <QuoteProgressTracker status={order.status} paymentStatus={order.paymentStatus} />
+            <PaymentHistoryPanel order={order} events={order.paymentHistory} audience="customer" />
             <QuoteConversation orderId={order.id} comments={order.comments} viewerRole={user?.role === "admin" ? "admin" : "user"} />
 
             <div className="glass-card rounded-xl p-6">

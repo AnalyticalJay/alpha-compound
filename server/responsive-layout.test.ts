@@ -29,4 +29,14 @@ describe("responsive layout contracts", () => {
     expect(adminLayout).toContain("lg:hidden");
     expect(adminLayout).toContain("overflow-x-hidden");
   });
+
+  it("stacks payment history content and switches the admin ledger to mobile cards", () => {
+    const paymentPanel = source("client/src/components/PaymentHistoryPanel.tsx");
+    const adminPayments = source("client/src/pages/admin/AdminPayments.tsx");
+    expect(paymentPanel).toContain("flex-col gap-3 sm:flex-row");
+    expect(paymentPanel).toContain("min-w-0 flex-1");
+    expect(adminPayments).toContain("hidden overflow-x-auto md:block");
+    expect(adminPayments).toContain("space-y-3 md:hidden");
+    expect(adminPayments).toContain("w-40");
+  });
 });

@@ -124,6 +124,22 @@ export const orders = mysqlTable("orders", {
 
 export type Order = typeof orders.$inferSelect;
 
+// ─── Payment Events ───────────────────────────────────────────────────────────
+export const paymentEvents = mysqlTable("payment_events", {
+  id: int("id").autoincrement().primaryKey(),
+  orderId: int("orderId").notNull().references(() => orders.id),
+  eventType: varchar("eventType", { length: 64 }).notNull(),
+  paymentStatus: varchar("paymentStatus", { length: 64 }).notNull(),
+  paymentMethod: mysqlEnum("paymentMethod", ["eft", "payfast"]),
+  amount: decimal("amount", { precision: 10, scale: 2 }),
+  reference: varchar("reference", { length: 255 }),
+  note: text("note"),
+  actorUserId: int("actorUserId").references(() => users.id),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PaymentEvent = typeof paymentEvents.$inferSelect;
+
 // ─── Order Items ──────────────────────────────────────────────────────────────
 export const orderItems = mysqlTable("order_items", {
   id: int("id").autoincrement().primaryKey(),

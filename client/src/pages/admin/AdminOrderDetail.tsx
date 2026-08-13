@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 import { useState } from "react";
 import QuoteConversation from "@/components/QuoteConversation";
+import PaymentHistoryPanel from "@/components/PaymentHistoryPanel";
 
 const ORDER_STATUSES = ["quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"];
 
@@ -125,6 +126,8 @@ export default function AdminOrderDetail() {
           </Button>
         </div>
       </div>
+
+      <PaymentHistoryPanel order={order} events={order.paymentHistory} audience="admin" />
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Customer Info */}

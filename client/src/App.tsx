@@ -24,6 +24,7 @@ import ApprovalPending from "./pages/ApprovalPending";
 import OrderDetail from "./pages/OrderDetail";
 import OrderCancelled from "./pages/OrderCancelled";
 import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
+import AdminPayments from "./pages/admin/AdminPayments";
 import AdminBulkImport from "./pages/admin/AdminBulkImport";
 import AdminBulkImages from "./pages/admin/AdminBulkImages";
 import MobileBottomNav from "./components/MobileBottomNav";
@@ -110,6 +111,13 @@ function Router() {
         {() => (
           <AdminLayout>
             <AdminOrders />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/payments">
+        {() => (
+          <AdminLayout>
+            <AdminPayments />
           </AdminLayout>
         )}
       </Route>

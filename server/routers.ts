@@ -39,6 +39,7 @@ import {
   getUserById,
   removeCartItem,
   reviewQuote,
+  recordPaymentEvent,
   setPrimaryImage,
   updateCategory,
   updateOrderStatus,
@@ -514,7 +515,7 @@ export const appRouter = router({
         if (quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast" || !quote.payfastReference) {
           throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
         }
-        return buildPayFastFormConfig({
+        const formConfig = buildPayFastFormConfig({
           origin: input.origin,
           orderId: input.orderId,
           payfastReference: quote.payfastReference,
@@ -522,6 +523,17 @@ export const appRouter = router({
           email: ctx.user.email ?? "",
           fullName: ctx.user.fullName ?? "",
         });
+        await recordPaymentEvent({
+          orderId: input.orderId,
+          eventType: "payfast_handoff",
+          paymentStatus: quote.paymentStatus,
+          paymentMethod: "payfast",
+          amount: quote.totalAmount,
+          reference: quote.payfastReference,
+          actorUserId: ctx.user.id,
+          note: "Secure PayFast payment form prepared.",
+        });
+        return formConfig;
       }),
 
     review: adminProcedure

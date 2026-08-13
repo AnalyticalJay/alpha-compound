@@ -1,0 +1,7 @@
+Customer browser verification: `/orders/2` rendered the new `Payment Status History` panel with a pending badge, a derived legacy quote-submitted entry, a derived PayFast payment-method entry, timestamps, amount `R450.00`, reference `AA-2-1786525503395`, and a clear `LEGACY SNAPSHOT` label.
+
+Administrator browser verification: `/admin/payments` rendered the new Payments navigation item, Payment History page, summary cards showing 5 transactions, 1 paid quote, paid value `R450.00`, and a responsive transaction ledger with quote, customer, method, amount, status, updated time, and History links. The live records were read from the existing order data; no transactions were seeded.
+Administrator detail verification: `/admin/orders/2` rendered `Payment Transaction History` above customer/payment details with the same legacy snapshot entries and PayFast reference, while preserving the status-update controls and quote conversation.
+
+Mobile verification: a hydrated 390px iframe of `/admin/payments` rendered the Payment History heading and Transaction ledger, width 390, with no horizontal overflow. The mobile ledger content was present and stacked responsively.
+Legacy timeline correction verification: customer `/orders/2` and administrator `/admin/orders/2` now show three chronological entries — Quote submitted at 08:43, Quote approved at 09:04, and Payment method selected at 09:05 — with the real PayFast reference and explicit Legacy snapshot labels for pre-event-log records.
