@@ -29,6 +29,19 @@ describe("home catalog products and categories", () => {
     expect(home).toContain("/products?category=${category.id}");
   });
 
+  it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {
+    const home = source("client/src/pages/Home.tsx");
+    expect(home).toContain("category-injectables-banner_e7d7a02b.png");
+    expect(home).toContain("category-orals-banner_c7f566bb.png");
+    expect(home).toContain("category-fat-loss-banner_2fb21b2d.png");
+    expect(home).toContain("category-sarms-banner_a5d9ec70.png");
+    expect(home).toContain("category-peptides-banner_f6cd86ab.png");
+    expect(home).toContain("category-amps-banner_336c952f.png");
+    expect(home).toContain("category-post-cycle-banner_714b4c58.png");
+    expect(home).toContain("category-ancillaries-banner_a0d6f7cf.png");
+    expect(home).toContain('alt="" aria-hidden="true"');
+  });
+
   it("hydrates the catalog category filter from the category query parameter", () => {
     const products = source("client/src/pages/Products.tsx");
     expect(products).toContain("useLocation");

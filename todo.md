@@ -279,3 +279,10 @@
 - [x] Add a responsive main-category section linked to catalogue filtering
 - [x] Add regression coverage and verify the home page on desktop and mobile
 - [x] Save a checkpoint for the home catalog and category enhancement
+
+## Phase 37: Category Visual Banners and Icons
+- [x] Audit current category cards and available visual assets
+- [x] Create category-specific banner visuals and enhanced icon treatments
+- [x] Integrate responsive, accessible banners into live category links
+- [x] Add regression coverage and visual browser verification
+- [x] Save a checkpoint for the category visual enhancement
