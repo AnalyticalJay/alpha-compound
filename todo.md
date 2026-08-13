@@ -255,3 +255,13 @@
 - [x] Add authorization regression tests proving owners/admins can access payment history while unrelated customers cannot
 - [x] Extend automated responsive/UI contract coverage for the customer panel and administrator Payments ledger at narrow widths
 - [x] Save a new checkpoint after the payment-history coverage additions and browser verification
+
+## Phase 34: EFT Proof, Invoice, Fulfilment, Notifications, and Reporting
+- [x] Audit existing payment, order, storage, notification, and reporting foundations
+- [x] Add secure customer EFT proof upload with S3-backed storage and administrator review
+- [ ] Add branded invoice generation with authorized customer/admin access
+- [ ] Add administrator shipping/tracking controls and customer-visible delivery status
+- [ ] Add customer and administrator notification centre using real workflow events
+- [ ] Add operational reporting dashboards and exportable reports
+- [ ] Add authorization, storage, invoice, shipping, notification, reporting, responsive, and UI regression coverage
+- [ ] Verify the staged workflows in the browser and save checkpoints

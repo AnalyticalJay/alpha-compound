@@ -1,0 +1,1 @@
+ALTER TABLE `orders` ADD `eftProofKey` varchar(1024);

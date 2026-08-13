@@ -36,6 +36,20 @@
       "when": 1786589012948,
       "tag": "0004_dry_celestials",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1786590260997,
+      "tag": "0005_shocking_black_tarantula",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1786590597761,
+      "tag": "0006_remarkable_marten_broadcloak",
+      "breakpoints": true
     }
   ]
 }

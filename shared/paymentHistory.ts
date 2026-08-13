@@ -5,7 +5,8 @@ export type PaymentHistoryEventType =
   | "payment_method_selected"
   | "payfast_handoff"
   | "payment_received"
-  | "payment_failed";
+  | "payment_failed"
+  | "eft_proof_uploaded";
 
 export type PaymentHistoryEventLike = {
   id: number | string;
@@ -46,6 +47,7 @@ export const PAYMENT_EVENT_LABELS: Record<string, string> = {
   payfast_handoff: "PayFast handoff started",
   payment_received: "Payment received",
   payment_failed: "Payment failed",
+  eft_proof_uploaded: "EFT proof uploaded",
 };
 
 function formatMethod(method?: string | null) {
@@ -60,6 +62,7 @@ function describeEvent(eventType: string, paymentStatus: string, paymentMethod?:
   if (eventType === "payfast_handoff") return "The secure PayFast payment handoff was prepared.";
   if (eventType === "payment_received") return `${formatMethod(paymentMethod)} payment was received and recorded.`;
   if (eventType === "payment_failed") return `${formatMethod(paymentMethod)} payment was not completed.`;
+  if (eventType === "eft_proof_uploaded") return "Customer uploaded proof of payment for administrative verification.";
   return `Payment status updated to ${paymentStatus.replaceAll("_", " ")}.`;
 }
 

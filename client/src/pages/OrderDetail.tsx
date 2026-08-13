@@ -1,10 +1,10 @@
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Banknote, CheckCircle2, CreditCard, LoaderCircle, Lock, MapPin, Package, Send, ShieldCheck, Truck } from "lucide-react";
+import { ArrowLeft, Banknote, CheckCircle2, CreditCard, Eye, FileText, LoaderCircle, Lock, MapPin, Package, Send, ShieldCheck, Truck, UploadCloud } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { format } from "date-fns";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -29,11 +29,21 @@ function StatusBadge({ status }: { status: string }) {
   return <Badge className={`${map[status] ?? "bg-muted text-muted-foreground"} text-xs capitalize`}>{status.replaceAll("_", " ")}</Badge>;
 }
 
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file."));
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function OrderDetail() {
   const { orderId } = useParams<{ orderId: string }>();
   const { isAuthenticated, user } = useAuth();
   const utils = trpc.useUtils();
   const parsedOrderId = parseInt(orderId ?? "0");
+  const proofInputRef = useRef<HTMLInputElement>(null);
   const [isPayFastRedirecting, setIsPayFastRedirecting] = useState(false);
 
   const orderQuery = trpc.orders.detail.useQuery(
@@ -48,6 +58,14 @@ export default function OrderDetail() {
       setIsPayFastRedirecting(false);
       toast.error(error.message);
     },
+  });
+
+  const uploadEftProof = trpc.orders.uploadEftProof.useMutation({
+    onSuccess: () => {
+      toast.success("Proof of payment uploaded for verification.");
+      utils.orders.detail.invalidate({ orderId: parsedOrderId });
+    },
+    onError: (error) => toast.error(error.message),
   });
 
   const choosePayment = trpc.orders.choosePayment.useMutation({
@@ -80,6 +98,27 @@ export default function OrderDetail() {
   function handleEftPayment() {
     if (paymentPending) return;
     choosePayment.mutate({ orderId: parsedOrderId, method: "eft" });
+  }
+
+  async function handleEftProofChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Upload a PDF, JPG, or PNG proof of payment.");
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      toast.error("Proof of payment must be 8 MB or smaller.");
+      return;
+    }
+    try {
+      const fileData = await fileToBase64(file);
+      uploadEftProof.mutate({ orderId: parsedOrderId, fileName: file.name, fileData, mimeType: file.type as "application/pdf" | "image/jpeg" | "image/png" });
+    } catch {
+      toast.error("Could not read the selected proof of payment.");
+    }
   }
 
   function submitPayFast(payment: { action: string; fields: Record<string, string> }) {
@@ -157,7 +196,7 @@ export default function OrderDetail() {
                   <Badge className="shrink-0 border-emerald-400/30 bg-emerald-400/10 text-[10px] text-emerald-300">Protected</Badge>
                 </div>
               </>}
-              {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />EFT payment selected</div><p className="text-muted-foreground">Please use the banking details provided by Anabolics Africa in your approval instructions and include Quote #{order.id} as the payment reference. Send proof of payment to the store for confirmation.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}</div>}
+              {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />EFT payment selected</div><p className="text-muted-foreground">Please use the banking details provided by Anabolics Africa in your approval instructions and include Quote #{order.id} as the payment reference.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}<div className="mt-4 rounded-lg border border-border/40 bg-background/30 p-3"><div className="flex flex-wrap items-center justify-between gap-3"><div className="min-w-0"><p className="font-semibold text-foreground">Proof of payment</p><p className="text-xs text-muted-foreground">PDF, JPG, or PNG up to 8 MB.</p></div>{order.eftProofName ? <Badge className="border-emerald-400/30 bg-emerald-400/10 text-emerald-300"><CheckCircle2 className="mr-1 h-3 w-3" />Submitted for review</Badge> : <><input ref={proofInputRef} type="file" accept="application/pdf,image/jpeg,image/png" className="hidden" onChange={handleEftProofChange} /><Button type="button" variant="outline" className="min-h-10 border-[#0EA5E9]/40 font-bold" onClick={() => proofInputRef.current?.click()} disabled={uploadEftProof.isPending}><UploadCloud className="mr-2 h-4 w-4" />{uploadEftProof.isPending ? "Uploading…" : "Upload proof"}</Button></>}</div>{order.eftProofName && <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><FileText className="h-4 w-4 text-primary" /><span className="truncate">{order.eftProofName}</span><span className="text-emerald-300">Awaiting verification</span></div>}</div></div>}
               {isPayFastRedirecting && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 px-5 backdrop-blur-sm" role="status" aria-live="polite"><div className="w-full max-w-sm rounded-2xl border border-[#0EA5E9]/30 bg-[#07111f] p-6 text-center shadow-2xl shadow-cyan-950/40"><div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10"><LoaderCircle className="h-7 w-7 animate-spin text-[#38BDF8]" /></div><p className="font-bold text-white">Connecting securely to PayFast</p><p className="mt-2 text-sm text-slate-300">Your approved quote is ready. Please keep this window open while we transfer you to the protected payment page.</p><div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-800"><div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#E11D48]" /></div></div></div>}
             </div>
 

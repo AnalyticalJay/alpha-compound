@@ -3,7 +3,7 @@ import { useParams, Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, Package, MapPin, CreditCard, Truck, User } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Eye, FileText, Package, MapPin, CreditCard, Truck, User } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -38,6 +38,11 @@ export default function AdminOrderDetail() {
     { enabled: !!orderId }
   );
   const order = orderQuery.data;
+
+  const proofDownloadQuery = trpc.orders.getEftProofDownload.useQuery(
+    { orderId: parseInt(orderId ?? "0") },
+    { enabled: Boolean(order?.eftProofKey), retry: false }
+  );
 
   const confirmEft = trpc.orders.confirmEft.useMutation({
     onSuccess: () => {
@@ -174,6 +179,7 @@ export default function AdminOrderDetail() {
                 <span className="font-mono text-xs">{order.payfastReference}</span>
               </div>
             )}
+            {order.eftProofName && <div className="mt-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3"><div className="flex items-center gap-2 text-sm font-bold text-emerald-300"><FileText className="h-4 w-4" />Proof of payment received</div><p className="mt-1 truncate text-xs text-muted-foreground">{order.eftProofName}</p><div className="mt-3 flex flex-wrap gap-2"><Button type="button" variant="outline" className="min-h-10 border-emerald-400/30 font-bold" onClick={() => proofDownloadQuery.data?.url && window.open(proofDownloadQuery.data.url, "_blank", "noopener,noreferrer")} disabled={!proofDownloadQuery.data?.url || proofDownloadQuery.isFetching}><Eye className="mr-2 h-4 w-4" />{proofDownloadQuery.isFetching ? "Preparing…" : "View proof"}</Button><Badge className="border-yellow-400/30 bg-yellow-400/10 text-yellow-300"><CheckCircle2 className="mr-1 h-3 w-3" />Awaiting verification</Badge></div></div>}
             {order.status === "awaiting_payment" && order.paymentMethod === "eft" && <Button className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold" onClick={() => confirmEft.mutate({ orderId: order.id })} disabled={confirmEft.isPending}>{confirmEft.isPending ? "Confirming..." : "Confirm EFT Payment"}</Button>}
           </div>
         </div>

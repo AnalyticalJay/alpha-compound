@@ -5,7 +5,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
-import { storagePut } from "./storage";
+import { storageGetSignedUrl, storagePut } from "./storage";
 import {
   addProductImage,
   calculateDelivery,
@@ -42,8 +42,9 @@ import {
   recordPaymentEvent,
   setPrimaryImage,
   updateCategory,
-  updateOrderStatus,
   updateProduct,
+  updateOrderEftProof,
+  updateOrderStatus,
   updateUserStatus,
   upsertCartItem,
 } from "./db";
@@ -534,6 +535,57 @@ export const appRouter = router({
           note: "Secure PayFast payment form prepared.",
         });
         return formConfig;
+      }),
+
+    uploadEftProof: approvedProcedure
+      .input(z.object({
+        orderId: z.number(),
+        fileName: z.string().min(1).max(255),
+        fileData: z.string().min(1).max(12_000_000), // base64, bounded to keep the upload request safe
+        mimeType: z.enum(["application/pdf", "image/jpeg", "image/png"]),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
+
+        const buffer = Buffer.from(input.fileData, "base64");
+        if (buffer.length > 8 * 1024 * 1024) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "EFT proof must be 8 MB or smaller." });
+        }
+        const key = `orders/${input.orderId}/eft-${Date.now()}-${input.fileName}`;
+        const { url } = await storagePut(key, buffer, input.mimeType);
+
+        await updateOrderEftProof({
+          orderId: input.orderId,
+          eftProofUrl: url,
+          eftProofKey: key,
+          eftProofName: input.fileName,
+          paymentStatus: "awaiting_eft",
+        });
+
+        await recordPaymentEvent({
+          orderId: input.orderId,
+          eventType: "eft_proof_uploaded",
+          paymentStatus: "awaiting_eft",
+          paymentMethod: "eft",
+          amount: quote.totalAmount,
+          reference: input.fileName,
+          actorUserId: ctx.user.id,
+          note: `Customer uploaded EFT proof of payment (${input.fileName}). Awaiting admin verification.`,
+        });
+
+        return { success: true, url, fileName: input.fileName };
+      }),
+
+    getEftProofDownload: protectedProcedure
+      .input(z.object({ orderId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
+        if (quote.userId !== ctx.user.id && ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+        if (!quote.eftProofKey || !quote.eftProofName) throw new TRPCError({ code: "NOT_FOUND", message: "No EFT proof has been uploaded." });
+        return { url: await storageGetSignedUrl(quote.eftProofKey), fileName: quote.eftProofName };
       }),
 
     review: adminProcedure

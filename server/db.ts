@@ -743,6 +743,8 @@ export async function getAllOrders() {
       paymentStatus: orders.paymentStatus,
       paymentMethod: orders.paymentMethod,
       payfastReference: orders.payfastReference,
+      eftProofUrl: orders.eftProofUrl,
+      eftProofName: orders.eftProofName,
       quoteNotes: orders.quoteNotes,
       rejectionReason: orders.rejectionReason,
       reviewedAt: orders.reviewedAt,
@@ -768,6 +770,20 @@ export async function updateOrderStatus(
     .update(orders)
     .set({ status, trackingNotes: notes ?? undefined })
     .where(eq(orders.id, orderId));
+}
+
+export async function updateOrderEftProof(data: { orderId: number; eftProofUrl: string; eftProofKey: string; eftProofName: string; paymentStatus: "awaiting_eft" }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db
+    .update(orders)
+    .set({
+      eftProofUrl: data.eftProofUrl,
+      eftProofKey: data.eftProofKey,
+      eftProofName: data.eftProofName,
+      paymentStatus: data.paymentStatus,
+    })
+    .where(eq(orders.id, data.orderId));
 }
 
 export async function confirmEftPayment(orderId: number) {
