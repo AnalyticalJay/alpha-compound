@@ -6,7 +6,8 @@ export type PaymentHistoryEventType =
   | "payfast_handoff"
   | "payment_received"
   | "payment_failed"
-  | "eft_proof_uploaded";
+  | "eft_proof_uploaded"
+  | "shipping_updated";
 
 export type PaymentHistoryEventLike = {
   id: number | string;
@@ -48,6 +49,7 @@ export const PAYMENT_EVENT_LABELS: Record<string, string> = {
   payment_received: "Payment received",
   payment_failed: "Payment failed",
   eft_proof_uploaded: "EFT proof uploaded",
+  shipping_updated: "Shipping updated",
 };
 
 function formatMethod(method?: string | null) {
@@ -63,6 +65,7 @@ function describeEvent(eventType: string, paymentStatus: string, paymentMethod?:
   if (eventType === "payment_received") return `${formatMethod(paymentMethod)} payment was received and recorded.`;
   if (eventType === "payment_failed") return `${formatMethod(paymentMethod)} payment was not completed.`;
   if (eventType === "eft_proof_uploaded") return "Customer uploaded proof of payment for administrative verification.";
+  if (eventType === "shipping_updated") return "An administrator updated the delivery or tracking information.";
   return `Payment status updated to ${paymentStatus.replaceAll("_", " ")}.`;
 }
 

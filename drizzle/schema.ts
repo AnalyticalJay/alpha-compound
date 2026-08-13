@@ -143,6 +143,20 @@ export const paymentEvents = mysqlTable("payment_events", {
 
 export type PaymentEvent = typeof paymentEvents.$inferSelect;
 
+// ─── Notifications ────────────────────────────────────────────────────────────
+export const notifications = mysqlTable("notifications", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id),
+  orderId: int("orderId").references(() => orders.id),
+  type: mysqlEnum("type", ["quote", "payment", "shipping", "invoice", "system"]).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  body: text("body").notNull(),
+  readAt: timestamp("readAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Notification = typeof notifications.$inferSelect;
+
 // ─── Order Items ──────────────────────────────────────────────────────────────
 export const orderItems = mysqlTable("order_items", {
   id: int("id").autoincrement().primaryKey(),
@@ -165,6 +179,13 @@ export const shippingDetails = mysqlTable("shipping_details", {
   city: varchar("city", { length: 128 }).notNull(),
   postalCode: varchar("postalCode", { length: 16 }).notNull(),
   country: varchar("country", { length: 64 }).default("South Africa").notNull(),
+  courierName: varchar("courierName", { length: 128 }),
+  trackingNumber: varchar("trackingNumber", { length: 128 }),
+  trackingUrl: varchar("trackingUrl", { length: 1024 }),
+  shippingStatus: mysqlEnum("shippingStatus", ["pending", "packed", "dispatched", "in_transit", "delivered", "returned"]).default("pending").notNull(),
+  shippedAt: timestamp("shippedAt"),
+  deliveredAt: timestamp("deliveredAt"),
+  shippingNotes: text("shippingNotes"),
 });
 
 export type ShippingDetail = typeof shippingDetails.$inferSelect;

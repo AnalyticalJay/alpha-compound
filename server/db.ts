@@ -7,6 +7,7 @@ import {
   InsertUser,
   orderComments,
   orderItems,
+  notifications,
   paymentEvents,
   orders,
   productImages,
@@ -759,6 +760,42 @@ export async function getAllOrders() {
     .orderBy(orders.createdAt);
 }
 
+export async function updateShippingDetails(data: {
+  orderId: number;
+  courierName?: string | null;
+  trackingNumber?: string | null;
+  trackingUrl?: string | null;
+  shippingStatus: "pending" | "packed" | "dispatched" | "in_transit" | "delivered" | "returned";
+  shippingNotes?: string | null;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const current = await db.select().from(shippingDetails).where(eq(shippingDetails.orderId, data.orderId)).limit(1);
+  const now = new Date();
+  const shippedAt = ["dispatched", "in_transit", "delivered"].includes(data.shippingStatus) ? (current[0]?.shippedAt ?? now) : current[0]?.shippedAt ?? null;
+  const deliveredAt = data.shippingStatus === "delivered" ? (current[0]?.deliveredAt ?? now) : current[0]?.deliveredAt ?? null;
+  const details = {
+    courierName: data.courierName || null,
+    trackingNumber: data.trackingNumber || null,
+    trackingUrl: data.trackingUrl || null,
+    shippingStatus: data.shippingStatus,
+    shippedAt,
+    deliveredAt,
+    shippingNotes: data.shippingNotes || null,
+  };
+
+  if (current[0]) {
+    await db.update(shippingDetails).set(details).where(eq(shippingDetails.orderId, data.orderId));
+  } else {
+    throw new Error("Shipping address not found for order");
+  }
+
+  const orderStatus = data.shippingStatus === "delivered" ? "completed" : ["dispatched", "in_transit"].includes(data.shippingStatus) ? "shipped" : data.shippingStatus === "packed" ? "processing" : undefined;
+  if (orderStatus) {
+    await db.update(orders).set({ status: orderStatus }).where(eq(orders.id, data.orderId));
+  }
+}
+
 export async function updateOrderStatus(
   orderId: number,
   status: "pending" | "quote_pending" | "quote_approved" | "quote_rejected" | "awaiting_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled",
@@ -832,4 +869,43 @@ export async function updateOrderPayment(
     reference: payfastReference,
     note: paymentStatus === "paid" ? "PayFast ITN confirmed payment." : "PayFast ITN reported a failed payment.",
   });
+  await createNotification({
+    userId: order[0].userId,
+    orderId: order[0].id,
+    type: "payment",
+    title: paymentStatus === "paid" ? `Payment received for Quote #${order[0].id}` : `Payment update for Quote #${order[0].id}`,
+    body: paymentStatus === "paid" ? "Your PayFast payment was confirmed and your order is now being prepared." : "Your PayFast payment was not completed. Please review the quote and try again if needed.",
+  });
+}
+
+export async function createNotification(data: { userId: number; orderId?: number | null; type: "quote" | "payment" | "shipping" | "invoice" | "system"; title: string; body: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const targetUser = await db.select({ id: users.id }).from(users).where(eq(users.id, data.userId)).limit(1);
+  if (!targetUser[0]) return null;
+  const targetOrder = data.orderId ? await db.select({ id: orders.id }).from(orders).where(eq(orders.id, data.orderId)).limit(1) : [];
+  const safeOrderId = targetOrder[0]?.id ?? null;
+  const result = await db.insert(notifications).values({ ...data, orderId: safeOrderId });
+  return (result as unknown as { insertId: number }).insertId;
+}
+
+export async function notifyAllAdmins(data: Omit<Parameters<typeof createNotification>[0], "userId">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const admins = await db.select({ id: users.id }).from(users).where(eq(users.role, "admin"));
+  for (const admin of admins) {
+    await createNotification({ ...data, userId: admin.id });
+  }
+}
+
+export async function getNotificationsForUser(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(notifications).where(eq(notifications.userId, userId)).orderBy(desc(notifications.createdAt)).limit(50);
+}
+
+export async function markNotificationRead(userId: number, notificationId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(notifications).set({ readAt: new Date() }).where(and(eq(notifications.id, notificationId), eq(notifications.userId, userId)));
 }

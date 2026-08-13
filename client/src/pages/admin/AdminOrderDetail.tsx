@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, CheckCircle2, Eye, FileText, Package, MapPin, CreditCard, Truck, User } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuoteConversation from "@/components/QuoteConversation";
 import PaymentHistoryPanel from "@/components/PaymentHistoryPanel";
 
@@ -32,6 +32,11 @@ export default function AdminOrderDetail() {
   const { orderId } = useParams<{ orderId: string }>();
   const utils = trpc.useUtils();
   const [newStatus, setNewStatus] = useState<string>("");
+  const [shippingStatus, setShippingStatus] = useState("pending");
+  const [courierName, setCourierName] = useState("");
+  const [trackingNumber, setTrackingNumber] = useState("");
+  const [trackingUrl, setTrackingUrl] = useState("");
+  const [shippingNotes, setShippingNotes] = useState("");
 
   const orderQuery = trpc.orders.adminDetail.useQuery(
     { orderId: parseInt(orderId ?? "0") },
@@ -51,6 +56,24 @@ export default function AdminOrderDetail() {
       utils.orders.adminList.invalidate();
     },
     onError: (e) => toast.error(e.message),
+  });
+
+  useEffect(() => {
+    if (!order?.shipping) return;
+    setShippingStatus(order.shipping.shippingStatus ?? "pending");
+    setCourierName(order.shipping.courierName ?? "");
+    setTrackingNumber(order.shipping.trackingNumber ?? "");
+    setTrackingUrl(order.shipping.trackingUrl ?? "");
+    setShippingNotes(order.shipping.shippingNotes ?? "");
+  }, [order?.id, order?.shipping?.shippingStatus, order?.shipping?.trackingNumber]);
+
+  const updateShipping = trpc.orders.adminUpdateShipping.useMutation({
+    onSuccess: () => {
+      toast.success("Shipping details updated");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+      utils.orders.adminList.invalidate();
+    },
+    onError: (error) => toast.error(error.message),
   });
 
   const updateStatus = trpc.orders.adminUpdateStatus.useMutation({
@@ -180,6 +203,7 @@ export default function AdminOrderDetail() {
               </div>
             )}
             {order.eftProofName && <div className="mt-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5 p-3"><div className="flex items-center gap-2 text-sm font-bold text-emerald-300"><FileText className="h-4 w-4" />Proof of payment received</div><p className="mt-1 truncate text-xs text-muted-foreground">{order.eftProofName}</p><div className="mt-3 flex flex-wrap gap-2"><Button type="button" variant="outline" className="min-h-10 border-emerald-400/30 font-bold" onClick={() => proofDownloadQuery.data?.url && window.open(proofDownloadQuery.data.url, "_blank", "noopener,noreferrer")} disabled={!proofDownloadQuery.data?.url || proofDownloadQuery.isFetching}><Eye className="mr-2 h-4 w-4" />{proofDownloadQuery.isFetching ? "Preparing…" : "View proof"}</Button><Badge className="border-yellow-400/30 bg-yellow-400/10 text-yellow-300"><CheckCircle2 className="mr-1 h-3 w-3" />Awaiting verification</Badge></div></div>}
+            {["quote_approved", "awaiting_payment", "paid", "processing", "shipped", "completed"].includes(order.status) && <a href={`/api/invoices/${order.id}.pdf`} target="_blank" rel="noreferrer" className="mt-4 flex min-h-10 items-center justify-center gap-2 rounded-lg border border-[#0EA5E9]/40 px-4 text-sm font-bold text-[#38BDF8] transition hover:bg-[#0EA5E9]/10"><FileText className="h-4 w-4" />View / download invoice</a>}
             {order.status === "awaiting_payment" && order.paymentMethod === "eft" && <Button className="w-full mt-3 bg-green-600 hover:bg-green-700 text-white font-bold" onClick={() => confirmEft.mutate({ orderId: order.id })} disabled={confirmEft.isPending}>{confirmEft.isPending ? "Confirming..." : "Confirm EFT Payment"}</Button>}
           </div>
         </div>
@@ -217,19 +241,29 @@ export default function AdminOrderDetail() {
         <div className="glass-card rounded-xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <MapPin className="h-4 w-4 text-primary" />
-            <h2 className="font-bold">Shipping Address</h2>
+            <h2 className="font-bold">Shipping & Tracking</h2>
           </div>
-          <div className="text-sm space-y-1">
-            <p className="font-medium">{order.shipping.fullName}</p>
-            <p className="text-muted-foreground">{order.shipping.addressLine1}</p>
-            {order.shipping.addressLine2 && (
-              <p className="text-muted-foreground">{order.shipping.addressLine2}</p>
-            )}
-            <p className="text-muted-foreground">
-              {order.shipping.city}, {order.shipping.postalCode}
-            </p>
-            <p className="text-muted-foreground">{order.shipping.country}</p>
-            <p className="text-muted-foreground mt-2">📞 {order.shipping.phone}</p>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="text-sm space-y-1">
+              <p className="font-medium">{order.shipping.fullName}</p>
+              <p className="text-muted-foreground">{order.shipping.addressLine1}</p>
+              {order.shipping.addressLine2 && <p className="text-muted-foreground">{order.shipping.addressLine2}</p>}
+              <p className="text-muted-foreground">{order.shipping.city}, {order.shipping.postalCode}</p>
+              <p className="text-muted-foreground">{order.shipping.country}</p>
+              <p className="text-muted-foreground mt-2">Phone: {order.shipping.phone}</p>
+              <div className="mt-4 rounded-lg border border-[#0EA5E9]/20 bg-[#0EA5E9]/5 p-3">
+                <p className="text-xs font-bold uppercase tracking-wide text-[#38BDF8]">Customer view</p>
+                <p className="mt-1 text-xs text-muted-foreground">Updates here appear in the customer’s quote tracking panel.</p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Shipping status<select value={shippingStatus} onChange={(event) => setShippingStatus(event.target.value)} className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground"><option value="pending">Pending</option><option value="packed">Packed</option><option value="dispatched">Dispatched</option><option value="in_transit">In transit</option><option value="delivered">Delivered</option><option value="returned">Returned</option></select></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Courier<input value={courierName} onChange={(event) => setCourierName(event.target.value)} placeholder="e.g. The Courier Guy" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking number<input value={trackingNumber} onChange={(event) => setTrackingNumber(event.target.value)} placeholder="Tracking reference" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking URL<input value={trackingUrl} onChange={(event) => setTrackingUrl(event.target.value)} placeholder="https://courier.example/track/..." className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Customer-facing notes<textarea value={shippingNotes} onChange={(event) => setShippingNotes(event.target.value)} rows={3} placeholder="Add dispatch or delivery instructions" className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <Button type="button" className="min-h-11 w-full bg-[#0EA5E9] font-bold text-white hover:bg-[#0284C7]" onClick={() => updateShipping.mutate({ orderId: order.id, courierName, trackingNumber, trackingUrl, shippingStatus: shippingStatus as "pending" | "packed" | "dispatched" | "in_transit" | "delivered" | "returned", shippingNotes })} disabled={updateShipping.isPending}><Truck className="mr-2 h-4 w-4" />{updateShipping.isPending ? "Saving tracking…" : "Save shipping update"}</Button>
+            </div>
           </div>
         </div>
       )}

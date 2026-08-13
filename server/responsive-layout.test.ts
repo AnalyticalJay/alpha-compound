@@ -39,4 +39,14 @@ describe("responsive layout contracts", () => {
     expect(adminPayments).toContain("space-y-3 md:hidden");
     expect(adminPayments).toContain("w-40");
   });
+
+  it("keeps tracking, notification, and report cards responsive", () => {
+    const orderDetail = source("client/src/pages/OrderDetail.tsx");
+    const notifications = source("client/src/components/NotificationList.tsx");
+    const reports = source("client/src/pages/admin/AdminReports.tsx");
+    expect(orderDetail).toContain("grid gap-3 text-sm sm:grid-cols-2");
+    expect(notifications).toContain("flex items-start gap-3");
+    expect(reports).toContain("grid gap-6 lg:grid-cols-2");
+    expect(reports).toContain("grid gap-3 sm:grid-cols-2 lg:grid-cols-4");
+  });
 });

@@ -13,6 +13,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Account from "./pages/Account";
+import Notifications from "./pages/Notifications";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
@@ -25,6 +26,8 @@ import OrderDetail from "./pages/OrderDetail";
 import OrderCancelled from "./pages/OrderCancelled";
 import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
 import AdminPayments from "./pages/admin/AdminPayments";
+import AdminNotifications from "./pages/admin/AdminNotifications";
+import AdminReports from "./pages/admin/AdminReports";
 import AdminBulkImport from "./pages/admin/AdminBulkImport";
 import AdminBulkImages from "./pages/admin/AdminBulkImages";
 import MobileBottomNav from "./components/MobileBottomNav";
@@ -46,6 +49,7 @@ function Router() {
       <Route path="/order-success/:orderId" component={OrderSuccess} />
       <Route path="/account" component={Account} />
       <Route path="/account/:tab" component={Account} />
+      <Route path="/notifications" component={Notifications} />
       <Route path="/approval-pending" component={ApprovalPending} />
       <Route path="/orders/:orderId" component={OrderDetail} />
       <Route path="/order-cancelled" component={OrderCancelled} />
@@ -118,6 +122,20 @@ function Router() {
         {() => (
           <AdminLayout>
             <AdminPayments />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/notifications">
+        {() => (
+          <AdminLayout>
+            <AdminNotifications />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/admin/reports">
+        {() => (
+          <AdminLayout>
+            <AdminReports />
           </AdminLayout>
         )}
       </Route>

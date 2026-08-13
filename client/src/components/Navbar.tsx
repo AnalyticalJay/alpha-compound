@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Menu, X, User, LogOut, Shield } from "lucide-react";
+import { ShoppingCart, Menu, X, User, LogOut, Shield, Bell } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "./ui/button";
@@ -20,7 +20,10 @@ export default function Navbar() {
   const isAdmin = (user as any)?.role === "admin";
 
   const cartQuery = trpc.cart.get.useQuery(undefined, { enabled: isApproved });
+  const notificationQuery = trpc.notifications.list.useQuery(undefined, { enabled: isAuthenticated });
   const cartCount = cartQuery.data?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
+  const unreadNotifications = notificationQuery.data?.filter((item) => !item.readAt).length ?? 0;
+  const notificationHref = isAdmin ? "/admin/notifications" : "/notifications";
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -78,6 +81,9 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
+            {/* Notification center */}
+            {isAuthenticated && <Link href={notificationHref} aria-label={`${unreadNotifications} unread notifications`} className="relative rounded p-2 text-[#94A3B8] transition-colors hover:bg-white/5 hover:text-white"><Bell className="h-5 w-5" />{unreadNotifications > 0 && <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#E11D48] px-1 text-[10px] font-bold text-white">{unreadNotifications > 9 ? "9+" : unreadNotifications}</span>}</Link>}
+
             {/* Cart icon */}
             {isApproved && (
               <Link href="/cart" className="relative p-2 rounded hover:bg-white/5 transition-colors no-underline text-[#94A3B8] hover:text-white">
@@ -106,6 +112,9 @@ export default function Navbar() {
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48 bg-[#111111] border-[#1E293B]">
+                  <DropdownMenuItem asChild>
+                    <Link href={notificationHref} className="flex items-center gap-2 no-underline text-[#94A3B8] hover:text-white cursor-pointer"><Bell className="h-4 w-4" />Notifications{unreadNotifications > 0 && ` (${unreadNotifications})`}</Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link href="/account" className="flex items-center gap-2 no-underline text-[#94A3B8] hover:text-white cursor-pointer">
                       <User className="h-4 w-4" />
@@ -196,6 +205,7 @@ export default function Navbar() {
             )}
             {isAuthenticated ? (
               <>
+                <Link href={notificationHref} onClick={() => setMobileOpen(false)} className="block min-h-11 px-4 py-3 text-sm font-semibold uppercase tracking-wide rounded no-underline text-[#94A3B8] hover:text-white hover:bg-white/5">Notifications {unreadNotifications > 0 && `(${unreadNotifications})`}</Link>
                 <Link href="/account" onClick={() => setMobileOpen(false)}
                   className="block px-4 py-2.5 text-sm font-semibold uppercase tracking-wide rounded no-underline text-[#94A3B8] hover:text-white hover:bg-white/5">
                   My Account

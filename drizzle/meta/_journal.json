@@ -50,6 +50,20 @@
       "when": 1786590597761,
       "tag": "0006_remarkable_marten_broadcloak",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1786591149525,
+      "tag": "0007_fresh_leo",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1786591384167,
+      "tag": "0008_shocking_nova",
+      "breakpoints": true
     }
   ]
 }

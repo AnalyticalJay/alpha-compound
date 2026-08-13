@@ -6,6 +6,8 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
 import { registerStorageProxy } from "./storageProxy";
 import { registerPayFastRoutes } from "../payfastRoute";
+import { registerInvoiceRoutes } from "../invoiceRoute";
+import { registerReportRoutes } from "../reportRoute";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
@@ -37,6 +39,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerPayFastRoutes(app);
+  registerInvoiceRoutes(app);
+  registerReportRoutes(app);
   registerOAuthRoutes(app);
   // tRPC API
   app.use(

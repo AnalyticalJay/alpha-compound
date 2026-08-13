@@ -14,6 +14,8 @@ import {
   Upload,
   FileImage,
   CreditCard,
+  Bell,
+  BarChart3,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +30,8 @@ const navItems = [
   { href: "/admin/categories", label: "Categories", icon: Tag, color: "#0EA5E9" },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag, color: "#E11D48" },
   { href: "/admin/payments", label: "Payments", icon: CreditCard, color: "#10B981" },
+  { href: "/admin/notifications", label: "Notifications", icon: Bell, color: "#0EA5E9" },
+  { href: "/admin/reports", label: "Reports", icon: BarChart3, color: "#E11D48" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -36,6 +40,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const statsQuery = trpc.admin.stats.useQuery(undefined, { refetchInterval: 30000 });
   const pendingQuotes = statsQuery.data?.pendingQuotes ?? 0;
+  const notificationQuery = trpc.notifications.list.useQuery(undefined, { enabled: isAuthenticated && (user as any)?.role === "admin" });
+  const unreadNotifications = notificationQuery.data?.filter((item) => !item.readAt).length ?? 0;
 
   if (!isAuthenticated || (user as any)?.role !== "admin") {
     return (
@@ -105,6 +111,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <span aria-label={`${pendingQuotes} pending quote${pendingQuotes === 1 ? "" : "s"}`} className="min-w-5 rounded-full bg-[#E11D48] px-1.5 py-0.5 text-center text-[10px] font-black leading-none text-white">
                       {pendingQuotes > 99 ? "99+" : pendingQuotes}
                     </span>
+                  )}
+                  {item.href === "/admin/notifications" && unreadNotifications > 0 && (
+                    <span aria-label={`${unreadNotifications} unread notification${unreadNotifications === 1 ? "" : "s"}`} className="min-w-5 rounded-full bg-[#0EA5E9] px-1.5 py-0.5 text-center text-[10px] font-black leading-none text-white">{unreadNotifications > 99 ? "99+" : unreadNotifications}</span>
                   )}
                   {active && <ChevronRight className="h-3 w-3" />}
                 </div>

@@ -14,6 +14,7 @@ import {
   clearCart,
   createCategory,
   createEmailUser,
+  createNotification,
   createOrder,
   createOrderComment,
   createProduct,
@@ -28,6 +29,7 @@ import {
   getDb,
   getOrderById,
   getOrderComments,
+  getNotificationsForUser,
   getProductById,
   getProductBySlug,
   getProductImages,
@@ -37,6 +39,8 @@ import {
   normalizeProductImageKey,
   getUserByEmail,
   getUserById,
+  markNotificationRead,
+  notifyAllAdmins,
   removeCartItem,
   reviewQuote,
   recordPaymentEvent,
@@ -45,6 +49,7 @@ import {
   updateProduct,
   updateOrderEftProof,
   updateOrderStatus,
+  updateShippingDetails,
   updateUserStatus,
   upsertCartItem,
 } from "./db";
@@ -574,6 +579,12 @@ export const appRouter = router({
           actorUserId: ctx.user.id,
           note: `Customer uploaded EFT proof of payment (${input.fileName}). Awaiting admin verification.`,
         });
+        await notifyAllAdmins({
+          orderId: input.orderId,
+          type: "payment",
+          title: `EFT proof received for Quote #${input.orderId}`,
+          body: `${ctx.user.fullName || "A customer"} uploaded proof of payment. Review it before confirming EFT.`,
+        });
 
         return { success: true, url, fileName: input.fileName };
       }),
@@ -591,14 +602,25 @@ export const appRouter = router({
     review: adminProcedure
       .input(z.object({ orderId: z.number(), decision: z.enum(["quote_approved", "quote_rejected"]), notes: z.string().max(2000).optional() }))
       .mutation(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
         await reviewQuote(input.orderId, ctx.user.id, input.decision, input.notes);
+        if (quote) await createNotification({
+          userId: quote.userId,
+          orderId: input.orderId,
+          type: "quote",
+          title: input.decision === "quote_approved" ? `Quote #${input.orderId} approved` : `Quote #${input.orderId} declined`,
+          body: input.decision === "quote_approved" ? "Your quote is approved and ready for payment." : (input.notes || "Your quote was not approved."),
+        });
         return { success: true };
       }),
 
     confirmEft: adminProcedure
       .input(z.object({ orderId: z.number() }))
-      .mutation(async ({ input }) => {
+      .mutation(async ({ ctx, input }) => {
+        const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         await confirmEftPayment(input.orderId);
+        await createNotification({ userId: quote.userId, orderId: input.orderId, type: "payment", title: `Payment received for Quote #${input.orderId}`, body: "Your EFT payment was confirmed and your order is now being prepared." });
         return { success: true };
       }),
 
@@ -630,10 +652,48 @@ export const appRouter = router({
         notes: z.string().optional(),
       }))
       .mutation(({ input }) => updateOrderStatus(input.orderId, input.status, input.notes)),
+
+    adminUpdateShipping: adminProcedure
+      .input(z.object({
+        orderId: z.number(),
+        courierName: z.string().max(128).optional(),
+        trackingNumber: z.string().max(128).optional(),
+        trackingUrl: z.string().url().max(1024).optional().or(z.literal("")),
+        shippingStatus: z.enum(["pending", "packed", "dispatched", "in_transit", "delivered", "returned"]),
+        shippingNotes: z.string().max(2000).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        await updateShippingDetails(input);
+        const quote = await getOrderById(input.orderId);
+        if (quote) await createNotification({ userId: quote.userId, orderId: input.orderId, type: "shipping", title: `Shipping updated for Quote #${input.orderId}`, body: `Your delivery is now marked ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` with tracking number ${input.trackingNumber}.` : "."}` });
+        await recordPaymentEvent({
+          orderId: input.orderId,
+          eventType: "shipping_updated",
+          paymentStatus: "pending",
+          amount: null,
+          actorUserId: ctx.user.id,
+          note: `Shipping updated: ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` (${input.trackingNumber})` : ""}.`,
+        });
+        return { success: true };
+      }),
+  }),
+
+  notifications: router({
+    list: protectedProcedure.query(({ ctx }) => getNotificationsForUser(ctx.user.id)),
+    markRead: protectedProcedure
+      .input(z.object({ notificationId: z.number() }))
+      .mutation(({ ctx, input }) => markNotificationRead(ctx.user.id, input.notificationId)),
   }),
 
   // ─── Admin: Users ─────────────────────────────────────────────────────────
   admin: router({
+    reports: adminProcedure.query(async () => {
+      const summaries = await getAllOrders();
+      return Promise.all(summaries.map(async (summary) => {
+        const detail = await getOrderById(summary.id);
+        return { ...summary, shippingStatus: detail?.shipping?.shippingStatus ?? "pending" };
+      }));
+    }),
     users: adminProcedure.query(() => getAllUsers()),
 
     approveUser: adminProcedure
