@@ -265,3 +265,10 @@
 - [x] Add operational reporting dashboards and exportable reports
 - [x] Add authorization, storage, invoice, shipping, notification, reporting, responsive, and UI regression coverage
 - [x] Verify the staged workflows in the browser and save checkpoints
+
+## Phase 35: Shipping Delivery Timeline
+- [x] Audit existing shipping status data and customer/admin tracking panels
+- [x] Create shared visual delivery timeline mapping for real shipping statuses
+- [x] Integrate the timeline into customer and administrator shipping sections
+- [x] Add regression coverage and responsive browser verification
+- [x] Save a checkpoint for the shipping delivery timeline

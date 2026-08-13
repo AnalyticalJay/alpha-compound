@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import QuoteConversation from "@/components/QuoteConversation";
 import PaymentHistoryPanel from "@/components/PaymentHistoryPanel";
+import DeliveryTimeline from "@/components/DeliveryTimeline";
+import type { ShippingStatus } from "@shared/shippingTimeline";
 
 const ORDER_STATUSES = ["quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"];
 
@@ -243,6 +245,7 @@ export default function AdminOrderDetail() {
             <MapPin className="h-4 w-4 text-primary" />
             <h2 className="font-bold">Shipping & Tracking</h2>
           </div>
+          <DeliveryTimeline status={(order.shipping.shippingStatus ?? "pending") as ShippingStatus} updatedAt={order.updatedAt} />
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="text-sm space-y-1">
               <p className="font-medium">{order.shipping.fullName}</p>

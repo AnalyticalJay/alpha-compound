@@ -10,3 +10,7 @@
 ## Additional verification
 
 The authenticated `/api/admin/reports/orders.csv` endpoint downloaded `anabolics-africa-orders-report.csv` successfully from the administrator session. The existing Order #2 detail showed the invoice link and quote payment timeline, but no shipping address was present for that genuine record, so the shipping edit form was not displayed. No synthetic shipping data was created; shipping UI is covered by responsive and contract tests.
+
+## Shipping delivery timeline verification
+
+The customer and administrator code paths now mount the shared delivery timeline whenever a real `shipping_details` record exists, with the persisted status driving the milestones and returned state. The genuine browser record inspected (`Order #2`) has no shipping row, so its legacy detail page correctly remains unchanged and no synthetic shipping data was created. The responsive timeline contract and pure milestone progression tests passed.

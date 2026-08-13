@@ -44,9 +44,12 @@ describe("responsive layout contracts", () => {
     const orderDetail = source("client/src/pages/OrderDetail.tsx");
     const notifications = source("client/src/components/NotificationList.tsx");
     const reports = source("client/src/pages/admin/AdminReports.tsx");
+    const timeline = source("client/src/components/DeliveryTimeline.tsx");
     expect(orderDetail).toContain("grid gap-3 text-sm sm:grid-cols-2");
     expect(notifications).toContain("flex items-start gap-3");
     expect(reports).toContain("grid gap-6 lg:grid-cols-2");
     expect(reports).toContain("grid gap-3 sm:grid-cols-2 lg:grid-cols-4");
+    expect(timeline).toContain("grid gap-4 sm:grid-cols-5 sm:gap-2");
+    expect(timeline).toContain("sm:text-center");
   });
 });
