@@ -188,7 +188,7 @@ export const appRouter = router({
   // ─── Products ─────────────────────────────────────────────────────────────
   products: router({
     list: publicProcedure
-      .input(z.object({ categoryId: z.number().optional(), search: z.string().optional(), featuredOnly: z.boolean().optional() }).optional())
+      .input(z.object({ categoryId: z.number().optional(), search: z.string().optional(), featuredOnly: z.boolean().optional(), imageOnly: z.boolean().optional() }).optional())
       .query(async ({ ctx, input }) => {
         const rows = await getProducts({ ...input, activeOnly: true });
         const isApproved = ctx.user && (ctx.user as any).status === "approved";

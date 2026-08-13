@@ -272,3 +272,10 @@
 - [x] Integrate the timeline into customer and administrator shipping sections
 - [x] Add regression coverage and responsive browser verification
 - [x] Save a checkpoint for the shipping delivery timeline
+
+## Phase 36: Home Catalog Products and Categories
+- [x] Audit home-page product data, assigned images, and live category records
+- [x] Display only real products with assigned product images in the home featured section
+- [x] Add a responsive main-category section linked to catalogue filtering
+- [x] Add regression coverage and verify the home page on desktop and mobile
+- [x] Save a checkpoint for the home catalog and category enhancement

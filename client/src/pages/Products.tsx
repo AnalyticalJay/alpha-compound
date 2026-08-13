@@ -6,8 +6,8 @@ import ProductCard from "@/components/ProductCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, SlidersHorizontal, Lock, X, RotateCcw, ChevronDown, Tag, ArrowDownUp } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "wouter";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { BrandFilter, matchesBrand } from "@/lib/productFilters";
 import { CatalogSort, sortCatalogProducts } from "@/lib/catalogSorting";
@@ -16,12 +16,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export default function Products() {
   const { user } = useAuth();
+  const [location] = useLocation();
   const isApproved = (user as any)?.status === "approved";
   const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<number | undefined>();
+  const getCategoryFromUrl = () => {
+    const parsed = Number(new URLSearchParams(window.location.search).get("category"));
+    return Number.isInteger(parsed) && parsed > 0 ? parsed : undefined;
+  };
+  const [selectedCategory, setSelectedCategory] = useState<number | undefined>(getCategoryFromUrl);
   const [selectedBrand, setSelectedBrand] = useState<BrandFilter>("all");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState<CatalogSort>("featured");
+
+  useEffect(() => {
+    setSelectedCategory(getCategoryFromUrl());
+  }, [location]);
 
   const categoriesQuery = trpc.categories.list.useQuery();
   const productsQuery = trpc.products.list.useQuery({

@@ -2,26 +2,40 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Shield, Truck, CreditCard, Lock, ChevronRight, Star, Package, FlaskConical, Pill, Syringe } from "lucide-react";
+import { Shield, Truck, CreditCard, Lock, ChevronRight, Star, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+
+const HOME_CATEGORY_SPECS = [
+  { slug: "injectables", label: "Injectables", icon: Syringe, accent: "#0EA5E9" },
+  { slug: "orals", label: "Orals", icon: Pill, accent: "#E11D48" },
+  { slug: "fat-loss", label: "Fat Loss", icon: Flame, accent: "#F59E0B" },
+  { slug: "sarms", label: "SARMS", icon: FlaskConical, accent: "#38BDF8" },
+  { slug: "peptides", label: "Peptides", icon: Dna, accent: "#A78BFA" },
+  { slug: "amps", label: "Amps", icon: Package, accent: "#0EA5E9" },
+  { slug: "post-cycle", label: "Post Cycle", icon: Shield, accent: "#E11D48" },
+  { slug: "ancillaries", label: "Ancillaries", icon: Layers3, accent: "#F59E0B" },
+] as const;
 
 export default function Home() {
   const { user, isAuthenticated } = useAuth();
   const isApproved = (user as any)?.status === "approved";
   const isPending = (user as any)?.status === "pending";
 
-  // Fetch featured products; fall back to all products if fewer than 4 featured
-  const featuredQuery = trpc.products.list.useQuery({ featuredOnly: true });
+  // The home page only renders products with verified primary images.
+  const featuredQuery = trpc.products.list.useQuery({ featuredOnly: true, imageOnly: true });
   const allProductsQuery = trpc.products.list.useQuery(
-    {},
+    { imageOnly: true },
     { enabled: !!(featuredQuery.data && featuredQuery.data.length < 4) }
   );
-  const displayProducts = featuredQuery.data && featuredQuery.data.length >= 1
+  const displayProducts = (featuredQuery.data && featuredQuery.data.length >= 1
     ? featuredQuery.data
-    : allProductsQuery.data ?? [];
+    : allProductsQuery.data ?? []).slice(0, 4);
+  const categoriesQuery = trpc.categories.list.useQuery();
+  const categoryBySlug = new Map((categoriesQuery.data ?? []).map((category) => [category.slug, category]));
+  const mainCategories = HOME_CATEGORY_SPECS.map((spec) => ({ ...spec, category: categoryBySlug.get(spec.slug) })).filter((entry) => entry.category);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
@@ -221,7 +235,7 @@ export default function Home() {
                 <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Featured</span>
               </div>
               <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
-                Top <span style={{ color: "#0EA5E9" }}>Compounds</span>
+                Featured <span style={{ color: "#0EA5E9" }}>Products</span>
               </h2>
             </div>
             <Link href="/products" className="no-underline">
@@ -265,6 +279,30 @@ export default function Home() {
             )}
         </div>
       </section>
+
+      {/* ── Main Categories ───────────────────────────────────────────────── */}
+      {mainCategories.length > 0 && <section className="border-t border-[#1E293B] py-14 sm:py-20">
+        <div className="container">
+          <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <div className="mb-2 flex items-center gap-2"><div className="h-0.5 w-6 bg-[#E11D48]" /><span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Browse by category</span></div>
+              <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">Main <span className="text-[#0EA5E9]">Categories</span></h2>
+              <p className="mt-2 text-sm text-[#64748B]">Explore the catalogue by compound type.</p>
+            </div>
+            <Link href="/products" className="no-underline"><Button variant="ghost" size="sm" className="self-start text-xs font-bold uppercase tracking-wide text-[#0EA5E9] hover:bg-[#0EA5E9]/10 hover:text-white sm:self-auto">Browse catalog <ChevronRight className="ml-1 h-3.5 w-3.5" /></Button></Link>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+            {mainCategories.map(({ category, label, icon: Icon, accent }, index) => category && (
+              <motion.div key={category.id} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }}>
+                <Link href={`/products?category=${category.id}`} className="group flex min-h-36 flex-col justify-between rounded-xl border border-[#1E293B] bg-[#111111] p-4 no-underline transition-all hover:-translate-y-0.5 hover:border-[#0EA5E9]/50 hover:shadow-[0_0_24px_rgba(14,165,233,0.08)] sm:min-h-40 sm:p-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border" style={{ color: accent, background: `${accent}15`, borderColor: `${accent}35` }}><Icon className="h-5 w-5" /></div>
+                  <div><p className="text-sm font-black uppercase tracking-wide text-white transition-colors group-hover:text-[#38BDF8]">{label}</p><span className="mt-2 inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-[#64748B] group-hover:text-[#0EA5E9]">Browse <ChevronRight className="ml-1 h-3 w-3" /></span></div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>}
 
       {/* ── Features Grid ────────────────────────────────────────────────── */}
       <section className="border-t border-[#1E293B] py-14 sm:py-20">

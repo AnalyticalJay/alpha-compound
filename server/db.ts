@@ -195,6 +195,7 @@ export async function getProducts(opts?: {
   categoryId?: number;
   search?: string;
   featuredOnly?: boolean;
+  imageOnly?: boolean;
   activeOnly?: boolean;
 }) {
   const db = await getDb();
@@ -245,6 +246,9 @@ export async function getProducts(opts?: {
         r.name.toLowerCase().includes(q) ||
         (r.description ?? "").toLowerCase().includes(q)
     );
+  }
+  if (opts?.imageOnly) {
+    filtered = filtered.filter((row) => imageMap.has(row.id));
   }
 
   const popularityRows = productIds.length > 0
