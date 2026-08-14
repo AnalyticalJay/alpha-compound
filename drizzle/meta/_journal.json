@@ -64,6 +64,13 @@
       "when": 1786591384167,
       "tag": "0008_shocking_nova",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1786676941259,
+      "tag": "0009_fixed_winter_soldier",
+      "breakpoints": true
     }
   ]
 }

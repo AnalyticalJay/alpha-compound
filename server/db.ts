@@ -183,6 +183,29 @@ export async function updateCategory(
   await db.update(categories).set(data).where(eq(categories.id, id));
 }
 
+export async function setCategoryPromotedProduct(categoryId: number, productId: number | null) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const category = await db.select({ id: categories.id }).from(categories).where(eq(categories.id, categoryId)).limit(1);
+  if (!category[0]) throw new Error("Category not found");
+
+  if (productId !== null) {
+    const candidate = await db
+      .select({ id: products.id })
+      .from(products)
+      .innerJoin(productImages, and(eq(productImages.productId, products.id), eq(productImages.isPrimary, true)))
+      .where(and(eq(products.id, productId), eq(products.categoryId, categoryId), eq(products.isActive, true)))
+      .limit(1);
+
+    if (!candidate[0]) {
+      throw new Error("Select an active product from this category with a primary image");
+    }
+  }
+
+  await db.update(categories).set({ promotedProductId: productId }).where(eq(categories.id, categoryId));
+}
+
 export async function deleteCategory(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");

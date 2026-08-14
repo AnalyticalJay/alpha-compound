@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { selectCategoryPromotion } from "@shared/categoryPromotion";
 
 const HOME_CATEGORY_SPECS = [
   { slug: "injectables", label: "Injectables", promo: "Core injectable products, organised for fast catalogue review.", icon: Syringe, accent: "#0EA5E9", image: "/manus-storage/category-injectables-banner_e7d7a02b.png" },
@@ -35,9 +36,7 @@ export default function Home() {
   const imageBackedProducts = allProductsQuery.data ?? [];
   const mainCategories = HOME_CATEGORY_SPECS.map((spec) => {
     const category = categoryBySlug.get(spec.slug);
-    const featuredProduct = imageBackedProducts
-      .filter((product) => product.categoryId === category?.id)
-      .sort((a, b) => Number(Boolean(b.isFeatured)) - Number(Boolean(a.isFeatured)))[0];
+    const featuredProduct = selectCategoryPromotion(category?.id, category?.promotedProductId, imageBackedProducts);
     return { ...spec, category, featuredProduct };
   }).filter((entry) => entry.category);
 

@@ -45,6 +45,7 @@ import {
   reviewQuote,
   recordPaymentEvent,
   setPrimaryImage,
+  setCategoryPromotedProduct,
   updateCategory,
   updateProduct,
   updateOrderEftProof,
@@ -179,6 +180,10 @@ export const appRouter = router({
         const { id, ...data } = input;
         return updateCategory(id, data);
       }),
+
+    setPromotedProduct: adminProcedure
+      .input(z.object({ categoryId: z.number(), productId: z.number().nullable() }))
+      .mutation(({ input }) => setCategoryPromotedProduct(input.categoryId, input.productId)),
 
     delete: adminProcedure
       .input(z.object({ id: z.number() }))

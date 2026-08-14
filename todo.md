@@ -293,3 +293,11 @@
 - [x] Add real image-backed featured product recommendations for categories with verified products
 - [x] Add regression coverage and responsive browser verification
 - [x] Save a checkpoint for the category promotion enhancement
+
+## Phase 39: Admin Category Promotion Controls
+- [x] Audit category storage, image-backed product data, and category administration screens
+- [x] Persist an optional promoted product per category with server-side category/image validation
+- [x] Add protected admin controls to set or clear category promotions
+- [x] Render the manually selected promotion on the home page with safe fallback behavior
+- [x] Add authorization, validation, UI, and responsive regression coverage
+- [x] Verify admin selection and public rendering, then save a checkpoint
