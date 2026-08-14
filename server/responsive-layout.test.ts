@@ -52,7 +52,7 @@ describe("responsive layout contracts", () => {
     expect(reports).toContain("grid gap-3 sm:grid-cols-2 lg:grid-cols-4");
     expect(timeline).toContain("grid gap-4 sm:grid-cols-5 sm:gap-2");
     expect(timeline).toContain("sm:text-center");
-    expect(home).toContain("grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4");
+    expect(home).toContain("grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4");
     expect(home).toContain("grid-cols-1 sm:grid-cols-2 lg:grid-cols-4");
   });
 });

@@ -9,14 +9,14 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const HOME_CATEGORY_SPECS = [
-  { slug: "injectables", label: "Injectables", icon: Syringe, accent: "#0EA5E9", image: "/manus-storage/category-injectables-banner_e7d7a02b.png" },
-  { slug: "orals", label: "Orals", icon: Pill, accent: "#E11D48", image: "/manus-storage/category-orals-banner_c7f566bb.png" },
-  { slug: "fat-loss", label: "Fat Loss", icon: Flame, accent: "#F59E0B", image: "/manus-storage/category-fat-loss-banner_2fb21b2d.png" },
-  { slug: "sarms", label: "SARMS", icon: FlaskConical, accent: "#38BDF8", image: "/manus-storage/category-sarms-banner_a5d9ec70.png" },
-  { slug: "peptides", label: "Peptides", icon: Dna, accent: "#A78BFA", image: "/manus-storage/category-peptides-banner_f6cd86ab.png" },
-  { slug: "amps", label: "Amps", icon: Package, accent: "#0EA5E9", image: "/manus-storage/category-amps-banner_336c952f.png" },
-  { slug: "post-cycle", label: "Post Cycle", icon: Shield, accent: "#E11D48", image: "/manus-storage/category-post-cycle-banner_714b4c58.png" },
-  { slug: "ancillaries", label: "Ancillaries", icon: Layers3, accent: "#F59E0B", image: "/manus-storage/category-ancillaries-banner_a0d6f7cf.png" },
+  { slug: "injectables", label: "Injectables", promo: "Core injectable products, organised for fast catalogue review.", icon: Syringe, accent: "#0EA5E9", image: "/manus-storage/category-injectables-banner_e7d7a02b.png" },
+  { slug: "orals", label: "Orals", promo: "Browse compact oral options with clear product detail at every step.", icon: Pill, accent: "#E11D48", image: "/manus-storage/category-orals-banner_c7f566bb.png" },
+  { slug: "fat-loss", label: "Fat Loss", promo: "Explore the category in one controlled, detail-first collection.", icon: Flame, accent: "#F59E0B", image: "/manus-storage/category-fat-loss-banner_2fb21b2d.png" },
+  { slug: "sarms", label: "SARMS", promo: "A dedicated catalogue area for research-focused compounds.", icon: FlaskConical, accent: "#38BDF8", image: "/manus-storage/category-sarms-banner_a5d9ec70.png" },
+  { slug: "peptides", label: "Peptides", promo: "Explore peptide products through a single gated collection.", icon: Dna, accent: "#A78BFA", image: "/manus-storage/category-peptides-banner_f6cd86ab.png" },
+  { slug: "amps", label: "Amps", promo: "Discover a broad selection of image-backed HD Labs products.", icon: Package, accent: "#0EA5E9", image: "/manus-storage/category-amps-banner_336c952f.png" },
+  { slug: "post-cycle", label: "Post Cycle", promo: "Structured post-cycle options with clear product information.", icon: Shield, accent: "#E11D48", image: "/manus-storage/category-post-cycle-banner_714b4c58.png" },
+  { slug: "ancillaries", label: "Ancillaries", promo: "Supporting essentials, organised by category for quick review.", icon: Layers3, accent: "#F59E0B", image: "/manus-storage/category-ancillaries-banner_a0d6f7cf.png" },
 ] as const;
 
 export default function Home() {
@@ -26,16 +26,20 @@ export default function Home() {
 
   // The home page only renders products with verified primary images.
   const featuredQuery = trpc.products.list.useQuery({ featuredOnly: true, imageOnly: true });
-  const allProductsQuery = trpc.products.list.useQuery(
-    { imageOnly: true },
-    { enabled: !!(featuredQuery.data && featuredQuery.data.length < 4) }
-  );
+  const allProductsQuery = trpc.products.list.useQuery({ imageOnly: true });
   const displayProducts = (featuredQuery.data && featuredQuery.data.length >= 1
     ? featuredQuery.data
     : allProductsQuery.data ?? []).slice(0, 4);
   const categoriesQuery = trpc.categories.list.useQuery();
   const categoryBySlug = new Map((categoriesQuery.data ?? []).map((category) => [category.slug, category]));
-  const mainCategories = HOME_CATEGORY_SPECS.map((spec) => ({ ...spec, category: categoryBySlug.get(spec.slug) })).filter((entry) => entry.category);
+  const imageBackedProducts = allProductsQuery.data ?? [];
+  const mainCategories = HOME_CATEGORY_SPECS.map((spec) => {
+    const category = categoryBySlug.get(spec.slug);
+    const featuredProduct = imageBackedProducts
+      .filter((product) => product.categoryId === category?.id)
+      .sort((a, b) => Number(Boolean(b.isFeatured)) - Number(Boolean(a.isFeatured)))[0];
+    return { ...spec, category, featuredProduct };
+  }).filter((entry) => entry.category);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
@@ -291,16 +295,26 @@ export default function Home() {
             </div>
             <Link href="/products" className="no-underline"><Button variant="ghost" size="sm" className="self-start text-xs font-bold uppercase tracking-wide text-[#0EA5E9] hover:bg-[#0EA5E9]/10 hover:text-white sm:self-auto">Browse catalog <ChevronRight className="ml-1 h-3.5 w-3.5" /></Button></Link>
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-            {mainCategories.map(({ category, label, icon: Icon, accent, image }, index) => category && (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {mainCategories.map(({ category, label, promo, icon: Icon, accent, image, featuredProduct }, index) => category && (
               <motion.div key={category.id} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.04 }}>
-                <Link href={`/products?category=${category.id}`} className="group relative flex min-h-40 flex-col justify-between overflow-hidden rounded-xl border border-[#1E293B] bg-[#111111] p-4 no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(14,165,233,0.12)] sm:min-h-44 sm:p-5" style={{ borderColor: `${accent}2F` }}>
-                  <img src={image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105 group-hover:opacity-70" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#050505]/95 via-[#080808]/75 to-[#080808]/20" />
-                  <div className="absolute inset-x-0 bottom-0 h-1" style={{ background: `linear-gradient(90deg, ${accent}, transparent)` }} />
-                  <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-lg border shadow-lg" style={{ color: accent, background: "rgba(5,5,5,0.82)", borderColor: `${accent}70`, boxShadow: `0 0 20px ${accent}25` }}><Icon className="h-5 w-5" /></div>
-                  <div className="relative z-10"><p className="text-sm font-black uppercase tracking-wide text-white transition-colors group-hover:text-[#F8FAFC]">{label}</p><span className="mt-2 inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-[#CBD5E1] group-hover:text-white">Browse <ChevronRight className="ml-1 h-3 w-3" /></span></div>
-                </Link>
+                <div className="overflow-hidden rounded-xl border border-[#1E293B] bg-[#111111]" style={{ borderColor: `${accent}2F` }}>
+                  <Link href={`/products?category=${category.id}`} className="group relative flex min-h-44 flex-col justify-between overflow-hidden p-4 no-underline transition-all hover:shadow-[0_0_24px_rgba(14,165,233,0.12)] sm:min-h-48 sm:p-5">
+                    <img src={image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105 group-hover:opacity-70" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#050505]/95 via-[#080808]/75 to-[#080808]/20" />
+                    <div className="absolute inset-x-0 bottom-0 h-1" style={{ background: `linear-gradient(90deg, ${accent}, transparent)` }} />
+                    <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-lg border shadow-lg" style={{ color: accent, background: "rgba(5,5,5,0.82)", borderColor: `${accent}70`, boxShadow: `0 0 20px ${accent}25` }}><Icon className="h-5 w-5" /></div>
+                    <div className="relative z-10"><p className="text-sm font-black uppercase tracking-wide text-white transition-colors group-hover:text-[#F8FAFC]">{label}</p><p className="mt-1 max-w-56 text-xs leading-relaxed text-[#CBD5E1]">{promo}</p><span className="mt-3 inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-[#CBD5E1] group-hover:text-white">Browse <ChevronRight className="ml-1 h-3 w-3" /></span></div>
+                  </Link>
+                  {featuredProduct ? (
+                    <Link href={`/products/${featuredProduct.slug}`} className="group/product flex items-center gap-3 border-t border-white/10 bg-[#090909] p-3 no-underline hover:bg-[#101010]">
+                      <img src={featuredProduct.primaryImage ?? undefined} alt={featuredProduct.name} className="h-14 w-14 rounded-md border border-[#1E293B] object-cover" />
+                      <div className="min-w-0"><span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accent }}>Featured product</span><p className="mt-1 line-clamp-2 text-xs font-bold leading-snug text-white group-hover/product:text-[#38BDF8]">{featuredProduct.name}</p></div>
+                    </Link>
+                  ) : (
+                    <Link href={`/products?category=${category.id}`} className="flex min-h-20 items-center border-t border-white/10 bg-[#090909] px-3 py-3 no-underline hover:bg-[#101010]"><span className="text-xs leading-relaxed text-[#94A3B8]">Browse this category while verified product imagery is being added.</span></Link>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>

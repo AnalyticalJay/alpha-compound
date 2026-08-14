@@ -42,6 +42,14 @@ describe("home catalog products and categories", () => {
     expect(home).toContain('alt="" aria-hidden="true"');
   });
 
+  it("uses real image-backed products only when a category has an eligible recommendation", () => {
+    const home = source("client/src/pages/Home.tsx");
+    expect(home).toContain("imageBackedProducts");
+    expect(home).toContain("product.categoryId === category?.id");
+    expect(home).toContain("featuredProduct.primaryImage");
+    expect(home).toContain("Browse this category while verified product imagery is being added.");
+  });
+
   it("hydrates the catalog category filter from the category query parameter", () => {
     const products = source("client/src/pages/Products.tsx");
     expect(products).toContain("useLocation");

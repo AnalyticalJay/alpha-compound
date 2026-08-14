@@ -286,3 +286,10 @@
 - [x] Integrate responsive, accessible banners into live category links
 - [x] Add regression coverage and visual browser verification
 - [x] Save a checkpoint for the category visual enhancement
+
+## Phase 38: Category Promotions and Product Recommendations
+- [x] Audit per-category image-backed product coverage
+- [x] Add category-specific promotional copy to the main category cards
+- [x] Add real image-backed featured product recommendations for categories with verified products
+- [x] Add regression coverage and responsive browser verification
+- [x] Save a checkpoint for the category promotion enhancement
