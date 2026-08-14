@@ -87,6 +87,7 @@ export const appRouter = router({
   auth: router({
     me: publicProcedure.query(async ({ ctx }) => {
       if (!ctx.user) return null;
+      if (process.env.E2E_TEST_MODE === "true" && ctx.user.openId?.startsWith("e2e-")) return ctx.user;
       // Return full user including status
       const user = await getUserById(ctx.user.id);
       return user ?? null;

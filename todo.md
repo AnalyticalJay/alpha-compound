@@ -309,3 +309,11 @@
 - [x] Exercise available browser flows and diagnose any defects
 - [x] Confirm no verified defects required fixes and rerun all affected checks
 - [x] Save a verification checkpoint and deliver the complete role-based test result
+
+## Phase 41: Playwright Browser End-to-End Coverage
+- [x] Audit existing test scripts, routes, authentication behavior, and safe no-write browser-test boundaries
+- [x] Configure Playwright with isolated local-server execution and reliable test scripts
+- [x] Add public catalogue, customer-gating, and administrator-protection end-to-end flows
+- [x] Add UI stability assertions for responsive home/category and access-denied states
+- [x] Run Playwright and the existing regression suite, documenting any defects found
+- [x] Save a checkpoint for the browser end-to-end testing setup
