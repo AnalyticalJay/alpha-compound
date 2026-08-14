@@ -301,3 +301,11 @@
 - [x] Render the manually selected promotion on the home page with safe fallback behavior
 - [x] Add authorization, validation, UI, and responsive regression coverage
 - [x] Verify admin selection and public rendering, then save a checkpoint
+
+## Phase 40: Full Customer and Administrator Validation
+- [x] Define and document public, customer, and administrator workflow coverage
+- [x] Run the full automated regression suite, TypeScript checks, and database schema verification
+- [x] Verify public, customer, and administrator route protections and workflow contracts
+- [x] Exercise available browser flows and diagnose any defects
+- [x] Confirm no verified defects required fixes and rerun all affected checks
+- [x] Save a verification checkpoint and deliver the complete role-based test result
