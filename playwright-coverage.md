@@ -1,6 +1,6 @@
 # Playwright End-to-End Coverage
 
-The Playwright suite starts an isolated local server on port **3100** with `E2E_TEST_MODE=true`. It does not create, edit, approve, pay for, ship, or delete any production data. The test-only role header exists solely in that isolated process and is ignored by normal development and production servers.
+The Playwright suite starts an isolated local server on port **3100** with `E2E_TEST_MODE=true`. Read-only tests use the normal catalogue data. Quote-submission and EFT-proof tests use a disposable in-memory database held only inside that isolated server process; it is reset on process start and is discarded when the server stops. The test-only role header and disposable store are ignored by normal development and production servers.
 
 | Flow | Role | Browser assertion |
 |---|---|---|
@@ -10,5 +10,6 @@ The Playwright suite starts an isolated local server on port **3100** with `E2E_
 | Customer navigation | Isolated approved customer | Account screen loads; administrator page remains denied. |
 | Administrator category controls | Isolated administrator | Category management and read-only promotion selector render. |
 | Mobile stability | Public | Main Category content renders at 390px without horizontal overflow. |
+| Quote submission and EFT proof | Isolated customer/admin | Adds a disposable product to cart, submits a quote, approves it, selects EFT, and uploads a disposable proof file. |
 
 Run the suite with `pnpm test:e2e`. Use `pnpm test:e2e:ui` for local interactive debugging.

@@ -218,7 +218,7 @@ export default function AdminOrderDetail() {
           <h2 className="font-bold">Items Ordered</h2>
         </div>
         <div className="space-y-3">
-          {order.items.map((item) => (
+          {order.items.map((item: any) => (
             <div key={item.id} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
               <div>
                 <p className="font-medium text-sm">{item.productName}</p>

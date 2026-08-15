@@ -61,6 +61,20 @@ import { ENV } from "./_core/env";
 import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
 import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
+import {
+  chooseE2EPayment,
+  clearE2ECart,
+  createE2EQuote,
+  getAllE2EOrders,
+  getE2ECart,
+  getE2EOrder,
+  getE2EOrdersForUser,
+  getE2EProductBySlug,
+  isE2ETestMode,
+  updateE2EOrderStatus,
+  uploadE2EProof,
+  upsertE2ECart,
+} from "./e2eStore";
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
 
@@ -216,6 +230,11 @@ export const appRouter = router({
     bySlug: publicProcedure
       .input(z.object({ slug: z.string() }))
       .query(async ({ ctx, input }) => {
+        if (isE2ETestMode()) {
+          const product = getE2EProductBySlug(input.slug);
+          if (!product) throw new TRPCError({ code: "NOT_FOUND" });
+          return { ...product, price: (ctx.user as any)?.status === "approved" ? product.price : null };
+        }
         const product = await getProductBySlug(input.slug);
         if (!product) throw new TRPCError({ code: "NOT_FOUND" });
         const isApproved = ctx.user && (ctx.user as any).status === "approved";
@@ -395,17 +414,17 @@ export const appRouter = router({
 
   // ─── Cart ─────────────────────────────────────────────────────────────────
   cart: router({
-    get: approvedProcedure.query(({ ctx }) => getCartItems(ctx.user.id)),
+    get: approvedProcedure.query(({ ctx }) => isE2ETestMode() ? getE2ECart(ctx.user.id) : getCartItems(ctx.user.id)),
 
     upsert: approvedProcedure
       .input(z.object({ productId: z.number(), quantity: z.number().min(1) }))
-      .mutation(({ ctx, input }) => upsertCartItem(ctx.user.id, input.productId, input.quantity)),
+      .mutation(({ ctx, input }) => isE2ETestMode() ? upsertE2ECart(ctx.user.id, input.productId, input.quantity) : upsertCartItem(ctx.user.id, input.productId, input.quantity)),
 
     remove: approvedProcedure
       .input(z.object({ cartItemId: z.number() }))
       .mutation(({ ctx, input }) => removeCartItem(ctx.user.id, input.cartItemId)),
 
-    clear: approvedProcedure.mutation(({ ctx }) => clearCart(ctx.user.id)),
+    clear: approvedProcedure.mutation(({ ctx }) => isE2ETestMode() ? clearE2ECart(ctx.user.id) : clearCart(ctx.user.id)),
 
     deliveryPreview: approvedProcedure
       .input(z.object({ city: z.string() }))
@@ -428,6 +447,7 @@ export const appRouter = router({
         notes: z.string().max(2000).optional(),
       }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return createE2EQuote(ctx.user.id, input);
         const cartRows = await getCartItems(ctx.user.id);
         if (cartRows.length === 0) {
           throw new TRPCError({ code: "BAD_REQUEST", message: "Quote cart is empty" });
@@ -467,6 +487,7 @@ export const appRouter = router({
     }),
 
     myOrders: protectedProcedure.query(async ({ ctx }) => {
+      if (isE2ETestMode()) return getE2EOrdersForUser(ctx.user.id);
       const { getUserOrders } = await import("./db");
       return getUserOrders(ctx.user.id);
     }),
@@ -474,6 +495,12 @@ export const appRouter = router({
     detail: protectedProcedure
       .input(z.object({ orderId: z.number() }))
       .query(async ({ ctx, input }) => {
+        if (isE2ETestMode()) {
+          const order = getE2EOrder(input.orderId);
+          if (!order) throw new TRPCError({ code: "NOT_FOUND" });
+          if (order.userId !== ctx.user.id && ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+          return order as any;
+        }
         const order = await getOrderById(input.orderId);
         if (!order) throw new TRPCError({ code: "NOT_FOUND" });
         if (order.userId !== ctx.user.id && ctx.user.role !== "admin") {
@@ -508,6 +535,7 @@ export const appRouter = router({
     choosePayment: approvedProcedure
       .input(z.object({ orderId: z.number(), method: z.enum(["eft", "payfast"]) }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return chooseE2EPayment(input.orderId, ctx.user.id, input.method);
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
@@ -556,6 +584,7 @@ export const appRouter = router({
         mimeType: z.enum(["application/pdf", "image/jpeg", "image/png"]),
       }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return uploadE2EProof(input.orderId, ctx.user.id, input.fileName);
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
@@ -649,7 +678,7 @@ export const appRouter = router({
 
     adminDetail: adminProcedure
       .input(z.object({ orderId: z.number() }))
-      .query(({ input }) => getOrderById(input.orderId)),
+      .query(({ input }) => isE2ETestMode() ? getE2EOrder(input.orderId) as any : getOrderById(input.orderId)),
 
     adminUpdateStatus: adminProcedure
       .input(z.object({
@@ -657,7 +686,7 @@ export const appRouter = router({
         status: z.enum(["pending", "quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"]),
         notes: z.string().optional(),
       }))
-      .mutation(({ input }) => updateOrderStatus(input.orderId, input.status, input.notes)),
+      .mutation(({ input }) => isE2ETestMode() ? updateE2EOrderStatus(input.orderId, input.status) : updateOrderStatus(input.orderId, input.status, input.notes)),
 
     adminUpdateShipping: adminProcedure
       .input(z.object({

@@ -317,3 +317,11 @@
 - [x] Add UI stability assertions for responsive home/category and access-denied states
 - [x] Run Playwright and the existing regression suite, documenting any defects found
 - [x] Save a checkpoint for the browser end-to-end testing setup
+
+## Phase 42: Disposable Database Write-Flow Tests
+- [x] Audit database connectivity and order write paths for isolated test execution
+- [x] Build disposable in-memory test-database setup, seed, and cleanup tooling
+- [x] Add Playwright quote-submission flow using disposable test records
+- [x] Add Playwright EFT proof upload flow using disposable test records
+- [x] Verify cleanup and run E2E, regression, and TypeScript suites
+- [x] Save a checkpoint for the isolated write-flow test setup
