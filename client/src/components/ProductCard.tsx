@@ -37,6 +37,7 @@ export default function ProductCard({
 
   const inStock = product.stockQuantity > 0;
   const isHdLabs = getProductBrand(product) === "HD Labs";
+  const hasConfiguredPrice = product.price !== null && Number(product.price) > 0;
 
   return (
     <div className="rounded-lg border border-[#1E293B] bg-[#111111] overflow-hidden group hover:border-[#0EA5E9]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all duration-200 flex flex-col h-full">
@@ -102,7 +103,7 @@ export default function ProductCard({
           {isApproved ? (
             <>
               <span className="text-lg font-black text-white">
-                {product.price ? `R${parseFloat(product.price).toFixed(2)}` : "—"}
+                {hasConfiguredPrice ? `R${parseFloat(product.price ?? "0").toFixed(2)}` : "Price pending"}
               </span>
               {inStock ? (
                 <Button

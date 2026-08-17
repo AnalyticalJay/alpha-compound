@@ -26,4 +26,12 @@ test.describe("public catalogue stability", () => {
     await expect(page.getByRole("link", { name: /Injectables.*Browse/i })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   });
+
+  test("administrator can find the imported BP Pharma product with its normalized strength", async ({ page }) => {
+    await page.setExtraHTTPHeaders({ "x-e2e-role": "admin" });
+    await page.goto("/admin/products");
+    await page.getByPlaceholder("Search products...").fill("BP Anapolin 25mg");
+    await expect(page.getByText("BP Anapolin 25mg", { exact: true })).toBeVisible();
+    await expect(page.getByText("R0.00", { exact: true })).toBeVisible();
+  });
 });

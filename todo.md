@@ -356,3 +356,12 @@
 - [x] Generate mobile baselines and validate responsive layout stability
 - [x] Run browser, regression, and TypeScript validation suites
 - [x] Save a checkpoint for the mobile visual baseline coverage
+
+## Phase 47: BP Pharma Excel Product Import
+- [x] Audit the supplied BP Pharma workbook structure and existing category/product records
+- [x] Normalize BP Pharma names and trailing strength values into product display names and dosage fields
+- [x] Create or reuse appropriate BP Pharma categories and import valid products with no price set
+- [x] Display unconfigured zero-price products as price pending rather than free
+- [x] Preserve duplicates or ambiguous rows in a review report instead of guessing
+- [x] Add import normalization regression coverage and validate the imported catalogue records
+- [x] Verify BP Pharma products in the administrator catalogue and save a checkpoint

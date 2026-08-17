@@ -1,0 +1,1049 @@
+{
+  "mode": "dry-run",
+  "workbookPath": "/home/ubuntu/upload/BPPHARMAPRICElIST.xlsx",
+  "parsedCount": 112,
+  "importableCount": 0,
+  "importedCount": 0,
+  "existingSkippedCount": 112,
+  "missingCategories": [],
+  "reviewRows": [
+    {
+      "sheetName": "Sheet1",
+      "row": 60,
+      "sourceName": "BP CY COMBO",
+      "name": "BP Cy Combo",
+      "slug": "bp-cy-combo",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 61,
+      "sourceName": "BP CY COMBO INJ",
+      "name": "BP Cy Combo Inj",
+      "slug": "bp-cy-combo-inj",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 62,
+      "sourceName": "BP CYT3",
+      "name": "BP Cyt3",
+      "slug": "bp-cyt3",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    }
+  ],
+  "duplicateRows": [],
+  "products": [
+    {
+      "sheetName": "Sheet1",
+      "row": 3,
+      "sourceName": "BP ANAPOLAN 25",
+      "name": "BP Anapolin 25mg",
+      "slug": "bp-anapolin-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 4,
+      "sourceName": "BP ANAVAR 20",
+      "name": "BP Anavar 20mg",
+      "slug": "bp-anavar-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 5,
+      "sourceName": "BP ANAVAR 5",
+      "name": "BP Anavar 5mg",
+      "slug": "bp-anavar-5mg",
+      "dosageInfo": "5mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 6,
+      "sourceName": "BP CHEQUE DROPS 250",
+      "name": "BP Cheque Drops 250mg",
+      "slug": "bp-cheque-drops-250mg",
+      "dosageInfo": "250mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 7,
+      "sourceName": "BP DHEA 25",
+      "name": "BP DHEA 25mg",
+      "slug": "bp-dhea-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 8,
+      "sourceName": "BP DIANABOL 10",
+      "name": "BP Dianabol 10mg",
+      "slug": "bp-dianabol-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 9,
+      "sourceName": "BP M1T 10",
+      "name": "BP M1T 10mg",
+      "slug": "bp-m1t-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 10,
+      "sourceName": "BP MTREN 250",
+      "name": "BP MTREN 250mg",
+      "slug": "bp-mtren-250mg",
+      "dosageInfo": "250mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 11,
+      "sourceName": "BP PRIMO 25",
+      "name": "BP Primo 25mg",
+      "slug": "bp-primo-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 12,
+      "sourceName": "BP SUPERDROL 10",
+      "name": "BP Superdrol 10mg",
+      "slug": "bp-superdrol-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 13,
+      "sourceName": "BP TURINABOL 10",
+      "name": "BP Turinabol 10mg",
+      "slug": "bp-turinabol-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 14,
+      "sourceName": "BP WINSTROL 10",
+      "name": "BP Winstrol 10mg",
+      "slug": "bp-winstrol-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 15,
+      "sourceName": "BP HALOTEST 10",
+      "name": "BP Halotest 10mg",
+      "slug": "bp-halotest-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 16,
+      "sourceName": "BP ULTRAFEM 12.5",
+      "name": "BP Ultrafem 12.5mg",
+      "slug": "bp-ultrafem-12-5mg",
+      "dosageInfo": "12.5mg",
+      "categoryKey": "ORALS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 18,
+      "sourceName": "BP LIMITLESS 20",
+      "name": "BP Limitless 20mg",
+      "slug": "bp-limitless-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 19,
+      "sourceName": "BP CARDARINE 10",
+      "name": "BP Cardarine 10mg",
+      "slug": "bp-cardarine-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 20,
+      "sourceName": "BP LIGANDROL 10 (ANABOLICUM)",
+      "name": "BP Ligandrol 10mg",
+      "slug": "bp-ligandrol-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 21,
+      "sourceName": "BP OSTARINE 10",
+      "name": "BP Ostarine 10mg",
+      "slug": "bp-ostarine-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 22,
+      "sourceName": "BP IBUTAMOREN 10 (NUTROBAL)",
+      "name": "BP Ibutamoren 10mg",
+      "slug": "bp-ibutamoren-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 23,
+      "sourceName": "BP RAD140 TESTOLONE 10",
+      "name": "BP RAD140 Testolone 10mg",
+      "slug": "bp-rad140-testolone-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 24,
+      "sourceName": "BP RAD150 10",
+      "name": "BP RAD150 10mg",
+      "slug": "bp-rad150-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 25,
+      "sourceName": "BP S23 10",
+      "name": "BP S23 10mg",
+      "slug": "bp-s23-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 26,
+      "sourceName": "BP ANDARINE 10",
+      "name": "BP Andarine 10mg",
+      "slug": "bp-andarine-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 27,
+      "sourceName": "BP STENABOLIC 10",
+      "name": "BP Stenabolic 10mg",
+      "slug": "bp-stenabolic-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 28,
+      "sourceName": "BP F-CARDARINE 10",
+      "name": "BP F-CARDARINE 10mg",
+      "slug": "bp-f-cardarine-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 29,
+      "sourceName": "BP YK 11 10",
+      "name": "BP YK 11 10mg",
+      "slug": "bp-yk-11-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "SARMS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 31,
+      "sourceName": "BP AQ TEST 100",
+      "name": "BP AQ Test 100mg",
+      "slug": "bp-aq-test-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 32,
+      "sourceName": "BP TEST A100",
+      "name": "BP Test A 100mg",
+      "slug": "bp-test-a-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 33,
+      "sourceName": "BP TEST P125",
+      "name": "BP Test P 125mg",
+      "slug": "bp-test-p-125mg",
+      "dosageInfo": "125mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 34,
+      "sourceName": "BP TEST C250",
+      "name": "BP Test C 250mg",
+      "slug": "bp-test-c-250mg",
+      "dosageInfo": "250mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 35,
+      "sourceName": "BP TEST E300",
+      "name": "BP Test E 300mg",
+      "slug": "bp-test-e-300mg",
+      "dosageInfo": "300mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 36,
+      "sourceName": "BP TEST E500",
+      "name": "BP Test E 500mg",
+      "slug": "bp-test-e-500mg",
+      "dosageInfo": "500mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 37,
+      "sourceName": "BP NEBIDO 250",
+      "name": "BP Nebido 250mg",
+      "slug": "bp-nebido-250mg",
+      "dosageInfo": "250mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 38,
+      "sourceName": "BP SUSTANON 350",
+      "name": "BP Sustanon 350mg",
+      "slug": "bp-sustanon-350mg",
+      "dosageInfo": "350mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 39,
+      "sourceName": "BP TEST BLEND 500",
+      "name": "BP Test Blend 500mg",
+      "slug": "bp-test-blend-500mg",
+      "dosageInfo": "500mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 40,
+      "sourceName": "BP AQ WINSTROL 50",
+      "name": "BP AQ Winstrol 50mg",
+      "slug": "bp-aq-winstrol-50mg",
+      "dosageInfo": "50mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 41,
+      "sourceName": "BP NPP 125",
+      "name": "BP NPP 125mg",
+      "slug": "bp-npp-125mg",
+      "dosageInfo": "125mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 42,
+      "sourceName": "BP DECA 300",
+      "name": "BP Deca 300mg",
+      "slug": "bp-deca-300mg",
+      "dosageInfo": "300mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 43,
+      "sourceName": "BP BOLD C200",
+      "name": "BP Bold C 200mg",
+      "slug": "bp-bold-c-200mg",
+      "dosageInfo": "200mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 44,
+      "sourceName": "BP EQUI 250",
+      "name": "BP Equi 250mg",
+      "slug": "bp-equi-250mg",
+      "dosageInfo": "250mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 45,
+      "sourceName": "BP TREN A100",
+      "name": "BP Tren A 100mg",
+      "slug": "bp-tren-a-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 46,
+      "sourceName": "BP TREN E200",
+      "name": "BP Tren E 200mg",
+      "slug": "bp-tren-e-200mg",
+      "dosageInfo": "200mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 47,
+      "sourceName": "BP MAST P125",
+      "name": "BP Mast P 125mg",
+      "slug": "bp-mast-p-125mg",
+      "dosageInfo": "125mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 48,
+      "sourceName": "BP MAST E200",
+      "name": "BP Mast E 200mg",
+      "slug": "bp-mast-e-200mg",
+      "dosageInfo": "200mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 49,
+      "sourceName": "BP PRIMO E100",
+      "name": "BP Primo E 100mg",
+      "slug": "bp-primo-e-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 50,
+      "sourceName": "BP PRIMO E200",
+      "name": "BP Primo E 200mg",
+      "slug": "bp-primo-e-200mg",
+      "dosageInfo": "200mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 51,
+      "sourceName": "BP ULTRACUT300",
+      "name": "BP Ultracut 300mg",
+      "slug": "bp-ultracut-300mg",
+      "dosageInfo": "300mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 52,
+      "sourceName": "BP ULTRAGAIN450",
+      "name": "BP Ultragain 450mg",
+      "slug": "bp-ultragain-450mg",
+      "dosageInfo": "450mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 53,
+      "sourceName": "BP ULTRATMT500",
+      "name": "BP Ultratmt 500mg",
+      "slug": "bp-ultratmt-500mg",
+      "dosageInfo": "500mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 54,
+      "sourceName": "BP ULTRAGROW500",
+      "name": "BP Ultragrow 500mg",
+      "slug": "bp-ultragrow-500mg",
+      "dosageInfo": "500mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 55,
+      "sourceName": "BP ULTRAMASS650",
+      "name": "BP Ultramass 650mg",
+      "slug": "bp-ultramass-650mg",
+      "dosageInfo": "650mg",
+      "categoryKey": "INJECTABLES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 57,
+      "sourceName": "BP ALBUTEROL 5",
+      "name": "BP Albuterol 5mg",
+      "slug": "bp-albuterol-5mg",
+      "dosageInfo": "5mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 58,
+      "sourceName": "BP CLENBUTEROL 40",
+      "name": "BP Clenbuterol 40mg",
+      "slug": "bp-clenbuterol-40mg",
+      "dosageInfo": "40mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 59,
+      "sourceName": "BP CLENBUTEROL 80 INJ",
+      "name": "BP Clenbuterol 80mg Inj",
+      "slug": "bp-clenbuterol-80mg-inj",
+      "dosageInfo": "80mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 60,
+      "sourceName": "BP CY COMBO",
+      "name": "BP Cy Combo",
+      "slug": "bp-cy-combo",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 61,
+      "sourceName": "BP CY COMBO INJ",
+      "name": "BP Cy Combo Inj",
+      "slug": "bp-cy-combo-inj",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 62,
+      "sourceName": "BP CYT3",
+      "name": "BP Cyt3",
+      "slug": "bp-cyt3",
+      "categoryKey": "FAT LOSS",
+      "reviewReason": "missing_strength"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 63,
+      "sourceName": "BP SIBUTRAMINE 20 (50 TABS)",
+      "name": "BP Sibutramine 20mg",
+      "slug": "bp-sibutramine-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 64,
+      "sourceName": "BP TERTROXIN T3 25",
+      "name": "BP Tertroxin T3 25mg",
+      "slug": "bp-tertroxin-t3-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 65,
+      "sourceName": "BP YOHIMBINE 10",
+      "name": "BP Yohimbine 10mg",
+      "slug": "bp-yohimbine-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 66,
+      "sourceName": "BP DNP 100",
+      "name": "BP DNP 100mg",
+      "slug": "bp-dnp-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "FAT LOSS"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 68,
+      "sourceName": "BP ARIMIDEX 1",
+      "name": "BP Arimidex 1mg",
+      "slug": "bp-arimidex-1mg",
+      "dosageInfo": "1mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 69,
+      "sourceName": "BP AROMASIN 25",
+      "name": "BP Aromasin 25mg",
+      "slug": "bp-aromasin-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 70,
+      "sourceName": "BP CLOMID 25",
+      "name": "BP Clomid 25mg",
+      "slug": "bp-clomid-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 71,
+      "sourceName": "BP ENCLOMIPHENE 12.5",
+      "name": "BP Enclomiphene 12.5mg",
+      "slug": "bp-enclomiphene-12-5mg",
+      "dosageInfo": "12.5mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 72,
+      "sourceName": "BP DOSTINEX 100",
+      "name": "BP Dostinex 100mg",
+      "slug": "bp-dostinex-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 73,
+      "sourceName": "BP FEMARA 2",
+      "name": "BP Femara 2mg",
+      "slug": "bp-femara-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 74,
+      "sourceName": "BP NOLVADEX 10",
+      "name": "BP Nolvadex 10mg",
+      "slug": "bp-nolvadex-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 75,
+      "sourceName": "BP PROVIRON 25",
+      "name": "BP Proviron 25mg",
+      "slug": "bp-proviron-25mg",
+      "dosageInfo": "25mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 76,
+      "sourceName": "BP RALOXIFENE 20",
+      "name": "BP Raloxifene 20mg",
+      "slug": "bp-raloxifene-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "POST CYCLE"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 78,
+      "sourceName": "BP ACCUTANE 10",
+      "name": "BP Accutane 10mg",
+      "slug": "bp-accutane-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 79,
+      "sourceName": "BP LEVITRA 20",
+      "name": "BP Levitra 20mg",
+      "slug": "bp-levitra-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 80,
+      "sourceName": "BP CIALIS 20",
+      "name": "BP Cialis 20mg",
+      "slug": "bp-cialis-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 81,
+      "sourceName": "BP CIALIS 5",
+      "name": "BP Cialis 5mg",
+      "slug": "bp-cialis-5mg",
+      "dosageInfo": "5mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 82,
+      "sourceName": "BP VIAGRA 100",
+      "name": "BP Viagra 100mg",
+      "slug": "bp-viagra-100mg",
+      "dosageInfo": "100mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 83,
+      "sourceName": "BP FINPECIA 2",
+      "name": "BP Finpecia 2mg",
+      "slug": "bp-finpecia-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 84,
+      "sourceName": "BP DUTASTERIDE 0.5",
+      "name": "BP Dutasteride 0.5mg",
+      "slug": "bp-dutasteride-0-5mg",
+      "dosageInfo": "0.5mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 85,
+      "sourceName": "BP ZADITEN 2",
+      "name": "BP Zaditen 2mg",
+      "slug": "bp-zaditen-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 86,
+      "sourceName": "BP MELATONIN 10",
+      "name": "BP Melatonin 10mg",
+      "slug": "bp-melatonin-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "ANCILLARIES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 88,
+      "sourceName": "BP BPC157 + TB500 32MG",
+      "name": "BP BPC157 + TB500 32mg",
+      "slug": "bp-bpc157-tb500-32mg",
+      "dosageInfo": "32mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 89,
+      "sourceName": "BP CAGRISEMA 12MG",
+      "name": "BP Cagrisema 12mg",
+      "slug": "bp-cagrisema-12mg",
+      "dosageInfo": "12mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 90,
+      "sourceName": "BP CJC1295 + IPAMORELIN 20MG",
+      "name": "BP CJC1295 + IPAMORELIN 20mg",
+      "slug": "bp-cjc1295-ipamorelin-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 91,
+      "sourceName": "BP GHK-CU 50MG",
+      "name": "BP GHK-CU 50mg",
+      "slug": "bp-ghk-cu-50mg",
+      "dosageInfo": "50mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 92,
+      "sourceName": "BP MELANOTAN II 20MG",
+      "name": "BP Melanotan II 20mg",
+      "slug": "bp-melanotan-ii-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 93,
+      "sourceName": "BP MOTS-C 32MG",
+      "name": "BP MOTS-C 32mg",
+      "slug": "bp-mots-c-32mg",
+      "dosageInfo": "32mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 94,
+      "sourceName": "BP NAD+ 1000MG",
+      "name": "BP NAD+ 1000mg",
+      "slug": "bp-nad-1000mg",
+      "dosageInfo": "1000mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 95,
+      "sourceName": "BP RETATRUTIDE 32MG",
+      "name": "BP Retatrutide 32mg",
+      "slug": "bp-retatrutide-32mg",
+      "dosageInfo": "32mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 96,
+      "sourceName": "BP RETATRUTIDE 64MG",
+      "name": "BP Retatrutide 64mg",
+      "slug": "bp-retatrutide-64mg",
+      "dosageInfo": "64mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 97,
+      "sourceName": "BP SEMEGLUTIDE 6MG",
+      "name": "BP Semeglutide 6mg",
+      "slug": "bp-semeglutide-6mg",
+      "dosageInfo": "6mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 98,
+      "sourceName": "BP SOMATROPIN 100IU HGH",
+      "name": "BP Somatropin 100IU HGH",
+      "slug": "bp-somatropin-100iu-hgh",
+      "dosageInfo": "100IU",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 99,
+      "sourceName": "BP SOMATROPIN 40IU HGH",
+      "name": "BP Somatropin 40IU HGH",
+      "slug": "bp-somatropin-40iu-hgh",
+      "dosageInfo": "40IU",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 100,
+      "sourceName": "BP TESAMORELIN 32MG",
+      "name": "BP Tesamorelin 32mg",
+      "slug": "bp-tesamorelin-32mg",
+      "dosageInfo": "32mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 101,
+      "sourceName": "BP TIRZEPATIDE 30MG",
+      "name": "BP Tirzepatide 30mg",
+      "slug": "bp-tirzepatide-30mg",
+      "dosageInfo": "30mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 102,
+      "sourceName": "BP TIRZEPATIDE 60MG",
+      "name": "BP Tirzepatide 60mg",
+      "slug": "bp-tirzepatide-60mg",
+      "dosageInfo": "60mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 104,
+      "sourceName": "BP AOD9604 10MG",
+      "name": "BP AOD9604 10mg",
+      "slug": "bp-aod9604-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 105,
+      "sourceName": "BP AOD9604 2MG",
+      "name": "BP AOD9604 2mg",
+      "slug": "bp-aod9604-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 106,
+      "sourceName": "BP BPC 157 10MG (5mg discontinued)",
+      "name": "BP BPC 157 10mg",
+      "slug": "bp-bpc-157-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 107,
+      "sourceName": "BP CJC1295 DAC 2MG",
+      "name": "BP CJC1295 DAC 2mg",
+      "slug": "bp-cjc1295-dac-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 108,
+      "sourceName": "BP EPITHALON 20MG",
+      "name": "BP Epithalon 20mg",
+      "slug": "bp-epithalon-20mg",
+      "dosageInfo": "20mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 109,
+      "sourceName": "BP GHRP-6 5MG",
+      "name": "BP GHRP-6 5mg",
+      "slug": "bp-ghrp-6-5mg",
+      "dosageInfo": "5mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 110,
+      "sourceName": "BP GONADORELIN 2MG",
+      "name": "BP Gonadorelin 2mg",
+      "slug": "bp-gonadorelin-2mg",
+      "dosageInfo": "2mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 111,
+      "sourceName": "BP HCG 5000IU",
+      "name": "BP HCG 5000IU",
+      "slug": "bp-hcg-5000iu",
+      "dosageInfo": "5000IU",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 112,
+      "sourceName": "BP HGH 100IU",
+      "name": "BP HGH 100IU",
+      "slug": "bp-hgh-100iu",
+      "dosageInfo": "100IU",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 113,
+      "sourceName": "BP IGF 1 LR3 0.1MG",
+      "name": "BP IGF 1 LR3 0.1mg",
+      "slug": "bp-igf-1-lr3-0-1mg",
+      "dosageInfo": "0.1mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 114,
+      "sourceName": "BP IPAMORELIN 5MG",
+      "name": "BP IPAMORELIN 5mg",
+      "slug": "bp-ipamorelin-5mg",
+      "dosageInfo": "5mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 115,
+      "sourceName": "BP MELANOTAN MT2 10MG",
+      "name": "BP Melanotan MT2 10mg",
+      "slug": "bp-melanotan-mt2-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 116,
+      "sourceName": "BP MOTS-C 10MG",
+      "name": "BP MOTS-C 10mg",
+      "slug": "bp-mots-c-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 117,
+      "sourceName": "BP PT141 10MG",
+      "name": "BP PT141 10mg",
+      "slug": "bp-pt141-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 118,
+      "sourceName": "BP SELANK 10MG",
+      "name": "BP Selank 10mg",
+      "slug": "bp-selank-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 119,
+      "sourceName": "BP SEMAX 10MG",
+      "name": "BP Semax 10mg",
+      "slug": "bp-semax-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 120,
+      "sourceName": "BP TB500 10MG (5mg discontinued)",
+      "name": "BP TB500 10mg",
+      "slug": "bp-tb500-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    },
+    {
+      "sheetName": "Sheet1",
+      "row": 121,
+      "sourceName": "BP TESAMORELIN 10MG (5mg discontinued)",
+      "name": "BP Tesamorelin 10mg",
+      "slug": "bp-tesamorelin-10mg",
+      "dosageInfo": "10mg",
+      "categoryKey": "PEPTIDES"
+    }
+  ]
+}

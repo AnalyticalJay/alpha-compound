@@ -1,0 +1,737 @@
+{
+  "workbookPath": "/home/ubuntu/upload/BPPHARMAPRICElIST.xlsx",
+  "sheets": [
+    {
+      "sheetName": "Sheet1",
+      "rowCount": 121,
+      "rows": [
+        {
+          "row": 1,
+          "values": [
+            "BP PHARM PRICE LIST - MAY 2026"
+          ]
+        },
+        {
+          "row": 2,
+          "values": [
+            "ORAL STEROIDS:"
+          ]
+        },
+        {
+          "row": 3,
+          "values": [
+            "BP ANAPOLAN 25"
+          ]
+        },
+        {
+          "row": 4,
+          "values": [
+            "BP ANAVAR 20"
+          ]
+        },
+        {
+          "row": 5,
+          "values": [
+            "BP ANAVAR 5"
+          ]
+        },
+        {
+          "row": 6,
+          "values": [
+            "BP CHEQUE DROPS 250"
+          ]
+        },
+        {
+          "row": 7,
+          "values": [
+            "BP DHEA 25"
+          ]
+        },
+        {
+          "row": 8,
+          "values": [
+            "BP DIANABOL 10"
+          ]
+        },
+        {
+          "row": 9,
+          "values": [
+            "BP M1T 10"
+          ]
+        },
+        {
+          "row": 10,
+          "values": [
+            "BP MTREN 250"
+          ]
+        },
+        {
+          "row": 11,
+          "values": [
+            "BP PRIMO 25"
+          ]
+        },
+        {
+          "row": 12,
+          "values": [
+            "BP SUPERDROL 10"
+          ]
+        },
+        {
+          "row": 13,
+          "values": [
+            "BP TURINABOL 10"
+          ]
+        },
+        {
+          "row": 14,
+          "values": [
+            "BP WINSTROL 10"
+          ]
+        },
+        {
+          "row": 15,
+          "values": [
+            "BP HALOTEST 10"
+          ]
+        },
+        {
+          "row": 16,
+          "values": [
+            "BP ULTRAFEM 12.5"
+          ]
+        },
+        {
+          "row": 17,
+          "values": [
+            "SARMS:"
+          ]
+        },
+        {
+          "row": 18,
+          "values": [
+            "BP LIMITLESS 20"
+          ]
+        },
+        {
+          "row": 19,
+          "values": [
+            "BP CARDARINE 10"
+          ]
+        },
+        {
+          "row": 20,
+          "values": [
+            "BP LIGANDROL 10 (ANABOLICUM)"
+          ]
+        },
+        {
+          "row": 21,
+          "values": [
+            "BP OSTARINE 10"
+          ]
+        },
+        {
+          "row": 22,
+          "values": [
+            "BP IBUTAMOREN 10 (NUTROBAL)"
+          ]
+        },
+        {
+          "row": 23,
+          "values": [
+            "BP RAD140 TESTOLONE 10"
+          ]
+        },
+        {
+          "row": 24,
+          "values": [
+            "BP RAD150 10"
+          ]
+        },
+        {
+          "row": 25,
+          "values": [
+            "BP S23 10"
+          ]
+        },
+        {
+          "row": 26,
+          "values": [
+            "BP ANDARINE 10"
+          ]
+        },
+        {
+          "row": 27,
+          "values": [
+            "BP STENABOLIC 10"
+          ]
+        },
+        {
+          "row": 28,
+          "values": [
+            "BP F-CARDARINE 10"
+          ]
+        },
+        {
+          "row": 29,
+          "values": [
+            "BP YK 11 10"
+          ]
+        },
+        {
+          "row": 30,
+          "values": [
+            "INJECTABLE STEROIDS:"
+          ]
+        },
+        {
+          "row": 31,
+          "values": [
+            "BP AQ TEST 100"
+          ]
+        },
+        {
+          "row": 32,
+          "values": [
+            "BP TEST A100"
+          ]
+        },
+        {
+          "row": 33,
+          "values": [
+            "BP TEST P125"
+          ]
+        },
+        {
+          "row": 34,
+          "values": [
+            "BP TEST C250"
+          ]
+        },
+        {
+          "row": 35,
+          "values": [
+            "BP TEST E300"
+          ]
+        },
+        {
+          "row": 36,
+          "values": [
+            "BP TEST E500"
+          ]
+        },
+        {
+          "row": 37,
+          "values": [
+            "BP NEBIDO 250"
+          ]
+        },
+        {
+          "row": 38,
+          "values": [
+            "BP SUSTANON 350"
+          ]
+        },
+        {
+          "row": 39,
+          "values": [
+            "BP TEST BLEND 500"
+          ]
+        },
+        {
+          "row": 40,
+          "values": [
+            "BP AQ WINSTROL 50"
+          ]
+        },
+        {
+          "row": 41,
+          "values": [
+            "BP NPP 125"
+          ]
+        },
+        {
+          "row": 42,
+          "values": [
+            "BP DECA 300"
+          ]
+        },
+        {
+          "row": 43,
+          "values": [
+            "BP BOLD C200"
+          ]
+        },
+        {
+          "row": 44,
+          "values": [
+            "BP EQUI 250"
+          ]
+        },
+        {
+          "row": 45,
+          "values": [
+            "BP TREN A100"
+          ]
+        },
+        {
+          "row": 46,
+          "values": [
+            "BP TREN E200"
+          ]
+        },
+        {
+          "row": 47,
+          "values": [
+            "BP MAST P125"
+          ]
+        },
+        {
+          "row": 48,
+          "values": [
+            "BP MAST E200"
+          ]
+        },
+        {
+          "row": 49,
+          "values": [
+            "BP PRIMO E100"
+          ]
+        },
+        {
+          "row": 50,
+          "values": [
+            "BP PRIMO E200"
+          ]
+        },
+        {
+          "row": 51,
+          "values": [
+            "BP ULTRACUT300"
+          ]
+        },
+        {
+          "row": 52,
+          "values": [
+            "BP ULTRAGAIN450"
+          ]
+        },
+        {
+          "row": 53,
+          "values": [
+            "BP ULTRATMT500"
+          ]
+        },
+        {
+          "row": 54,
+          "values": [
+            "BP ULTRAGROW500"
+          ]
+        },
+        {
+          "row": 55,
+          "values": [
+            "BP ULTRAMASS650"
+          ]
+        },
+        {
+          "row": 56,
+          "values": [
+            "FAT LOSS:"
+          ]
+        },
+        {
+          "row": 57,
+          "values": [
+            "BP ALBUTEROL 5"
+          ]
+        },
+        {
+          "row": 58,
+          "values": [
+            "BP CLENBUTEROL 40"
+          ]
+        },
+        {
+          "row": 59,
+          "values": [
+            "BP CLENBUTEROL 80 INJ"
+          ]
+        },
+        {
+          "row": 60,
+          "values": [
+            "BP CY COMBO"
+          ]
+        },
+        {
+          "row": 61,
+          "values": [
+            "BP CY COMBO INJ"
+          ]
+        },
+        {
+          "row": 62,
+          "values": [
+            "BP CYT3"
+          ]
+        },
+        {
+          "row": 63,
+          "values": [
+            "BP SIBUTRAMINE 20 (50 TABS)"
+          ]
+        },
+        {
+          "row": 64,
+          "values": [
+            "BP TERTROXIN T3 25"
+          ]
+        },
+        {
+          "row": 65,
+          "values": [
+            "BP YOHIMBINE 10"
+          ]
+        },
+        {
+          "row": 66,
+          "values": [
+            "BP DNP 100"
+          ]
+        },
+        {
+          "row": 67,
+          "values": [
+            "ANTI-ESTROGENS AND POST CYCLE THERAPY:"
+          ]
+        },
+        {
+          "row": 68,
+          "values": [
+            "BP ARIMIDEX 1"
+          ]
+        },
+        {
+          "row": 69,
+          "values": [
+            "BP AROMASIN 25"
+          ]
+        },
+        {
+          "row": 70,
+          "values": [
+            "BP CLOMID 25"
+          ]
+        },
+        {
+          "row": 71,
+          "values": [
+            "BP ENCLOMIPHENE 12.5"
+          ]
+        },
+        {
+          "row": 72,
+          "values": [
+            "BP DOSTINEX 100"
+          ]
+        },
+        {
+          "row": 73,
+          "values": [
+            "BP FEMARA 2"
+          ]
+        },
+        {
+          "row": 74,
+          "values": [
+            "BP NOLVADEX 10"
+          ]
+        },
+        {
+          "row": 75,
+          "values": [
+            "BP PROVIRON 25"
+          ]
+        },
+        {
+          "row": 76,
+          "values": [
+            "BP RALOXIFENE 20"
+          ]
+        },
+        {
+          "row": 77,
+          "values": [
+            "ANCILLARIES:"
+          ]
+        },
+        {
+          "row": 78,
+          "values": [
+            "BP ACCUTANE 10"
+          ]
+        },
+        {
+          "row": 79,
+          "values": [
+            "BP LEVITRA 20"
+          ]
+        },
+        {
+          "row": 80,
+          "values": [
+            "BP CIALIS 20"
+          ]
+        },
+        {
+          "row": 81,
+          "values": [
+            "BP CIALIS 5"
+          ]
+        },
+        {
+          "row": 82,
+          "values": [
+            "BP VIAGRA 100"
+          ]
+        },
+        {
+          "row": 83,
+          "values": [
+            "BP FINPECIA 2"
+          ]
+        },
+        {
+          "row": 84,
+          "values": [
+            "BP DUTASTERIDE 0.5"
+          ]
+        },
+        {
+          "row": 85,
+          "values": [
+            "BP ZADITEN 2"
+          ]
+        },
+        {
+          "row": 86,
+          "values": [
+            "BP MELATONIN 10"
+          ]
+        },
+        {
+          "row": 87,
+          "values": [
+            "PEPTIDES PENS:"
+          ]
+        },
+        {
+          "row": 88,
+          "values": [
+            "BP BPC157 + TB500 32MG "
+          ]
+        },
+        {
+          "row": 89,
+          "values": [
+            "BP CAGRISEMA 12MG"
+          ]
+        },
+        {
+          "row": 90,
+          "values": [
+            "BP CJC1295 + IPAMORELIN 20MG"
+          ]
+        },
+        {
+          "row": 91,
+          "values": [
+            "BP GHK-CU 50MG"
+          ]
+        },
+        {
+          "row": 92,
+          "values": [
+            "BP MELANOTAN II 20MG"
+          ]
+        },
+        {
+          "row": 93,
+          "values": [
+            "BP MOTS-C 32MG"
+          ]
+        },
+        {
+          "row": 94,
+          "values": [
+            "BP NAD+ 1000MG"
+          ]
+        },
+        {
+          "row": 95,
+          "values": [
+            "BP RETATRUTIDE 32MG"
+          ]
+        },
+        {
+          "row": 96,
+          "values": [
+            "BP RETATRUTIDE 64MG"
+          ]
+        },
+        {
+          "row": 97,
+          "values": [
+            "BP SEMEGLUTIDE 6MG"
+          ]
+        },
+        {
+          "row": 98,
+          "values": [
+            "BP SOMATROPIN 100IU HGH"
+          ]
+        },
+        {
+          "row": 99,
+          "values": [
+            "BP SOMATROPIN 40IU HGH"
+          ]
+        },
+        {
+          "row": 100,
+          "values": [
+            "BP TESAMORELIN 32MG"
+          ]
+        },
+        {
+          "row": 101,
+          "values": [
+            "BP TIRZEPATIDE 30MG"
+          ]
+        },
+        {
+          "row": 102,
+          "values": [
+            "BP TIRZEPATIDE 60MG"
+          ]
+        },
+        {
+          "row": 103,
+          "values": [
+            "PEPTIDES:"
+          ]
+        },
+        {
+          "row": 104,
+          "values": [
+            "BP AOD9604 10MG"
+          ]
+        },
+        {
+          "row": 105,
+          "values": [
+            "BP AOD9604 2MG"
+          ]
+        },
+        {
+          "row": 106,
+          "values": [
+            "BP BPC 157 10MG (5mg discontinued)"
+          ]
+        },
+        {
+          "row": 107,
+          "values": [
+            "BP CJC1295 DAC 2MG"
+          ]
+        },
+        {
+          "row": 108,
+          "values": [
+            "BP EPITHALON 20MG"
+          ]
+        },
+        {
+          "row": 109,
+          "values": [
+            "BP GHRP-6 5MG"
+          ]
+        },
+        {
+          "row": 110,
+          "values": [
+            "BP GONADORELIN 2MG"
+          ]
+        },
+        {
+          "row": 111,
+          "values": [
+            "BP HCG 5000IU"
+          ]
+        },
+        {
+          "row": 112,
+          "values": [
+            "BP HGH 100IU"
+          ]
+        },
+        {
+          "row": 113,
+          "values": [
+            "BP IGF 1 LR3 0.1MG"
+          ]
+        },
+        {
+          "row": 114,
+          "values": [
+            "BP IPAMORELIN 5MG"
+          ]
+        },
+        {
+          "row": 115,
+          "values": [
+            "BP MELANOTAN MT2 10MG"
+          ]
+        },
+        {
+          "row": 116,
+          "values": [
+            "BP MOTS-C 10MG"
+          ]
+        },
+        {
+          "row": 117,
+          "values": [
+            "BP PT141 10MG"
+          ]
+        },
+        {
+          "row": 118,
+          "values": [
+            "BP SELANK 10MG"
+          ]
+        },
+        {
+          "row": 119,
+          "values": [
+            "BP SEMAX 10MG"
+          ]
+        },
+        {
+          "row": 120,
+          "values": [
+            "BP TB500 10MG (5mg discontinued)"
+          ]
+        },
+        {
+          "row": 121,
+          "values": [
+            "BP TESAMORELIN 10MG (5mg discontinued)"
+          ]
+        }
+      ]
+    }
+  ]
+}
