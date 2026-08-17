@@ -381,3 +381,9 @@
 - [x] Preserve ambiguous, unavailable, or mismatched supplier products in a review report
 - [x] Add mapping regression coverage and validate all imported image assignments
 - [x] Verify storefront display and save a checkpoint for the supplier image import
+
+## Phase 50: Resolve Previously Unmatched Body Pharm Supplier Products
+- [x] Review CB 250 and Methyltest 10 supplier listings against BP Pharma catalogue candidates
+- [x] Confirm exact catalogue mappings using only unambiguous name and strength evidence
+- [x] Import the two verified supplier images without changing prices or stock
+- [x] Add regression coverage, validate image assignments, and save a checkpoint

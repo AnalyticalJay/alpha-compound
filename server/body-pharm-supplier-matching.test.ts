@@ -16,18 +16,22 @@ describe("Body Pharm supplier matching", () => {
     expect(normalizeBodyPharmMatchKey("BP AQ Test 100mg", "catalogue")).toBe("aqtest100");
     expect(normalizeBodyPharmMatchKey("Somatropin 40 (Pen)", "supplier")).toBe("somatropin40");
     expect(normalizeBodyPharmMatchKey("BP Somatropin 40IU HGH", "catalogue")).toBe("somatropin40");
+    expect(normalizeBodyPharmMatchKey("CB 250", "supplier")).toBe("chequedrops250");
+    expect(normalizeBodyPharmMatchKey("BP Cheque Drops 250mcg", "catalogue")).toBe("chequedrops250");
   });
 
   it("matches only a single verified BP catalogue product and leaves non-matches for review", () => {
     const result = matchBodyPharmSupplierProducts(
-      [supplier("Aqua TNE 100", "aqua-tne-100"), supplier("CB 250", "cb-250")],
+      [supplier("Aqua TNE 100", "aqua-tne-100"), supplier("CB 250", "cb-250"), supplier("Methyltest 10", "methyltest-10")],
       [
         { id: 1, name: "BP AQ Test 100mg", slug: "bp-aq-test-100mg" },
-        { id: 2, name: "BP Test C 250mg", slug: "bp-test-c-250mg" },
+        { id: 2, name: "BP Cheque Drops 250mcg", slug: "bp-cheque-drops-250mcg" },
+        { id: 3, name: "BP Methyltest 10mg", slug: "bp-methyltest-10mg" },
       ],
     );
 
     expect(result[0].candidates).toEqual([{ id: 1, name: "BP AQ Test 100mg", slug: "bp-aq-test-100mg" }]);
-    expect(result[1].candidates).toEqual([]);
+    expect(result[1].candidates).toEqual([{ id: 2, name: "BP Cheque Drops 250mcg", slug: "bp-cheque-drops-250mcg" }]);
+    expect(result[2].candidates).toEqual([{ id: 3, name: "BP Methyltest 10mg", slug: "bp-methyltest-10mg" }]);
   });
 });

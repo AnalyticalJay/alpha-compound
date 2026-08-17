@@ -17,10 +17,12 @@ export function normalizeBodyPharmMatchKey(value: string, source: "supplier" | "
     .replace(/anapolon/g, "anapolin")
     .replace(/aqua/g, "aq")
     .replace(/\btne\b/g, "test")
+    .replace(/\bcb\b/g, "cheque drops")
     .replace(/\(pen\)/g, "")
     .replace(/^bp\s+/g, "")
     .replace(/iu\b/g, "")
     .replace(/hgh/g, "")
+    .replace(/mcg\b/g, "")
     .replace(/mg\b/g, "");
 
   return aliased.replace(/[^a-z0-9]+/g, "");

@@ -38,6 +38,11 @@
       "reason": "supplier_image_already_imported"
     },
     {
+      "supplierTitle": "CB 250",
+      "productSlug": "bp-cheque-drops-250mcg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
       "supplierTitle": "Deca 300",
       "productSlug": "bp-deca-300mg",
       "reason": "supplier_image_already_imported"
@@ -75,6 +80,11 @@
     {
       "supplierTitle": "Mast P125",
       "productSlug": "bp-mast-p-125mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Methyltest 10",
+      "productSlug": "bp-methyltest-10mg",
       "reason": "supplier_image_already_imported"
     },
     {
@@ -229,17 +239,6 @@
     }
   ],
   "ambiguous": [],
-  "unmatched": [
-    {
-      "supplierTitle": "CB 250",
-      "supplierSlug": "cb-250",
-      "candidates": []
-    },
-    {
-      "supplierTitle": "Methyltest 10",
-      "supplierSlug": "methyltest-10",
-      "candidates": []
-    }
-  ],
+  "unmatched": [],
   "unavailable": []
 }
