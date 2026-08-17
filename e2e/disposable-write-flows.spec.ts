@@ -3,13 +3,13 @@ import { expect, test } from "@playwright/test";
 const customerHeaders = { "x-e2e-role": "customer" };
 const adminHeaders = { "x-e2e-role": "admin" };
 
-test.describe("disposable quote and EFT proof write flows", () => {
+test.describe("disposable quote and PayFast payment write flows", () => {
   test.beforeEach(async ({ request }) => {
     const reset = await request.post("/api/e2e/reset");
     expect(reset.status()).toBe(204);
   });
 
-  test("approved customer submits a quote and uploads an EFT proof through isolated in-memory state", async ({ page }) => {
+  test("approved customer can use a payment-ready dashboard order to start PayFast Instant EFT through isolated in-memory state", async ({ page }) => {
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/products/e2e-test-compound");
     await expect(page.getByRole("heading", { name: "E2E Test Compound" })).toBeVisible();
@@ -39,17 +39,11 @@ test.describe("disposable quote and EFT proof write flows", () => {
     await expect(page.getByText("Order status updated")).toBeVisible();
 
     await page.setExtraHTTPHeaders(customerHeaders);
-    await page.goto("/orders/42001");
-    await page.getByRole("button", { name: "Pay via EFT" }).click();
-    await expect(page.getByText("EFT payment selected")).toBeVisible();
-    await page.locator('input[type="file"]').setInputFiles({
-      name: "e2e-proof.png",
-      mimeType: "image/png",
-      buffer: Buffer.from("disposable-e2e-proof"),
-    });
-    await expect(page.getByText("Proof of payment uploaded for verification.")).toBeVisible();
-    await expect(page.getByText("Submitted for review")).toBeVisible();
-    await expect(page.getByText("e2e-proof.png", { exact: true })).toBeVisible();
+    await page.goto("/account/orders");
+    await page.getByRole("link", { name: "Pay now" }).click();
+    await page.getByRole("button", { name: "Pay by PayFast Instant EFT" }).click();
+    await expect(page.getByText("Disposable E2E PayFast Instant EFT success callback received.")).toBeVisible();
+    await expect(page.getByText("paid", { exact: true }).first()).toBeVisible();
   });
 
   test("customer completes a disposable PayFast success callback without contacting the real gateway", async ({ page }) => {
@@ -76,7 +70,7 @@ test.describe("disposable quote and EFT proof write flows", () => {
 
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/orders/42001");
-    await page.getByRole("button", { name: "Pay via PayFast" }).click();
+    await page.getByRole("button", { name: "Pay securely with PayFast" }).click();
     await page.waitForURL(/\/orders\/42001$/);
     await expect(page.getByText("Disposable E2E PayFast success callback received.")).toBeVisible();
     await expect(page.getByText("paid", { exact: true }).first()).toBeVisible();
@@ -106,10 +100,10 @@ test.describe("disposable quote and EFT proof write flows", () => {
 
     await page.setExtraHTTPHeaders({ ...customerHeaders, "x-e2e-payfast-outcome": "failure" });
     await page.goto("/orders/42001");
-    await page.getByRole("button", { name: "Pay via PayFast" }).click();
+    await page.getByRole("button", { name: "Pay securely with PayFast" }).click();
     await page.waitForURL(/\/orders\/42001$/);
     await expect(page.getByRole("alert")).toContainText("PayFast payment was not completed.");
-    await expect(page.getByRole("alert")).toContainText("try PayFast again or choose EFT");
+    await expect(page.getByRole("alert")).toContainText("Choose PayFast or PayFast Instant EFT to try again.");
   });
 
   test("an invalid disposable PayFast signature is rejected without changing payment state", async ({ page, request }) => {
@@ -126,7 +120,7 @@ test.describe("disposable quote and EFT proof write flows", () => {
     await expect(page.getByText("pending", { exact: true }).first()).toBeVisible();
   });
 
-  test("administrator confirms disposable EFT and only authorized roles can download its invoice", async ({ page }) => {
+  test("customer receives an authorized invoice after a disposable PayFast Instant EFT payment", async ({ page }) => {
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/products/e2e-test-compound");
     await page.getByRole("button", { name: "Add to Quote" }).click();
@@ -150,13 +144,8 @@ test.describe("disposable quote and EFT proof write flows", () => {
 
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/orders/42001");
-    await page.getByRole("button", { name: "Pay via EFT" }).click();
-    await expect(page.getByText("EFT payment selected")).toBeVisible();
-
-    await page.setExtraHTTPHeaders(adminHeaders);
-    await page.goto("/admin/orders/42001");
-    await page.getByRole("button", { name: "Confirm EFT Payment" }).click();
-    await expect(page.getByText("EFT payment confirmed", { exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "Pay by PayFast Instant EFT" }).click();
+    await expect(page.getByText("Disposable E2E PayFast Instant EFT success callback received.")).toBeVisible();
 
     const anonymousInvoice = await page.request.get("/api/invoices/42001.pdf");
     expect(anonymousInvoice.status()).toBe(401);

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 
 const orderDetailSource = readFileSync(new URL("../client/src/pages/OrderDetail.tsx", import.meta.url), "utf8");
+const accountSource = readFileSync(new URL("../client/src/pages/Account.tsx", import.meta.url), "utf8");
 
 describe("PayFast payment UI", () => {
   it("renders a secure payment badge beside the PayFast action", () => {
@@ -18,5 +19,14 @@ describe("PayFast payment UI", () => {
     expect(orderDetailSource).toContain("role=\"status\" aria-live=\"polite\"");
     expect(orderDetailSource).toContain("disabled={paymentPending}");
     expect(orderDetailSource).toContain("window.setTimeout(() => form.submit(), 220)");
+  });
+
+  it("keeps payment-ready actions visible and directs EFT selections to PayFast Instant EFT", () => {
+    expect(orderDetailSource).toContain("Pay securely with PayFast");
+    expect(orderDetailSource).toContain("Pay by Instant EFT");
+    expect(orderDetailSource).toContain("PayFast Instant EFT");
+    expect(orderDetailSource).toContain("paymentStatus !== \"awaiting_eft\"");
+    expect(accountSource).toContain("Pay now");
+    expect(accountSource).toContain("isPaymentReadyQuote(order)");
   });
 });

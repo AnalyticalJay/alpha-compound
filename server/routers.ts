@@ -544,8 +544,10 @@ export const appRouter = router({
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
-        if (quote.status !== "quote_approved") {
-          throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Quote must be approved before payment" });
+        const canSelectPayment = quote.status === "quote_approved"
+          || (quote.status === "awaiting_payment" && quote.paymentStatus !== "awaiting_eft");
+        if (!canSelectPayment) {
+          throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Quote is not available for payment selection" });
         }
         const payment = await chooseQuotePayment(input.orderId, ctx.user.id, input.method);
         return { ...payment, orderId: input.orderId, method: input.method };
@@ -556,7 +558,7 @@ export const appRouter = router({
       .mutation(async ({ ctx, input }) => {
         if (isE2ETestMode()) {
           const quote = getE2EOrder(input.orderId);
-          if (!quote || quote.userId !== ctx.user.id || quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast") {
+          if (!quote || quote.userId !== ctx.user.id || quote.status !== "awaiting_payment" || !["payfast", "eft"].includes(quote.paymentMethod ?? "")) {
             throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
           }
           const outcome = ctx.req.header("x-e2e-payfast-outcome") === "failure" ? "failure" : "success";
@@ -565,7 +567,7 @@ export const appRouter = router({
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
-        if (quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast" || !quote.payfastReference) {
+        if (quote.status !== "awaiting_payment" || !["payfast", "eft"].includes(quote.paymentMethod ?? "") || !quote.payfastReference) {
           throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
         }
         const formConfig = buildPayFastFormConfig({
@@ -575,6 +577,7 @@ export const appRouter = router({
           total: quote.totalAmount,
           email: ctx.user.email ?? "",
           fullName: ctx.user.fullName ?? "",
+          paymentMethod: quote.paymentMethod === "eft" ? "ef" : undefined,
         });
         await recordPaymentEvent({
           orderId: input.orderId,
@@ -584,7 +587,9 @@ export const appRouter = router({
           amount: quote.totalAmount,
           reference: quote.payfastReference,
           actorUserId: ctx.user.id,
-          note: "Secure PayFast payment form prepared.",
+          note: quote.paymentMethod === "eft"
+            ? "Secure PayFast Instant EFT form prepared."
+            : "Secure PayFast payment form prepared.",
         });
         return formConfig;
       }),

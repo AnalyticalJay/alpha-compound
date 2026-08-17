@@ -270,8 +270,8 @@ export default function Account() {
                     ) : (
                       <div className="space-y-3">
                         {orders.map((order) => (
-                          <Link key={order.id} href={`/orders/${order.id}`} className="no-underline block">
-                            <div className="flex items-center gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-3 transition-colors hover:border-[#0EA5E9]/30 cursor-pointer sm:gap-4 sm:p-4">
+                          <div key={order.id} className="flex items-center gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-3 transition-colors hover:border-[#0EA5E9]/30 sm:gap-4 sm:p-4">
+                            <Link href={`/orders/${order.id}`} className="min-w-0 flex flex-1 items-center gap-3 no-underline sm:gap-4">
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
                                   <span className="font-bold text-sm text-white">Quote #{order.id}</span>
@@ -286,8 +286,13 @@ export default function Account() {
                                 <p className="font-black text-white">R{parseFloat(order.totalAmount).toFixed(2)}</p>
                               </div>
                               <ChevronRight className="h-4 w-4 text-[#334155]" />
-                            </div>
-                          </Link>
+                            </Link>
+                            {isPaymentReadyQuote(order) && (
+                              <Link href={`/orders/${order.id}`} className="shrink-0 rounded-lg bg-[#F97316] px-3 py-2 text-[10px] font-black uppercase tracking-wide text-white transition hover:bg-[#EA580C]">
+                                Pay now
+                              </Link>
+                            )}
+                          </div>
                         ))}
                       </div>
                     )}

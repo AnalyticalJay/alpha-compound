@@ -668,10 +668,12 @@ export async function chooseQuotePayment(
   if (!db) throw new Error("Database not available");
   const order = await db.select().from(orders).where(and(eq(orders.id, orderId), eq(orders.userId, userId))).limit(1);
   if (!order[0]) throw new Error("Quote not found");
-  if (order[0].status !== "quote_approved") throw new Error("Quote is not approved for payment");
+  const canSelectPayment = order[0].status === "quote_approved"
+    || (order[0].status === "awaiting_payment" && order[0].paymentStatus !== "awaiting_eft");
+  if (!canSelectPayment) throw new Error("Quote is not available for payment selection");
 
-  const payfastReference = method === "payfast" ? `AA-${orderId}-${Date.now()}` : null;
-  const paymentStatus = method === "eft" ? "awaiting_eft" : "pending";
+  const payfastReference = `AA-${orderId}-${Date.now()}`;
+  const paymentStatus = "pending";
   await db.update(orders).set({
     paymentMethod: method,
     status: "awaiting_payment",
@@ -686,7 +688,9 @@ export async function chooseQuotePayment(
     amount: order[0].totalAmount,
     reference: payfastReference,
     actorUserId: userId,
-    note: `${method === "eft" ? "EFT" : "PayFast"} selected for approved quote.`,
+    note: method === "eft"
+      ? "PayFast Instant EFT selected for approved quote."
+      : "PayFast checkout selected for approved quote.",
   });
 
   return { payfastReference, total: order[0].totalAmount };
@@ -879,11 +883,14 @@ export async function updateOrderPayment(
   if (!db) throw new Error("Database not available");
   const order = await db.select().from(orders).where(eq(orders.payfastReference, payfastReference)).limit(1);
   if (!order[0]) return;
+  const paymentMethod = order[0].paymentMethod ?? "payfast";
+  const methodLabel = paymentMethod === "eft" ? "PayFast Instant EFT" : "PayFast";
   await db
     .update(orders)
     .set({
       paymentStatus,
-      status: paymentStatus === "paid" ? "paid" : "cancelled",
+      status: paymentStatus === "paid" ? "paid" : "quote_approved",
+      paymentMethod: paymentStatus === "paid" ? paymentMethod : null,
       payfastReference,
     })
     .where(eq(orders.payfastReference, payfastReference));
@@ -891,17 +898,17 @@ export async function updateOrderPayment(
     orderId: order[0].id,
     eventType: paymentStatus === "paid" ? "payment_received" : "payment_failed",
     paymentStatus,
-    paymentMethod: "payfast",
+    paymentMethod,
     amount: order[0].totalAmount,
     reference: payfastReference,
-    note: paymentStatus === "paid" ? "PayFast ITN confirmed payment." : "PayFast ITN reported a failed payment.",
+    note: paymentStatus === "paid" ? `${methodLabel} ITN confirmed payment.` : `${methodLabel} ITN reported a failed payment; the quote is ready to retry.`,
   });
   await createNotification({
     userId: order[0].userId,
     orderId: order[0].id,
     type: "payment",
     title: paymentStatus === "paid" ? `Payment received for Quote #${order[0].id}` : `Payment update for Quote #${order[0].id}`,
-    body: paymentStatus === "paid" ? "Your PayFast payment was confirmed and your order is now being prepared." : "Your PayFast payment was not completed. Please review the quote and try again if needed.",
+    body: paymentStatus === "paid" ? `Your ${methodLabel} payment was confirmed and your order is now being prepared.` : `Your ${methodLabel} payment was not completed. Choose a payment option to try again.`,
   });
 }
 

@@ -387,3 +387,9 @@
 - [x] Confirm exact catalogue mappings using only unambiguous name and strength evidence
 - [x] Import the two verified supplier images without changing prices or stock
 - [x] Add regression coverage, validate image assignments, and save a checkpoint
+
+## Phase 51: Customer Payment Actions and PayFast Instant EFT
+- [x] Inspect approved customer order and dashboard payment-action visibility
+- [x] Make the direct PayFast payment action prominent on payment-ready customer orders
+- [x] Route the customer EFT choice to the PayFast Instant EFT payment path while preserving verified EFT proof handling where needed
+- [x] Add regression coverage, validate payment routing, and save a checkpoint

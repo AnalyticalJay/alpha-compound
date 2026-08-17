@@ -47,6 +47,7 @@ export default function OrderDetail() {
   const parsedOrderId = parseInt(orderId ?? "0");
   const proofInputRef = useRef<HTMLInputElement>(null);
   const [isPayFastRedirecting, setIsPayFastRedirecting] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<"eft" | "payfast" | null>(null);
 
   const orderQuery = trpc.orders.detail.useQuery(
     { orderId: parsedOrderId },
@@ -72,13 +73,9 @@ export default function OrderDetail() {
 
   const choosePayment = trpc.orders.choosePayment.useMutation({
     onSuccess: (data) => {
-      if (data.method === "eft") {
-        toast.success("EFT selected. Follow the payment instructions below.");
-        utils.orders.detail.invalidate({ orderId: parsedOrderId });
-        return;
-      }
       if (!data.payfastReference) {
-        toast.error("PayFast reference could not be created.");
+        setIsPayFastRedirecting(false);
+        toast.error("A secure payment reference could not be created.");
         return;
       }
       payfastForm.mutate({ orderId: data.orderId, origin: window.location.origin });
@@ -93,12 +90,15 @@ export default function OrderDetail() {
 
   function handlePayFastPayment() {
     if (paymentPending) return;
+    setSelectedPaymentMethod("payfast");
     setIsPayFastRedirecting(true);
     choosePayment.mutate({ orderId: parsedOrderId, method: "payfast" });
   }
 
   function handleEftPayment() {
     if (paymentPending) return;
+    setSelectedPaymentMethod("eft");
+    setIsPayFastRedirecting(true);
     choosePayment.mutate({ orderId: parsedOrderId, method: "eft" });
   }
 
@@ -146,7 +146,7 @@ export default function OrderDetail() {
     return <div className="min-h-screen flex flex-col bg-background"><Navbar /><main className="flex-1 container py-12 text-center"><p className="text-muted-foreground">Quote not found.</p><Link href="/account"><Button className="mt-4 text-white font-bold">Back to Account</Button></Link></main><Footer /></div>;
   }
 
-  const isApprovedForPayment = order.status === "quote_approved";
+  const isApprovedForPayment = (order.status === "quote_approved" || order.status === "awaiting_payment") && order.paymentStatus !== "paid" && order.paymentStatus !== "awaiting_eft";
   const isEftAwaiting = order.status === "awaiting_payment" && order.paymentMethod === "eft";
 
   return (
@@ -180,19 +180,23 @@ export default function OrderDetail() {
                 <div className="flex justify-between"><span className="text-muted-foreground flex items-center gap-1"><Truck className="h-3 w-3" /> Delivery</span><span>{parseFloat(order.deliveryFee) === 0 ? <span className="text-green-400">Free</span> : `R${parseFloat(order.deliveryFee).toFixed(2)}`}</span></div>
                 <div className="flex justify-between font-bold text-base border-t border-border/40 pt-2 mt-2"><span>Quote Total</span><span className="text-primary">R{parseFloat(order.totalAmount).toFixed(2)}</span></div>
                 <div className="flex justify-between text-xs mt-2"><span className="text-muted-foreground">Payment Status</span><Badge className={`text-xs ${order.paymentStatus === "paid" ? "bg-green-500/20 text-green-400 border-green-500/30" : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"}`}>{order.paymentStatus.replaceAll("_", " ")}</Badge></div>
-                {order.paymentMethod && <div className="flex justify-between text-xs"><span className="text-muted-foreground">Payment Method</span><span className="uppercase">{order.paymentMethod}</span></div>}
+                {order.paymentMethod && <div className="flex justify-between text-xs"><span className="text-muted-foreground">Payment Method</span><span>{order.paymentMethod === "eft" ? "PayFast Instant EFT" : "PayFast checkout"}</span></div>}
               </div>
 
               {order.status === "quote_pending" && <div className="mt-5 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-200"><Lock className="inline h-4 w-4 mr-2" />Payment will become available after an admin reviews and approves this quote.</div>}
               {order.status === "quote_rejected" && <div className="mt-5 rounded-lg border border-red-500/20 bg-red-500/5 p-4 text-sm text-red-200">This quote was not approved. {order.rejectionReason || "Please contact the store if you need clarification."}</div>}
-              {order.paymentStatus === "failed" && <div className="mt-5 rounded-lg border border-red-500/30 bg-red-500/5 p-4 text-sm text-red-100" role="alert"><CreditCard className="mr-2 inline h-4 w-4 text-red-300" /><strong>PayFast payment was not completed.</strong> No payment was confirmed for this quote. You can try PayFast again or choose EFT.</div>}
+              {order.paymentStatus === "failed" && <div className="mt-5 rounded-lg border border-red-500/30 bg-red-500/5 p-4 text-sm text-red-100" role="alert"><CreditCard className="mr-2 inline h-4 w-4 text-red-300" /><strong>PayFast payment was not completed.</strong> No payment was confirmed for this quote. Choose PayFast or PayFast Instant EFT to try again.</div>}
               {isApprovedForPayment && <>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <Button className="min-h-11 text-white font-bold" onClick={handlePayFastPayment} disabled={paymentPending} aria-busy={isPayFastRedirecting}>
+                <div className="mt-5 rounded-xl border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4">
+                  <p className="text-sm font-black text-white">Choose a secure payment option</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Both options use PayFast’s protected checkout. Instant EFT is verified by PayFast before your order proceeds.</p>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <Button className="min-h-14 text-white font-bold" onClick={handlePayFastPayment} disabled={paymentPending} aria-busy={isPayFastRedirecting} aria-label="Pay securely with PayFast">
                     {isPayFastRedirecting ? <LoaderCircle className="h-4 w-4 mr-2 animate-spin" /> : <CreditCard className="h-4 w-4 mr-2" />}
-                    {isPayFastRedirecting ? "Connecting to PayFast…" : "Pay via PayFast"}
+                    {isPayFastRedirecting && selectedPaymentMethod === "payfast" ? "Connecting to PayFast…" : "Pay securely with PayFast"}
                   </Button>
-                  <Button variant="outline" className="min-h-11 font-bold border-[#0EA5E9]/40" onClick={handleEftPayment} disabled={paymentPending}><Banknote className="h-4 w-4 mr-2" />Pay via EFT</Button>
+                  <Button variant="outline" className="min-h-14 font-bold border-[#0EA5E9]/40" onClick={handleEftPayment} disabled={paymentPending} aria-label="Pay by PayFast Instant EFT"><Banknote className="h-4 w-4 mr-2" />{isPayFastRedirecting && selectedPaymentMethod === "eft" ? "Connecting to Instant EFT…" : "Pay by Instant EFT"}</Button>
+                  </div>
                 </div>
                 <div className="mt-4 flex items-center gap-3 rounded-lg border border-emerald-400/20 bg-emerald-400/5 px-3 py-2.5" aria-label="Secure PayFast payment">
                   <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400" />
@@ -200,9 +204,9 @@ export default function OrderDetail() {
                   <Badge className="shrink-0 border-emerald-400/30 bg-emerald-400/10 text-[10px] text-emerald-300">Protected</Badge>
                 </div>
               </>}
-              {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />EFT payment selected</div><p className="text-muted-foreground">Please use the banking details provided by Anabolics Africa in your approval instructions and include Quote #{order.id} as the payment reference.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}<div className="mt-4 rounded-lg border border-border/40 bg-background/30 p-3"><div className="flex flex-wrap items-center justify-between gap-3"><div className="min-w-0"><p className="font-semibold text-foreground">Proof of payment</p><p className="text-xs text-muted-foreground">PDF, JPG, or PNG up to 8 MB.</p></div>{order.eftProofName ? <Badge className="border-emerald-400/30 bg-emerald-400/10 text-emerald-300"><CheckCircle2 className="mr-1 h-3 w-3" />Submitted for review</Badge> : <><input ref={proofInputRef} type="file" accept="application/pdf,image/jpeg,image/png" className="hidden" onChange={handleEftProofChange} /><Button type="button" variant="outline" className="min-h-10 border-[#0EA5E9]/40 font-bold" onClick={() => proofInputRef.current?.click()} disabled={uploadEftProof.isPending}><UploadCloud className="mr-2 h-4 w-4" />{uploadEftProof.isPending ? "Uploading…" : "Upload proof"}</Button></>}</div>{order.eftProofName && <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><FileText className="h-4 w-4 text-primary" /><span className="truncate">{order.eftProofName}</span><span className="text-emerald-300">Awaiting verification</span></div>}</div></div>}
+              {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />Manual EFT transfer in progress</div><p className="text-muted-foreground">This legacy EFT transfer needs proof of payment before administrator verification. New EFT selections use PayFast Instant EFT automatically.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}<div className="mt-4 rounded-lg border border-border/40 bg-background/30 p-3"><div className="flex flex-wrap items-center justify-between gap-3"><div className="min-w-0"><p className="font-semibold text-foreground">Proof of payment</p><p className="text-xs text-muted-foreground">PDF, JPG, or PNG up to 8 MB.</p></div>{order.eftProofName ? <Badge className="border-emerald-400/30 bg-emerald-400/10 text-emerald-300"><CheckCircle2 className="mr-1 h-3 w-3" />Submitted for review</Badge> : <><input ref={proofInputRef} type="file" accept="application/pdf,image/jpeg,image/png" className="hidden" onChange={handleEftProofChange} /><Button type="button" variant="outline" className="min-h-10 border-[#0EA5E9]/40 font-bold" onClick={() => proofInputRef.current?.click()} disabled={uploadEftProof.isPending}><UploadCloud className="mr-2 h-4 w-4" />{uploadEftProof.isPending ? "Uploading…" : "Upload proof"}</Button></>}</div>{order.eftProofName && <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><FileText className="h-4 w-4 text-primary" /><span className="truncate">{order.eftProofName}</span><span className="text-emerald-300">Awaiting verification</span></div>}</div></div>}
               {["quote_approved", "awaiting_payment", "paid", "processing", "shipped", "completed"].includes(order.status) && <a href={`/api/invoices/${order.id}.pdf`} target="_blank" rel="noreferrer" className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-lg border border-[#0EA5E9]/40 px-4 text-sm font-bold text-[#38BDF8] transition hover:bg-[#0EA5E9]/10"><FileText className="h-4 w-4" />View / download invoice</a>}
-              {isPayFastRedirecting && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 px-5 backdrop-blur-sm" role="status" aria-live="polite"><div className="w-full max-w-sm rounded-2xl border border-[#0EA5E9]/30 bg-[#07111f] p-6 text-center shadow-2xl shadow-cyan-950/40"><div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10"><LoaderCircle className="h-7 w-7 animate-spin text-[#38BDF8]" /></div><p className="font-bold text-white">Connecting securely to PayFast</p><p className="mt-2 text-sm text-slate-300">Your approved quote is ready. Please keep this window open while we transfer you to the protected payment page.</p><div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-800"><div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#E11D48]" /></div></div></div>}
+              {isPayFastRedirecting && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 px-5 backdrop-blur-sm" role="status" aria-live="polite"><div className="w-full max-w-sm rounded-2xl border border-[#0EA5E9]/30 bg-[#07111f] p-6 text-center shadow-2xl shadow-cyan-950/40"><div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10"><LoaderCircle className="h-7 w-7 animate-spin text-[#38BDF8]" /></div><p className="font-bold text-white">Connecting securely to PayFast</p><p className="mt-2 text-sm text-slate-300">{selectedPaymentMethod === "eft" ? "Please keep this window open while we transfer you to PayFast Instant EFT." : "Your approved quote is ready. Please keep this window open while we transfer you to the protected payment page."}</p><div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-800"><div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#E11D48]" /></div></div></div>}
             </div>
 
             {order.quoteNotes && order.status !== "awaiting_payment" && <div className="glass-card rounded-xl p-6"><h2 className="font-bold mb-2">Review Notes</h2><p className="text-sm text-muted-foreground whitespace-pre-wrap">{order.quoteNotes}</p></div>}

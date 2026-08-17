@@ -19,6 +19,17 @@ describe("PayFast runtime configuration", () => {
     expect(config.fields.notify_url).toBe("https://anabolicsafrica.co.za/api/payfast/itn");
     expect(config.fields.amount).toBe("450.00");
     expect(config.fields).not.toHaveProperty("passphrase");
+
+    const instantEftConfig = buildPayFastFormConfig({
+      origin: "https://anabolicsafrica.co.za/",
+      orderId: 43,
+      payfastReference: "AA-43-124",
+      total: "450.00",
+      email: "buyer@example.com",
+      fullName: "Buyer Example",
+      paymentMethod: "ef",
+    });
+    expect(instantEftConfig.fields.payment_method).toBe("ef");
   });
 
   it("wires OrderDetail to the runtime server configuration path", () => {

@@ -5,14 +5,12 @@ import {
   chooseE2EPayment,
   completeE2EPayFastFailure,
   completeE2EPayFastSuccess,
-  confirmE2EEftPayment,
   createE2EQuote,
   getE2ECart,
   getE2ENotifications,
   getE2EOrder,
   resetE2EStore,
   seedE2EOrder,
-  uploadE2EProof,
   updateE2EShipping,
   upsertE2ECart,
 } from "./e2eStore";
@@ -40,7 +38,7 @@ describe("disposable E2E write-flow store", () => {
     expect(awaitingPayFast).toMatchObject({ id: 42001, status: "awaiting_payment", paymentMethod: "payfast", paymentStatus: "pending" });
   });
 
-  it("tracks EFT proof data only after an approved disposable quote selects EFT", () => {
+  it("routes an approved disposable EFT choice through the PayFast Instant EFT handoff", () => {
     upsertE2ECart(E2E_CUSTOMER_ID, E2E_PRODUCT_ID, 1);
     const quote = createE2EQuote(E2E_CUSTOMER_ID, {
       shipping: { fullName: "E2E Customer", phone: "0123456789", addressLine1: "42 Test Street", city: "Cape Town", postalCode: "8001", country: "South Africa" },
@@ -48,11 +46,12 @@ describe("disposable E2E write-flow store", () => {
     const order = getE2EOrder(quote.quoteId)!;
     order.status = "quote_approved";
 
-    chooseE2EPayment(quote.quoteId, E2E_CUSTOMER_ID, "eft");
-    const result = uploadE2EProof(quote.quoteId, E2E_CUSTOMER_ID, "e2e-proof.png");
+    const result = chooseE2EPayment(quote.quoteId, E2E_CUSTOMER_ID, "eft");
 
-    expect(result).toMatchObject({ success: true, fileName: "e2e-proof.png" });
-    expect(getE2EOrder(quote.quoteId)).toMatchObject({ paymentStatus: "awaiting_eft", eftProofName: "e2e-proof.png" });
+    expect(result).toMatchObject({ success: true, payfastReference: `E2E-${quote.quoteId}` });
+    expect(getE2EOrder(quote.quoteId)).toMatchObject({ status: "awaiting_payment", paymentMethod: "eft", paymentStatus: "pending" });
+    completeE2EPayFastSuccess(quote.quoteId);
+    expect(getE2EOrder(quote.quoteId)).toMatchObject({ status: "paid", paymentMethod: "eft", paymentStatus: "paid" });
   });
 
   it("records only disposable PayFast success and shipping notifications", () => {
@@ -74,7 +73,7 @@ describe("disposable E2E write-flow store", () => {
     expect(getE2ENotifications(E2E_CUSTOMER_ID)).toEqual([]);
   });
 
-  it("records disposable PayFast failure messaging and administrator EFT confirmation without external services", () => {
+  it("returns a failed PayFast payment to a retryable quote and supports Instant EFT retry without external services", () => {
     upsertE2ECart(E2E_CUSTOMER_ID, E2E_PRODUCT_ID, 1);
     const quote = createE2EQuote(E2E_CUSTOMER_ID, {
       shipping: { fullName: "E2E Customer", phone: "0123456789", addressLine1: "42 Test Street", city: "Cape Town", postalCode: "8001", country: "South Africa" },
@@ -88,7 +87,7 @@ describe("disposable E2E write-flow store", () => {
     expect(getE2ENotifications(E2E_CUSTOMER_ID)[0]?.title).toContain("PayFast payment not completed");
 
     chooseE2EPayment(quote.quoteId, E2E_CUSTOMER_ID, "eft");
-    confirmE2EEftPayment(quote.quoteId);
-    expect(getE2EOrder(quote.quoteId)).toMatchObject({ status: "paid", paymentStatus: "paid" });
+    completeE2EPayFastSuccess(quote.quoteId);
+    expect(getE2EOrder(quote.quoteId)).toMatchObject({ status: "paid", paymentMethod: "eft", paymentStatus: "paid" });
   });
 });

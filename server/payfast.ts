@@ -10,6 +10,7 @@ export type PayFastFormInput = {
   total: string;
   email: string;
   fullName: string;
+  paymentMethod?: "ef";
 };
 
 export type PayFastItnPayload = Record<string, string | undefined>;
@@ -50,6 +51,7 @@ export function buildPayFastFormConfig(input: PayFastFormInput) {
       email_address: input.email,
       name_first: firstName ?? "",
       name_last: lastNameParts.join(" ") || ".",
+      ...(input.paymentMethod ? { payment_method: input.paymentMethod } : {}),
     },
   };
 }

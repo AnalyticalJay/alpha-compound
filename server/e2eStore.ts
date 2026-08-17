@@ -191,21 +191,21 @@ export function chooseE2EPayment(orderId: number, userId: number, method: "eft" 
   if (order.status !== "quote_approved") throw new Error("Quote must be approved before payment");
   order.status = "awaiting_payment";
   order.paymentMethod = method;
-  order.paymentStatus = method === "eft" ? "awaiting_eft" : "pending";
+  order.paymentStatus = "pending";
   order.updatedAt = new Date();
-  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payment_method_selected", paymentStatus: order.paymentStatus, paymentMethod: method, createdAt: order.updatedAt, note: `Disposable E2E payment method selected: ${method}.` });
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payment_method_selected", paymentStatus: order.paymentStatus, paymentMethod: method, createdAt: order.updatedAt, note: method === "eft" ? "Disposable E2E PayFast Instant EFT selected." : "Disposable E2E PayFast checkout selected." });
   return {
     success: true,
     orderId,
     method,
-    payfastReference: method === "payfast" ? `E2E-${orderId}` : null,
+    payfastReference: `E2E-${orderId}`,
   };
 }
 
 export function uploadE2EProof(orderId: number, userId: number, fileName: string) {
   const order = getE2EOrder(orderId);
   if (!order || order.userId !== userId) throw new Error("Order not found");
-  if (order.status !== "awaiting_payment" || order.paymentMethod !== "eft") throw new Error("EFT is not ready for this quote");
+  if (order.status !== "awaiting_payment" || order.paymentMethod !== "eft" || order.paymentStatus !== "awaiting_eft") throw new Error("Manual EFT proof upload is not ready for this quote");
   order.eftProofName = fileName;
   order.eftProofKey = `e2e/${orderId}/${fileName}`;
   order.eftProofUrl = `/e2e-storage/${order.eftProofKey}`;
@@ -234,23 +234,26 @@ export function markE2ENotificationRead(userId: number, notificationId: number) 
 
 export function completeE2EPayFastSuccess(orderId: number) {
   const order = getE2EOrder(orderId);
-  if (!order || order.status !== "awaiting_payment" || order.paymentMethod !== "payfast") throw new Error("PayFast is not ready for this disposable quote");
+  if (!order || order.status !== "awaiting_payment" || !["payfast", "eft"].includes(order.paymentMethod ?? "")) throw new Error("PayFast is not ready for this disposable quote");
   order.status = "paid";
   order.paymentStatus = "paid";
   order.updatedAt = new Date();
-  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_paid", paymentStatus: "paid", paymentMethod: "payfast", createdAt: order.updatedAt, note: "Disposable E2E PayFast success callback received." });
-  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `Payment received for Quote #${orderId}`, body: "Your PayFast payment was confirmed and your order is now being prepared." });
+  const methodLabel = order.paymentMethod === "eft" ? "PayFast Instant EFT" : "PayFast";
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_paid", paymentStatus: "paid", paymentMethod: order.paymentMethod, createdAt: order.updatedAt, note: `Disposable E2E ${methodLabel} success callback received.` });
+  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `Payment received for Quote #${orderId}`, body: `Your ${methodLabel} payment was confirmed and your order is now being prepared.` });
   return { success: true, orderId, status: order.status };
 }
 
 export function completeE2EPayFastFailure(orderId: number) {
   const order = getE2EOrder(orderId);
-  if (!order || order.status !== "awaiting_payment" || order.paymentMethod !== "payfast") throw new Error("PayFast is not ready for this disposable quote");
+  if (!order || order.status !== "awaiting_payment" || !["payfast", "eft"].includes(order.paymentMethod ?? "")) throw new Error("PayFast is not ready for this disposable quote");
+  const methodLabel = order.paymentMethod === "eft" ? "PayFast Instant EFT" : "PayFast";
   order.status = "quote_approved";
   order.paymentStatus = "failed";
+  order.paymentMethod = null;
   order.updatedAt = new Date();
-  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_failed", paymentStatus: "failed", paymentMethod: "payfast", createdAt: order.updatedAt, note: "Disposable E2E PayFast failure callback received." });
-  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `PayFast payment not completed for Quote #${orderId}`, body: "Your payment was not confirmed. You can try PayFast again or select EFT." });
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_failed", paymentStatus: "failed", paymentMethod: order.paymentMethod, createdAt: order.updatedAt, note: `Disposable E2E ${methodLabel} failure callback received.` });
+  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `PayFast payment not completed for Quote #${orderId}`, body: "Your payment was not confirmed. You can try PayFast again or use PayFast Instant EFT." });
   return { success: true, orderId, status: order.status };
 }
 
