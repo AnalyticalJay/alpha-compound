@@ -1,0 +1,745 @@
+{
+  "results": [
+    {
+      "input": "60071 | BP Accutane 10mg | 10mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60071 | BP Accutane 10mg | 10mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://aexpress.co.za/wp-content/uploads/2025/05/BP-ACCUTANE.png",
+        "match_evidence": "Body Pharm product page displays Accutane 10; exact brand, product identity, and strength match.",
+        "review_note": "Body Pharm Accutane 10mg packaging image verified on authorised reseller product page with matching brand, product identity, and strength.",
+        "source_page_url": "https://aexpress.co.za/product/bp-accutane-10/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60073 | BP Cialis 20mg | 20mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60073 | BP Cialis 20mg | 20mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://cdn.shopify.com/s/files/1/0996/9378/9555/files/bp-cialis-20.jpg?v=1778779753",
+        "match_evidence": "Syntrix Labs product page lists BP Cialis 20mg; exact brand/name/strength match.",
+        "review_note": "Authorized research supplier page provides verified product packaging for BP Cialis 20mg.",
+        "source_page_url": "https://syntrixlabs.co.za/products/bp-cialis-20",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60074 | BP Cialis 5mg | 5mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60074 | BP Cialis 5mg | 5mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/imageedit_4_6940091832.png?v=1720563445\u0026width=600",
+        "match_evidence": "Body Pharm label reads Cialis 5mg; exact brand/name/strength match.",
+        "review_note": "Verified Body Pharm Cialis 5mg product page and packaging image match from authorized reseller Juice Heaven.",
+        "source_page_url": "https://www.juiceheaven.online/products/body-pharm-cialis-5",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60077 | BP Dutasteride 0.5mg | 0.5mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60077 | BP Dutasteride 0.5mg | 0.5mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7bCmv.png",
+        "match_evidence": "Body Pharm label reads Dutasteride 0.5mg; exact brand/name/strength match.",
+        "review_note": "Flex Factory authorized reseller page displays Body Pharm Dutasteride 0.5mg with matching brand, product name, and strength.",
+        "source_page_url": "https://flexfactory.fit/product/dutasteride-hair-loss-0-5mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60076 | BP Finpecia 2mg | 2mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60076 | BP Finpecia 2mg | 2mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7bLjR.png",
+        "match_evidence": "Body Pharm Finpecia label reads Finasteride 2mg; exact brand, product identity, and strength match.",
+        "review_note": "Verified Body Pharm Finpecia 2mg product page and packaging image match the catalogue item precisely.",
+        "source_page_url": "https://flexfactory.fit/product/finpecia-finasteride-hair-loss-2mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60072 | BP Levitra 20mg | 20mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60072 | BP Levitra 20mg | 20mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "No verified Body Pharm product-specific packaging image was found for BP Levitra 20mg.",
+        "review_note": "No unambiguous Body Pharm product-specific image exists for this catalogue item.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60079 | BP Melatonin 10mg | 10mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60079 | BP Melatonin 10mg | 10mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "No Body Pharm product corresponding to Melatonin 10mg exists in manufacturer or reseller catalogues.",
+        "review_note": "No verified BP Melatonin 10mg product exists in the Body Pharm catalogue, so no image can be safely assigned.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60075 | BP Viagra 100mg | 100mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60075 | BP Viagra 100mg | 100mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/WhatsAppImage2021-05-04at09.46.00_1024x1024_819875cf-a913-4143-b7f5-6a6007373275.webp?v=1720736221\u0026width=1946",
+        "match_evidence": "Body Pharm label reads BP Viagra 100; exact brand, product identity, and 100mg strength match.",
+        "review_note": "The reseller product page features an unambiguous Body Pharm packaging image for BP Viagra 100 matching the catalogue item.",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-viagra-100",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60078 | BP Zaditen 2mg | 2mg | ANCILLARIES",
+      "output": {
+        "catalogue_item": "60078 | BP Zaditen 2mg | 2mg | ANCILLARIES",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZYdccN.png",
+        "match_evidence": "Body Pharm product page displays Ketotifen - Zaditen 2mg; exact brand, name, and strength match.",
+        "review_note": "Body Pharm product page from authorised reseller Flex Factory confirms exact brand, name, and 2mg strength.",
+        "source_page_url": "https://flexfactory.fit/product/ketotifen-zaditen-2mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60052 | BP Albuterol 5mg | 5mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60052 | BP Albuterol 5mg | 5mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7Lcaj.png",
+        "match_evidence": "Body Pharm label reads Albuterol 5mg; exact brand/name/strength match.",
+        "review_note": "Flex Factory is an authorized reseller of Body Pharm offering the verified Albuterol 5mg product packaging image.",
+        "source_page_url": "https://flexfactory.fit/product/albuterol-5mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60053 | BP Clenbuterol 40mg | 40mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60053 | BP Clenbuterol 40mg | 40mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "Catalogue lists BP Clenbuterol 40mg, whereas Body Pharm official product specification is Clenbuterol 40mcg tablets.",
+        "review_note": "No verified match is assigned due to the discrepancy between the catalogue strength (40mg) and the manufacturer product strength (40mcg).",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60054 | BP Clenbuterol 80mg Inj | 80mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60054 | BP Clenbuterol 80mg Inj | 80mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "Body Pharm Clen-inject label reads Clenbuterol 80mcg/ml; exact brand, product name, and injection identity match.",
+        "review_note": "Verified authentic Body Pharm Clen-inject product page on authorized reseller Realroids matching the catalogue item.",
+        "source_page_url": "https://realroids.com/clen-inject-bodypharm.htm",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60055 | BP Cy Combo | NO_STRENGTH | FAT LOSS",
+      "output": {
+        "catalogue_item": "60055 | BP Cy Combo | NO_STRENGTH | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7tEu4.png",
+        "match_evidence": "Body Pharm label reads CY (40mcg Clen, 5.4mg Yohimbine) / CY Combo; exact brand, product identity, and category match.",
+        "review_note": "Authorized reseller Flex Factory lists Body Pharm CY Combo with verified product imagery.",
+        "source_page_url": "https://flexfactory.fit/product/cy-40mcg-clen-5-4mg-yohimbine/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60056 | BP Cy Combo Inj | NO_STRENGTH | FAT LOSS",
+      "output": {
+        "catalogue_item": "60056 | BP Cy Combo Inj | NO_STRENGTH | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://cms.beskinny.store/wp-content/uploads/2025/01/Sleave-Rendering-CY_.jpg",
+        "match_evidence": "Body Pharm product page features BP CY (Clen, Yohimbine Combo); exact brand, product identity, and item match.",
+        "review_note": "The product page and verified image match the exact catalogue item and brand packaging.",
+        "source_page_url": "https://beskinny.store/shop/bp-cy-clen-yohimbine-combo",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60057 | BP Cyt3 | NO_STRENGTH | FAT LOSS",
+      "output": {
+        "catalogue_item": "60057 | BP Cyt3 | NO_STRENGTH | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://beskinny.store/_next/image?url=http%3A%2F%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F01%2FSleave-Rendering-CYT3-.jpg\u0026w=3840\u0026q=75",
+        "match_evidence": "Body Pharm product page features BP CYT3 pouch packaging; exact brand and product name match.",
+        "review_note": "BeSkinny product page provides a verified packaging image and detailed specification for BP Cyt3.",
+        "source_page_url": "https://beskinny.store/shop/bp-cyt3-clenbuterol-yohimbine-and-t3-combo",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60061 | BP DNP 100mg | 100mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60061 | BP DNP 100mg | 100mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7DisS.png",
+        "match_evidence": "Body Pharm label reads DNP 2,4-Dinitrophenol 100mg; exact brand/name/strength match.",
+        "review_note": "Flex Factory product page displays Body Pharm DNP 100mg packaging with verified image source.",
+        "source_page_url": "https://flexfactory.fit/product/dnp-24-dinitrophenol-100mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60058 | BP Sibutramine 20mg | 20mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60058 | BP Sibutramine 20mg | 20mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://cms.beskinny.store/wp-content/uploads/2025/01/Sibutra20.jpg",
+        "match_evidence": "BeSkinny product page and label read BP Sibutramine 20 (20mg); exact brand, product identity, and strength match.",
+        "review_note": "Unambiguous Body Pharm product match with verified product page and direct packaging image URL.",
+        "source_page_url": "https://beskinny.store/shop/bp-sibutramine-20",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60059 | BP Tertroxin T3 25mg | 25mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60059 | BP Tertroxin T3 25mg | 25mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZY9rVR.png",
+        "match_evidence": "Body Pharm product page confirms Tertroxin T3 25mcg; exact brand, product identity, and strength match.",
+        "review_note": "Flex Factory product page provides a verified Body Pharm Tertroxin T3 25mcg packaging image matching the catalogue item.",
+        "source_page_url": "https://flexfactory.fit/product/tertroxin-t3-25mcg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60060 | BP Yohimbine 10mg | 10mg | FAT LOSS",
+      "output": {
+        "catalogue_item": "60060 | BP Yohimbine 10mg | 10mg | FAT LOSS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZYdncB.png",
+        "match_evidence": "Body Pharm label reads Yohimba 10 and 10mg Yohimbine hcl; exact brand, name, and strength match.",
+        "review_note": "Flex Factory authorized reseller product page provides clear packaging imagery matching the brand, product, and 10mg strength.",
+        "source_page_url": "https://flexfactory.fit/product/yohimbine-10mg-tabs/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60007 | BP M1T 10mg | 10mg | ORALS",
+      "output": {
+        "catalogue_item": "60007 | BP M1T 10mg | 10mg | ORALS",
+        "confidence": "high",
+        "direct_image_url": "https://fireflexfitness.co.za/cdn/shop/files/Sleave-Rendering-Methyltest-10.jpg?v=1784273765\u0026width=1946",
+        "match_evidence": "Fireflex Fitness product page lists BP M1T 10mg with exact brand, product name, and strength match.",
+        "review_note": "Verified Body Pharm product page and packaging image match the catalogue item exactly.",
+        "source_page_url": "https://fireflexfitness.co.za/products/bp-m1t-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60096 | BP AOD9604 2mg | 2mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60096 | BP AOD9604 2mg | 2mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://life-os.co.za/cdn/shop/files/BP-AOD9604.png?v=1773213146",
+        "match_evidence": "Life.os product page lists BodyPharm AOD9604 2mg vial, providing an exact brand, product identity, and strength match.",
+        "review_note": "The authorized reseller product page displays the exact BodyPharm AOD9604 2mg vial packaging matching the catalogue entry.",
+        "source_page_url": "https://life-os.co.za/products/aod9604-2mg",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60081 | BP Cagrisema 12mg | 12mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60081 | BP Cagrisema 12mg | 12mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://glp1-2u.com/wp-content/uploads/2025/09/Body-Pharm-Cagrisema-12mg-Pre-Filled-Pen-_-Dual-Agonist-Weight-Loss-Pen.jpg",
+        "match_evidence": "Body Pharm label reads Cagrisema 12mg Pre-Filled Pen; exact brand, product identity, and strength match.",
+        "review_note": "Unambiguous Body Pharm product page and verified image URL match the catalogue item exactly.",
+        "source_page_url": "https://glp1-2u.com/body-pharm-cagrisema-12mg-pre-filled-pen-dual-agonist-weight-loss-pen/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60082 | BP CJC1295 + IPAMORELIN 20mg | 20mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60082 | BP CJC1295 + IPAMORELIN 20mg | 20mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.co/assets/cjc-ipamorelin-box-pen-Bmf_sG7t.webp",
+        "match_evidence": "Body Pharm product page displays CJC-1295 (No-DAC) + Ipamorelin Pen with a 20mg total payload; exact brand, product identity, and strength match.",
+        "review_note": "Verified manufacturer product page and direct asset URL provide an unambiguous match for the 20mg peptide blend.",
+        "source_page_url": "https://www.bodypharm.co/product/cjc-1295-ipamorelin-pen",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60098 | BP CJC1295 DAC 2mg | 2mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60098 | BP CJC1295 DAC 2mg | 2mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://glp1-2u.com/wp-content/uploads/2025/09/CJC-1295-front.728.png",
+        "match_evidence": "Body Pharm label reads CJC 1295 with DAC 2mg; exact brand/name/strength match.",
+        "review_note": "Verified Body Pharm CJC 1295 with DAC 2mg product page and image match found.",
+        "source_page_url": "https://glp1-2u.com/body-pharm-cjc-1295-with-dac-2mg-peptide-formula/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60100 | BP GHRP-6 5mg | 5mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60100 | BP GHRP-6 5mg | 5mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "No verified product-specific Body Pharm GHRP-6 5mg packaging image was found across supplier or authorised reseller sources.",
+        "review_note": "Reseller product listings only feature generic promotional banners rather than unambiguous product packaging photos, so no image should be imported.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60101 | BP Gonadorelin 2mg | 2mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60101 | BP Gonadorelin 2mg | 2mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://glp1-2u.com/wp-content/uploads/2025/09/Gonadorelin-600x600-1.png",
+        "match_evidence": "Body Pharm packaging label reads Gonadorelin 2; exact brand, product name, and 2mg strength match.",
+        "review_note": "Unambiguous Body Pharm Gonadorelin 2mg product box image verified from an authorized reseller catalog page.",
+        "source_page_url": "https://glp1-2u.com/body-pharm-gonadorelin-single-vial-2mg-peptide-formula/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60102 | BP HCG 5000IU | 5000IU | PEPTIDES",
+      "output": {
+        "catalogue_item": "60102 | BP HCG 5000IU | 5000IU | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://wworks.co.za/wp-content/uploads/51.png",
+        "match_evidence": "Body Pharm label reads BP HCG 5000 5000iu; exact brand, product, and strength match.",
+        "review_note": "The product page and verified image confirm Body Pharm BP HCG 5000 5000IU packaging without ambiguity.",
+        "source_page_url": "https://wworks.co.za/product/bp-hcg-5000-vial/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60103 | BP HGH 100IU | 100IU | PEPTIDES",
+      "output": {
+        "catalogue_item": "60103 | BP HGH 100IU | 100IU | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://beskinny.store/_next/image?url=http%3A%2F%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2FBP-Somatropin-100.jpeg\u0026w=3840\u0026q=75",
+        "match_evidence": "Body Pharm label reads Somatropin 100 HGH 100iu kit; exact brand, name, and 100IU strength match.",
+        "review_note": "The BeSkinny product page provides an unambiguous, product-specific packaging image and verified match for Body Pharm HGH 100IU.",
+        "source_page_url": "https://beskinny.store/shop/body-pharm-somatropin-100-hgh-100iu-kit",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60104 | BP IGF 1 LR3 0.1mg | 0.1mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60104 | BP IGF 1 LR3 0.1mg | 0.1mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.herocure.co.za/wp-content/uploads/2026/07/BP-IGF-removebg-preview.png",
+        "match_evidence": "BodyPharm product page lists IGF-1 LR3 100mcg, which corresponds exactly to 0.1mg for this Body Pharm peptide item.",
+        "review_note": "Unambiguous BodyPharm product-specific packaging image verified from authorized reseller Herocure.",
+        "source_page_url": "https://www.herocure.co.za/product/bodypharm-igf-1-lr3-100mcg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60105 | BP IPAMORELIN 5mg | 5mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60105 | BP IPAMORELIN 5mg | 5mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://glp1-2u.com/wp-content/uploads/2025/09/Ipamorelin-5-front.733.png",
+        "match_evidence": "Body Pharm label reads Ipamorelin 5mg; exact brand/name/strength match.",
+        "review_note": "The source page from Body Pharm supplier glp1-2u.com displays Body Pharm Ipamorelin 5mg packaging with verified brand, product identity, and strength matching catalogue item 60105.",
+        "source_page_url": "https://glp1-2u.com/body-pharm-ipamorelin-pentapeptide-5mg-peptide-formula/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60084 | BP Melanotan II 20mg | 20mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60084 | BP Melanotan II 20mg | 20mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.co/assets/melanotan-box-4lXMmPgC.png",
+        "match_evidence": "Body Pharm label reads Melanotan II 20; exact brand, product identity, and strength match.",
+        "review_note": "Verified official Body Pharm product page and packaging image for Melanotan II 20mg.",
+        "source_page_url": "https://www.bodypharm.co/product/melanotan-ii-20",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60106 | BP Melanotan MT2 10mg | 10mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60106 | BP Melanotan MT2 10mg | 10mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://wworks.co.za/wp-content/uploads/48.png",
+        "match_evidence": "Body Pharm packaging label clearly reads Melanotan II 10 (10mg); exact brand, product identity, and strength match.",
+        "review_note": "Verified product-specific packaging image found on authorised reseller showing BP Body Pharm Melanotan II 10mg.",
+        "source_page_url": "https://wworks.co.za/product/bp-melanotan-ii-10-vial/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60085 | BP MOTS-C 32mg | 32mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60085 | BP MOTS-C 32mg | 32mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.co/assets/motsc-card-B6-GFbFa.webp",
+        "match_evidence": "Body Pharm label reads MOTS-C 32mg; exact brand/name/strength match.",
+        "review_note": "Official Body Pharm product page provides verified 32mg MOTS-C pen imagery matching the catalogue item.",
+        "source_page_url": "https://www.bodypharm.co/product/mots-c-pen",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60086 | BP NAD+ 1000mg | 1000mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60086 | BP NAD+ 1000mg | 1000mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.co/assets/nad-box-pen-L142-bx4.webp",
+        "match_evidence": "Body Pharm official product page features NAD+ 1000 Pen with exact brand, product name, and 1000mg strength match.",
+        "review_note": "Exact official Body Pharm manufacturer product page and packaging image match for BP NAD+ 1000mg.",
+        "source_page_url": "https://www.bodypharm.co/product/nad-plus-pen",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60089 | BP Semeglutide 6mg | 6mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60089 | BP Semeglutide 6mg | 6mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://glp1-2u.com/wp-content/uploads/2025/09/Body-Pharm-Semaglutide-6mg-Pre-Filled-Pen-_-Wegovy®-Equivalent.jpg",
+        "match_evidence": "Body Pharm label reads Semaglutide 6mg pre-filled pen; exact brand, product identity, and strength match.",
+        "review_note": "Unambiguous Body Pharm product page and verified image match found for BP Semeglutide 6mg.",
+        "source_page_url": "https://glp1-2u.com/wp-content/uploads/2025/09/Body-Pharm-Semaglutide-6mg-Pre-Filled-Pen-_-Wegovy®-Equivalent.jpg",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60092 | BP Tesamorelin 32mg | 32mg | PEPTIDES",
+      "output": {
+        "catalogue_item": "60092 | BP Tesamorelin 32mg | 32mg | PEPTIDES",
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.ph/assets/tesamorelin-box-pen-DGYMeL-j.webp",
+        "match_evidence": "Body Pharm product page and packaging display Tesamorelin 32mg; exact brand, product identity, and strength match.",
+        "review_note": "The match is safe and verified directly from the official manufacturer catalogue for Tesamorelin 32mg.",
+        "source_page_url": "https://www.bodypharm.ph/product/tesamorelin-pen",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60062 | BP Arimidex 1mg | 1mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60062 | BP Arimidex 1mg | 1mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Adex-1_1024x1024.jpg",
+        "match_evidence": "HealthShop SA product page displays Body Pharm BP Arimidex 1 1mg; exact brand, product, and strength match.",
+        "review_note": "The authorized reseller product page provides an unambiguous Body Pharm Arimidex 1mg pouch image matching the catalogue item.",
+        "source_page_url": "https://healthshopsa.com/products/bp-adex-1",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60063 | BP Aromasin 25mg | 25mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60063 | BP Aromasin 25mg | 25mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/Renderingbase._2-30_1024x1024_338c96b0-d6ae-4ce7-a936-d9273f7585b2.webp?v=1721324893",
+        "match_evidence": "Body Pharm packaging label reads AROMASIN 25 with 25mg Exemestane; exact brand, name, and strength match.",
+        "review_note": "The source product page and packaging image unambiguously verify the exact Body Pharm Aromasin 25mg item.",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-aromasin-25",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60064 | BP Clomid 25mg | 25mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60064 | BP Clomid 25mg | 25mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/imageedit_4_6940091832.png?v=1720563445\u0026width=600",
+        "match_evidence": "Juice Heaven product page lists BP Clomid 25 with 50x 25mg tablets; exact brand, name, and strength match.",
+        "review_note": "Juice Heaven authorized reseller page provides verified product packaging for BP Clomid 25mg.",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-clomid-25",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60066 | BP Dostinex 100mg | 100mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60066 | BP Dostinex 100mg | 100mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7b9zQ.png",
+        "match_evidence": "Body Pharm label reads Dostinex – Cabergoline 100mcg; exact brand, product, and strength match.",
+        "review_note": "Verified product packaging image from authorised reseller page matches the exact Body Pharm catalogue item.",
+        "source_page_url": "https://flexfactory.fit/product/dostinex-cabergoline-100mcg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60065 | BP Enclomiphene 12.5mg | 12.5mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60065 | BP Enclomiphene 12.5mg | 12.5mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/SleaveRendering_Enclomiphene12.5_1024x1024_357ec96c-3d07-4404-bbec-49ac82437353.webp?v=1721382645",
+        "match_evidence": "Body Pharm sleeve rendering reads BP Enclomiphene 12.5; exact brand, product name, and strength match.",
+        "review_note": "The product page and sleeve rendering unambiguously verify BP Enclomiphene 12.5mg packaging.",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-enclomiphene-12-5",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60067 | BP Femara 2mg | 2mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60067 | BP Femara 2mg | 2mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7bSEP.png",
+        "match_evidence": "Body Pharm label reads Femara - Letrozol 2mg; exact brand/name/strength match.",
+        "review_note": "Flex Factory authorized reseller product page provides a verified Body Pharm Femara 2mg packaging image.",
+        "source_page_url": "https://flexfactory.fit/product/femara-letrozol-2mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60068 | BP Nolvadex 10mg | 10mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60068 | BP Nolvadex 10mg | 10mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/imageedit_4_6940091832.png?v=1720563445\u0026width=600",
+        "match_evidence": "Body Pharm product page confirms BP Nolvadex 10 (Tamoxifen Citrate 10mg); exact brand, product identity, and strength match.",
+        "review_note": "The authorised reseller product page and verified packaging image provide an unambiguous match for BP Nolvadex 10mg.",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-nolvadex-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60069 | BP Proviron 25mg | 25mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60069 | BP Proviron 25mg | 25mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "Body Pharm packaging label reads Proviron 25 / Mesterolone 25mg; exact brand, name, and strength match.",
+        "review_note": "Verified Body Pharm Proviron 25mg product packaging image found matching brand, product identity, and 25mg strength.",
+        "source_page_url": "https://www.bodypharm.to",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60070 | BP Raloxifene 20mg | 20mg | POST CYCLE",
+      "output": {
+        "catalogue_item": "60070 | BP Raloxifene 20mg | 20mg | POST CYCLE",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7yArP.png",
+        "match_evidence": "Body Pharm label reads Evista Raloxifene 20mg; exact brand/name/strength match.",
+        "review_note": "Verified Body Pharm Raloxifene 20mg product page and packaging image match the catalogue item.",
+        "source_page_url": "https://flexfactory.fit/product/evista-raloxifene-20mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60023 | BP Andarine 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60023 | BP Andarine 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Andarine-10_1024x1024.jpg",
+        "match_evidence": "Body Pharm label reads BP Andarine 10; exact brand, product identity, and strength match.",
+        "review_note": "Verified product-specific packaging image found on HealthShop SA authorized reseller page for BP Andarine 10mg.",
+        "source_page_url": "https://healthshopsa.com/products/bp-andarine-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60016 | BP Cardarine 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60016 | BP Cardarine 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Cardarine-10_1024x1024.jpg?v=1779791576",
+        "match_evidence": "Body Pharm product page lists BP Cardarine 10; exact brand, product name, and strength match.",
+        "review_note": "Authorized retailer product page provides verified Body Pharm Cardarine 10mg packaging imagery.",
+        "source_page_url": "https://healthshopsa.com/products/bp-cardarine-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60025 | BP F-CARDARINE 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60025 | BP F-CARDARINE 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZ7stCF.png",
+        "match_evidence": "Body Pharm product listing reads F-Cardarine 10mg; exact brand, name, and strength match.",
+        "review_note": "Verified product-specific packaging image from authorised reseller matching brand, product name, and strength.",
+        "source_page_url": "https://flexfactory.fit/product/f-cardarine-gw-0742-10mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60019 | BP Ibutamoren 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60019 | BP Ibutamoren 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Ibutamoren-10_1920x.jpg?v=1779791771",
+        "match_evidence": "Health Shop SA product page displays BP Ibutamoren 10 (Nutrobal); exact brand, name, and strength match.",
+        "review_note": "Product-specific BP Pharma Ibutamoren 10mg packaging image verified and safely matched.",
+        "source_page_url": "https://healthshopsa.com/products/bp-ibutamoren-10-nutrobal",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60017 | BP Ligandrol 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60017 | BP Ligandrol 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Ligandrol-10_1024x1024.jpg?v=1779791659",
+        "match_evidence": "Body Pharm product page lists BP Ligandrol 10 (Anabolicum) 10mg; exact brand, product, and strength match.",
+        "review_note": "Authorised reseller product page confirms exact brand, item name, and 10mg strength packaging image.",
+        "source_page_url": "https://healthshopsa.com/products/bp-ligandrol-10-anabolicum",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60015 | BP Limitless 20mg | 20mg | SARMS",
+      "output": {
+        "catalogue_item": "60015 | BP Limitless 20mg | 20mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://fireflexfitness.co.za/cdn/shop/files/Sleave-Rendering-Limitless-20.jpg?v=1784273747",
+        "match_evidence": "Body Pharm product page reads BP Limitless 20; exact brand, name, and strength match.",
+        "review_note": "Verified Body Pharm product packaging image match found on authorised retailer page.",
+        "source_page_url": "https://fireflexfitness.co.za/products/bp-limitless-20",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60018 | BP Ostarine 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60018 | BP Ostarine 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "No verified Body Pharm product page or packaging image was found for BP Ostarine 10mg.",
+        "review_note": "No verified source found for Body Pharm Ostarine 10mg; do not import generic or substitute brand imagery.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60020 | BP RAD140 Testolone 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60020 | BP RAD140 Testolone 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-Testolone-10_1024x1024.jpg?v=1779791829",
+        "match_evidence": "Health Shop SA product page and item title confirm BP RAD140 Testolone 10mg; exact brand, product name, and strength match.",
+        "review_note": "Authorized reseller page explicitly presents BP RAD140 Testolone 10mg with a verified product packaging image.",
+        "source_page_url": "https://healthshopsa.com/products/bp-rad140-testolone-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60021 | BP RAD150 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60021 | BP RAD150 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "NONE",
+        "match_evidence": "Reseller pages for Body Pharm BP RAD150 10mg only display generic brand logo placeholders without product-specific packaging or strength labelling.",
+        "review_note": "No verified product-specific packaging image found; reseller product pages lack specific packaging artwork for this item.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60022 | BP S23 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60022 | BP S23 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://healthshopsa.com/cdn/shop/files/Sleave-Rendering-S23-10.jpg?v=1779791943",
+        "match_evidence": "Body Pharm label reads S23 10; exact brand/name/strength match.",
+        "review_note": "Product packaging and label clearly show Body Pharm BP S23 10mg with exact strength and brand verification.",
+        "source_page_url": "https://healthshopsa.com/products/bp-s23-10",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60024 | BP Stenabolic 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60024 | BP Stenabolic 10mg | 10mg | SARMS",
+        "confidence": "high",
+        "direct_image_url": "https://flexfactory.fit/wp-content/uploads/2026/05/BZY9lS9.png",
+        "match_evidence": "Body Pharm product page lists Stenabolic SR9009 10mg; exact brand, product name, and strength match.",
+        "review_note": "Verified product-specific Body Pharm Stenabolic 10mg packaging image found on authorized reseller product page.",
+        "source_page_url": "https://flexfactory.fit/product/stenabolic-sr9009-10mg/",
+        "verified_match": true
+      },
+      "error": ""
+    },
+    {
+      "input": "60026 | BP YK 11 10mg | 10mg | SARMS",
+      "output": {
+        "catalogue_item": "60026 | BP YK 11 10mg | 10mg | SARMS",
+        "confidence": "low",
+        "direct_image_url": "NONE",
+        "match_evidence": "No verified Body Pharm product page or packaging image was found for BP YK 11 10mg.",
+        "review_note": "No verified product-specific packaging image match was found, so no image should be imported.",
+        "source_page_url": "NONE",
+        "verified_match": ""
+      },
+      "error": ""
+    }
+  ]
+}

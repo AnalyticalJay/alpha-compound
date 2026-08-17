@@ -411,3 +411,10 @@
 - [x] Identify and correct the storefront image rendering or delivery failure
 - [x] Add regression coverage for BP Pharma primary-image visibility
 - [x] Validate live catalogue and product-detail image rendering, then save a checkpoint
+
+## Phase 55: Remaining BP Pharma Image Sourcing and Import
+- [x] Inventory every BP Pharma product currently lacking a primary image
+- [x] Identify authoritative supplier or manufacturer image sources and build verified product mappings
+- [x] Import confirmed image assignments without changing product prices, stock, or existing primary images
+- [x] Preserve unavailable or ambiguous products in an image-source review report
+- [x] Add matching coverage, validate storefront records, and save a checkpoint

@@ -1,0 +1,295 @@
+{
+  "mode": "dry-run",
+  "imported": [],
+  "ready": [],
+  "skipped": [
+    {
+      "productId": 60071,
+      "productName": "BP Accutane 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60073,
+      "productName": "BP Cialis 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60077,
+      "productName": "BP Dutasteride 0.5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60076,
+      "productName": "BP Finpecia 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60079,
+      "productName": "BP Melatonin 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60075,
+      "productName": "BP Viagra 100mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60078,
+      "productName": "BP Zaditen 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60052,
+      "productName": "BP Albuterol 5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60053,
+      "productName": "BP Clenbuterol 40mcg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60055,
+      "productName": "BP Cy Combo",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60057,
+      "productName": "BP Cyt3",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60061,
+      "productName": "BP DNP 100mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60058,
+      "productName": "BP Sibutramine 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60059,
+      "productName": "BP Tertroxin T3 25mcg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60060,
+      "productName": "BP Yohimbine 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60007,
+      "productName": "BP M1T 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60096,
+      "productName": "BP AOD9604 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60081,
+      "productName": "BP Cagrisema 12mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60082,
+      "productName": "BP CJC1295 + IPAMORELIN 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60098,
+      "productName": "BP CJC1295 DAC 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60100,
+      "productName": "BP GHRP-6 5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60101,
+      "productName": "BP Gonadorelin 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60102,
+      "productName": "BP HCG 5000IU",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60103,
+      "productName": "BP HGH 100IU",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60104,
+      "productName": "BP IGF 1 LR3 0.1mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60105,
+      "productName": "BP IPAMORELIN 5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60084,
+      "productName": "BP Melanotan II 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60106,
+      "productName": "BP Melanotan MT2 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60085,
+      "productName": "BP MOTS-C 32mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60086,
+      "productName": "BP NAD+ 1000mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60089,
+      "productName": "BP Semeglutide 6mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60092,
+      "productName": "BP Tesamorelin 32mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60062,
+      "productName": "BP Arimidex 1mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60063,
+      "productName": "BP Aromasin 25mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60066,
+      "productName": "BP Dostinex 100mcg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60065,
+      "productName": "BP Enclomiphene 12.5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60067,
+      "productName": "BP Femara 2mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60068,
+      "productName": "BP Nolvadex 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60069,
+      "productName": "BP Proviron 25mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60070,
+      "productName": "BP Raloxifene 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60023,
+      "productName": "BP Andarine 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60016,
+      "productName": "BP Cardarine 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60025,
+      "productName": "BP F-CARDARINE 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60019,
+      "productName": "BP Ibutamoren 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60017,
+      "productName": "BP Ligandrol 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60015,
+      "productName": "BP Limitless 20mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60020,
+      "productName": "BP RAD140 Testolone 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60022,
+      "productName": "BP S23 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60024,
+      "productName": "BP Stenabolic 10mg",
+      "reason": "primary_image_already_exists"
+    }
+  ],
+  "unavailable": [],
+  "reviewRequired": [
+    {
+      "productId": 60074,
+      "productName": "BP Cialis 5mg",
+      "reason": "The same source image URL was proposed for multiple products and requires manual product-specific confirmation."
+    },
+    {
+      "productId": 60072,
+      "productName": "BP Levitra 20mg",
+      "reason": "The research record does not confirm an exact product match."
+    },
+    {
+      "productId": 60054,
+      "productName": "BP Clenbuterol 80mg Inj",
+      "reason": "A direct secure product image URL is required."
+    },
+    {
+      "productId": 60056,
+      "productName": "BP Cy Combo Inj",
+      "reason": "The available CY Combo source does not unambiguously establish the injectable variant."
+    },
+    {
+      "productId": 60064,
+      "productName": "BP Clomid 25mg",
+      "reason": "The same source image URL was proposed for multiple products and requires manual product-specific confirmation."
+    },
+    {
+      "productId": 60018,
+      "productName": "BP Ostarine 10mg",
+      "reason": "The same source image URL was proposed for multiple products and requires manual product-specific confirmation."
+    },
+    {
+      "productId": 60021,
+      "productName": "BP RAD150 10mg",
+      "reason": "The research record does not confirm an exact product match."
+    },
+    {
+      "productId": 60026,
+      "productName": "BP YK 11 10mg",
+      "reason": "The research record does not confirm an exact product match."
+    }
+  ]
+}
