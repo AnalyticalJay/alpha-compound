@@ -2,19 +2,46 @@ import type { Express, Request, Response } from "express";
 import { getOrderById, getUserById } from "./db";
 import { generateInvoicePdf, isInvoiceEligible } from "./invoice";
 import { sdk } from "./_core/sdk";
+import { E2E_CUSTOMER_ID, getE2EOrder, isE2ETestMode } from "./e2eStore";
 
 export function registerInvoiceRoutes(app: Express) {
   app.get("/api/invoices/:orderId.pdf", async (req: Request, res: Response) => {
     try {
-      const user = await sdk.authenticateRequest(req);
-      if (!user) {
-        res.status(401).send("Authentication required");
-        return;
-      }
-
       const orderId = Number(req.params.orderId);
       if (!Number.isInteger(orderId) || orderId <= 0) {
         res.status(400).send("Invalid order id");
+        return;
+      }
+
+      if (isE2ETestMode()) {
+        const role = req.header("x-e2e-role");
+        if (!role) {
+          res.status(401).send("Authentication required");
+          return;
+        }
+        const order = getE2EOrder(orderId);
+        if (!order) {
+          res.status(404).send("Invoice not found");
+          return;
+        }
+        if (role !== "admin" && (role !== "customer" || order.userId !== E2E_CUSTOMER_ID)) {
+          res.status(403).send("Access denied");
+          return;
+        }
+        if (!isInvoiceEligible(order.status)) {
+          res.status(409).send("Invoice is not available for this quote status");
+          return;
+        }
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", `inline; filename="anabolics-africa-invoice-${order.id}.pdf"`);
+        res.setHeader("Cache-Control", "private, no-store");
+        res.status(200).send(Buffer.from("%PDF-1.4\n% Disposable E2E invoice\n%%EOF\n"));
+        return;
+      }
+
+      const user = await sdk.authenticateRequest(req);
+      if (!user) {
+        res.status(401).send("Authentication required");
         return;
       }
 

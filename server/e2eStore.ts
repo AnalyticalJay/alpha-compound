@@ -230,6 +230,28 @@ export function completeE2EPayFastSuccess(orderId: number) {
   return { success: true, orderId, status: order.status };
 }
 
+export function completeE2EPayFastFailure(orderId: number) {
+  const order = getE2EOrder(orderId);
+  if (!order || order.status !== "awaiting_payment" || order.paymentMethod !== "payfast") throw new Error("PayFast is not ready for this disposable quote");
+  order.status = "quote_approved";
+  order.paymentStatus = "failed";
+  order.updatedAt = new Date();
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_failed", paymentStatus: "failed", paymentMethod: "payfast", createdAt: order.updatedAt, note: "Disposable E2E PayFast failure callback received." });
+  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `PayFast payment not completed for Quote #${orderId}`, body: "Your payment was not confirmed. You can try PayFast again or select EFT." });
+  return { success: true, orderId, status: order.status };
+}
+
+export function confirmE2EEftPayment(orderId: number) {
+  const order = getE2EOrder(orderId);
+  if (!order || order.status !== "awaiting_payment" || order.paymentMethod !== "eft") throw new Error("EFT is not awaiting confirmation");
+  order.status = "paid";
+  order.paymentStatus = "paid";
+  order.updatedAt = new Date();
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "eft_confirmed", paymentStatus: "paid", paymentMethod: "eft", createdAt: order.updatedAt, note: "Disposable E2E EFT payment confirmed by administrator." });
+  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `Payment received for Quote #${orderId}`, body: "Your EFT payment was confirmed and your order is now being prepared." });
+  return { success: true, orderId, status: order.status };
+}
+
 export function updateE2EShipping(orderId: number, input: { courierName?: string; trackingNumber?: string; trackingUrl?: string; shippingStatus: string; shippingNotes?: string }) {
   const order = getE2EOrder(orderId);
   if (!order) throw new Error("Order not found");

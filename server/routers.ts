@@ -63,6 +63,7 @@ import { buildAdminAnalytics } from "../shared/adminAnalytics";
 import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
 import {
   chooseE2EPayment,
+  confirmE2EEftPayment,
   clearE2ECart,
   completeE2EPayFastSuccess,
   createE2EQuote,
@@ -558,7 +559,8 @@ export const appRouter = router({
           if (!quote || quote.userId !== ctx.user.id || quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast") {
             throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
           }
-          return { action: `${input.origin}/api/e2e/payfast-success/${input.orderId}`, fields: {} };
+          const outcome = ctx.req.header("x-e2e-payfast-outcome") === "failure" ? "failure" : "success";
+          return { action: `${input.origin}/api/e2e/payfast-${outcome}/${input.orderId}`, fields: {} };
         }
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
@@ -663,6 +665,7 @@ export const appRouter = router({
     confirmEft: adminProcedure
       .input(z.object({ orderId: z.number() }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return confirmE2EEftPayment(input.orderId);
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         await confirmEftPayment(input.orderId);

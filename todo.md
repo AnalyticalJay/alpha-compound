@@ -333,3 +333,11 @@
 - [x] Add CI workflow with failed Playwright screenshot, trace, and HTML report artifact retention
 - [x] Run all browser and regression suites and document the expanded coverage
 - [x] Save a checkpoint for expanded E2E and CI testing
+
+## Phase 44: Payment Failure, Invoice Authorization, and Visual Baselines
+- [x] Audit disposable payment states, invoice authorization route, and existing visual test configuration
+- [x] Extend disposable E2E state for failed PayFast and admin-confirmed EFT payment flows
+- [x] Add Playwright failed-PayFast messaging, EFT confirmation, and invoice authorization coverage
+- [x] Add stable visual screenshot baselines for key public and administrator pages
+- [x] Run all browser, visual, regression, and TypeScript validation suites
+- [x] Save a checkpoint for expanded payment and visual testing

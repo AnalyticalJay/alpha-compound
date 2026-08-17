@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import {
+  completeE2EPayFastFailure,
   completeE2EPayFastSuccess,
   isE2ETestMode,
   resetE2EStore,
@@ -18,6 +19,17 @@ export function registerE2EWriteFlowRoutes(app: Express) {
     try {
       const orderId = Number(req.params.orderId);
       completeE2EPayFastSuccess(orderId);
+      return res.redirect(303, `/orders/${orderId}`);
+    } catch (error) {
+      return res.status(400).json({ error: error instanceof Error ? error.message : "Invalid E2E payment callback" });
+    }
+  });
+
+  app.post("/api/e2e/payfast-failure/:orderId", (req, res) => {
+    if (!isE2ETestMode()) return res.status(404).end();
+    try {
+      const orderId = Number(req.params.orderId);
+      completeE2EPayFastFailure(orderId);
       return res.redirect(303, `/orders/${orderId}`);
     } catch (error) {
       return res.status(400).json({ error: error instanceof Error ? error.message : "Invalid E2E payment callback" });

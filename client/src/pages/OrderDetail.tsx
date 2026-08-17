@@ -185,6 +185,7 @@ export default function OrderDetail() {
 
               {order.status === "quote_pending" && <div className="mt-5 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-200"><Lock className="inline h-4 w-4 mr-2" />Payment will become available after an admin reviews and approves this quote.</div>}
               {order.status === "quote_rejected" && <div className="mt-5 rounded-lg border border-red-500/20 bg-red-500/5 p-4 text-sm text-red-200">This quote was not approved. {order.rejectionReason || "Please contact the store if you need clarification."}</div>}
+              {order.paymentStatus === "failed" && <div className="mt-5 rounded-lg border border-red-500/30 bg-red-500/5 p-4 text-sm text-red-100" role="alert"><CreditCard className="mr-2 inline h-4 w-4 text-red-300" /><strong>PayFast payment was not completed.</strong> No payment was confirmed for this quote. You can try PayFast again or choose EFT.</div>}
               {isApprovedForPayment && <>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   <Button className="min-h-11 text-white font-bold" onClick={handlePayFastPayment} disabled={paymentPending} aria-busy={isPayFastRedirecting}>

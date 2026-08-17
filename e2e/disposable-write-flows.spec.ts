@@ -82,6 +82,77 @@ test.describe("disposable quote and EFT proof write flows", () => {
     await expect(page.getByText("paid", { exact: true }).first()).toBeVisible();
   });
 
+  test("customer sees clear failure messaging after a disposable failed PayFast callback", async ({ page }) => {
+    await page.setExtraHTTPHeaders(customerHeaders);
+    await page.goto("/products/e2e-test-compound");
+    await page.getByRole("button", { name: "Add to Quote" }).click();
+    await expect(page.getByText("added to quote cart")).toBeVisible();
+    await page.goto("/cart");
+    await page.getByRole("button", { name: "Submit Quote Request" }).click();
+    await page.locator('input[name="fullName"]').fill("E2E Customer");
+    await page.locator('input[name="phone"]').fill("0123456789");
+    await page.locator('input[name="city"]').fill("Port Elizabeth");
+    await page.locator('input[name="addressLine1"]').fill("42 Test Street");
+    await page.locator('input[name="postalCode"]').fill("6001");
+    await page.getByRole("button", { name: "Submit Quote Request" }).click();
+    await page.waitForURL(/\/orders\/42001$/);
+
+    await page.setExtraHTTPHeaders(adminHeaders);
+    await page.goto("/admin/orders/42001");
+    await page.getByRole("combobox").first().click();
+    await page.getByRole("option", { name: "quote_approved", exact: true }).click();
+    await page.getByRole("button", { name: "Update Status" }).click();
+    await expect(page.getByText("Order status updated")).toBeVisible();
+
+    await page.setExtraHTTPHeaders({ ...customerHeaders, "x-e2e-payfast-outcome": "failure" });
+    await page.goto("/orders/42001");
+    await page.getByRole("button", { name: "Pay via PayFast" }).click();
+    await page.waitForURL(/\/orders\/42001$/);
+    await expect(page.getByRole("alert")).toContainText("PayFast payment was not completed.");
+    await expect(page.getByRole("alert")).toContainText("try PayFast again or choose EFT");
+  });
+
+  test("administrator confirms disposable EFT and only authorized roles can download its invoice", async ({ page }) => {
+    await page.setExtraHTTPHeaders(customerHeaders);
+    await page.goto("/products/e2e-test-compound");
+    await page.getByRole("button", { name: "Add to Quote" }).click();
+    await expect(page.getByText("added to quote cart")).toBeVisible();
+    await page.goto("/cart");
+    await page.getByRole("button", { name: "Submit Quote Request" }).click();
+    await page.locator('input[name="fullName"]').fill("E2E Customer");
+    await page.locator('input[name="phone"]').fill("0123456789");
+    await page.locator('input[name="city"]').fill("Port Elizabeth");
+    await page.locator('input[name="addressLine1"]').fill("42 Test Street");
+    await page.locator('input[name="postalCode"]').fill("6001");
+    await page.getByRole("button", { name: "Submit Quote Request" }).click();
+    await page.waitForURL(/\/orders\/42001$/);
+
+    await page.setExtraHTTPHeaders(adminHeaders);
+    await page.goto("/admin/orders/42001");
+    await page.getByRole("combobox").first().click();
+    await page.getByRole("option", { name: "quote_approved", exact: true }).click();
+    await page.getByRole("button", { name: "Update Status" }).click();
+    await expect(page.getByText("Order status updated")).toBeVisible();
+
+    await page.setExtraHTTPHeaders(customerHeaders);
+    await page.goto("/orders/42001");
+    await page.getByRole("button", { name: "Pay via EFT" }).click();
+    await expect(page.getByText("EFT payment selected")).toBeVisible();
+
+    await page.setExtraHTTPHeaders(adminHeaders);
+    await page.goto("/admin/orders/42001");
+    await page.getByRole("button", { name: "Confirm EFT Payment" }).click();
+    await expect(page.getByText(/EFT payment confirmed/i)).toBeVisible();
+
+    const anonymousInvoice = await page.request.get("/api/invoices/42001.pdf");
+    expect(anonymousInvoice.status()).toBe(401);
+    const customerInvoice = await page.request.get("/api/invoices/42001.pdf", { headers: customerHeaders });
+    expect(customerInvoice.status()).toBe(200);
+    expect(customerInvoice.headers()["content-type"]).toContain("application/pdf");
+    const adminInvoice = await page.request.get("/api/invoices/42001.pdf", { headers: adminHeaders });
+    expect(adminInvoice.status()).toBe(200);
+  });
+
   test("administrator updates disposable shipping and the customer receives a notification", async ({ page }) => {
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/products/e2e-test-compound");
