@@ -365,3 +365,10 @@
 - [x] Preserve duplicates or ambiguous rows in a review report instead of guessing
 - [x] Add import normalization regression coverage and validate the imported catalogue records
 - [x] Verify BP Pharma products in the administrator catalogue and save a checkpoint
+
+## Phase 48: BP Pharma Product Image Import
+- [x] Map supplied Body Pharm image filenames to verified BP Pharma product records
+- [x] Upload and assign verified images as primary images without changing product prices or stock
+- [x] Preserve unmatched or ambiguous image mappings in a review report instead of guessing
+- [x] Add image-assignment regression coverage and validate product-image records
+- [x] Verify image-backed BP Pharma catalogue display and save a checkpoint

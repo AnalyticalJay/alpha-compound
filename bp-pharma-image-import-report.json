@@ -1,0 +1,61 @@
+{
+  "mode": "dry-run",
+  "uploaded": [],
+  "skipped": [
+    {
+      "fileName": "AOD960410BP.jpeg",
+      "productSlug": "bp-aod9604-10mg",
+      "productName": "BP AOD9604 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "EPITHALON20BP.jpeg",
+      "productSlug": "bp-epithalon-20mg",
+      "productName": "BP Epithalon 20mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "TB500BPPHARMA.jpeg",
+      "productSlug": "bp-tb500-10mg",
+      "productName": "BP TB500 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "BPC15710BP.jpeg",
+      "productSlug": "bp-bpc-157-10mg",
+      "productName": "BP BPC 157 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "PT14110BP.jpeg",
+      "productSlug": "bp-pt141-10mg",
+      "productName": "BP PT141 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "MOTS-C10BP.jpeg",
+      "productSlug": "bp-mots-c-10mg",
+      "productName": "BP MOTS-C 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "SELANKBP.jpeg",
+      "productSlug": "bp-selank-10mg",
+      "productName": "BP Selank 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "TESAMORELIN10BP.jpeg",
+      "productSlug": "bp-tesamorelin-10mg",
+      "productName": "BP Tesamorelin 10mg",
+      "reason": "existing_image"
+    },
+    {
+      "fileName": "SEMAX10BPPHARMA.jpeg",
+      "productSlug": "bp-semax-10mg",
+      "productName": "BP Semax 10mg",
+      "reason": "existing_image"
+    }
+  ],
+  "missing": []
+}
