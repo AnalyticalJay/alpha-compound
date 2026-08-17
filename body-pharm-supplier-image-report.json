@@ -1,0 +1,245 @@
+{
+  "mode": "dry-run",
+  "imported": [],
+  "skipped": [
+    {
+      "supplierTitle": "Anapolon 25",
+      "productSlug": "bp-anapolin-25mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Anavar 20",
+      "productSlug": "bp-anavar-20mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Anavar 5",
+      "productSlug": "bp-anavar-5mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Aqua TNE 100",
+      "productSlug": "bp-aq-test-100mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Aqua Winstrol 50",
+      "productSlug": "bp-aq-winstrol-50mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Bold C200",
+      "productSlug": "bp-bold-c-200mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "BPC157 & TB500 32 (Pen)",
+      "productSlug": "bp-bpc157-tb500-32mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Deca 300",
+      "productSlug": "bp-deca-300mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "DHEA 25",
+      "productSlug": "bp-dhea-25mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Dianabol 10",
+      "productSlug": "bp-dianabol-10mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Equi 250",
+      "productSlug": "bp-equi-250mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "GHK-CU 50 (Pen)",
+      "productSlug": "bp-ghk-cu-50mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Halotest 10",
+      "productSlug": "bp-halotest-10mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Mast E200",
+      "productSlug": "bp-mast-e-200mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Mast P125",
+      "productSlug": "bp-mast-p-125mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "MTren 250",
+      "productSlug": "bp-mtren-250mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Nebido 250",
+      "productSlug": "bp-nebido-250mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "NPP 125",
+      "productSlug": "bp-npp-125mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Primo 25",
+      "productSlug": "bp-primo-25mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Primo E100",
+      "productSlug": "bp-primo-e-100mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Primo E200",
+      "productSlug": "bp-primo-e-200mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Retatrutide 32 (Pen)",
+      "productSlug": "bp-retatrutide-32mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Retatrutide 64 (Pen)",
+      "productSlug": "bp-retatrutide-64mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Somatropin 100 (Pen)",
+      "productSlug": "bp-somatropin-100iu-hgh",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Somatropin 40 (Pen)",
+      "productSlug": "bp-somatropin-40iu-hgh",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Superdrol 10",
+      "productSlug": "bp-superdrol-10mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Sustanon 350",
+      "productSlug": "bp-sustanon-350mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test A100",
+      "productSlug": "bp-test-a-100mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test Blend 500",
+      "productSlug": "bp-test-blend-500mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test C250",
+      "productSlug": "bp-test-c-250mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test E300",
+      "productSlug": "bp-test-e-300mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test E500",
+      "productSlug": "bp-test-e-500mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Test P125",
+      "productSlug": "bp-test-p-125mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Tirzepatide 30 (Pen)",
+      "productSlug": "bp-tirzepatide-30mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Tirzepatide 60 (Pen)",
+      "productSlug": "bp-tirzepatide-60mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Tren A100",
+      "productSlug": "bp-tren-a-100mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Tren E200",
+      "productSlug": "bp-tren-e-200mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Turinabol 10",
+      "productSlug": "bp-turinabol-10mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "UltraCut 300",
+      "productSlug": "bp-ultracut-300mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Ultrafem 12.5",
+      "productSlug": "bp-ultrafem-12-5mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "UltraGain 450",
+      "productSlug": "bp-ultragain-450mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "UltraGrow 500",
+      "productSlug": "bp-ultragrow-500mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "UltraMass 650",
+      "productSlug": "bp-ultramass-650mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "UltraTMT 500",
+      "productSlug": "bp-ultratmt-500mg",
+      "reason": "supplier_image_already_imported"
+    },
+    {
+      "supplierTitle": "Winstrol 10",
+      "productSlug": "bp-winstrol-10mg",
+      "reason": "supplier_image_already_imported"
+    }
+  ],
+  "ambiguous": [],
+  "unmatched": [
+    {
+      "supplierTitle": "CB 250",
+      "supplierSlug": "cb-250",
+      "candidates": []
+    },
+    {
+      "supplierTitle": "Methyltest 10",
+      "supplierSlug": "methyltest-10",
+      "candidates": []
+    }
+  ],
+  "unavailable": []
+}

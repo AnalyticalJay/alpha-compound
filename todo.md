@@ -372,3 +372,12 @@
 - [x] Preserve unmatched or ambiguous image mappings in a review report instead of guessing
 - [x] Add image-assignment regression coverage and validate product-image records
 - [x] Verify image-backed BP Pharma catalogue display and save a checkpoint
+
+## Phase 49: Body Pharm Supplier Image Extraction
+- [x] Inspect the supplied Body Pharm catalogue and its product-image source structure
+- [x] Build verified mappings from supplier products to existing BP Pharma catalogue products
+- [x] Download, securely upload, and assign verified supplier images without changing prices or stock
+- [x] Make the supplier importer resilient to transient source-image timeouts and resumable after partial uploads
+- [x] Preserve ambiguous, unavailable, or mismatched supplier products in a review report
+- [x] Add mapping regression coverage and validate all imported image assignments
+- [x] Verify storefront display and save a checkpoint for the supplier image import
