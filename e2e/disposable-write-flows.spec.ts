@@ -156,7 +156,7 @@ test.describe("disposable quote and EFT proof write flows", () => {
     await page.setExtraHTTPHeaders(adminHeaders);
     await page.goto("/admin/orders/42001");
     await page.getByRole("button", { name: "Confirm EFT Payment" }).click();
-    await expect(page.getByText(/EFT payment confirmed/i)).toBeVisible();
+    await expect(page.getByText("EFT payment confirmed", { exact: true })).toBeVisible();
 
     const anonymousInvoice = await page.request.get("/api/invoices/42001.pdf");
     expect(anonymousInvoice.status()).toBe(401);

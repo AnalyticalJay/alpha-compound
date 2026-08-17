@@ -16,6 +16,7 @@ The Playwright suite starts an isolated local server on port **3100** with `E2E_
 | PayFast signature rejection | Isolated customer | Submits an invalid disposable callback signature and verifies the awaiting-payment, pending state remains unchanged. |
 | EFT confirmation and invoice authorization | Isolated customer/admin | Administrator confirms disposable EFT; anonymous invoice access is denied while customer and administrator PDF requests succeed. |
 | Shipping notification | Isolated customer/admin | Updates courier and tracking status as an administrator, then verifies the customer notification record. |
-| Visual baselines | Public/isolated customer/administrator | Screenshots compare stable public home, public catalogue, customer quote-detail, administrator category-control, and administrator payments views against committed baselines. |
+| Visual baselines | Public/isolated customer/administrator | Desktop screenshots compare stable public home, public catalogue, customer quote-detail, administrator category-control, and administrator payments views against committed baselines. |
+| 390px mobile visual baselines | Isolated customer | Full-page 390px screenshots compare the checkout journey and approved customer quote-detail layouts against committed baselines. |
 
 Run the suite with `pnpm test:e2e`. Use `pnpm test:e2e:ui` for local interactive debugging. The GitHub Actions browser workflow runs the regression and browser suites on pushes and pull requests, retaining failed screenshots, traces, and the HTML report for 14 days.

@@ -349,3 +349,10 @@
 - [x] Add visual baselines for customer quote detail and administrator payments dashboard
 - [x] Run all browser, visual, regression, and TypeScript validation suites
 - [x] Save a checkpoint for the expanded visual and PayFast security coverage
+
+## Phase 46: Mobile Checkout and Quote Visual Baselines
+- [x] Audit the mobile visual test configuration and isolated checkout/quote routes
+- [x] Add deterministic 390px checkout and customer quote-detail screenshot scenarios
+- [x] Generate mobile baselines and validate responsive layout stability
+- [x] Run browser, regression, and TypeScript validation suites
+- [x] Save a checkpoint for the mobile visual baseline coverage
