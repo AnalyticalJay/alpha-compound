@@ -106,6 +106,10 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await expect(page.getByRole("alert")).toContainText("Payment was not completed");
     await expect(page.getByRole("alert")).toContainText("Your approved quote is still active and no amount has been recorded.");
     await expect(page.getByRole("button", { name: "Retry Payment with PayFast" })).toBeVisible();
+    await page.getByRole("button", { name: "Retry Payment with PayFast" }).click();
+    await expect(page.getByRole("dialog")).toContainText("Choose how you would like to retry payment");
+    await expect(page.getByRole("button", { name: "Continue with PayFast checkout" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Continue with PayFast Instant EFT" })).toBeVisible();
   });
 
   test("an invalid disposable PayFast signature is rejected without changing payment state", async ({ page, request }) => {

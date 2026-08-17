@@ -399,3 +399,9 @@
 - [x] Improve failed-payment error messaging and add a prominent retry-payment action
 - [x] Refine the PayFast button loading and secure-handoff feedback state
 - [x] Add regression coverage, validate responsive states, and save a checkpoint
+
+## Phase 53: Retry Payment Method Confirmation
+- [x] Inspect current retry payment action and reusable dialog components
+- [x] Add an accessible confirmation modal with PayFast checkout and Instant EFT choices
+- [x] Require a confirmed method before starting a retry redirect
+- [x] Add regression coverage, validate desktop and mobile behavior, and save a checkpoint

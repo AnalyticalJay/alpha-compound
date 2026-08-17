@@ -38,6 +38,15 @@ describe("PayFast payment UI", () => {
     expect(orderDetailSource).toContain("Retry Payment with PayFast");
   });
 
+  it("requires a retry customer to confirm a PayFast payment method before redirecting", () => {
+    expect(orderDetailSource).toContain("isRetryDialogOpen");
+    expect(orderDetailSource).toContain("Retry secure payment");
+    expect(orderDetailSource).toContain("Choose how you would like to retry payment");
+    expect(orderDetailSource).toContain("Continue with PayFast");
+    expect(orderDetailSource).toContain("Continue with Instant EFT");
+    expect(orderDetailSource).toContain("confirmRetryPayment");
+  });
+
   it("adds explicit visual progress feedback while a secure PayFast handoff is being prepared", () => {
     expect(orderDetailSource).toContain("Preparing secure payment…");
     expect(orderDetailSource).toContain("Preparing secure payment handoff");

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowLeft, Banknote, CheckCircle2, CreditCard, Eye, FileText, LoaderCircle, Lock, MapPin, Package, Send, ShieldCheck, Truck, UploadCloud, XCircle } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { format } from "date-fns";
@@ -48,6 +49,7 @@ export default function OrderDetail() {
   const proofInputRef = useRef<HTMLInputElement>(null);
   const [isPayFastRedirecting, setIsPayFastRedirecting] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<"eft" | "payfast" | null>(null);
+  const [isRetryDialogOpen, setIsRetryDialogOpen] = useState(false);
 
   const orderQuery = trpc.orders.detail.useQuery(
     { orderId: parsedOrderId },
@@ -100,6 +102,16 @@ export default function OrderDetail() {
     setSelectedPaymentMethod("eft");
     setIsPayFastRedirecting(true);
     choosePayment.mutate({ orderId: parsedOrderId, method: "eft" });
+  }
+
+  function confirmRetryPayment(method: "eft" | "payfast") {
+    if (paymentPending) return;
+    setIsRetryDialogOpen(false);
+    if (method === "eft") {
+      handleEftPayment();
+      return;
+    }
+    handlePayFastPayment();
   }
 
   async function handleEftProofChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -185,7 +197,7 @@ export default function OrderDetail() {
 
               {order.status === "quote_pending" && <div className="mt-5 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-sm text-yellow-200"><Lock className="inline h-4 w-4 mr-2" />Payment will become available after an admin reviews and approves this quote.</div>}
               {order.status === "quote_rejected" && <div className="mt-5 rounded-lg border border-red-500/20 bg-red-500/5 p-4 text-sm text-red-200">This quote was not approved. {order.rejectionReason || "Please contact the store if you need clarification."}</div>}
-              {order.paymentStatus === "failed" && <div className="mt-5 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-100 shadow-[0_0_20px_rgba(239,68,68,0.08)]" role="alert"><div className="flex items-start gap-3"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-500/15 text-red-300"><XCircle className="h-5 w-5" /></span><div><p className="font-black text-red-100">Payment was not completed</p><p className="mt-1 leading-relaxed text-red-200/90">PayFast did not confirm a payment for this quote. Your approved quote is still active and no amount has been recorded.</p></div></div>{isApprovedForPayment && <Button type="button" className="mt-4 min-h-11 w-full bg-red-600 font-black text-white hover:bg-red-500 sm:w-auto" onClick={handlePayFastPayment} disabled={paymentPending} aria-label="Retry Payment with PayFast"><CreditCard className="mr-2 h-4 w-4" />{isPayFastRedirecting && selectedPaymentMethod === "payfast" ? "Preparing payment…" : "Retry Payment"}</Button>}</div>}
+              {order.paymentStatus === "failed" && <div className="mt-5 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-100 shadow-[0_0_20px_rgba(239,68,68,0.08)]" role="alert"><div className="flex items-start gap-3"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-500/15 text-red-300"><XCircle className="h-5 w-5" /></span><div><p className="font-black text-red-100">Payment was not completed</p><p className="mt-1 leading-relaxed text-red-200/90">PayFast did not confirm a payment for this quote. Your approved quote is still active and no amount has been recorded.</p></div></div>{isApprovedForPayment && <Button type="button" className="mt-4 min-h-11 w-full bg-red-600 font-black text-white hover:bg-red-500 sm:w-auto" onClick={() => setIsRetryDialogOpen(true)} disabled={paymentPending} aria-label="Retry Payment with PayFast"><CreditCard className="mr-2 h-4 w-4" />Retry Payment</Button>}</div>}
               {isApprovedForPayment && <>
                 <div className="mt-5 rounded-xl border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4">
                   <p className="text-sm font-black text-white">Choose a secure payment option</p>
@@ -206,6 +218,19 @@ export default function OrderDetail() {
                 </div>
               </>}
               {isEftAwaiting && <div className="mt-5 rounded-lg border border-[#0EA5E9]/30 bg-[#0EA5E9]/5 p-4 text-sm"><div className="flex items-center gap-2 font-bold text-[#38BDF8] mb-2"><CheckCircle2 className="h-4 w-4" />Manual EFT transfer in progress</div><p className="text-muted-foreground">This legacy EFT transfer needs proof of payment before administrator verification. New EFT selections use PayFast Instant EFT automatically.</p>{order.quoteNotes && <p className="mt-3 whitespace-pre-wrap text-foreground">{order.quoteNotes}</p>}<div className="mt-4 rounded-lg border border-border/40 bg-background/30 p-3"><div className="flex flex-wrap items-center justify-between gap-3"><div className="min-w-0"><p className="font-semibold text-foreground">Proof of payment</p><p className="text-xs text-muted-foreground">PDF, JPG, or PNG up to 8 MB.</p></div>{order.eftProofName ? <Badge className="border-emerald-400/30 bg-emerald-400/10 text-emerald-300"><CheckCircle2 className="mr-1 h-3 w-3" />Submitted for review</Badge> : <><input ref={proofInputRef} type="file" accept="application/pdf,image/jpeg,image/png" className="hidden" onChange={handleEftProofChange} /><Button type="button" variant="outline" className="min-h-10 border-[#0EA5E9]/40 font-bold" onClick={() => proofInputRef.current?.click()} disabled={uploadEftProof.isPending}><UploadCloud className="mr-2 h-4 w-4" />{uploadEftProof.isPending ? "Uploading…" : "Upload proof"}</Button></>}</div>{order.eftProofName && <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><FileText className="h-4 w-4 text-primary" /><span className="truncate">{order.eftProofName}</span><span className="text-emerald-300">Awaiting verification</span></div>}</div></div>}
+              <Dialog open={isRetryDialogOpen} onOpenChange={(open) => { if (!paymentPending) setIsRetryDialogOpen(open); }}>
+                <DialogContent className="border-[#0EA5E9]/30 bg-[#07111f] text-white sm:max-w-md" showCloseButton={!paymentPending}>
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2 text-white"><CreditCard className="h-5 w-5 text-[#38BDF8]" />Retry secure payment</DialogTitle>
+                    <DialogDescription className="leading-relaxed text-slate-300">Choose how you would like to retry payment for Quote #{order.id}. You will then be transferred securely to PayFast.</DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-3">
+                    <Button type="button" className="min-h-14 justify-start bg-[#0EA5E9] px-4 text-left font-black text-white hover:bg-[#0284C7]" onClick={() => confirmRetryPayment("payfast")} disabled={paymentPending} aria-label="Continue with PayFast checkout"><CreditCard className="mr-3 h-5 w-5 shrink-0" /><span><span className="block">Continue with PayFast</span><span className="mt-0.5 block text-[11px] font-medium text-white/80">Choose an available PayFast payment method</span></span></Button>
+                    <Button type="button" variant="outline" className="min-h-14 justify-start border-[#0EA5E9]/40 px-4 text-left font-black text-[#BAE6FD] hover:bg-[#0EA5E9]/10" onClick={() => confirmRetryPayment("eft")} disabled={paymentPending} aria-label="Continue with PayFast Instant EFT"><Banknote className="mr-3 h-5 w-5 shrink-0" /><span><span className="block">Continue with Instant EFT</span><span className="mt-0.5 block text-[11px] font-medium text-slate-400">Open PayFast’s protected Instant EFT checkout</span></span></Button>
+                  </div>
+                  <DialogFooter><Button type="button" variant="ghost" className="text-slate-300 hover:bg-white/10 hover:text-white" onClick={() => setIsRetryDialogOpen(false)} disabled={paymentPending}>Cancel</Button></DialogFooter>
+                </DialogContent>
+              </Dialog>
               {["quote_approved", "awaiting_payment", "paid", "processing", "shipped", "completed"].includes(order.status) && <a href={`/api/invoices/${order.id}.pdf`} target="_blank" rel="noreferrer" className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-lg border border-[#0EA5E9]/40 px-4 text-sm font-bold text-[#38BDF8] transition hover:bg-[#0EA5E9]/10"><FileText className="h-4 w-4" />View / download invoice</a>}
               {isPayFastRedirecting && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 px-5 backdrop-blur-sm" role="status" aria-live="polite"><div className="w-full max-w-sm rounded-2xl border border-[#0EA5E9]/30 bg-[#07111f] p-6 text-center shadow-2xl shadow-cyan-950/40"><div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10"><LoaderCircle className="h-7 w-7 animate-spin text-[#38BDF8]" /></div><p className="font-bold text-white">Connecting securely to PayFast</p><p className="mt-2 text-sm text-slate-300">{selectedPaymentMethod === "eft" ? "Preparing your PayFast Instant EFT session. Please keep this window open." : "Preparing your protected PayFast checkout session. Please keep this window open."}</p><div className="mt-4 flex items-center justify-center gap-1.5" aria-hidden="true"><span className="h-2 w-2 animate-bounce rounded-full bg-[#0EA5E9]" /><span className="h-2 w-2 animate-bounce rounded-full bg-[#38BDF8] [animation-delay:150ms]" /><span className="h-2 w-2 animate-bounce rounded-full bg-[#E11D48] [animation-delay:300ms]" /></div><p className="mt-3 text-xs font-medium text-[#7DD3FC]">Preparing secure payment handoff</p><div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-800"><div className="h-full w-2/3 animate-pulse rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#E11D48]" /></div></div></div>}
             </div>
