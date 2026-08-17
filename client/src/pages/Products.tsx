@@ -176,6 +176,15 @@ export default function Products() {
                 <span>{selectedBrand === "HD Labs" ? "Showing HD Labs Only" : "Filter HD Labs"}</span>
                 {selectedBrand === "HD Labs" && <span className="ml-1 rounded-full bg-[#0EA5E9] px-1.5 py-0.5 text-[10px] font-extrabold text-black">ACTIVE</span>}
               </button>
+              <button
+                aria-pressed={selectedBrand === "BP Pharma"}
+                onClick={() => setSelectedBrand(selectedBrand === "BP Pharma" ? "all" : "BP Pharma")}
+                className={`inline-flex min-h-11 items-center gap-2 rounded border px-3 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${selectedBrand === "BP Pharma" ? "border-[#F97316] bg-[#F97316]/20 text-white shadow-lg shadow-[#F97316]/10" : "border-[#1E293B] bg-[#111111] text-[#94A3B8] hover:border-[#F97316]/50 hover:text-white"}`}
+              >
+                <span className="flex h-5 min-w-5 items-center justify-center rounded bg-[#F97316]/15 px-1 text-[9px] font-black text-[#FDBA74]">BP</span>
+                <span>{selectedBrand === "BP Pharma" ? "Showing BP Pharma" : "Browse BP Pharma"}</span>
+                {selectedBrand === "BP Pharma" && <span className="ml-1 rounded-full bg-[#F97316] px-1.5 py-0.5 text-[10px] font-extrabold text-black">ACTIVE</span>}
+              </button>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#64748B]">

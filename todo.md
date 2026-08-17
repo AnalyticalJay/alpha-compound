@@ -405,3 +405,9 @@
 - [x] Add an accessible confirmation modal with PayFast checkout and Instant EFT choices
 - [x] Require a confirmed method before starting a retry redirect
 - [x] Add regression coverage, validate desktop and mobile behavior, and save a checkpoint
+
+## Phase 54: BP Pharma Storefront Image Visibility
+- [x] Audit BP Pharma supplier image records, URLs, and product API responses
+- [x] Identify and correct the storefront image rendering or delivery failure
+- [x] Add regression coverage for BP Pharma primary-image visibility
+- [x] Validate live catalogue and product-detail image rendering, then save a checkpoint

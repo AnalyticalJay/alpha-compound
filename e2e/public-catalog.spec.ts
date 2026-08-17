@@ -19,6 +19,15 @@ test.describe("public catalogue stability", () => {
     await expect(page.getByText("Approval required").first()).toBeVisible();
   });
 
+  test("BP Pharma shortcut reveals verified supplier image cards without a session", async ({ page }) => {
+    await page.goto("/products");
+    const bpShortcut = page.getByRole("button", { name: /Browse BP Pharma/i });
+    await expect(bpShortcut).toBeVisible();
+    await bpShortcut.click();
+    await expect(page.getByRole("button", { name: /Showing BP Pharma/i })).toBeVisible();
+    await expect(page.locator('img[alt="BP Anapolin 25mg"]')).toBeVisible();
+  });
+
   test("home category cards remain stable without horizontal overflow on a mobile viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");

@@ -8,12 +8,15 @@ describe("Products catalog dedicated HD Labs quick filter", () => {
     "utf8"
   );
 
-  it("contains the dedicated HD Labs filter button and active styling", () => {
+  it("contains direct brand shortcuts for both HD Labs and BP Pharma", () => {
     expect(productsCode).toContain("Filter HD Labs");
     expect(productsCode).toContain("Showing HD Labs Only");
     expect(productsCode).toContain("HdLabsMark");
+    expect(productsCode).toContain("Browse BP Pharma");
+    expect(productsCode).toContain("Showing BP Pharma");
     expect(productsCode).toContain("setSelectedBrand");
     expect(productsCode).toContain("selectedBrand === \"HD Labs\"");
+    expect(productsCode).toContain("selectedBrand === \"BP Pharma\"");
     expect(productsCode).toContain("Sort products");
     expect(productsCode).toContain("price-asc");
     expect(productsCode).toContain("price-desc");
