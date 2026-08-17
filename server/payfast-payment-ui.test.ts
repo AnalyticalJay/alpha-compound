@@ -14,7 +14,7 @@ describe("PayFast payment UI", () => {
 
   it("shows a loading handoff state and prevents duplicate payment submissions", () => {
     expect(orderDetailSource).toContain("isPayFastRedirecting");
-    expect(orderDetailSource).toContain("Connecting to PayFast");
+    expect(orderDetailSource).toContain("Preparing secure payment…");
     expect(orderDetailSource).toContain("Connecting securely to PayFast");
     expect(orderDetailSource).toContain("role=\"status\" aria-live=\"polite\"");
     expect(orderDetailSource).toContain("disabled={paymentPending}");
@@ -28,5 +28,19 @@ describe("PayFast payment UI", () => {
     expect(orderDetailSource).toContain("paymentStatus !== \"awaiting_eft\"");
     expect(accountSource).toContain("Pay now");
     expect(accountSource).toContain("isPaymentReadyQuote(order)");
+  });
+
+  it("highlights payment-required orders and gives failed payments an explicit recovery action", () => {
+    expect(accountSource).toContain("Payment required");
+    expect(accountSource).toContain("Payment required for this quote");
+    expect(orderDetailSource).toContain("Payment was not completed");
+    expect(orderDetailSource).toContain("Retry Payment");
+    expect(orderDetailSource).toContain("Retry Payment with PayFast");
+  });
+
+  it("adds explicit visual progress feedback while a secure PayFast handoff is being prepared", () => {
+    expect(orderDetailSource).toContain("Preparing secure payment…");
+    expect(orderDetailSource).toContain("Preparing secure payment handoff");
+    expect(orderDetailSource).toContain("animate-bounce");
   });
 });

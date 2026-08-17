@@ -13,6 +13,7 @@ import {
   ShoppingBag,
   ChevronRight,
   BellRing,
+  Banknote,
   ArrowRight,
   LogOut,
 } from "lucide-react";
@@ -269,14 +270,17 @@ export default function Account() {
                       </div>
                     ) : (
                       <div className="space-y-3">
-                        {orders.map((order) => (
-                          <div key={order.id} className="flex items-center gap-3 rounded border border-[#1E293B] bg-[#0A0A0A] p-3 transition-colors hover:border-[#0EA5E9]/30 sm:gap-4 sm:p-4">
+                        {orders.map((order) => {
+                          const paymentRequired = isPaymentReadyQuote(order);
+                          return (
+                          <div key={order.id} className={`flex items-center gap-3 rounded border bg-[#0A0A0A] p-3 transition-colors sm:gap-4 sm:p-4 ${paymentRequired ? "border-[#F97316]/60 shadow-[0_0_18px_rgba(249,115,22,0.12)] hover:border-[#F97316]" : "border-[#1E293B] hover:border-[#0EA5E9]/30"}`}>
                             <Link href={`/orders/${order.id}`} className="min-w-0 flex flex-1 items-center gap-3 no-underline sm:gap-4">
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
                                   <span className="font-bold text-sm text-white">Quote #{order.id}</span>
                                   <OrderStatusBadge status={order.status} />
                                 </div>
+                                {paymentRequired && <Badge aria-label="Payment required for this quote" className="mb-1 border-[#F97316]/40 bg-[#F97316]/15 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-[#FDBA74]"><Banknote className="mr-1 h-3 w-3" />Payment required</Badge>}
                                 <p className="text-xs text-[#64748B]">
                                   {format(new Date(order.createdAt), "d MMM yyyy")}
                                   {order.paymentMethod ? ` · ${order.paymentMethod.toUpperCase()}` : ""}
@@ -287,13 +291,14 @@ export default function Account() {
                               </div>
                               <ChevronRight className="h-4 w-4 text-[#334155]" />
                             </Link>
-                            {isPaymentReadyQuote(order) && (
+                            {paymentRequired && (
                               <Link href={`/orders/${order.id}`} className="shrink-0 rounded-lg bg-[#F97316] px-3 py-2 text-[10px] font-black uppercase tracking-wide text-white transition hover:bg-[#EA580C]">
                                 Pay now
                               </Link>
                             )}
                           </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     )}
                   </div>

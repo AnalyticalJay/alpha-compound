@@ -40,6 +40,7 @@ test.describe("disposable quote and PayFast payment write flows", () => {
 
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/account/orders");
+    await expect(page.getByText("Payment required", { exact: true })).toBeVisible();
     await page.getByRole("link", { name: "Pay now" }).click();
     await page.getByRole("button", { name: "Pay by PayFast Instant EFT" }).click();
     await expect(page.getByText("Disposable E2E PayFast Instant EFT success callback received.")).toBeVisible();
@@ -102,8 +103,9 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await page.goto("/orders/42001");
     await page.getByRole("button", { name: "Pay securely with PayFast" }).click();
     await page.waitForURL(/\/orders\/42001$/);
-    await expect(page.getByRole("alert")).toContainText("PayFast payment was not completed.");
-    await expect(page.getByRole("alert")).toContainText("Choose PayFast or PayFast Instant EFT to try again.");
+    await expect(page.getByRole("alert")).toContainText("Payment was not completed");
+    await expect(page.getByRole("alert")).toContainText("Your approved quote is still active and no amount has been recorded.");
+    await expect(page.getByRole("button", { name: "Retry Payment with PayFast" })).toBeVisible();
   });
 
   test("an invalid disposable PayFast signature is rejected without changing payment state", async ({ page, request }) => {

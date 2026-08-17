@@ -393,3 +393,9 @@
 - [x] Make the direct PayFast payment action prominent on payment-ready customer orders
 - [x] Route the customer EFT choice to the PayFast Instant EFT payment path while preserving verified EFT proof handling where needed
 - [x] Add regression coverage, validate payment routing, and save a checkpoint
+
+## Phase 52: Customer Payment Visibility and Recovery UX
+- [x] Add a clear pending-payment badge to customer dashboard order cards
+- [x] Improve failed-payment error messaging and add a prominent retry-payment action
+- [x] Refine the PayFast button loading and secure-handoff feedback state
+- [x] Add regression coverage, validate responsive states, and save a checkpoint
