@@ -112,6 +112,20 @@ test.describe("disposable quote and EFT proof write flows", () => {
     await expect(page.getByRole("alert")).toContainText("try PayFast again or choose EFT");
   });
 
+  test("an invalid disposable PayFast signature is rejected without changing payment state", async ({ page, request }) => {
+    const seeded = await request.post("/api/e2e/seed/awaiting-payfast");
+    expect(seeded.status()).toBe(201);
+
+    const rejected = await request.post("/api/e2e/payfast-invalid-signature/42001", { data: { signature: "invalid" } });
+    expect(rejected.status()).toBe(400);
+    await expect(rejected.json()).resolves.toMatchObject({ error: "Invalid PayFast signature", status: "awaiting_payment", paymentStatus: "pending" });
+
+    await page.setExtraHTTPHeaders(customerHeaders);
+    await page.goto("/orders/42001");
+    await expect(page.getByText("awaiting payment", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("pending", { exact: true }).first()).toBeVisible();
+  });
+
   test("administrator confirms disposable EFT and only authorized roles can download its invoice", async ({ page }) => {
     await page.setExtraHTTPHeaders(customerHeaders);
     await page.goto("/products/e2e-test-compound");

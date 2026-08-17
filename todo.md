@@ -341,3 +341,11 @@
 - [x] Add stable visual screenshot baselines for key public and administrator pages
 - [x] Run all browser, visual, regression, and TypeScript validation suites
 - [x] Save a checkpoint for expanded payment and visual testing
+
+## Phase 45: Quote/Payments Visual Baselines and PayFast Rejection
+- [x] Audit customer quote-detail, administrator payments, and test-only PayFast callback behavior
+- [x] Add disposable invalid-signature callback handling that leaves payment state unchanged
+- [x] Add Playwright signature-rejection coverage with payment-state non-mutation assertion
+- [x] Add visual baselines for customer quote detail and administrator payments dashboard
+- [x] Run all browser, visual, regression, and TypeScript validation suites
+- [x] Save a checkpoint for the expanded visual and PayFast security coverage

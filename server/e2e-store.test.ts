@@ -11,6 +11,7 @@ import {
   getE2ENotifications,
   getE2EOrder,
   resetE2EStore,
+  seedE2EOrder,
   uploadE2EProof,
   updateE2EShipping,
   upsertE2ECart,
@@ -29,6 +30,14 @@ describe("disposable E2E write-flow store", () => {
     expect(quote).toMatchObject({ quoteId: 42001, status: "quote_pending", deliveryFee: "0.00" });
     expect(getE2ECart(E2E_CUSTOMER_ID)).toHaveLength(0);
     expect(getE2EOrder(quote.quoteId)?.items).toHaveLength(1);
+  });
+
+  it("seeds deterministic approved and awaiting-PayFast quotes only in disposable state", () => {
+    const approved = seedE2EOrder("quote_approved");
+    expect(approved).toMatchObject({ id: 42001, status: "quote_approved", paymentStatus: "pending" });
+
+    const awaitingPayFast = seedE2EOrder("awaiting_payfast");
+    expect(awaitingPayFast).toMatchObject({ id: 42001, status: "awaiting_payment", paymentMethod: "payfast", paymentStatus: "pending" });
   });
 
   it("tracks EFT proof data only after an approved disposable quote selects EFT", () => {

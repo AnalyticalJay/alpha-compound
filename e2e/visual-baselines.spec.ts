@@ -16,4 +16,18 @@ test.describe("visual baselines", () => {
     await page.goto("/admin/categories");
     await expect(page).toHaveScreenshot("admin-categories.png", { animations: "disabled", fullPage: false, maxDiffPixelRatio: 0.01 });
   });
+
+  test("customer quote detail matches its stable visual baseline", async ({ page, request }) => {
+    const seeded = await request.post("/api/e2e/seed/quote-approved");
+    expect(seeded.status()).toBe(201);
+    await page.setExtraHTTPHeaders({ "x-e2e-role": "customer" });
+    await page.goto("/orders/42001");
+    await expect(page).toHaveScreenshot("customer-quote-detail.png", { animations: "disabled", fullPage: false, maxDiffPixelRatio: 0.01 });
+  });
+
+  test("administrator payments dashboard matches its stable visual baseline", async ({ page }) => {
+    await page.setExtraHTTPHeaders({ "x-e2e-role": "admin" });
+    await page.goto("/admin/payments");
+    await expect(page).toHaveScreenshot("admin-payments.png", { animations: "disabled", fullPage: false, maxDiffPixelRatio: 0.01 });
+  });
 });

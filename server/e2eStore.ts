@@ -84,6 +84,19 @@ export function resetE2EStore() {
   nextNotificationId = 1;
 }
 
+export function seedE2EOrder(state: "quote_approved" | "awaiting_payfast") {
+  resetE2EStore();
+  upsertE2ECart(E2E_CUSTOMER_ID, E2E_PRODUCT_ID, 1);
+  const quote = createE2EQuote(E2E_CUSTOMER_ID, {
+    shipping: { fullName: "E2E Customer", phone: "0123456789", addressLine1: "42 Test Street", city: "Port Elizabeth", postalCode: "6001", country: "South Africa" },
+  });
+  const order = getE2EOrder(quote.quoteId)!;
+  order.status = state === "quote_approved" ? "quote_approved" : "awaiting_payment";
+  order.paymentStatus = "pending";
+  if (state === "awaiting_payfast") order.paymentMethod = "payfast";
+  return order;
+}
+
 export function isE2ETestMode() {
   return process.env.E2E_TEST_MODE === "true";
 }
