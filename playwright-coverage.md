@@ -11,5 +11,7 @@ The Playwright suite starts an isolated local server on port **3100** with `E2E_
 | Administrator category controls | Isolated administrator | Category management and read-only promotion selector render. |
 | Mobile stability | Public | Main Category content renders at 390px without horizontal overflow. |
 | Quote submission and EFT proof | Isolated customer/admin | Adds a disposable product to cart, submits a quote, approves it, selects EFT, and uploads a disposable proof file. |
+| PayFast success callback | Isolated customer/admin | Approves a disposable quote, starts local PayFast handoff, receives a test-only success callback, and shows the paid state. |
+| Shipping notification | Isolated customer/admin | Updates courier and tracking status as an administrator, then verifies the customer notification record. |
 
-Run the suite with `pnpm test:e2e`. Use `pnpm test:e2e:ui` for local interactive debugging.
+Run the suite with `pnpm test:e2e`. Use `pnpm test:e2e:ui` for local interactive debugging. The GitHub Actions browser workflow runs the regression and browser suites on pushes and pull requests, retaining failed screenshots, traces, and the HTML report for 14 days.

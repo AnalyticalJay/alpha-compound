@@ -59,14 +59,29 @@ type E2EOrder = {
   comments: Array<Record<string, unknown>>;
 };
 
+type E2ENotification = {
+  id: number;
+  userId: number;
+  orderId: number | null;
+  type: "quote" | "payment" | "shipping" | "invoice" | "system";
+  title: string;
+  body: string;
+  createdAt: Date;
+  readAt: Date | null;
+};
+
 const carts = new Map<number, CartItem[]>();
 const orders = new Map<number, E2EOrder>();
+const notifications = new Map<number, E2ENotification[]>();
 let nextOrderId = 42001;
+let nextNotificationId = 1;
 
 export function resetE2EStore() {
   carts.clear();
   orders.clear();
+  notifications.clear();
   nextOrderId = 42001;
+  nextNotificationId = 1;
 }
 
 export function isE2ETestMode() {
@@ -185,4 +200,43 @@ export function uploadE2EProof(orderId: number, userId: number, fileName: string
   order.updatedAt = new Date();
   order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "eft_proof_uploaded", paymentStatus: order.paymentStatus, createdAt: order.updatedAt, note: `Disposable E2E proof uploaded: ${fileName}.` });
   return { success: true, url: order.eftProofUrl, fileName };
+}
+
+function createE2ENotification(input: Omit<E2ENotification, "id" | "createdAt" | "readAt">) {
+  const entry: E2ENotification = { ...input, id: nextNotificationId++, createdAt: new Date(), readAt: null };
+  const existing = notifications.get(input.userId) ?? [];
+  notifications.set(input.userId, [entry, ...existing]);
+  return entry;
+}
+
+export function getE2ENotifications(userId: number) {
+  return notifications.get(userId) ?? [];
+}
+
+export function markE2ENotificationRead(userId: number, notificationId: number) {
+  const entry = getE2ENotifications(userId).find((notification) => notification.id === notificationId);
+  if (!entry) throw new Error("Notification not found");
+  entry.readAt = new Date();
+}
+
+export function completeE2EPayFastSuccess(orderId: number) {
+  const order = getE2EOrder(orderId);
+  if (!order || order.status !== "awaiting_payment" || order.paymentMethod !== "payfast") throw new Error("PayFast is not ready for this disposable quote");
+  order.status = "paid";
+  order.paymentStatus = "paid";
+  order.updatedAt = new Date();
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "payfast_paid", paymentStatus: "paid", paymentMethod: "payfast", createdAt: order.updatedAt, note: "Disposable E2E PayFast success callback received." });
+  createE2ENotification({ userId: order.userId, orderId, type: "payment", title: `Payment received for Quote #${orderId}`, body: "Your PayFast payment was confirmed and your order is now being prepared." });
+  return { success: true, orderId, status: order.status };
+}
+
+export function updateE2EShipping(orderId: number, input: { courierName?: string; trackingNumber?: string; trackingUrl?: string; shippingStatus: string; shippingNotes?: string }) {
+  const order = getE2EOrder(orderId);
+  if (!order) throw new Error("Order not found");
+  order.shipping = { ...order.shipping, ...input };
+  if (["dispatched", "in_transit", "delivered"].includes(input.shippingStatus)) order.status = input.shippingStatus === "delivered" ? "completed" : "shipped";
+  order.updatedAt = new Date();
+  order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "shipping_updated", paymentStatus: order.paymentStatus, createdAt: order.updatedAt, note: `Disposable E2E shipping updated: ${input.shippingStatus}.` });
+  createE2ENotification({ userId: order.userId, orderId, type: "shipping", title: `Shipping updated for Quote #${orderId}`, body: `Your delivery is now marked ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` with tracking number ${input.trackingNumber}.` : "."}` });
+  return { success: true };
 }

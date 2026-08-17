@@ -8,6 +8,7 @@ import { registerStorageProxy } from "./storageProxy";
 import { registerPayFastRoutes } from "../payfastRoute";
 import { registerInvoiceRoutes } from "../invoiceRoute";
 import { registerReportRoutes } from "../reportRoute";
+import { registerE2EWriteFlowRoutes } from "../e2eRoute";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
@@ -41,6 +42,7 @@ async function startServer() {
   registerPayFastRoutes(app);
   registerInvoiceRoutes(app);
   registerReportRoutes(app);
+  registerE2EWriteFlowRoutes(app);
   registerOAuthRoutes(app);
   // tRPC API
   app.use(

@@ -325,3 +325,11 @@
 - [x] Add Playwright EFT proof upload flow using disposable test records
 - [x] Verify cleanup and run E2E, regression, and TypeScript suites
 - [x] Save a checkpoint for the isolated write-flow test setup
+
+## Phase 43: Expanded Disposable E2E and CI Coverage
+- [x] Audit the test-only PayFast callback path, admin shipping/notification controls, and CI setup
+- [x] Extend disposable E2E state for successful PayFast, shipping, and notification write flows
+- [x] Add Playwright coverage for PayFast success callback, admin shipping update, and notification write flows
+- [x] Add CI workflow with failed Playwright screenshot, trace, and HTML report artifact retention
+- [x] Run all browser and regression suites and document the expanded coverage
+- [x] Save a checkpoint for expanded E2E and CI testing

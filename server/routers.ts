@@ -64,14 +64,18 @@ import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
 import {
   chooseE2EPayment,
   clearE2ECart,
+  completeE2EPayFastSuccess,
   createE2EQuote,
   getAllE2EOrders,
   getE2ECart,
+  getE2ENotifications,
   getE2EOrder,
   getE2EOrdersForUser,
   getE2EProductBySlug,
   isE2ETestMode,
+  markE2ENotificationRead,
   updateE2EOrderStatus,
+  updateE2EShipping,
   uploadE2EProof,
   upsertE2ECart,
 } from "./e2eStore";
@@ -549,6 +553,13 @@ export const appRouter = router({
     payfastForm: approvedProcedure
       .input(z.object({ orderId: z.number(), origin: z.string().url() }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) {
+          const quote = getE2EOrder(input.orderId);
+          if (!quote || quote.userId !== ctx.user.id || quote.status !== "awaiting_payment" || quote.paymentMethod !== "payfast") {
+            throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
+          }
+          return { action: `${input.origin}/api/e2e/payfast-success/${input.orderId}`, fields: {} };
+        }
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
@@ -670,6 +681,10 @@ export const appRouter = router({
         signature: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
+        if (isE2ETestMode()) {
+          const orderId = Number(input.m_payment_id.replace(/^E2E-/, ""));
+          return completeE2EPayFastSuccess(orderId);
+        }
         return handlePayFastItn(input);
       }),
 
@@ -698,6 +713,7 @@ export const appRouter = router({
         shippingNotes: z.string().max(2000).optional(),
       }))
       .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return updateE2EShipping(input.orderId, input);
         await updateShippingDetails(input);
         const quote = await getOrderById(input.orderId);
         if (quote) await createNotification({ userId: quote.userId, orderId: input.orderId, type: "shipping", title: `Shipping updated for Quote #${input.orderId}`, body: `Your delivery is now marked ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` with tracking number ${input.trackingNumber}.` : "."}` });
@@ -714,10 +730,10 @@ export const appRouter = router({
   }),
 
   notifications: router({
-    list: protectedProcedure.query(({ ctx }) => getNotificationsForUser(ctx.user.id)),
+    list: protectedProcedure.query(({ ctx }) => isE2ETestMode() ? getE2ENotifications(ctx.user.id) : getNotificationsForUser(ctx.user.id)),
     markRead: protectedProcedure
       .input(z.object({ notificationId: z.number() }))
-      .mutation(({ ctx, input }) => markNotificationRead(ctx.user.id, input.notificationId)),
+      .mutation(({ ctx, input }) => isE2ETestMode() ? markE2ENotificationRead(ctx.user.id, input.notificationId) : markNotificationRead(ctx.user.id, input.notificationId)),
   }),
 
   // ─── Admin: Users ─────────────────────────────────────────────────────────

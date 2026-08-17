@@ -10,8 +10,8 @@
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
+    "test:e2e": "node ./node_modules/@playwright/test/cli.js test",
+    "test:e2e:ui": "node ./node_modules/@playwright/test/cli.js test --ui",
     "db:push": "drizzle-kit generate && drizzle-kit migrate"
   },
   "dependencies": {
