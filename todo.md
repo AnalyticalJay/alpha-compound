@@ -425,3 +425,8 @@
 - [x] Rewrite each sourced description into original short product copy (not copied verbatim)
 - [x] Update the database with the rewritten descriptions
 - [x] Validate storefront display and save a checkpoint
+
+## Phase 57: Remove Stray Quotation Marks from Product Names
+- [x] Strip leading/trailing " from all product names in the database
+- [x] Verify storefront renders clean product titles
+- [x] Save a checkpoint
