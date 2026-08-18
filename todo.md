@@ -443,3 +443,17 @@
 - [x] Remove the confirmed header records and any dependent empty data safely
 - [x] Verify database integrity and cleaned frontend catalogue display
 - [x] Save a checkpoint
+
+## Phase 60: Second-Pass Image Sourcing for Remaining Catalogue Gaps
+- [x] Re-inventory and classify all products that still lack a primary image
+- [x] Research manufacturer and reputable supplier image sources for exact product matches
+- [x] Import only verified high-quality images without replacing existing primary images
+- [x] Preserve all unavailable or variant-ambiguous products in an updated source audit
+- [x] Validate assignments and storefront rendering, then save a checkpoint
+
+## Phase 60: Second-Pass Image Sourcing for Remaining Catalogue Gaps (Duplicate Planning Entry)
+- [x] Re-inventory and classify all products that still lack a primary image
+- [x] Research manufacturer and reputable supplier image sources for exact product matches
+- [x] Import only verified high-quality images without replacing existing primary images
+- [x] Preserve all unavailable or variant-ambiguous products in an updated source audit
+- [x] Validate assignments and storefront rendering, then save a checkpoint

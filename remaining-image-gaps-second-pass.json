@@ -1,0 +1,646 @@
+[
+  {
+    "id": 30005,
+    "name": "CJC-1295 WITH DAC ",
+    "slug": "cjc-1295-with-dac",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30006,
+    "name": "BPC-157",
+    "slug": "bpc-157",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30007,
+    "name": "GHRP-6 ",
+    "slug": "ghrp-6",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30008,
+    "name": "HCG (PREGNYL)  ",
+    "slug": "hcg-pregnyl",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30009,
+    "name": "HGH (rDNA origin) GROWTH HORMONE",
+    "slug": "hgh-rdna-origin-growth-hormone",
+    "dosageInfo": "10 X 2ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30010,
+    "name": "HGH FRAGMENT 177-191",
+    "slug": "hgh-fragment-177-191",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30011,
+    "name": "IGF-1 Lr3",
+    "slug": "igf-1-lr3",
+    "dosageInfo": "10 X 2ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30012,
+    "name": "LOVERS PEPTIDE PT-141",
+    "slug": "lovers-peptide-pt-141",
+    "dosageInfo": "2ML VIAL",
+    "category": "AMPS"
+  },
+  {
+    "id": 30013,
+    "name": "MELANOTAN II",
+    "slug": "melanotan-ii",
+    "dosageInfo": "2ML VIAL",
+    "category": "PEPTIDES"
+  },
+  {
+    "id": 30014,
+    "name": "PEG MGF",
+    "slug": "peg-mgf",
+    "dosageInfo": "10 X 2ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30015,
+    "name": "TB500",
+    "slug": "tb500",
+    "dosageInfo": "2ML VIAL",
+    "category": "AMPS"
+  },
+  {
+    "id": 30017,
+    "name": "AQUAJECT 100 (TEST SUSPENSION WATER SOLUTION)",
+    "slug": "aquaject-100-test-suspension-water-solution",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30018,
+    "name": "CLENBUTEROL",
+    "slug": "clenbuterol",
+    "dosageInfo": "20ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30019,
+    "name": "DEPOJECT 200 (TEST CYPIONATE)",
+    "slug": "depoject-200-test-cypionate",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30020,
+    "name": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE)",
+    "slug": "duraject-100-nandrolone-phenylpropionate",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30021,
+    "name": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+    "slug": "equiject-200-boldenone-undecylenate",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30022,
+    "name": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE)",
+    "slug": "finaject-trenbolone-hexahydrobenzylcarbonate",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30023,
+    "name": "HELIOSJECT (40MCG CLENBUTEROL HCL",
+    "slug": "heliosject-40mcg-clenbuterol-hcl",
+    "dosageInfo": "AMPS",
+    "category": "5.4MG OHIMBINE HCL PER 1ML)"
+  },
+  {
+    "id": 30025,
+    "name": "MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE)",
+    "slug": "mastaject-200-50mg-drostanolone-prop-150mg-enanthate",
+    "dosageInfo": "10ML",
+    "category": "AMPS"
+  },
+  {
+    "id": 30042,
+    "name": "CIALIS (20mg x 10 TABS)",
+    "slug": "cialis-20mg-x-10-tabs",
+    "dosageInfo": "10 TABS",
+    "category": "AMPS"
+  },
+  {
+    "id": 30043,
+    "name": "Cialis5 (5mg x 30 tabs)",
+    "slug": "cialis5-5mg-x-30-tabs",
+    "dosageInfo": "30 TABS",
+    "category": "AMPS"
+  },
+  {
+    "id": 30075,
+    "name": "ADORETIC PER TAB",
+    "slug": "adoretic-per-tab",
+    "dosageInfo": "1 TAB",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30077,
+    "name": "AMILORETIC PER TAB",
+    "slug": "amiloretic-per-tab",
+    "dosageInfo": "1 TAB",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30078,
+    "name": "AMOXICILLAN 500MG 15 TABS",
+    "slug": "amoxicillan-500mg-15-tabs",
+    "dosageInfo": "15 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30079,
+    "name": "AMOXICLAV (AUSTELL CO)",
+    "slug": "amoxiclav-austell-co",
+    "dosageInfo": "",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30080,
+    "name": "B12",
+    "slug": "b12",
+    "dosageInfo": "10ML",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30081,
+    "name": "B12 Complex",
+    "slug": "b12-complex",
+    "dosageInfo": "10ML",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30082,
+    "name": "Betapam (PAX Generic) 30 tabs",
+    "slug": "betapam-pax-generic-30-tabs",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30083,
+    "name": "BROMAZEPAM 30 TABS",
+    "slug": "bromazepam-30-tabs",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30084,
+    "name": "Concerta 18mg",
+    "slug": "concerta-18mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30085,
+    "name": "Concerta 27mg",
+    "slug": "concerta-27mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30086,
+    "name": "Concerta 36mg",
+    "slug": "concerta-36mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30087,
+    "name": "Concerta 54mg",
+    "slug": "concerta-54mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30088,
+    "name": "Contramyl XR 18mg",
+    "slug": "contramyl-xr-18mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30089,
+    "name": "Contramyl XR 27mg",
+    "slug": "contramyl-xr-27mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30090,
+    "name": "Contramyl XR 36mg",
+    "slug": "contramyl-xr-36mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30091,
+    "name": "Contramyl XR 54mg",
+    "slug": "contramyl-xr-54mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30092,
+    "name": "DORMICUM",
+    "slug": "dormicum",
+    "dosageInfo": "20 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30093,
+    "name": "DOSTINEX",
+    "slug": "dostinex",
+    "dosageInfo": "4 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30094,
+    "name": "DURAMINE 30MG",
+    "slug": "duramine-30mg",
+    "dosageInfo": "30 CAPS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30095,
+    "name": "Eltroxin T4 30 tabs",
+    "slug": "eltroxin-t4-30-tabs",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30096,
+    "name": "EPO Eprex (sold per pen)  1 x 0.4ml 4000iu",
+    "slug": "epo-eprex-sold-per-pen-1-x-0-4ml-4000iu",
+    "dosageInfo": "1 PEN",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30097,
+    "name": "FUROSEMIDE / LASIX GENERIC PER TAB",
+    "slug": "furosemide-lasix-generic-per-tab",
+    "dosageInfo": "1 TAB",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30098,
+    "name": "HD CBD OIL",
+    "slug": "hd-cbd-oil",
+    "dosageInfo": "30ML",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30099,
+    "name": "HD D3 (Vitamin D3)",
+    "slug": "hd-d3-vitamin-d3",
+    "dosageInfo": "30 CAPS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30100,
+    "name": "DNP (2.4-Dinitrophenol 100mg per tab)",
+    "slug": "dnp-2-4-dinitrophenol-100mg-per-tab",
+    "dosageInfo": "10 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30101,
+    "name": "HD Semaglutide 5mg",
+    "slug": "hd-semaglutide-5mg",
+    "dosageInfo": "5mg VIAL",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30102,
+    "name": "HD SIMPLY SHREDDED",
+    "slug": "hd-simply-shredded",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30103,
+    "name": "HD Tirzepatide 10mg",
+    "slug": "hd-tirzepatide-10mg",
+    "dosageInfo": "10mg vial",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30104,
+    "name": "HD ZMA (10MG Zinc",
+    "slug": "hd-zma-10mg-zinc",
+    "dosageInfo": "3.5MG Vitamin B6",
+    "category": "150MG Magnesium"
+  },
+  {
+    "id": 30105,
+    "name": "INSULIN NOVORAPID",
+    "slug": "insulin-novorapid",
+    "dosageInfo": "1 PEN",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30106,
+    "name": "KAMEGRA",
+    "slug": "kamegra",
+    "dosageInfo": "1 CARD",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30107,
+    "name": "KAMEGRA JELLY",
+    "slug": "kamegra-jelly",
+    "dosageInfo": "1 SACHET",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30108,
+    "name": "Modafinil 50 tabs",
+    "slug": "modafinil-50-tabs",
+    "dosageInfo": "50 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30109,
+    "name": "MYLAN ALPRAZOLAM (XANAX GEN) 100'S",
+    "slug": "mylan-alprazolam-xanax-gen-100-s",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30110,
+    "name": "Nuecon 18mg",
+    "slug": "nuecon-18mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30111,
+    "name": "Nuecon 27mg",
+    "slug": "nuecon-27mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30112,
+    "name": "Nuecon 36mg",
+    "slug": "nuecon-36mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30113,
+    "name": "Nuecon 54mg",
+    "slug": "nuecon-54mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30114,
+    "name": "Ozempic (Semaglutide 3) (generic)",
+    "slug": "ozempic-semaglutide-3-generic",
+    "dosageInfo": "",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30115,
+    "name": "PAX",
+    "slug": "pax",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30116,
+    "name": "Prednisone 100 tabs",
+    "slug": "prednisone-100-tabs",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30117,
+    "name": "PURATA 30MG",
+    "slug": "purata-30mg",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30118,
+    "name": "RELISLIM",
+    "slug": "relislim",
+    "dosageInfo": "90 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30119,
+    "name": "RITALIN 10MG",
+    "slug": "ritalin-10mg",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30120,
+    "name": "STILPAYNE 100'S",
+    "slug": "stilpayne-100-s",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30121,
+    "name": "Tight and Tone",
+    "slug": "tight-and-tone",
+    "dosageInfo": "50 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30122,
+    "name": "TRAMACET",
+    "slug": "tramacet",
+    "dosageInfo": "60 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30123,
+    "name": "Tramadol 100 tabs",
+    "slug": "tramadol-100-tabs",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30124,
+    "name": "TRIPELINE 25MG 30'S",
+    "slug": "tripeline-25mg-30-s",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30125,
+    "name": "URBINOL 10",
+    "slug": "urbinol-10",
+    "dosageInfo": "100 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30126,
+    "name": "VIAGRA PFIZER",
+    "slug": "viagra-pfizer",
+    "dosageInfo": "4 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30127,
+    "name": "VOLTAREN INJECTABLE (DICLOFENAC)",
+    "slug": "voltaren-injectable-diclofenac",
+    "dosageInfo": "1 VIAL",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30128,
+    "name": "VOLTAREN TABS (DICLOFENAC) 50 TABS",
+    "slug": "voltaren-tabs-diclofenac-50-tabs",
+    "dosageInfo": "50 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30129,
+    "name": "Vyvanse 30",
+    "slug": "vyvanse-30",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30130,
+    "name": "Vyvanse 50",
+    "slug": "vyvanse-50",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30131,
+    "name": "Vyvanse 70",
+    "slug": "vyvanse-70",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30132,
+    "name": "ZOLPIDEM",
+    "slug": "zolpidem",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30133,
+    "name": "ZOLPIVANE",
+    "slug": "zolpivane",
+    "dosageInfo": "30 TABS",
+    "category": "PHARMA"
+  },
+  {
+    "id": 30134,
+    "name": "NEEDLES",
+    "slug": "needles",
+    "dosageInfo": "",
+    "category": "OTHER"
+  },
+  {
+    "id": 30135,
+    "name": "SYRINGES",
+    "slug": "syringes",
+    "dosageInfo": "",
+    "category": "OTHER"
+  },
+  {
+    "id": 30136,
+    "name": "INSULIN NEEDLES 0.5 - 10 PACK",
+    "slug": "insulin-needles-0-5-10-pack",
+    "dosageInfo": "",
+    "category": "OTHER"
+  },
+  {
+    "id": 30137,
+    "name": "SYRINGES (WITH NEEDLES)",
+    "slug": "syringes-with-needles",
+    "dosageInfo": "",
+    "category": "OTHER"
+  },
+  {
+    "id": 30138,
+    "name": "ALCOHOL SWABS",
+    "slug": "alcohol-swabs",
+    "dosageInfo": "",
+    "category": "OTHER"
+  },
+  {
+    "id": 60018,
+    "name": "BP Ostarine 10mg",
+    "slug": "bp-ostarine-10mg",
+    "dosageInfo": "10mg",
+    "category": "SARMS"
+  },
+  {
+    "id": 60021,
+    "name": "BP RAD150 10mg",
+    "slug": "bp-rad150-10mg",
+    "dosageInfo": "10mg",
+    "category": "SARMS"
+  },
+  {
+    "id": 60026,
+    "name": "BP YK 11 10mg",
+    "slug": "bp-yk-11-10mg",
+    "dosageInfo": "10mg",
+    "category": "SARMS"
+  },
+  {
+    "id": 60054,
+    "name": "BP Clenbuterol 80mg Inj",
+    "slug": "bp-clenbuterol-80mg-inj",
+    "dosageInfo": "80mg",
+    "category": "FAT LOSS"
+  },
+  {
+    "id": 60056,
+    "name": "BP Cy Combo Inj",
+    "slug": "bp-cy-combo-inj",
+    "dosageInfo": null,
+    "category": "FAT LOSS"
+  },
+  {
+    "id": 60064,
+    "name": "BP Clomid 25mg",
+    "slug": "bp-clomid-25mg",
+    "dosageInfo": "25mg",
+    "category": "POST CYCLE"
+  },
+  {
+    "id": 60072,
+    "name": "BP Levitra 20mg",
+    "slug": "bp-levitra-20mg",
+    "dosageInfo": "20mg",
+    "category": "ANCILLARIES"
+  },
+  {
+    "id": 60074,
+    "name": "BP Cialis 5mg",
+    "slug": "bp-cialis-5mg",
+    "dosageInfo": "5mg",
+    "category": "ANCILLARIES"
+  }
+]

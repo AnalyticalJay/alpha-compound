@@ -1,0 +1,393 @@
+{
+  "mode": "apply",
+  "imported": [],
+  "skipped": [
+    {
+      "productId": 30017,
+      "productName": "AQUAJECT 100 (TEST SUSPENSION WATER SOLUTION)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30023,
+      "productName": "HELIOSJECT (40MCG CLENBUTEROL HCL",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30043,
+      "productName": "Cialis5 (5mg x 30 tabs)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30086,
+      "productName": "Concerta 36mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30087,
+      "productName": "Concerta 54mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30093,
+      "productName": "DOSTINEX",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30099,
+      "productName": "HD D3 (Vitamin D3)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30104,
+      "productName": "HD ZMA (10MG Zinc",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30109,
+      "productName": "MYLAN ALPRAZOLAM (XANAX GEN) 100'S",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60018,
+      "productName": "BP Ostarine 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60072,
+      "productName": "BP Levitra 20mg",
+      "reason": "primary_image_already_exists"
+    }
+  ],
+  "unresolved": [
+    {
+      "productId": "30005",
+      "reason": "No authoritative manufacturer or authorized distributor product page confirms an exact match for CJC-1295 with DAC 2ml vial."
+    },
+    {
+      "productId": "30006",
+      "reason": "No authoritative manufacturer product page or verified direct image matches the exact BPC-157 2mL vial catalogue specification."
+    },
+    {
+      "productId": "30007",
+      "reason": "No official pharmaceutical manufacturer, authorized distributor, or reputable pharmacy provides an authenticated product image matching this exact research peptide variant."
+    },
+    {
+      "productId": "30008",
+      "reason": "No authorized manufacturer or reputable pharmacy source provides an unambiguous direct image URL for Pregnyl 2ml vial matching all specified parameters."
+    },
+    {
+      "productId": "30009",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy page confirms an exact verified product image matching this HGH catalogue entry."
+    },
+    {
+      "productId": "30010",
+      "reason": "No official manufacturer or reputable pharmacy offers an unambiguous product, strength, and formulation match for this research peptide vial."
+    },
+    {
+      "productId": "30011",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy offers an unambiguous verified product image for this IGF-1 LR3 pack size and formulation."
+    },
+    {
+      "productId": "30012",
+      "reason": "Verified exact official manufacturer product page and direct packaging image for Noventra Pharma PT-141 Lovers Peptide."
+    },
+    {
+      "productId": "30013",
+      "reason": "Melanotan II is an unapproved research peptide without authorized pharmaceutical manufacturer packaging or verified official product imagery matching this catalog entry."
+    },
+    {
+      "productId": "30014",
+      "reason": "Verified exact official manufacturer product packaging and specification for PEG MGF on Deus Medical."
+    },
+    {
+      "productId": "30015",
+      "reason": "No official manufacturer or authorized distributor offers an unambiguous product image for TB500 2ml vial amps under catalogue ID 30015."
+    },
+    {
+      "productId": "30018",
+      "reason": "No official manufacturer or reputable pharmacy offers an authorized 20ml ampoule product for clenbuterol matching this specification."
+    },
+    {
+      "productId": "30019",
+      "reason": "No authorized distributor or reputable pharmaceutical source exists for Depoject 200 Test Cypionate as it is an underground laboratory product."
+    },
+    {
+      "productId": "30020",
+      "reason": "No official manufacturer or reputable pharmaceutical distributor image could be verified for this underground laboratory product."
+    },
+    {
+      "productId": "30022",
+      "reason": "No official manufacturer or reputable pharmacy offers an authentic product matching this contradictory formulation and pack-size combination."
+    },
+    {
+      "productId": "30025",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy offers this underground laboratory product with a verified direct image."
+    },
+    {
+      "productId": "30042",
+      "reason": "No authoritative manufacturer or authorized distributor page provides a verified direct image URL unambiguously confirming the 20mg strength and 10-tablet pack size."
+    },
+    {
+      "productId": "30075",
+      "reason": "No authoritative manufacturer page or exact direct product image was found for Adoretic."
+    },
+    {
+      "productId": "30077",
+      "reason": "No unambiguous direct product packaging image could be verified from official manufacturer or reputable pharmacy sources."
+    },
+    {
+      "productId": "30078",
+      "reason": "Verified exact 15-pack 500mg Amoxicillin capsules product image from authorized medical distributor DD Group."
+    },
+    {
+      "productId": "30079",
+      "reason": "No unambiguous direct packaging image could be found on official manufacturer or authorized distributor sites for Austell Co-Amoxiclav."
+    },
+    {
+      "productId": "30080",
+      "reason": "No authoritative manufacturer or distributor product page exists linking product ID 30080 to an unambiguous B12 10mL pharmaceutical item."
+    },
+    {
+      "productId": "30081",
+      "reason": "Verified exact product match for B12 Complex 10ml injection vial with high-quality direct packaging image from B12 Vitamin Store."
+    },
+    {
+      "productId": "30082",
+      "reason": "No official manufacturer or authorized distributor product image could be verified for this exact Betapam pack size."
+    },
+    {
+      "productId": "30083",
+      "reason": "No authoritative manufacturer or authorized distributor image exists matching the exact generic product name and pack size without strength variant ambiguity."
+    },
+    {
+      "productId": "30085",
+      "reason": "No authoritative manufacturer or distributor image URL could be found confirming the exact Concerta 27mg 30-tablet pack variant."
+    },
+    {
+      "productId": "30088",
+      "reason": "No unambiguous official manufacturer or authorized distributor direct product image for Contramyl XR 18mg 30 TABS was found."
+    },
+    {
+      "productId": "30089",
+      "reason": "The product page exists on Transpharm, but no verified direct image URL is available for this exact pack size and strength."
+    },
+    {
+      "productId": "30090",
+      "reason": "No unambiguous official manufacturer or authorized distributor direct product image confirming the exact 36mg strength and 30-tab pack size was found."
+    },
+    {
+      "productId": "30091",
+      "reason": "Verified exact match for Contramyl XR 54mg 30 TABS on Transpharm with clear packaging confirming product name, strength, and pack size."
+    },
+    {
+      "productId": "30092",
+      "reason": "Exact packaging and product image of Dormicum tablets verified on authorized pharmaceutical distributor Lunatus."
+    },
+    {
+      "productId": "30094",
+      "reason": "Zoom Pharmacy provides an authoritative product page for Duromine 30mg 30 pack with a verified direct packaging image."
+    },
+    {
+      "productId": "30095",
+      "reason": "No authoritative manufacturer or distributor product page or packaging image exists for Eltroxin with an exact 30-tablet pack size."
+    },
+    {
+      "productId": "30096",
+      "reason": "Found verified product packaging image for Eprex 4000 IU 0.4 ml injection from Cheap Medicine Shop confirming exact strength, formulation, and product identity."
+    },
+    {
+      "productId": "30097",
+      "reason": "No manufacturer or authorized distributor product image exists for a 1-tab pack size, as generic furosemide is commercially packaged in bottles or blister packs."
+    },
+    {
+      "productId": "30098",
+      "reason": "No authoritative manufacturer or reputable pharmacy page matches the exact product name, formulation, strength, and pack-size."
+    },
+    {
+      "productId": "30100",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy produces 2,4-Dinitrophenol as pharmaceutical tablets, as DNP is a toxic chemical illegal for human consumption."
+    },
+    {
+      "productId": "30101",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy offers an authoritative product page for HD Semaglutide 5mg."
+    },
+    {
+      "productId": "30102",
+      "reason": "No authoritative supplier or distributor page confirms an exact match for HD Simply Shredded in a 30-tab pack size, as verified listings indicate a 50-tab formulation."
+    },
+    {
+      "productId": "30103",
+      "reason": "No authoritative manufacturer or reputable pharmacy source exists for HD Tirzepatide 10mg vials as it belongs to an unverified gray-market peptide brand."
+    },
+    {
+      "productId": "30105",
+      "reason": "Verified exact match for Insulin NovoRapid FlexPen 100 IU/ml 1 pen pack from 1BPharmacy with verified direct product image."
+    },
+    {
+      "productId": "30106",
+      "reason": "No authoritative manufacturer or authorized distributor source page provides an unambiguous direct image matching Kamegra 1 card."
+    },
+    {
+      "productId": "30107",
+      "reason": "No authoritative manufacturer or reputable pharmacy product page confirms an exact 1 sachet packaging variant for Kamegra Jelly under the specified spelling."
+    },
+    {
+      "productId": "30108",
+      "reason": "No unambiguous manufacturer or authorized distributor product page confirming exact product name, strength, formulation, and pack size was found."
+    },
+    {
+      "productId": "30110",
+      "reason": "No unambiguous direct packaging image for Nuecon 18mg 30 TABS was found on authorized distributor or manufacturer websites."
+    },
+    {
+      "productId": "30111",
+      "reason": "No official manufacturer or authorized distributor website provides a verified direct product image for Nuecon 27mg 30 tabs."
+    },
+    {
+      "productId": "30112",
+      "reason": "No authoritative manufacturer or authorized pharmacy product page with a verified direct image of Nuecon 36mg 30 tablets could be found."
+    },
+    {
+      "productId": "30113",
+      "reason": "Exact product name, 54mg strength, formulation, and pack size of 30 tablets confirmed by Transpharm product page and official packaging image."
+    },
+    {
+      "productId": "30114",
+      "reason": "No safe match was found because Ozempic is a branded product by Novo Nordisk and no official manufacturer produces a generic product under the combined description 'Ozempic Semaglutide 3 generic'."
+    },
+    {
+      "productId": "30115",
+      "reason": "No unambiguous manufacturer product image could be verified for the generic PAX 30 tabs entry due to missing strength and multiple possible formulations."
+    },
+    {
+      "productId": "30116",
+      "reason": "Verified exact 100-count pack-size and product match for Prednisone tablets by Strides Pharma on authorized distributor Mountainside Medical Equipment."
+    },
+    {
+      "productId": "30117",
+      "reason": "Verified exact product packaging image for Purata 30mg tablets on SpeedRx confirming product name, strength, and formulation."
+    },
+    {
+      "productId": "30118",
+      "reason": "No authoritative manufacturer or authorized distributor page provides a verifiable direct image for Relislim 90 Tabs due to prescription-only regulations."
+    },
+    {
+      "productId": "30119",
+      "reason": "No authoritative manufacturer or pharmacy source page provides a verified direct image URL confirming the exact 30-tablet pack size of Ritalin 10mg."
+    },
+    {
+      "productId": "30120",
+      "reason": "No authoritative manufacturer or reputable pharmacy product page provides an unambiguous direct packaging image confirming the exact 100-tablet pack size of Stilpayne."
+    },
+    {
+      "productId": "30121",
+      "reason": "No official manufacturer or authorized distributor page verifies the exact product image and formulation for Tight and Tone 50 TABS."
+    },
+    {
+      "productId": "30122",
+      "reason": "No official manufacturer or authorized pharmacy product page provides an unambiguous direct packaging image confirming the 60-tablet pack size of Tramacet."
+    },
+    {
+      "productId": "30123",
+      "reason": "No unambiguous manufacturer or authorized distributor product page could be found confirming the exact product variant for PHARMA."
+    },
+    {
+      "productId": "30124",
+      "reason": "No authoritative manufacturer product page or verified direct image exists for Tripeline 25mg 30s."
+    },
+    {
+      "productId": "30125",
+      "reason": "No authoritative manufacturer or reputable pharmacy page provides a verified direct packaging image for URBINOL 10 100 TABS."
+    },
+    {
+      "productId": "30126",
+      "reason": "The catalogue entry specifies 4 tabs of Viagra Pfizer but omits the strength, making the exact product variant ambiguous."
+    },
+    {
+      "productId": "30127",
+      "reason": "No authoritative manufacturer or distributor product page confirms an exact pack size of 1 vial for Voltaren injectable diclofenac, as commercial packaging consists of multi-ampoule cartons."
+    },
+    {
+      "productId": "30128",
+      "reason": "No unambiguous direct product packaging image confirming the exact 50-tablet pack size variant was found on authorized sites."
+    },
+    {
+      "productId": "30129",
+      "reason": "The product, strength (30 mg), formulation, and packaging image are officially verified by Takeda Pharmaceuticals' labeling on NIH DailyMed."
+    },
+    {
+      "productId": "30130",
+      "reason": "No authoritative manufacturer or distributor product image explicitly confirming the exact 30-count pack size and 50mg strength for Vyvanse was found."
+    },
+    {
+      "productId": "30131",
+      "reason": "Official manufacturer Takeda packages Vyvanse 70 mg in 100-count capsule bottles rather than the requested 30-count pack size, leaving no exact packaging match available."
+    },
+    {
+      "productId": "30132",
+      "reason": "The catalogue entry lacks specific strength and manufacturer information, preventing unambiguous verification of an exact product image."
+    },
+    {
+      "productId": "30133",
+      "reason": "No authoritative manufacturer or distributor product image is available confirming the exact Zolpivane 30 tabs packaging variant."
+    },
+    {
+      "productId": "30134",
+      "reason": "The catalogue entry is entirely generic (NEEDLES||OTHER) without specifying a manufacturer, brand, model, gauge, or pack size, precluding any unambiguous product match."
+    },
+    {
+      "productId": "30135",
+      "reason": "The product description is generic (SYRINGES||OTHER) without a specific brand or variant, preventing an unambiguous exact match."
+    },
+    {
+      "productId": "30136",
+      "reason": "No unambiguous manufacturer or brand product match exists for the generic catalogue entry 'INSULIN NEEDLES 0.5 10 PACK'."
+    },
+    {
+      "productId": "30137",
+      "reason": "No manufacturer, brand, or pack size is specified for this generic syringe with needles item, making exact product verification impossible."
+    },
+    {
+      "productId": "30138",
+      "reason": "No specific manufacturer, brand, or pack size is provided for ALCOHOL SWABS to enable an unambiguous exact product match."
+    },
+    {
+      "productId": "60021",
+      "reason": "No authoritative manufacturer or authorized distributor page provides an unambiguous direct packaging or product image confirming the exact product, strength, and formulation."
+    },
+    {
+      "productId": "60026",
+      "reason": "No official manufacturer or authorized distributor image exists for this underground research compound, as it is only found as a digital rendering on gray-market fitness sites."
+    },
+    {
+      "productId": "60054",
+      "reason": "No official manufacturer or authorized distributor page exists for BP Clenbuterol 80mg injection, making precise verification impossible."
+    },
+    {
+      "productId": "60056",
+      "reason": "No official manufacturer or reputable pharmacy page exists to verify the exact formulation, strength, and pack size for this underground brand product."
+    },
+    {
+      "productId": "60064",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy image exists for this underground laboratory product."
+    },
+    {
+      "productId": "60074",
+      "reason": "No official manufacturer, authorized distributor, or reputable pharmacy offers an authentic product image for this underground laboratory product."
+    }
+  ],
+  "unavailable": [
+    {
+      "productId": 30021,
+      "productName": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+      "sourcePageUrl": "https://aexpress.co.za/product/hd-labs-equiject-200/",
+      "reason": "invalid_image_response_403_text/html; charset=UTF-8"
+    },
+    {
+      "productId": 30084,
+      "productName": "Concerta 18mg",
+      "sourcePageUrl": "https://www.1mg.com/drugs/concerta-18mg-tablet-333803",
+      "reason": "image_size_out_of_bounds"
+    }
+  ]
+}
