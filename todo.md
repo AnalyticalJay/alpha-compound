@@ -437,3 +437,9 @@
 - [x] Import verified images without replacing existing primary images
 - [x] Preserve unavailable or ambiguous products in a review report
 - [x] Validate image coverage and storefront rendering, then save a checkpoint
+
+## Phase 59: Remove Promotional Header Catalogue Records
+- [x] Identify and confirm all promotional header records that are not sellable products
+- [x] Remove the confirmed header records and any dependent empty data safely
+- [x] Verify database integrity and cleaned frontend catalogue display
+- [x] Save a checkpoint
