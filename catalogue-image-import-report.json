@@ -1,0 +1,547 @@
+{
+  "mode": "apply",
+  "imported": [],
+  "skipped": [
+    {
+      "productId": 30039,
+      "productName": "ANAPS50",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30041,
+      "productName": "ARIMADEX",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30043,
+      "productName": "Cialis5 (5mg x 30 tabs)",
+      "reason": "manually_excluded_for_variant_safety"
+    },
+    {
+      "productId": 30051,
+      "productName": "KETOTIFEN",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30052,
+      "productName": "METHYL-1-TEST",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30053,
+      "productName": "ORAL TREN",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30054,
+      "productName": "PRIMO25 (PRIMOPLEX)",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30055,
+      "productName": "PROVIRON",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30056,
+      "productName": "SIBUTRAMAX (SIBUTRAMINE - FAT BURNER/APPETITE SUPPRESSANT)",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30057,
+      "productName": "SUPERDROL",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30058,
+      "productName": "T3",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30059,
+      "productName": "TAMOXIFEN",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30060,
+      "productName": "TURANABOL10",
+      "reason": "image_already_exists"
+    },
+    {
+      "productId": 30076,
+      "productName": "AMETHOCAINE CREAM",
+      "reason": "image_already_exists"
+    }
+  ],
+  "unresolved": [
+    {
+      "productId": 30005,
+      "productName": "CJC-1295 WITH DAC",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30006,
+      "productName": "BPC-157",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30007,
+      "productName": "GHRP-6",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30008,
+      "productName": "HCG (PREGNYL)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30009,
+      "productName": "HGH (rDNA origin) GROWTH HORMONE",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30010,
+      "productName": "HGH FRAGMENT 177-191",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30011,
+      "productName": "IGF-1 Lr3",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30012,
+      "productName": "LOVERS PEPTIDE PT-141",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30013,
+      "productName": "MELANOTAN II",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30014,
+      "productName": "PEG MGF",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30015,
+      "productName": "TB500",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30017,
+      "productName": "AQUAJECT 100 (TEST SUSPENSION WATER SOLUTION)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30018,
+      "productName": "CLENBUTEROL",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30019,
+      "productName": "DEPOJECT 200 (TEST CYPIONATE)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30020,
+      "productName": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30021,
+      "productName": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30022,
+      "productName": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE)",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30023,
+      "productName": "HELIOSJECT (40MCG CLENBUTEROL HCL",
+      "reason": "No unambiguous high-quality exact product image URL from an official manufacturer or recognized pharmacy was found for this specific catalogue listing. Preserved as unresolved to prevent mismatches."
+    },
+    {
+      "productId": 30062,
+      "productName": "SARMS:      (5 + 1 DEAL ON ALL SARMS)",
+      "reason": "Promotional deal banner / category heading rather than an individual product listing; no exact product packaging image exists."
+    },
+    {
+      "productId": 30070,
+      "productName": "SUPER SERIES:      (5 + 1 DEAL ON ALL SUPER SERIES)",
+      "reason": "Promotional deal banner / category heading rather than an individual product listing; no exact product packaging image exists."
+    },
+    {
+      "productId": 30075,
+      "productName": "ADORETIC PER TAB",
+      "reason": "Sold as loose individual tablets without an official product-specific packaging or manufacturer image."
+    },
+    {
+      "productId": 30077,
+      "productName": "AMILORETIC PER TAB",
+      "reason": "No unambiguous high-quality exact packaging image found matching AMILORETIC PER TAB across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30078,
+      "productName": "AMOXICILLAN 500MG 15 TABS",
+      "reason": "No unambiguous high-quality exact packaging image found matching AMOXICILLAN 500MG 15 TABS across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30079,
+      "productName": "AMOXICLAV (AUSTELL CO)",
+      "reason": "No unambiguous high-quality exact packaging image found matching AMOXICLAV (AUSTELL CO) across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30080,
+      "productName": "B12",
+      "reason": "No unambiguous high-quality exact packaging image found matching B12 across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30081,
+      "productName": "B12 Complex",
+      "reason": "No unambiguous high-quality exact packaging image found matching B12 Complex across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30082,
+      "productName": "Betapam (PAX Generic) 30 tabs",
+      "reason": "No unambiguous high-quality exact packaging image found matching Betapam (PAX Generic) 30 tabs across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30083,
+      "productName": "BROMAZEPAM 30 TABS",
+      "reason": "No unambiguous high-quality exact packaging image found matching BROMAZEPAM 30 TABS across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30084,
+      "productName": "Concerta 18mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Concerta 18mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30085,
+      "productName": "Concerta 27mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Concerta 27mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30086,
+      "productName": "Concerta 36mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Concerta 36mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30087,
+      "productName": "Concerta 54mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Concerta 54mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30088,
+      "productName": "Contramyl XR 18mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Contramyl XR 18mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30089,
+      "productName": "Contramyl XR 27mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Contramyl XR 27mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30090,
+      "productName": "Contramyl XR 36mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Contramyl XR 36mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30091,
+      "productName": "Contramyl XR 54mg",
+      "reason": "No unambiguous high-quality exact packaging image found matching Contramyl XR 54mg across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30092,
+      "productName": "DORMICUM",
+      "reason": "No unambiguous high-quality exact packaging image found matching DORMICUM across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30093,
+      "productName": "DOSTINEX",
+      "reason": "No unambiguous high-quality exact packaging image found matching DOSTINEX across recognized pharmaceutical sources."
+    },
+    {
+      "productId": 30094,
+      "productName": "DURAMINE 30MG",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'DURAMINE 30MG' (30 CAPS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30095,
+      "productName": "Eltroxin T4 30 tabs",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'Eltroxin T4 30 tabs' (30 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30096,
+      "productName": "EPO Eprex (sold per pen)  1 x 0.4ml 4000iu",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'EPO Eprex (sold per pen)  1 x 0.4ml 4000iu' (1 PEN, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30097,
+      "productName": "FUROSEMIDE / LASIX GENERIC PER TAB",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'FUROSEMIDE / LASIX GENERIC PER TAB' (1 TAB, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30098,
+      "productName": "HD CBD OIL",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD CBD OIL' (30ML, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30099,
+      "productName": "HD D3 (Vitamin D3)",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD D3 (Vitamin D3)' (30 CAPS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30100,
+      "productName": "DNP (2.4-Dinitrophenol 100mg per tab)",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'DNP (2.4-Dinitrophenol 100mg per tab)' (10 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30101,
+      "productName": "HD Semaglutide 5mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD Semaglutide 5mg' (5mg VIAL, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30102,
+      "productName": "HD SIMPLY SHREDDED",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD SIMPLY SHREDDED' (30 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30103,
+      "productName": "HD Tirzepatide 10mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD Tirzepatide 10mg' (10mg vial, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30104,
+      "productName": "HD ZMA (10MG Zinc",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'HD ZMA (10MG Zinc' (3.5MG Vitamin B6, 150MG Magnesium). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30105,
+      "productName": "INSULIN NOVORAPID",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'INSULIN NOVORAPID' (1 PEN, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30106,
+      "productName": "KAMEGRA",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'KAMEGRA' (1 CARD, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30107,
+      "productName": "KAMEGRA JELLY",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'KAMEGRA JELLY' (1 SACHET, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30108,
+      "productName": "Modafinil 50 tabs",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'Modafinil 50 tabs' (50 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30109,
+      "productName": "MYLAN ALPRAZOLAM (XANAX GEN) 100'S",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'MYLAN ALPRAZOLAM (XANAX GEN) 100'S' (100 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30110,
+      "productName": "Nuecon 18mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'Nuecon 18mg' (30 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30111,
+      "productName": "Nuecon 27mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL found from an official manufacturer or recognized pharmacy for 'Nuecon 27mg' (30 TABS, PHARMA). Retained as unresolved per instructions."
+    },
+    {
+      "productId": 30112,
+      "productName": "Nuecon 36mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Nuecon 36mg matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30113,
+      "productName": "Nuecon 54mg",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Nuecon 54mg matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30114,
+      "productName": "Ozempic (Semaglutide 3) (generic)",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Ozempic (Semaglutide 3) (generic) matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30115,
+      "productName": "PAX",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for PAX matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30116,
+      "productName": "Prednisone 100 tabs",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Prednisone 100 tabs matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30117,
+      "productName": "PURATA 30MG",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for PURATA 30MG matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30118,
+      "productName": "RELISLIM",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for RELISLIM matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30119,
+      "productName": "RITALIN 10MG",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for RITALIN 10MG matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30120,
+      "productName": "STILPAYNE 100'S",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for STILPAYNE 100'S matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30121,
+      "productName": "Tight and Tone",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Tight and Tone matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30122,
+      "productName": "TRAMACET",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for TRAMACET matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30123,
+      "productName": "Tramadol 100 tabs",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Tramadol 100 tabs matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30124,
+      "productName": "TRIPELINE 25MG 30'S",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for TRIPELINE 25MG 30'S matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30125,
+      "productName": "URBINOL 10",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for URBINOL 10 matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30126,
+      "productName": "VIAGRA PFIZER",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for VIAGRA PFIZER matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30127,
+      "productName": "VOLTAREN INJECTABLE (DICLOFENAC)",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for VOLTAREN INJECTABLE (DICLOFENAC) matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30128,
+      "productName": "VOLTAREN TABS (DICLOFENAC) 50 TABS",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for VOLTAREN TABS (DICLOFENAC) 50 TABS matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30129,
+      "productName": "Vyvanse 30",
+      "reason": "No unambiguous high-quality exact product packaging image URL could be verified from official manufacturer or recognized pharmacy sources for Vyvanse 30 matching the exact strength, formulation, and pack size without risk of mismatch."
+    },
+    {
+      "productId": 30130,
+      "productName": "Vyvanse 50",
+      "reason": "No official manufacturer or recognized pharmacy direct image URL available matching the exact product listing and formulation."
+    },
+    {
+      "productId": 30131,
+      "productName": "Vyvanse 70",
+      "reason": "No official manufacturer or recognized pharmacy direct image URL available matching the exact product listing and formulation."
+    },
+    {
+      "productId": 30132,
+      "productName": "ZOLPIDEM",
+      "reason": "No official manufacturer or recognized pharmacy direct image URL available matching the exact product listing and formulation."
+    },
+    {
+      "productId": 30133,
+      "productName": "ZOLPIVANE",
+      "reason": "No official manufacturer or recognized pharmacy direct image URL available matching the exact product listing and formulation."
+    },
+    {
+      "productId": 30134,
+      "productName": "NEEDLES",
+      "reason": "Generic consumable without an official brand, specific manufacturer packaging, or exact product image source."
+    },
+    {
+      "productId": 30135,
+      "productName": "SYRINGES",
+      "reason": "Generic consumable without an official brand, specific manufacturer packaging, or exact product image source."
+    },
+    {
+      "productId": 30136,
+      "productName": "INSULIN NEEDLES 0.5 - 10 PACK",
+      "reason": "Generic consumable without an official brand, specific manufacturer packaging, or exact product image source."
+    },
+    {
+      "productId": 30137,
+      "productName": "SYRINGES (WITH NEEDLES)",
+      "reason": "Generic consumable without an official brand, specific manufacturer packaging, or exact product image source."
+    },
+    {
+      "productId": 30138,
+      "productName": "ALCOHOL SWABS",
+      "reason": "Generic consumable without an official brand, specific manufacturer packaging, or exact product image source."
+    },
+    {
+      "productId": 60018,
+      "productName": "BP Ostarine 10mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60021,
+      "productName": "BP RAD150 10mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60026,
+      "productName": "BP YK 11 10mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60054,
+      "productName": "BP Clenbuterol 80mg Inj",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60056,
+      "productName": "BP Cy Combo Inj",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60064,
+      "productName": "BP Clomid 25mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60072,
+      "productName": "BP Levitra 20mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    },
+    {
+      "productId": 60074,
+      "productName": "BP Cialis 5mg",
+      "reason": "Underground lab / grey-market product lacking a verified official manufacturer source or stable high-quality direct image URL."
+    }
+  ],
+  "unavailable": [
+    {
+      "productId": 30025,
+      "productName": "MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE)",
+      "imageUrl": "https://storage.googleapis.com/takeapp/media/cm8rolvdt005hla03ru5o8agd.png",
+      "reason": "invalid_image_response_404_application/xml; charset=UTF-8"
+    },
+    {
+      "productId": 30042,
+      "productName": "CIALIS (20mg x 10 TABS)",
+      "imageUrl": "https://storage.googleapis.com/takeapp/media/cm8rrrfwm002il703h9m8kdov.jpeg",
+      "reason": "invalid_image_response_404_application/xml; charset=UTF-8"
+    }
+  ]
+}

@@ -430,3 +430,10 @@
 - [x] Strip leading/trailing " from all product names in the database
 - [x] Verify storefront renders clean product titles
 - [x] Save a checkpoint
+
+## Phase 58: Complete Catalogue Image Coverage
+- [x] Audit every active product for a valid primary image
+- [x] Research high-quality exact images for all missing products
+- [x] Import verified images without replacing existing primary images
+- [x] Preserve unavailable or ambiguous products in a review report
+- [x] Validate image coverage and storefront rendering, then save a checkpoint
