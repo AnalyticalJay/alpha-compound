@@ -1,5 +1,12 @@
 import { Link } from "wouter";
-import { Shield, Lock, Truck } from "lucide-react";
+import { Shield, Lock, Truck, MapPin, Send, PackageCheck, WalletCards } from "lucide-react";
+
+const FOOTER_DELIVERY_ITEMS = [
+  { icon: MapPin, color: "#0EA5E9", eyebrow: "Port Elizabeth", title: "Free delivery", detail: "No minimum order" },
+  { icon: Send, color: "#E11D48", eyebrow: "Nationwide", title: "R150 flat rate", detail: "Transparent delivery pricing" },
+  { icon: PackageCheck, color: "#0EA5E9", eyebrow: "Packaging", title: "Discreet delivery", detail: "Plain, unmarked packaging" },
+  { icon: WalletCards, color: "#E11D48", eyebrow: "Payment", title: "EFT or PayFast", detail: "Secure ZAR payment options" },
+] as const;
 
 export default function Footer() {
   return (
@@ -57,25 +64,21 @@ export default function Footer() {
           </div>
 
           {/* Delivery Info */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#E11D48" }}>Delivery Info</h4>
-            <ul className="space-y-2.5 text-sm text-[#64748B]">
-              <li className="flex items-start gap-2">
-                <span className="font-bold mt-0.5" style={{ color: "#0EA5E9" }}>✓</span>
-                <span>Port Elizabeth — <strong className="text-white">FREE</strong></span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-bold mt-0.5" style={{ color: "#0EA5E9" }}>✓</span>
-                <span>Nationwide — <strong className="text-white">R150 flat</strong></span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-bold mt-0.5" style={{ color: "#0EA5E9" }}>✓</span>
-                <span>Discreet packaging</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-bold mt-0.5" style={{ color: "#0EA5E9" }}>✓</span>
-                <span>EFT or PayFast — ZAR only</span>
-              </li>
+          <div data-testid="footer-delivery-info">
+            <h4 className="mb-5 text-xs font-bold uppercase tracking-widest" style={{ color: "#E11D48" }}>Delivery Info</h4>
+            <ul className="grid gap-4">
+              {FOOTER_DELIVERY_ITEMS.map(({ icon: Icon, color, eyebrow, title, detail }) => (
+                <li key={title} className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl" style={{ background: `linear-gradient(145deg, ${color}24, ${color}0A)` }}>
+                    <Icon className="h-4 w-4" style={{ color }} strokeWidth={1.7} />
+                  </span>
+                  <span className="min-w-0 pt-0.5">
+                    <span className="block text-[9px] font-black uppercase tracking-[0.16em]" style={{ color }}>{eyebrow}</span>
+                    <span className="mt-0.5 block text-xs font-black uppercase tracking-wide text-white">{title}</span>
+                    <span className="mt-1 block text-xs leading-relaxed text-[#64748B]">{detail}</span>
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

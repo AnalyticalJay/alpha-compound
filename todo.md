@@ -567,3 +567,8 @@
 - [x] Restyle the delivery information as a premium borderless icon-led section
 - [x] Add regression coverage and validate the revised homepage on desktop and 390px mobile
 - [x] Save a checkpoint and deliver the completed refinement
+
+## Phase 78: Premium Footer Delivery List
+- [x] Restyle the footer delivery list with the shared premium icon-led visual language
+- [x] Add regression coverage and validate footer legibility on desktop and 390px mobile
+- [x] Save a checkpoint and deliver the footer refinement

@@ -71,6 +71,17 @@ describe("home catalog products and categories", () => {
     expect(hdLabsMark).not.toMatch(/pharmaceutical/gi);
   });
 
+  it("uses the premium icon-led delivery language in the footer", () => {
+    const footer = source("client/src/components/Footer.tsx");
+    expect(footer).toContain("const FOOTER_DELIVERY_ITEMS");
+    expect(footer).toContain('data-testid="footer-delivery-info"');
+    expect(footer).toContain("MapPin");
+    expect(footer).toContain("PackageCheck");
+    expect(footer).toContain("WalletCards");
+    expect(footer).toContain("rounded-xl");
+    expect(footer).not.toContain("✓");
+  });
+
   it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {
     const home = source("client/src/pages/Home.tsx");
     expect(home).toContain("category-injectables-banner_e7d7a02b.png");

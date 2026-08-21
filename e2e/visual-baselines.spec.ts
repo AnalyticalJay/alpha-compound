@@ -65,6 +65,20 @@ test.describe("390px mobile visual baselines", () => {
     });
   });
 
+  test("mobile footer delivery list uses the premium icon-led visual language", async ({ page }) => {
+    await page.goto("/");
+    const footerDelivery = page.getByTestId("footer-delivery-info");
+    await footerDelivery.scrollIntoViewIfNeeded();
+    await expect(page.getByText("Free delivery", { exact: true })).toBeVisible();
+    await expect(page.getByText("R150 flat rate", { exact: true })).toBeVisible();
+    await expect(page.getByText("Discreet delivery", { exact: true })).toBeVisible();
+    await expect(page.getByText("EFT or PayFast", { exact: true })).toBeVisible();
+    await expect(footerDelivery).toHaveScreenshot("mobile-footer-delivery-info.png", {
+      animations: "disabled",
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
   test("mobile checkout journey matches its stable visual baseline", async ({ page, request }) => {
     const reset = await request.post("/api/e2e/reset");
     expect(reset.status()).toBe(204);
