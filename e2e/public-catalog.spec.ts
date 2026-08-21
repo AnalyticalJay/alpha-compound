@@ -41,6 +41,6 @@ test.describe("public catalogue stability", () => {
     await page.goto("/admin/products");
     await page.getByPlaceholder("Search products...").fill("BP Anapolin 25mg");
     await expect(page.getByText("BP Anapolin 25mg", { exact: true })).toBeVisible();
-    await expect(page.getByText("R0.00", { exact: true })).toBeVisible();
+    await expect(page.getByText("R200.00", { exact: true })).toBeVisible();
   });
 });

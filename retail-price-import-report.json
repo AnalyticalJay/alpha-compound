@@ -1,0 +1,1971 @@
+{
+  "mode": "apply",
+  "sourceRowCount": 231,
+  "matched": [
+    {
+      "productId": 30002,
+      "productName": "HD DECA DURABOLIN 100mg 1ml AMP",
+      "sourceTab": "HD",
+      "sourceName": "HD DECA DURABOLIN 100mg 1ml AMP",
+      "retailPrice": "55.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30003,
+      "productName": "HD SUS 250mg 1ml AMP",
+      "sourceTab": "HD",
+      "sourceName": "HD SUS 250mg 1ml AMP",
+      "retailPrice": "55.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30001,
+      "productName": "HD TESTOVIRON 250mg 1ml AMP",
+      "sourceTab": "HD",
+      "sourceName": "HD TESTOVIRON 250mg 1ml AMP",
+      "retailPrice": "55.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30006,
+      "productName": "BPC-157",
+      "sourceTab": "HD",
+      "sourceName": "BPC-157",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30005,
+      "productName": "CJC-1295 WITH DAC ",
+      "sourceTab": "HD",
+      "sourceName": "CJC-1295 WITH DAC",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30007,
+      "productName": "GHRP-6 ",
+      "sourceTab": "HD",
+      "sourceName": "GHRP-6",
+      "retailPrice": "260.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30008,
+      "productName": "HCG (PREGNYL)  ",
+      "sourceTab": "HD",
+      "sourceName": "HCG (PREGNYL)",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30009,
+      "productName": "HGH (rDNA origin) GROWTH HORMONE",
+      "sourceTab": "HD",
+      "sourceName": "HGH (rDNA origin) GROWTH HORMONE",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30010,
+      "productName": "HGH FRAGMENT 177-191",
+      "sourceTab": "HD",
+      "sourceName": "HGH FRAGMENT 177-191",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30011,
+      "productName": "IGF-1 Lr3",
+      "sourceTab": "HD",
+      "sourceName": "IGF-1 Lr3",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30012,
+      "productName": "LOVERS PEPTIDE PT-141",
+      "sourceTab": "HD",
+      "sourceName": "LOVERS PEPTIDE PT-141",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30013,
+      "productName": "MELANOTAN II",
+      "sourceTab": "HD",
+      "sourceName": "MELANOTAN II",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30014,
+      "productName": "PEG MGF",
+      "sourceTab": "HD",
+      "sourceName": "PEG MGF",
+      "retailPrice": "2000.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30015,
+      "productName": "TB500",
+      "sourceTab": "HD",
+      "sourceName": "TB500",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30103,
+      "productName": "HD Tirzepatide 10mg",
+      "sourceTab": "HD",
+      "sourceName": "TIRZEPATIDE 10mg",
+      "retailPrice": "1550.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30017,
+      "productName": "AQUAJECT 100 (TEST SUSPENSION WATER SOLUTION)",
+      "sourceTab": "HD",
+      "sourceName": "AQUAJECT 100 (TEST SUSPENSION WATER SOLUTION)",
+      "retailPrice": "330.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30019,
+      "productName": "DEPOJECT 200 (TEST CYPIONATE)",
+      "sourceTab": "HD",
+      "sourceName": "DEPOJECT 200 (TEST CYP)",
+      "retailPrice": "340.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30020,
+      "productName": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE)",
+      "sourceTab": "HD",
+      "sourceName": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE)",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30021,
+      "productName": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+      "sourceTab": "HD",
+      "sourceName": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+      "retailPrice": "500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30022,
+      "productName": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE)",
+      "sourceTab": "HD",
+      "sourceName": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE)",
+      "retailPrice": "590.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30023,
+      "productName": "HELIOSJECT (40MCG CLENBUTEROL HCL",
+      "sourceTab": "HD",
+      "sourceName": "HELIOSJECT 20ML",
+      "retailPrice": "360.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30024,
+      "productName": "MASTAJECT 100 (DROSTANOLONE PROP)",
+      "sourceTab": "HD",
+      "sourceName": "MASTAJECT 100 (DROSTANOLONE PROP)",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30025,
+      "productName": "MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE)",
+      "sourceTab": "HD",
+      "sourceName": "MASTAJECT 200 (DROSTANOLONE PROP)",
+      "retailPrice": "600.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30026,
+      "productName": "NANDROJECT 300 (NANDROLONE DECANOATE)",
+      "sourceTab": "HD",
+      "sourceName": "NANDROJECT 300 (NANDROLONE DECANOATE)",
+      "retailPrice": "500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30027,
+      "productName": "NEBIDOJECT 250 (TEST UNDECANOATE)",
+      "sourceTab": "HD",
+      "sourceName": "NEBIDOJECT 250 (TEST UNDECANOATE)",
+      "retailPrice": "380.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30028,
+      "productName": "PRIMOJECT 100 (METHANOLONE ENANTHATE)",
+      "sourceTab": "HD",
+      "sourceName": "PRIMOJECT 100 (METHANOLONE ENANTHATE)",
+      "retailPrice": "700.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30029,
+      "productName": "PRIMOJECT 200 (METHANOLONE ENANTHATE)",
+      "sourceTab": "HD",
+      "sourceName": "PRIMOJECT 200 (METHANOLONE ENANTHATE)",
+      "retailPrice": "900.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30030,
+      "productName": "PROPIOJECT 100 (TEST PROP)",
+      "sourceTab": "HD",
+      "sourceName": "PROPIOJECT 100 (TEST PROP)",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30031,
+      "productName": "STANOJECT 50 (STANOZOL WATER SOLUTION)",
+      "sourceTab": "HD",
+      "sourceName": "STANOJECT 50 (STANOZOL WATER SOLUTION)",
+      "retailPrice": "330.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30032,
+      "productName": "SUSTAJECT (BLEND OF 5 TESTOSTERONES)",
+      "sourceTab": "HD",
+      "sourceName": "SUSTAJECT (BLEND OF 5 TESTOSTERONES)",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30033,
+      "productName": "TESTAJECT 250 (TEST ENANTHATE)",
+      "sourceTab": "HD",
+      "sourceName": "TESTAJECT (TEST ENANTHATE)",
+      "retailPrice": "400.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30035,
+      "productName": "TRENAJECT 200 (TREN ENANTHATE)",
+      "sourceTab": "HD",
+      "sourceName": "TRENAJECT 200 (TREN ENANTHATE)",
+      "retailPrice": "650.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30036,
+      "productName": "TRESTOLONE/MENT (TRESTOLONE ACETATE (MENT))",
+      "sourceTab": "HD",
+      "sourceName": "TRESTOLONE/MENT (TRESTOLONE ACETATE (MENT))",
+      "retailPrice": "760.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30037,
+      "productName": "TRINAJECT (50MG/ML TREN ACETATE",
+      "sourceTab": "HD",
+      "sourceName": "TRINAJECT (MIX)",
+      "retailPrice": "590.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30039,
+      "productName": "ANAPS50",
+      "sourceTab": "HD",
+      "sourceName": "ANAPS50",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30041,
+      "productName": "ARIMADEX",
+      "sourceTab": "HD",
+      "sourceName": "ARIMADEX",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30042,
+      "productName": "CIALIS (20mg x 10 TABS)",
+      "sourceTab": "HD",
+      "sourceName": "CIALIS (20mg x 10 TABS)",
+      "retailPrice": "370.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30043,
+      "productName": "Cialis5 (5mg x 30 tabs)",
+      "sourceTab": "HD",
+      "sourceName": "Cialis5 (5mg x 30 tabs)",
+      "retailPrice": "370.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30045,
+      "productName": "CLOMID",
+      "sourceTab": "HD",
+      "sourceName": "CLOMID",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30046,
+      "productName": "DHEA25 (SUPER-DHEA)",
+      "sourceTab": "HD",
+      "sourceName": "DHEA25 (SUPER-DHEA)",
+      "retailPrice": "230.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30100,
+      "productName": "DNP (2.4-Dinitrophenol 100mg per tab)",
+      "sourceTab": "HD",
+      "sourceName": "DNP 100mg 10 TABS",
+      "retailPrice": "250.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30048,
+      "productName": "FAMARA (LETROZOLE)",
+      "sourceTab": "HD",
+      "sourceName": "FAMARA (LETROZOLE)",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30049,
+      "productName": "HALOTEST (FLUOXYMESTERONE)",
+      "sourceTab": "HD",
+      "sourceName": "HALOTEST (FLUOXYMESTERONE)",
+      "retailPrice": "720.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30050,
+      "productName": "HELIOST3 (37.5MCG CLEN",
+      "sourceTab": "HD",
+      "sourceName": "HELIOST3 (37.5MCG CLEN, 5.4MG YOHIMBINE, 25MCG T3)",
+      "retailPrice": "250.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30051,
+      "productName": "KETOTIFEN",
+      "sourceTab": "HD",
+      "sourceName": "KETOTIFEN",
+      "retailPrice": "210.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30052,
+      "productName": "METHYL-1-TEST",
+      "sourceTab": "HD",
+      "sourceName": "METHYL-1-TEST",
+      "retailPrice": "180.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30053,
+      "productName": "ORAL TREN",
+      "sourceTab": "HD",
+      "sourceName": "ORAL TREN",
+      "retailPrice": "250.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30054,
+      "productName": "PRIMO25 (PRIMOPLEX)",
+      "sourceTab": "HD",
+      "sourceName": "PRIMO25",
+      "retailPrice": "550.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30055,
+      "productName": "PROVIRON",
+      "sourceTab": "HD",
+      "sourceName": "PROVIRON",
+      "retailPrice": "290.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30056,
+      "productName": "SIBUTRAMAX (SIBUTRAMINE - FAT BURNER/APPETITE SUPPRESSANT)",
+      "sourceTab": "HD",
+      "sourceName": "SIBUTRAMAX",
+      "retailPrice": "240.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30102,
+      "productName": "HD SIMPLY SHREDDED",
+      "sourceTab": "HD",
+      "sourceName": "SIMPLY SHREDDED",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30057,
+      "productName": "SUPERDROL",
+      "sourceTab": "HD",
+      "sourceName": "SUPERDROL",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30058,
+      "productName": "T3",
+      "sourceTab": "HD",
+      "sourceName": "T3",
+      "retailPrice": "170.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30059,
+      "productName": "TAMOXIFEN",
+      "sourceTab": "HD",
+      "sourceName": "TAMOX",
+      "retailPrice": "200.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30121,
+      "productName": "Tight and Tone",
+      "sourceTab": "HD",
+      "sourceName": "TIGHT AND TONE",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30060,
+      "productName": "TURANABOL10",
+      "sourceTab": "HD",
+      "sourceName": "TURANABOL10",
+      "retailPrice": "220.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30061,
+      "productName": "WINSTROL10",
+      "sourceTab": "HD",
+      "sourceName": "WINSTROL10",
+      "retailPrice": "200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30063,
+      "productName": "ANABOLICUM (LGD-4033)",
+      "sourceTab": "HD",
+      "sourceName": "ANABOLICUM LGD-4033",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30064,
+      "productName": "ANDARINE (S4)",
+      "sourceTab": "HD",
+      "sourceName": "ANDARINE S4",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30065,
+      "productName": "CARDARINE (GW 501516)",
+      "sourceTab": "HD",
+      "sourceName": "CARDARINE GW 501516",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30066,
+      "productName": "NUTROBAL (MK677)",
+      "sourceTab": "HD",
+      "sourceName": "NUTROBAL MK677",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30067,
+      "productName": "OSTARINE (MK-2866)",
+      "sourceTab": "HD",
+      "sourceName": "OSTARINE MK-2866",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30068,
+      "productName": "STENABOLIC (SR9009)",
+      "sourceTab": "HD",
+      "sourceName": "STENABOLIC SR9009",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30069,
+      "productName": "TESTLONEMENT (RAD 140)",
+      "sourceTab": "HD",
+      "sourceName": "TESTLONEMENT RAD 140",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30071,
+      "productName": "SUPERBULK 600 - (200MG/ML TEST CYP",
+      "sourceTab": "HD",
+      "sourceName": "SUPERBULK 600",
+      "retailPrice": "650.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30072,
+      "productName": "SUPERCUTMIX 300 - (100MG/ML TREN ACETATE",
+      "sourceTab": "HD",
+      "sourceName": "SUPERCUTMIX 300",
+      "retailPrice": "650.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30073,
+      "productName": "SUPERSIZE 500 - (100MG/ML TEST CYP",
+      "sourceTab": "HD",
+      "sourceName": "SUPERSIZE 500",
+      "retailPrice": "650.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 30074,
+      "productName": "SUPERTEST 500 - (150MG/ML ENANTHATE",
+      "sourceTab": "HD",
+      "sourceName": "SUPERTEST 500",
+      "retailPrice": "500.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60062,
+      "productName": "BP Arimidex 1mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ARIMIDEX 1",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60063,
+      "productName": "BP Aromasin 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP AROMASIN 25",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60064,
+      "productName": "BP Clomid 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CLOMID 25",
+      "retailPrice": "250.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60065,
+      "productName": "BP Enclomiphene 12.5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ENCLOMIPHENE 12.5",
+      "retailPrice": "550.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60066,
+      "productName": "BP Dostinex 100mcg",
+      "sourceTab": "BP",
+      "sourceName": "BP DOSTINEX 100",
+      "retailPrice": "550.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60067,
+      "productName": "BP Femara 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP FEMARA 2",
+      "retailPrice": "300.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60068,
+      "productName": "BP Nolvadex 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP NOLVADEX 10",
+      "retailPrice": "200.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60069,
+      "productName": "BP Proviron 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP PROVIRON 25",
+      "retailPrice": "300.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60070,
+      "productName": "BP Raloxifene 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP RALOXIFENE 20",
+      "retailPrice": "370.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60052,
+      "productName": "BP Albuterol 5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ALBUTEROL 5",
+      "retailPrice": "250.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60053,
+      "productName": "BP Clenbuterol 40mcg",
+      "sourceTab": "BP",
+      "sourceName": "BP CLENBUTEROL 40",
+      "retailPrice": "250.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60054,
+      "productName": "BP Clenbuterol 80mg Inj",
+      "sourceTab": "BP",
+      "sourceName": "BP CLENBUTEROL 80 INJ",
+      "retailPrice": "350.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60055,
+      "productName": "BP Cy Combo",
+      "sourceTab": "BP",
+      "sourceName": "BP CY COMBO",
+      "retailPrice": "200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60056,
+      "productName": "BP Cy Combo Inj",
+      "sourceTab": "BP",
+      "sourceName": "BP CY COMBO INJ",
+      "retailPrice": "360.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60057,
+      "productName": "BP Cyt3",
+      "sourceTab": "BP",
+      "sourceName": "BP CYT3",
+      "retailPrice": "270.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60058,
+      "productName": "BP Sibutramine 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SIBUTRAMINE 20 (50 TABS)",
+      "retailPrice": "250.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60059,
+      "productName": "BP Tertroxin T3 25mcg",
+      "sourceTab": "BP",
+      "sourceName": "BP TERTROXIN T3 25",
+      "retailPrice": "200.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60060,
+      "productName": "BP Yohimbine 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP YOHIMBINE 10",
+      "retailPrice": "250.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60061,
+      "productName": "BP DNP 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP DNP 100",
+      "retailPrice": "250.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60031,
+      "productName": "BP Test E 300mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST300",
+      "retailPrice": "500.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60028,
+      "productName": "BP Test A 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST A100",
+      "retailPrice": "370.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60029,
+      "productName": "BP Test P 125mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST P125",
+      "retailPrice": "380.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60030,
+      "productName": "BP Test C 250mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST C250",
+      "retailPrice": "480.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60027,
+      "productName": "BP AQ Test 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP AQ TEST 100",
+      "retailPrice": "370.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60032,
+      "productName": "BP Test E 500mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST E500",
+      "retailPrice": "530.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60033,
+      "productName": "BP Nebido 250mg",
+      "sourceTab": "BP",
+      "sourceName": "BP NEBIDO 250",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60034,
+      "productName": "BP Sustanon 350mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SUSTANON 350",
+      "retailPrice": "490.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60035,
+      "productName": "BP Test Blend 500mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TEST BLEND 500",
+      "retailPrice": "550.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60036,
+      "productName": "BP AQ Winstrol 50mg",
+      "sourceTab": "BP",
+      "sourceName": "BP AQ WINSTROL 50",
+      "retailPrice": "370.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60037,
+      "productName": "BP NPP 125mg",
+      "sourceTab": "BP",
+      "sourceName": "BP NPP 125",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60038,
+      "productName": "BP Deca 300mg",
+      "sourceTab": "BP",
+      "sourceName": "BP DECA 300",
+      "retailPrice": "680.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60039,
+      "productName": "BP Bold C 200mg",
+      "sourceTab": "BP",
+      "sourceName": "BP BOLD C200",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60040,
+      "productName": "BP Equi 250mg",
+      "sourceTab": "BP",
+      "sourceName": "BP EQUI 250",
+      "retailPrice": "500.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60041,
+      "productName": "BP Tren A 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TREN A100",
+      "retailPrice": "620.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60042,
+      "productName": "BP Tren E 200mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TREN E200",
+      "retailPrice": "700.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60043,
+      "productName": "BP Mast P 125mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MAST P125",
+      "retailPrice": "650.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60044,
+      "productName": "BP Mast E 200mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MAST E200",
+      "retailPrice": "870.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60045,
+      "productName": "BP Primo E 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP PRIMO E100",
+      "retailPrice": "1090.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60046,
+      "productName": "BP Primo E 200mg",
+      "sourceTab": "BP",
+      "sourceName": "BP PRIMO E200",
+      "retailPrice": "1380.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60047,
+      "productName": "BP Ultracut 300mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRACUT300",
+      "retailPrice": "550.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60048,
+      "productName": "BP Ultragain 450mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRAGAIN450",
+      "retailPrice": "660.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60049,
+      "productName": "BP Ultratmt 500mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRATMT500",
+      "retailPrice": "750.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60050,
+      "productName": "BP Ultragrow 500mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRAGROW500",
+      "retailPrice": "590.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60051,
+      "productName": "BP Ultramass 650mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRAMASS650",
+      "retailPrice": "750.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60001,
+      "productName": "BP Anapolin 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ANAPOLAN 25",
+      "retailPrice": "200.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60002,
+      "productName": "BP Anavar 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ANAVAR 20",
+      "retailPrice": "500.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60003,
+      "productName": "BP Anavar 5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ANAVAR 5",
+      "retailPrice": "210.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60004,
+      "productName": "BP Cheque Drops 250mcg",
+      "sourceTab": "BP",
+      "sourceName": "BP CHEQUE DROPS 250",
+      "retailPrice": "290.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60005,
+      "productName": "BP DHEA 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP DHEA 25",
+      "retailPrice": "230.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60006,
+      "productName": "BP Dianabol 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP DIANABOL 10",
+      "retailPrice": "185.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60007,
+      "productName": "BP M1T 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP M1T 10",
+      "retailPrice": "245.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60008,
+      "productName": "BP MTREN 250mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MTREN 250",
+      "retailPrice": "235.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60009,
+      "productName": "BP Primo 25mg",
+      "sourceTab": "BP",
+      "sourceName": "BP PRIMO 25",
+      "retailPrice": "580.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60010,
+      "productName": "BP Superdrol 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SUPERDROL 10",
+      "retailPrice": "215.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60011,
+      "productName": "BP Turinabol 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TURINABOL 10",
+      "retailPrice": "235.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60012,
+      "productName": "BP Winstrol 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP WINSTROL 10",
+      "retailPrice": "185.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60013,
+      "productName": "BP Halotest 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP HALOTEST 10",
+      "retailPrice": "650.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60014,
+      "productName": "BP Ultrafem 12.5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ULTRAFEM 12.5",
+      "retailPrice": "280.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60071,
+      "productName": "BP Accutane 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ACCUTANE 10",
+      "retailPrice": "300.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60072,
+      "productName": "BP Levitra 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP LEVITRA 20",
+      "retailPrice": "260.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60073,
+      "productName": "BP Cialis 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CIALIS 20",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60074,
+      "productName": "BP Cialis 5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CIALIS 5",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60075,
+      "productName": "BP Viagra 100mg",
+      "sourceTab": "BP",
+      "sourceName": "BP VIAGRA 100",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60076,
+      "productName": "BP Finpecia 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP FINPECIA 2",
+      "retailPrice": "300.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60077,
+      "productName": "BP Dutasteride 0.5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP DUTASTERIDE 0.5",
+      "retailPrice": "350.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60078,
+      "productName": "BP Zaditen 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ZADITEN 2",
+      "retailPrice": "200.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60079,
+      "productName": "BP Melatonin 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MELATONIN 10",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60080,
+      "productName": "BP BPC157 + TB500 32mg",
+      "sourceTab": "BP",
+      "sourceName": "BP BPC157 + TB500 32MG",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60081,
+      "productName": "BP Cagrisema 12mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CAGRISEMA 12MG",
+      "retailPrice": "2500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60082,
+      "productName": "BP CJC1295 + IPAMORELIN 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CJC1295 + IPAMORELIN 20MG",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60083,
+      "productName": "BP GHK-CU 50mg",
+      "sourceTab": "BP",
+      "sourceName": "BP GHK-CU 50MG",
+      "retailPrice": "1400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60084,
+      "productName": "BP Melanotan II 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MELANOTAN II 20MG",
+      "retailPrice": "1400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60085,
+      "productName": "BP MOTS-C 32mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MOTS-C 32MG",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60086,
+      "productName": "BP NAD+ 1000mg",
+      "sourceTab": "BP",
+      "sourceName": "BP NAD+ 1000MG",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60087,
+      "productName": "BP Retatrutide 32mg",
+      "sourceTab": "BP",
+      "sourceName": "BP RETATRUTIDE 32MG",
+      "retailPrice": "3000.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60088,
+      "productName": "BP Retatrutide 64mg",
+      "sourceTab": "BP",
+      "sourceName": "BP RETATRUTIDE 64MG",
+      "retailPrice": "5000.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60089,
+      "productName": "BP Semeglutide 6mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SEMEGLUTIDE 6MG",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60090,
+      "productName": "BP Somatropin 100IU HGH",
+      "sourceTab": "BP",
+      "sourceName": "BP SOMATROPIN 100IU HGH",
+      "retailPrice": "3800.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60091,
+      "productName": "BP Somatropin 40IU HGH",
+      "sourceTab": "BP",
+      "sourceName": "BP SOMATROPIN 40IU HGH",
+      "retailPrice": "2500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60092,
+      "productName": "BP Tesamorelin 32mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TESAMORELIN 32MG",
+      "retailPrice": "2600.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60093,
+      "productName": "BP Tirzepatide 30mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TIRZEPATIDE 30MG",
+      "retailPrice": "2500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60094,
+      "productName": "BP Tirzepatide 60mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TIRZEPATIDE 60MG",
+      "retailPrice": "3500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60095,
+      "productName": "BP AOD9604 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP AOD9604 10MG",
+      "retailPrice": "650.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60096,
+      "productName": "BP AOD9604 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP AOD9604 2MG",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60097,
+      "productName": "BP BPC 157 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP BPC 157 10MG",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60098,
+      "productName": "BP CJC1295 DAC 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CJC1295 DAC 2MG",
+      "retailPrice": "400.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60099,
+      "productName": "BP Epithalon 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP EPITHALON 20MG",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60100,
+      "productName": "BP GHRP-6 5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP GHRP-6 5MG",
+      "retailPrice": "420.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60101,
+      "productName": "BP Gonadorelin 2mg",
+      "sourceTab": "BP",
+      "sourceName": "BP GONADORELIN 2MG",
+      "retailPrice": "500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60102,
+      "productName": "BP HCG 5000IU",
+      "sourceTab": "BP",
+      "sourceName": "BP HCG 5000IU",
+      "retailPrice": "450.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60103,
+      "productName": "BP HGH 100IU",
+      "sourceTab": "BP",
+      "sourceName": "BP HGH 100IU",
+      "retailPrice": "2200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60104,
+      "productName": "BP IGF 1 LR3 0.1mg",
+      "sourceTab": "BP",
+      "sourceName": "BP IGF 1 LR3 0.1MG",
+      "retailPrice": "420.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60105,
+      "productName": "BP IPAMORELIN 5mg",
+      "sourceTab": "BP",
+      "sourceName": "BP IPAMORELIN 5MG",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60106,
+      "productName": "BP Melanotan MT2 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MELANOTAN MT2 10MG",
+      "retailPrice": "410.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60107,
+      "productName": "BP MOTS-C 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP MOTS-C 10MG",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60108,
+      "productName": "BP PT141 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP PT141 10MG",
+      "retailPrice": "480.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60109,
+      "productName": "BP Selank 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SELANK 10MG",
+      "retailPrice": "520.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60110,
+      "productName": "BP Semax 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP SEMAX 10MG",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60111,
+      "productName": "BP TB500 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TB500 10MG",
+      "retailPrice": "580.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60112,
+      "productName": "BP Tesamorelin 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP TESAMORELIN 10MG",
+      "retailPrice": "700.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 60015,
+      "productName": "BP Limitless 20mg",
+      "sourceTab": "BP",
+      "sourceName": "BP LIMITLESS 20",
+      "retailPrice": "215.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60016,
+      "productName": "BP Cardarine 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP CARDARINE 10",
+      "retailPrice": "335.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60017,
+      "productName": "BP Ligandrol 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP LIGANDROL 10 (ANABOLICUM)",
+      "retailPrice": "335.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60018,
+      "productName": "BP Ostarine 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP OSTARINE 10",
+      "retailPrice": "335.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60019,
+      "productName": "BP Ibutamoren 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP IBUTAMOREN 10 (NUTROBAL)",
+      "retailPrice": "400.00",
+      "strategy": "alias"
+    },
+    {
+      "productId": 60020,
+      "productName": "BP RAD140 Testolone 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP RAD140 TESTOLONE 10",
+      "retailPrice": "335.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60021,
+      "productName": "BP RAD150 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP RAD150 10",
+      "retailPrice": "380.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60022,
+      "productName": "BP S23 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP S23 10",
+      "retailPrice": "335.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60023,
+      "productName": "BP Andarine 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP ANDARINE 10",
+      "retailPrice": "335.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60024,
+      "productName": "BP Stenabolic 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP STENABOLIC 10",
+      "retailPrice": "400.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60025,
+      "productName": "BP F-CARDARINE 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP F-CARDARINE 10",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 60026,
+      "productName": "BP YK 11 10mg",
+      "sourceTab": "BP",
+      "sourceName": "BP YK 11 10",
+      "retailPrice": "450.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30134,
+      "productName": "NEEDLES",
+      "sourceTab": "PHARMA",
+      "sourceName": "NEEDLES",
+      "retailPrice": "1.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30135,
+      "productName": "SYRINGES",
+      "sourceTab": "PHARMA",
+      "sourceName": "SYRINGES",
+      "retailPrice": "2.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30138,
+      "productName": "ALCOHOL SWABS",
+      "sourceTab": "PHARMA",
+      "sourceName": "ALCOHOL SWABS",
+      "retailPrice": "0.50",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30075,
+      "productName": "ADORETIC PER TAB",
+      "sourceTab": "PHARMA",
+      "sourceName": "ADORETIC PER TAB",
+      "retailPrice": "3.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30077,
+      "productName": "AMILORETIC PER TAB",
+      "sourceTab": "PHARMA",
+      "sourceName": "AMILORETIC PER TAB",
+      "retailPrice": "3.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30078,
+      "productName": "AMOXICILLAN 500MG 15 TABS",
+      "sourceTab": "PHARMA",
+      "sourceName": "AMOXICILLAN 500MG 15 TABS",
+      "retailPrice": "200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30083,
+      "productName": "BROMAZEPAM 30 TABS",
+      "sourceTab": "PHARMA",
+      "sourceName": "BROMAZEPAM 30 TABS",
+      "retailPrice": "250.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30092,
+      "productName": "DORMICUM",
+      "sourceTab": "PHARMA",
+      "sourceName": "DORMICUM",
+      "retailPrice": "450.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30094,
+      "productName": "DURAMINE 30MG",
+      "sourceTab": "PHARMA",
+      "sourceName": "DURAMINE 30MG",
+      "retailPrice": "750.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30096,
+      "productName": "EPO Eprex (sold per pen)  1 x 0.4ml 4000iu",
+      "sourceTab": "PHARMA",
+      "sourceName": "EPO Eprex (sold per pen)  1 x 0.4ml 4000iu",
+      "retailPrice": "880.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30097,
+      "productName": "FUROSEMIDE / LASIX GENERIC PER TAB",
+      "sourceTab": "PHARMA",
+      "sourceName": "FUROSEMIDE / LASIX GENERIC PER TAB",
+      "retailPrice": "3.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30080,
+      "productName": "B12",
+      "sourceTab": "PHARMA",
+      "sourceName": "HD B12",
+      "retailPrice": "150.00",
+      "strategy": "normalized"
+    },
+    {
+      "productId": 30105,
+      "productName": "INSULIN NOVORAPID",
+      "sourceTab": "PHARMA",
+      "sourceName": "INSULIN NOVORAPID",
+      "retailPrice": "280.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30108,
+      "productName": "Modafinil 50 tabs",
+      "sourceTab": "PHARMA",
+      "sourceName": "Modafinil 50 tabs",
+      "retailPrice": "950.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30109,
+      "productName": "MYLAN ALPRAZOLAM (XANAX GEN) 100'S",
+      "sourceTab": "PHARMA",
+      "sourceName": "MYLAN ALPRAZOLAM (XANAX GEN) 100'S",
+      "retailPrice": "350.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30115,
+      "productName": "PAX",
+      "sourceTab": "PHARMA",
+      "sourceName": "PAX",
+      "retailPrice": "200.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30116,
+      "productName": "Prednisone 100 tabs",
+      "sourceTab": "PHARMA",
+      "sourceName": "Prednisone 100 tabs",
+      "retailPrice": "100.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30117,
+      "productName": "PURATA 30MG",
+      "sourceTab": "PHARMA",
+      "sourceName": "PURATA 30MG",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30118,
+      "productName": "RELISLIM",
+      "sourceTab": "PHARMA",
+      "sourceName": "RELISLIM",
+      "retailPrice": "600.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30119,
+      "productName": "RITALIN 10MG",
+      "sourceTab": "PHARMA",
+      "sourceName": "RITALIN 10MG",
+      "retailPrice": "500.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30120,
+      "productName": "STILPAYNE 100'S",
+      "sourceTab": "PHARMA",
+      "sourceName": "STILPAYNE 100'S",
+      "retailPrice": "300.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30122,
+      "productName": "TRAMACET",
+      "sourceTab": "PHARMA",
+      "sourceName": "TRAMACET",
+      "retailPrice": "540.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30123,
+      "productName": "Tramadol 100 tabs",
+      "sourceTab": "PHARMA",
+      "sourceName": "Tramadol 100 tabs",
+      "retailPrice": "540.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30125,
+      "productName": "URBINOL 10",
+      "sourceTab": "PHARMA",
+      "sourceName": "URBINOL 10",
+      "retailPrice": "900.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30127,
+      "productName": "VOLTAREN INJECTABLE (DICLOFENAC)",
+      "sourceTab": "PHARMA",
+      "sourceName": "VOLTAREN INJECTABLE (DICLOFENAC)",
+      "retailPrice": "55.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30132,
+      "productName": "ZOLPIDEM",
+      "sourceTab": "PHARMA",
+      "sourceName": "ZOLPIDEM",
+      "retailPrice": "310.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30133,
+      "productName": "ZOLPIVANE",
+      "sourceTab": "PHARMA",
+      "sourceName": "ZOLPIVANE",
+      "retailPrice": "310.00",
+      "strategy": "exact"
+    }
+  ],
+  "unchanged": [
+    {
+      "productId": 30034,
+      "productName": "TRENAJECT 100 (TREN ACETATE)",
+      "sourceTab": "HD",
+      "sourceName": "TRENAJECT 100 (TREN ACETATE)",
+      "retailPrice": "550.00",
+      "strategy": "exact"
+    },
+    {
+      "productId": 30047,
+      "productName": "DIANABOL 10mg",
+      "sourceTab": "HD",
+      "sourceName": "DIANABOL10",
+      "retailPrice": "160.00",
+      "strategy": "normalized"
+    }
+  ],
+  "unmatchedRows": [
+    {
+      "sourceTab": "HD",
+      "productName": "GHK-CU 100MG VIAL",
+      "retailPrice": "700.00",
+      "sourceRow": 12
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "MOTS-C 10MG",
+      "retailPrice": "450.00",
+      "sourceRow": 20
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "RETATRUTIDE 10MG VIAL",
+      "retailPrice": "2000.00",
+      "sourceRow": 22
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "RETATRUTIDE 32MG PEN",
+      "retailPrice": "2500.00",
+      "sourceRow": 23
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "RETATRUTIDE 32MG VIAL",
+      "retailPrice": "2000.00",
+      "sourceRow": 24
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "TIRSEMA 44 PEN",
+      "retailPrice": "2400.00",
+      "sourceRow": 26
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "TIRZEPATIDE 30MG PEN",
+      "retailPrice": "2400.00",
+      "sourceRow": 28
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "TIRZEPATIDE 30MG VIAL",
+      "retailPrice": "2000.00",
+      "sourceRow": 29
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "ANAVAR",
+      "retailPrice": "400.00",
+      "sourceRow": 56
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "ANAVAR50",
+      "retailPrice": "700.00",
+      "sourceRow": 57
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "D3 (Vitamin D3) 30 caps",
+      "retailPrice": "190.00",
+      "sourceRow": 63
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "DIANABOL50 30 TABS",
+      "retailPrice": "400.00",
+      "sourceRow": 66
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "WINSTROL50 30 TABS",
+      "retailPrice": "400.00",
+      "sourceRow": 84
+    },
+    {
+      "sourceTab": "HD",
+      "productName": "ZMA (10mg Zinc, 150mg Magnesium, 3.5mg Vitamin B6, 2mg Boron) 90 caps",
+      "retailPrice": "200.00",
+      "sourceRow": 85
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "PEPTIDE PEN NEEDLES",
+      "retailPrice": "5.00",
+      "sourceRow": 6
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "Betamox 500 (15 tabs)",
+      "retailPrice": "200.00",
+      "sourceRow": 11
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "IVERMECTIM 50ML",
+      "retailPrice": "200.00",
+      "sourceRow": 19
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "Modafinil Shree 200mg 10 tabs",
+      "retailPrice": "560.00",
+      "sourceRow": 21
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "NEUROBIAN",
+      "retailPrice": "630.00",
+      "sourceRow": 23
+    },
+    {
+      "sourceTab": "PHARMA",
+      "productName": "Zolpihexal",
+      "retailPrice": "330.00",
+      "sourceRow": 35
+    }
+  ],
+  "ambiguousRows": [],
+  "conflictingPrices": [
+    {
+      "product": {
+        "id": 30018,
+        "name": "CLENBUTEROL"
+      },
+      "sourceRows": [
+        {
+          "sourceTab": "HD",
+          "sourceRow": 33,
+          "sourceName": "CLENBUTEROL",
+          "retailPrice": "350.00"
+        },
+        {
+          "sourceTab": "HD",
+          "sourceRow": 61,
+          "sourceName": "CLENBUTEROL",
+          "retailPrice": "250.00"
+        }
+      ]
+    }
+  ],
+  "productsWithoutPriceSource": [
+    {
+      "id": 30018,
+      "name": "CLENBUTEROL"
+    },
+    {
+      "id": 30040,
+      "name": "ANAVAR 10mg "
+    },
+    {
+      "id": 30076,
+      "name": "AMETHOCAINE CREAM"
+    },
+    {
+      "id": 30079,
+      "name": "AMOXICLAV (AUSTELL CO)"
+    },
+    {
+      "id": 30081,
+      "name": "B12 Complex"
+    },
+    {
+      "id": 30082,
+      "name": "Betapam (PAX Generic) 30 tabs"
+    },
+    {
+      "id": 30084,
+      "name": "Concerta 18mg"
+    },
+    {
+      "id": 30085,
+      "name": "Concerta 27mg"
+    },
+    {
+      "id": 30086,
+      "name": "Concerta 36mg"
+    },
+    {
+      "id": 30087,
+      "name": "Concerta 54mg"
+    },
+    {
+      "id": 30088,
+      "name": "Contramyl XR 18mg"
+    },
+    {
+      "id": 30089,
+      "name": "Contramyl XR 27mg"
+    },
+    {
+      "id": 30090,
+      "name": "Contramyl XR 36mg"
+    },
+    {
+      "id": 30091,
+      "name": "Contramyl XR 54mg"
+    },
+    {
+      "id": 30093,
+      "name": "DOSTINEX"
+    },
+    {
+      "id": 30095,
+      "name": "Eltroxin T4 30 tabs"
+    },
+    {
+      "id": 30098,
+      "name": "HD CBD OIL"
+    },
+    {
+      "id": 30099,
+      "name": "HD D3 (Vitamin D3)"
+    },
+    {
+      "id": 30101,
+      "name": "HD Semaglutide 5mg"
+    },
+    {
+      "id": 30104,
+      "name": "HD ZMA (10MG Zinc"
+    },
+    {
+      "id": 30106,
+      "name": "KAMEGRA"
+    },
+    {
+      "id": 30107,
+      "name": "KAMEGRA JELLY"
+    },
+    {
+      "id": 30110,
+      "name": "Nuecon 18mg"
+    },
+    {
+      "id": 30111,
+      "name": "Nuecon 27mg"
+    },
+    {
+      "id": 30112,
+      "name": "Nuecon 36mg"
+    },
+    {
+      "id": 30113,
+      "name": "Nuecon 54mg"
+    },
+    {
+      "id": 30114,
+      "name": "Ozempic (Semaglutide 3) (generic)"
+    },
+    {
+      "id": 30124,
+      "name": "TRIPELINE 25MG 30'S"
+    },
+    {
+      "id": 30126,
+      "name": "VIAGRA PFIZER"
+    },
+    {
+      "id": 30128,
+      "name": "VOLTAREN TABS (DICLOFENAC) 50 TABS"
+    },
+    {
+      "id": 30129,
+      "name": "Vyvanse 30"
+    },
+    {
+      "id": 30130,
+      "name": "Vyvanse 50"
+    },
+    {
+      "id": 30131,
+      "name": "Vyvanse 70"
+    },
+    {
+      "id": 30136,
+      "name": "INSULIN NEEDLES 0.5 - 10 PACK"
+    },
+    {
+      "id": 30137,
+      "name": "SYRINGES (WITH NEEDLES)"
+    },
+    {
+      "id": 90001,
+      "name": "BP Methyltest 10mg"
+    }
+  ]
+}

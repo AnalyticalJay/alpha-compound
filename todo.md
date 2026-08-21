@@ -457,3 +457,18 @@
 - [x] Import only verified high-quality images without replacing existing primary images
 - [x] Preserve all unavailable or variant-ambiguous products in an updated source audit
 - [x] Validate assignments and storefront rendering, then save a checkpoint
+
+## Phase 61: Retail Price Import and Image Coverage Review
+- [x] Inspect the uploaded multi-sheet price list and identify the Retail Price column in each sheet
+- [x] Extract the Retail Price column from the shared Google Sheet HD Labs, BP, and Pharma tabs
+- [x] Normalize product names and produce a verified source-row to catalogue-product match set
+- [x] Update only matched products with Retail Price values, without altering stock or other catalogue data
+- [x] Report unmatched or missing prices and confirm overall product image coverage
+- [x] Validate storefront price rendering, run regression checks, and save a checkpoint
+
+## Phase 62: Authoritative Three-Tab Catalogue Reconciliation
+- [x] Treat the HD Labs, BP, and Pharma Google Sheet tabs as the complete authoritative product catalogue
+- [x] Set the confirmed HD Clenbuterol Retail price to R350.00 and reconcile every source-row price
+- [x] Add products present in the authoritative tabs but absent from the website catalogue
+- [x] Remove products absent from all authoritative tabs only after dependency checks
+- [x] Validate full Retail-price and image coverage for the reconciled catalogue, then save a checkpoint
