@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { getShippingProgress, isShippingMilestoneComplete, SHIPPING_MILESTONES } from "@shared/shippingTimeline";
+import { getDeliveryEstimate, getShippingProgress, getShippingProgressPercent, isShippingMilestoneComplete, SHIPPING_MILESTONES } from "@shared/shippingTimeline";
 
 const root = resolve(import.meta.dirname, "..");
 const source = (file: string) => readFileSync(resolve(root, file), "utf8");
@@ -28,6 +28,19 @@ describe("shipping delivery timeline", () => {
     expect(isShippingMilestoneComplete("out_for_delivery", 5)).toBe(false);
   });
 
+  it("derives transparent status-based delivery estimates and timeline progress", () => {
+    expect(getShippingProgressPercent("pending")).toBe(17);
+    expect(getShippingProgressPercent("out_for_delivery")).toBe(83);
+    expect(getShippingProgressPercent("delivered")).toBe(100);
+    expect(getShippingProgressPercent("returned")).toBe(0);
+    expect(getDeliveryEstimate("packed")).toMatchObject({ title: "Dispatching within 1 business day" });
+    const estimate = getDeliveryEstimate("dispatched", "2026-08-21T10:00:00.000Z");
+    expect(estimate).toMatchObject({ title: "Estimated delivery window" });
+    expect(estimate.startDate).toBeInstanceOf(Date);
+    expect(estimate.endDate).toBeInstanceOf(Date);
+    expect(getDeliveryEstimate("out_for_delivery")).toMatchObject({ title: "Expected today" });
+  });
+
   it("is integrated into both customer and administrator tracking views", () => {
     const component = source("client/src/components/DeliveryTimeline.tsx");
     const customer = source("client/src/pages/OrderDetail.tsx");
@@ -41,5 +54,8 @@ describe("shipping delivery timeline", () => {
     expect(admin).toContain("order.shipping.shippingStatus");
     expect(customer).toContain("Copy waybill number");
     expect(admin).toContain('value="out_for_delivery"');
+    expect(component).toContain('role="progressbar"');
+    expect(component).toContain("getDeliveryEstimate");
+    expect(component).toContain("Delivery progress");
   });
 });

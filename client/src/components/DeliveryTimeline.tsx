@@ -1,11 +1,18 @@
-import { Check, CheckCircle2, ClipboardList, MapPinCheckInside, PackageCheck, RotateCcw, Send, Truck } from "lucide-react";
+import { CalendarClock, Check, CheckCircle2, ClipboardList, MapPinCheckInside, PackageCheck, RotateCcw, Send, Truck } from "lucide-react";
 import { format } from "date-fns";
-import { SHIPPING_MILESTONES, getShippingProgress, isShippingMilestoneComplete, type ShippingStatus } from "@shared/shippingTimeline";
+import { SHIPPING_MILESTONES, getDeliveryEstimate, getShippingProgress, getShippingProgressPercent, isShippingMilestoneComplete, type ShippingStatus } from "@shared/shippingTimeline";
 
 const icons = { pending: ClipboardList, packed: PackageCheck, dispatched: Send, in_transit: Truck, out_for_delivery: MapPinCheckInside, delivered: CheckCircle2 } as const;
 
-export default function DeliveryTimeline({ status, updatedAt }: { status: ShippingStatus; updatedAt?: Date | string | null }) {
+export default function DeliveryTimeline({ status, updatedAt, shippedAt }: { status: ShippingStatus; updatedAt?: Date | string | null; shippedAt?: Date | string | null }) {
   const progress = getShippingProgress(status);
+  const progressPercent = getShippingProgressPercent(status);
+  const estimate = getDeliveryEstimate(status, shippedAt);
+  const estimateWindow = estimate.startDate && estimate.endDate
+    ? estimate.startDate.toDateString() === estimate.endDate.toDateString()
+      ? format(estimate.startDate, "d MMM")
+      : `${format(estimate.startDate, "d MMM")} – ${format(estimate.endDate, "d MMM")}`
+    : null;
 
   return (
     <div className="mt-5 rounded-xl border border-border/30 bg-background/20 p-4 sm:p-5" aria-label="Delivery progress timeline">
@@ -15,6 +22,11 @@ export default function DeliveryTimeline({ status, updatedAt }: { status: Shippi
           <p className="mt-1 text-xs text-muted-foreground">Live status from the fulfilment record</p>
         </div>
         {updatedAt && <p className="text-[11px] text-muted-foreground">Updated {format(new Date(updatedAt), "d MMM yyyy, HH:mm")}</p>}
+      </div>
+
+      <div className="mb-5 grid gap-3 rounded-xl border border-[#0EA5E9]/20 bg-[#0EA5E9]/5 p-3 sm:grid-cols-[minmax(0,1fr)_minmax(12rem,0.8fr)] sm:items-center">
+        <div className="flex min-w-0 items-start gap-2.5"><CalendarClock className="mt-0.5 h-4 w-4 shrink-0 text-[#38BDF8]" /><div><p className="text-[11px] font-black uppercase tracking-[0.15em] text-[#7DD3FC]">{estimate.title}</p>{estimateWindow && <p className="mt-1 text-sm font-bold text-foreground">{estimateWindow}</p>}<p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{estimate.detail}</p></div></div>
+        <div><div className="mb-1.5 flex items-center justify-between gap-3 text-[11px] font-bold uppercase tracking-wide"><span className="text-muted-foreground">Delivery progress</span><span className={progress.isReturned ? "text-[#FB7185]" : "text-[#38BDF8]"}>{progressPercent}%</span></div><div className="h-2 overflow-hidden rounded-full bg-slate-800/80" role="progressbar" aria-label={`Delivery progress: ${progressPercent}%`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progressPercent}><div className={`h-full rounded-full transition-[width] duration-300 ${progress.isReturned ? "bg-[#E11D48]" : "bg-gradient-to-r from-[#0EA5E9] via-[#38BDF8] to-[#10B981]"}`} style={{ width: `${progressPercent}%` }} /></div></div>
       </div>
 
       {progress.isReturned ? (

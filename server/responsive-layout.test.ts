@@ -51,6 +51,8 @@ describe("responsive layout contracts", () => {
     expect(reports).toContain("grid gap-6 lg:grid-cols-2");
     expect(reports).toContain("grid gap-3 sm:grid-cols-2 lg:grid-cols-4");
     expect(timeline).toContain("grid gap-4 sm:grid-cols-6 sm:gap-2");
+    expect(timeline).toContain("sm:grid-cols-[minmax(0,1fr)_minmax(12rem,0.8fr)]");
+    expect(timeline).toContain('role="progressbar"');
     expect(timeline).toContain("sm:text-center");
     expect(home).toContain("grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4");
     expect(home).toContain("grid-cols-1 sm:grid-cols-2 lg:grid-cols-4");

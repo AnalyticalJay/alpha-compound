@@ -517,3 +517,10 @@
 - [x] Add Out for delivery to shipping persistence, admin controls, and customer/admin timelines
 - [x] Add regression coverage and verify the expanded delivery tracking flow
 - [x] Save a checkpoint
+
+## Phase 70: Customer Delivery Estimates and Timeline Progress
+- [x] Inspect shipping timestamps and current customer delivery data
+- [x] Define transparent status-based delivery estimate rules and timeline progress values
+- [x] Add the delivery estimate and accessible visual progress bar to customer tracking
+- [x] Add regression coverage and validate responsive delivery tracking
+- [x] Save a checkpoint

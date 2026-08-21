@@ -197,6 +197,8 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await expect(page.getByText("E2E-TRACK-001", { exact: true })).toBeVisible();
     await expect(page.getByText("out for delivery", { exact: true })).toBeVisible();
     await expect(page.getByText("The courier is on the way to the delivery address.")).toBeVisible();
+    await expect(page.getByText("Expected today", { exact: true })).toBeVisible();
+    await expect(page.getByRole("progressbar", { name: "Delivery progress: 83%" })).toHaveAttribute("aria-valuenow", "83");
     await page.getByRole("button", { name: "Copy waybill number E2E-TRACK-001" }).click();
     await expect(page.getByRole("button", { name: "Waybill copied E2E-TRACK-001" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Track shipment" })).toHaveAttribute("href", "https://tracking.example.test/E2E-TRACK-001");
