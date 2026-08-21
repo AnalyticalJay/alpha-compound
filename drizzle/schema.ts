@@ -183,7 +183,7 @@ export const shippingDetails = mysqlTable("shipping_details", {
   courierName: varchar("courierName", { length: 128 }),
   trackingNumber: varchar("trackingNumber", { length: 128 }),
   trackingUrl: varchar("trackingUrl", { length: 1024 }),
-  shippingStatus: mysqlEnum("shippingStatus", ["pending", "packed", "dispatched", "in_transit", "delivered", "returned"]).default("pending").notNull(),
+  shippingStatus: mysqlEnum("shippingStatus", ["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered", "returned"]).default("pending").notNull(),
   shippedAt: timestamp("shippedAt"),
   deliveredAt: timestamp("deliveredAt"),
   shippingNotes: text("shippingNotes"),

@@ -272,7 +272,7 @@ export function updateE2EShipping(orderId: number, input: { courierName?: string
   const order = getE2EOrder(orderId);
   if (!order) throw new Error("Order not found");
   order.shipping = { ...order.shipping, ...input };
-  if (["dispatched", "in_transit", "delivered"].includes(input.shippingStatus)) order.status = input.shippingStatus === "delivered" ? "completed" : "shipped";
+  if (["dispatched", "in_transit", "out_for_delivery", "delivered"].includes(input.shippingStatus)) order.status = input.shippingStatus === "delivered" ? "completed" : "shipped";
   order.updatedAt = new Date();
   order.paymentHistory.push({ id: order.paymentHistory.length + 1, eventType: "shipping_updated", paymentStatus: order.paymentStatus, createdAt: order.updatedAt, note: `Disposable E2E shipping updated: ${input.shippingStatus}.` });
   createE2ENotification({ userId: order.userId, orderId, type: "shipping", title: `Shipping updated for Quote #${orderId}`, body: `Your delivery is now marked ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` with tracking number ${input.trackingNumber}.` : "."}` });

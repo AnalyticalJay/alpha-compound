@@ -1,4 +1,4 @@
-export const SHIPPING_STATUSES = ["pending", "packed", "dispatched", "in_transit", "delivered"] as const;
+export const SHIPPING_STATUSES = ["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered"] as const;
 export type ShippingStatus = (typeof SHIPPING_STATUSES)[number] | "returned";
 
 export const SHIPPING_MILESTONES = [
@@ -6,6 +6,7 @@ export const SHIPPING_MILESTONES = [
   { status: "packed" as const, label: "Packed", description: "Your items are being prepared for dispatch." },
   { status: "dispatched" as const, label: "Dispatched", description: "The parcel has left our fulfilment point." },
   { status: "in_transit" as const, label: "In transit", description: "The courier is moving your parcel to its destination." },
+  { status: "out_for_delivery" as const, label: "Out for delivery", description: "The courier is on the way to the delivery address." },
   { status: "delivered" as const, label: "Delivered", description: "Delivery has been marked as completed." },
 ] as const;
 

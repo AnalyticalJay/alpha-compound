@@ -73,6 +73,17 @@ describe("disposable E2E write-flow store", () => {
     expect(getE2ENotifications(E2E_CUSTOMER_ID)).toEqual([]);
   });
 
+  it("keeps an out-for-delivery shipment in the shipped order state", () => {
+    upsertE2ECart(E2E_CUSTOMER_ID, E2E_PRODUCT_ID, 1);
+    const quote = createE2EQuote(E2E_CUSTOMER_ID, {
+      shipping: { fullName: "E2E Customer", phone: "0123456789", addressLine1: "42 Test Street", city: "Cape Town", postalCode: "8001", country: "South Africa" },
+    });
+
+    updateE2EShipping(quote.quoteId, { shippingStatus: "out_for_delivery", trackingNumber: "E2E-OUT-001" });
+
+    expect(getE2EOrder(quote.quoteId)).toMatchObject({ status: "shipped", shipping: { shippingStatus: "out_for_delivery", trackingNumber: "E2E-OUT-001" } });
+  });
+
   it("returns a failed PayFast payment to a retryable quote and supports Instant EFT retry without external services", () => {
     upsertE2ECart(E2E_CUSTOMER_ID, E2E_PRODUCT_ID, 1);
     const quote = createE2EQuote(E2E_CUSTOMER_ID, {

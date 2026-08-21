@@ -717,7 +717,7 @@ export const appRouter = router({
         courierName: z.string().max(128).optional(),
         trackingNumber: z.string().max(128).optional(),
         trackingUrl: z.string().url().max(1024).optional().or(z.literal("")),
-        shippingStatus: z.enum(["pending", "packed", "dispatched", "in_transit", "delivered", "returned"]),
+        shippingStatus: z.enum(["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered", "returned"]),
         shippingNotes: z.string().max(2000).optional(),
       }))
       .mutation(async ({ ctx, input }) => {

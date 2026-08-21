@@ -796,14 +796,14 @@ export async function updateShippingDetails(data: {
   courierName?: string | null;
   trackingNumber?: string | null;
   trackingUrl?: string | null;
-  shippingStatus: "pending" | "packed" | "dispatched" | "in_transit" | "delivered" | "returned";
+  shippingStatus: "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned";
   shippingNotes?: string | null;
 }) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   const current = await db.select().from(shippingDetails).where(eq(shippingDetails.orderId, data.orderId)).limit(1);
   const now = new Date();
-  const shippedAt = ["dispatched", "in_transit", "delivered"].includes(data.shippingStatus) ? (current[0]?.shippedAt ?? now) : current[0]?.shippedAt ?? null;
+  const shippedAt = ["dispatched", "in_transit", "out_for_delivery", "delivered"].includes(data.shippingStatus) ? (current[0]?.shippedAt ?? now) : current[0]?.shippedAt ?? null;
   const deliveredAt = data.shippingStatus === "delivered" ? (current[0]?.deliveredAt ?? now) : current[0]?.deliveredAt ?? null;
   const details = {
     courierName: data.courierName || null,
@@ -821,7 +821,7 @@ export async function updateShippingDetails(data: {
     throw new Error("Shipping address not found for order");
   }
 
-  const orderStatus = data.shippingStatus === "delivered" ? "completed" : ["dispatched", "in_transit"].includes(data.shippingStatus) ? "shipped" : data.shippingStatus === "packed" ? "processing" : undefined;
+  const orderStatus = data.shippingStatus === "delivered" ? "completed" : ["dispatched", "in_transit", "out_for_delivery"].includes(data.shippingStatus) ? "shipped" : data.shippingStatus === "packed" ? "processing" : undefined;
   if (orderStatus) {
     await db.update(orders).set({ status: orderStatus }).where(eq(orders.id, data.orderId));
   }

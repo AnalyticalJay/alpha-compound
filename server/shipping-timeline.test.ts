@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { getShippingProgress, isShippingMilestoneComplete } from "@shared/shippingTimeline";
+import { getShippingProgress, isShippingMilestoneComplete, SHIPPING_MILESTONES } from "@shared/shippingTimeline";
 
 const root = resolve(import.meta.dirname, "..");
 const source = (file: string) => readFileSync(resolve(root, file), "utf8");
@@ -19,6 +19,15 @@ describe("shipping delivery timeline", () => {
     expect(isShippingMilestoneComplete("returned", 4)).toBe(false);
   });
 
+  it("adds Out for delivery as the final active step before delivered", () => {
+    expect(SHIPPING_MILESTONES.map((milestone) => milestone.status)).toEqual([
+      "pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered",
+    ]);
+    expect(getShippingProgress("out_for_delivery")).toEqual({ currentIndex: 4, isReturned: false });
+    expect(isShippingMilestoneComplete("out_for_delivery", 4)).toBe(true);
+    expect(isShippingMilestoneComplete("out_for_delivery", 5)).toBe(false);
+  });
+
   it("is integrated into both customer and administrator tracking views", () => {
     const component = source("client/src/components/DeliveryTimeline.tsx");
     const customer = source("client/src/pages/OrderDetail.tsx");
@@ -27,7 +36,10 @@ describe("shipping delivery timeline", () => {
     expect(component).toContain("Returned to sender");
     expect(customer).toContain("<DeliveryTimeline");
     expect(admin).toContain("<DeliveryTimeline");
-    expect(customer).toContain("order.shipping.shippingStatus");
+    expect(customer).toContain("<DeliveryTrackingPanel");
+    expect(customer).toContain("shipping.shippingStatus");
     expect(admin).toContain("order.shipping.shippingStatus");
+    expect(customer).toContain("Copy waybill number");
+    expect(admin).toContain('value="out_for_delivery"');
   });
 });

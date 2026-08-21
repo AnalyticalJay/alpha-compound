@@ -179,7 +179,7 @@ test.describe("disposable quote and PayFast payment write flows", () => {
 
     await page.setExtraHTTPHeaders(adminHeaders);
     await page.goto("/admin/orders/42001");
-    await page.getByLabel("Shipping status").selectOption("dispatched");
+    await page.getByLabel("Shipping status").selectOption("out_for_delivery");
     await page.getByPlaceholder("e.g. The Courier Guy").fill("E2E Courier");
     await page.getByPlaceholder("Tracking reference").fill("E2E-TRACK-001");
     await page.getByPlaceholder("https://courier.example/track/...").fill("https://tracking.example.test/E2E-TRACK-001");
@@ -195,8 +195,10 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await expect(page.getByRole("heading", { name: "Delivery tracking" })).toBeVisible();
     await expect(page.getByText("E2E Courier", { exact: true })).toBeVisible();
     await expect(page.getByText("E2E-TRACK-001", { exact: true })).toBeVisible();
-    await expect(page.getByText("dispatched", { exact: true })).toBeVisible();
-    await expect(page.getByText("The parcel has left our fulfilment point.")).toBeVisible();
+    await expect(page.getByText("out for delivery", { exact: true })).toBeVisible();
+    await expect(page.getByText("The courier is on the way to the delivery address.")).toBeVisible();
+    await page.getByRole("button", { name: "Copy waybill number E2E-TRACK-001" }).click();
+    await expect(page.getByRole("button", { name: "Waybill copied E2E-TRACK-001" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Track shipment" })).toHaveAttribute("href", "https://tracking.example.test/E2E-TRACK-001");
   });
 });

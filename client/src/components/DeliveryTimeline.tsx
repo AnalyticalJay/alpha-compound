@@ -1,8 +1,8 @@
-import { Check, CheckCircle2, ClipboardList, PackageCheck, RotateCcw, Send, Truck } from "lucide-react";
+import { Check, CheckCircle2, ClipboardList, MapPinCheckInside, PackageCheck, RotateCcw, Send, Truck } from "lucide-react";
 import { format } from "date-fns";
 import { SHIPPING_MILESTONES, getShippingProgress, isShippingMilestoneComplete, type ShippingStatus } from "@shared/shippingTimeline";
 
-const icons = { pending: ClipboardList, packed: PackageCheck, dispatched: Send, in_transit: Truck, delivered: CheckCircle2 } as const;
+const icons = { pending: ClipboardList, packed: PackageCheck, dispatched: Send, in_transit: Truck, out_for_delivery: MapPinCheckInside, delivered: CheckCircle2 } as const;
 
 export default function DeliveryTimeline({ status, updatedAt }: { status: ShippingStatus; updatedAt?: Date | string | null }) {
   const progress = getShippingProgress(status);
@@ -26,7 +26,7 @@ export default function DeliveryTimeline({ status, updatedAt }: { status: Shippi
           </div>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-5 sm:gap-2">
+        <div className="grid gap-4 sm:grid-cols-6 sm:gap-2">
           {SHIPPING_MILESTONES.map((milestone, index) => {
             const complete = isShippingMilestoneComplete(status, index);
             const current = !complete && index === progress.currentIndex + 1;

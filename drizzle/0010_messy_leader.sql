@@ -1,0 +1,1 @@
+ALTER TABLE `shipping_details` MODIFY COLUMN `shippingStatus` enum('pending','packed','dispatched','in_transit','out_for_delivery','delivered','returned') NOT NULL DEFAULT 'pending';
