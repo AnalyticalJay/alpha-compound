@@ -510,3 +510,10 @@
 - [x] Inspect the isolated shipping fixture and customer tracking assertions
 - [x] Run an isolated admin shipping update with a waybill and tracking URL
 - [x] Verify the customer order dashboard shows the tracking details and timeline progress
+
+## Phase 69: Waybill Copy and Out for Delivery Tracking
+- [ ] Inspect current shipping status contracts and customer waybill UI
+- [ ] Add a one-click customer waybill copy control with accessible feedback
+- [ ] Add Out for delivery to shipping persistence, admin controls, and customer/admin timelines
+- [ ] Add regression coverage and verify the expanded delivery tracking flow
+- [ ] Save a checkpoint
