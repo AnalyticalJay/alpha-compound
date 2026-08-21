@@ -35,6 +35,23 @@ test.describe("visual baselines", () => {
 test.describe("390px mobile visual baselines", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
+  test("mobile member-benefit list is borderless and excludes removed blocks", async ({ page }) => {
+    await page.goto("/");
+    const heading = page.getByRole("heading", { name: "Clear at Every Step" });
+    await heading.scrollIntoViewIfNeeded();
+    await expect(heading).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Gated Access" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Secure Payments" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Discreet Delivery" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "100+ Products" })).toBeVisible();
+    await expect(page.getByText("HD Labs Exclusive", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Pharmaceutical Grade", { exact: true })).toHaveCount(0);
+    await expect(heading.locator("..").locator("..")).toHaveScreenshot("mobile-home-member-benefits.png", {
+      animations: "disabled",
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
   test("mobile checkout journey matches its stable visual baseline", async ({ page, request }) => {
     const reset = await request.post("/api/e2e/reset");
     expect(reset.status()).toBe(204);

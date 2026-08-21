@@ -39,6 +39,21 @@ describe("home catalog products and categories", () => {
     expect(home).toContain('{ icon: FlaskConical, label: "SARMS"');
   });
 
+  it("uses a premium borderless member-benefit list without the removed supplier and grade blocks", () => {
+    const home = source("client/src/pages/Home.tsx");
+    expect(home).toContain("const HOME_FEATURE_SPECS");
+    expect(home).toContain('title: "Gated Access"');
+    expect(home).toContain('title: "Secure Payments"');
+    expect(home).toContain('title: "Discreet Delivery"');
+    expect(home).toContain('title: "100+ Products"');
+    expect(home).not.toContain('title: "Pharmaceutical Grade"');
+    expect(home).not.toContain('title: "HD Labs Exclusive"');
+    expect(home).toContain("ShieldCheck");
+    expect(home).toContain("WalletCards");
+    expect(home).toContain("grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-10");
+    expect(home).toContain("relative flex gap-5 py-1 sm:gap-6");
+  });
+
   it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {
     const home = source("client/src/pages/Home.tsx");
     expect(home).toContain("category-injectables-banner_e7d7a02b.png");

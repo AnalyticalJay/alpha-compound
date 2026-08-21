@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Shield, Truck, CreditCard, Lock, ChevronRight, Star, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
+import { Shield, ShieldCheck, Truck, CreditCard, WalletCards, Boxes, Lock, ChevronRight, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,6 +18,37 @@ const HOME_CATEGORY_SPECS = [
   { slug: "amps", label: "Amps", promo: "Discover a broad selection of image-backed HD Labs products.", icon: Package, accent: "#0EA5E9", image: "/manus-storage/category-amps-banner_336c952f.png" },
   { slug: "post-cycle", label: "Post Cycle", promo: "Structured post-cycle options with clear product information.", icon: Shield, accent: "#E11D48", image: "/manus-storage/category-post-cycle-banner_714b4c58.png" },
   { slug: "ancillaries", label: "Ancillaries", promo: "Supporting essentials, organised by category for quick review.", icon: Layers3, accent: "#F59E0B", image: "/manus-storage/category-ancillaries-banner_a0d6f7cf.png" },
+] as const;
+
+const HOME_FEATURE_SPECS = [
+  {
+    icon: ShieldCheck,
+    color: "#E11D48",
+    eyebrow: "Member approval",
+    title: "Gated Access",
+    desc: "Every account is manually reviewed before pricing and quote requests become available.",
+  },
+  {
+    icon: WalletCards,
+    color: "#0EA5E9",
+    eyebrow: "Payment choice",
+    title: "Secure Payments",
+    desc: "Approved quotes can be settled through EFT or PayFast in South African Rand.",
+  },
+  {
+    icon: Truck,
+    color: "#0EA5E9",
+    eyebrow: "Delivery control",
+    title: "Discreet Delivery",
+    desc: "Free delivery in Port Elizabeth and a transparent flat R150 nationwide delivery option.",
+  },
+  {
+    icon: Boxes,
+    color: "#E11D48",
+    eyebrow: "Catalogue breadth",
+    title: "100+ Products",
+    desc: "Explore injectables, orals, peptides, ancillaries and post-cycle products by brand and category.",
+  },
 ] as const;
 
 export default function Home() {
@@ -321,72 +352,38 @@ export default function Home() {
         </div>
       </section>}
 
-      {/* ── Features Grid ────────────────────────────────────────────────── */}
+      {/* ── Member Benefits ───────────────────────────────────────────────── */}
       <section className="border-t border-[#1E293B] py-14 sm:py-20">
         <div className="container">
-          <div className="mb-10 text-center sm:mb-14">
+          <div className="mb-10 max-w-2xl sm:mb-14">
             <div className="flex items-center justify-center gap-2 mb-3">
               <div className="w-8 h-0.5" style={{ background: "#E11D48" }} />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Why Anabolics Africa</span>
-              <div className="w-8 h-0.5" style={{ background: "#0EA5E9" }} />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Member experience</span>
             </div>
             <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl md:text-4xl">
-              Built for <span style={{ color: "#0EA5E9" }}>Serious</span> Athletes
+              Clear at <span style={{ color: "#0EA5E9" }}>Every</span> Step
             </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#64748B] sm:text-base">A controlled member journey with payment and delivery details presented clearly when they matter.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                icon: Shield,
-                color: "#0EA5E9",
-                title: "Pharmaceutical Grade",
-                desc: "Every compound is sourced directly from HD Labs — tested, verified, and manufactured to the highest pharmaceutical standards.",
-              },
-              {
-                icon: Lock,
-                color: "#E11D48",
-                title: "Gated Access",
-                desc: "Not open to the public. Every account is manually reviewed and approved before gaining access to pricing and purchasing.",
-              },
-              {
-                icon: Truck,
-                color: "#0EA5E9",
-                title: "Discreet Delivery",
-                desc: "Free delivery to Port Elizabeth. Flat R150 nationwide. All orders shipped in plain, unmarked packaging.",
-              },
-              {
-                icon: CreditCard,
-                color: "#E11D48",
-                title: "Secure Payments",
-                desc: "Approved quotes can be settled securely by EFT or PayFast in South African Rand.",
-              },
-              {
-                icon: Star,
-                color: "#0EA5E9",
-                title: "HD Labs Exclusive",
-                desc: "Authorised distributor of HD Labs products. Authentic compounds with full batch verification available.",
-              },
-              {
-                icon: Package,
-                color: "#E11D48",
-                title: "100+ Products",
-                desc: "Injectables, orals, peptides, ancillaries and PCT — everything you need in one controlled-access platform.",
-              },
-            ].map(({ icon: Icon, color, title, desc }, i) => (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-10">
+            {HOME_FEATURE_SPECS.map(({ icon: Icon, color, eyebrow, title, desc }, i) => (
               <motion.div
                 key={title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="p-6 rounded-lg border border-[#1E293B] bg-[#111111] hover:border-[#0EA5E9]/30 transition-colors"
+                className="relative flex gap-5 py-1 sm:gap-6"
               >
-                <div className="w-10 h-10 rounded flex items-center justify-center mb-4"
-                  style={{ background: `${color}15`, border: `1px solid ${color}30` }}>
-                  <Icon className="h-5 w-5" style={{ color }} />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.24)]"
+                  style={{ background: `linear-gradient(145deg, ${color}24, ${color}0A)` }}>
+                  <Icon className="h-6 w-6" style={{ color }} strokeWidth={1.7} />
                 </div>
-                <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-2">{title}</h3>
-                <p className="text-[#64748B] text-sm leading-relaxed">{desc}</p>
+                <div className="min-w-0 pt-0.5">
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em]" style={{ color }}>{eyebrow}</span>
+                  <h3 className="mt-1 text-base font-black uppercase tracking-wide text-white sm:text-lg">{title}</h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-[#94A3B8]">{desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>

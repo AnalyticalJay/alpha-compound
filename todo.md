@@ -555,3 +555,9 @@
 - [x] Capture true narrow mobile viewport references for the homepage, quote, order, payment, and delivery states
 - [x] Replace full-page images in every presentation phone frame and recompile the deck
 - [x] Verify the corrected mobile mockups and deliver the revised presentation
+
+## Phase 76: Premium Homepage Feature-List Refinement
+- [x] Remove the HD Labs Exclusive and Pharmaceutical Grade benefit blocks from the homepage
+- [x] Rebuild the remaining customer benefits as a premium borderless, icon-led section
+- [x] Add regression coverage and validate the revised section on a 390px mobile viewport
+- [x] Save a checkpoint and deliver the homepage refinement
