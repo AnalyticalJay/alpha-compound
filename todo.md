@@ -493,3 +493,10 @@
 - [x] Present Injectables, Orals, Peptides, and SARMS clearly in the hero category row
 - [x] Add regression coverage and validate desktop/mobile hero presentation
 - [x] Save a checkpoint
+
+## Phase 66: Full Website, Dashboard, and Sales-Flow Audit
+- [x] Review feature contracts, regression coverage, and role-specific routes
+- [x] Audit public storefront, customer account, and administrator dashboards across key viewports
+- [x] Exercise the isolated quote submission, approval, payment, fulfilment, and notification sales flow
+- [x] Diagnose and correct any verified functional or usability defects
+- [x] Validate all fixes, document audit findings, and save a checkpoint
