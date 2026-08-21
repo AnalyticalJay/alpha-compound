@@ -58,5 +58,7 @@ describe("responsive layout contracts", () => {
     expect(home).toContain("grid-cols-1 sm:grid-cols-2 lg:grid-cols-4");
     expect(home).toContain("grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-10");
     expect(home).toContain("relative flex gap-5 py-1 sm:gap-6");
+    expect(home).toContain("grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16");
+    expect(home).toContain("grid gap-8 sm:grid-cols-2 sm:gap-10");
   });
 });

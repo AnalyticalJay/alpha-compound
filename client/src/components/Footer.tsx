@@ -19,7 +19,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-[#64748B] text-sm leading-relaxed max-w-xs mb-5">
-              Authorised distributor of HD Labs pharmaceutical-grade compounds. Restricted access platform for verified athletes only.
+              Curated HD Labs and BP Pharma catalogue. Restricted access platform for approved members 18+.
             </p>
             <div className="flex gap-5">
               {[

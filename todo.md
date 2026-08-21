@@ -561,3 +561,9 @@
 - [x] Rebuild the remaining customer benefits as a premium borderless, icon-led section
 - [x] Add regression coverage and validate the revised section on a 390px mobile viewport
 - [x] Save a checkpoint and deliver the homepage refinement
+
+## Phase 77: Hero Copy and Delivery-Banner Refinement
+- [x] Remove pharmaceutical-grade wording from the homepage hero and brand panel
+- [x] Restyle the delivery information as a premium borderless icon-led section
+- [x] Add regression coverage and validate the revised homepage on desktop and 390px mobile
+- [x] Save a checkpoint and deliver the completed refinement

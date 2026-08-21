@@ -52,6 +52,19 @@ test.describe("390px mobile visual baselines", () => {
     });
   });
 
+  test("mobile delivery information uses the matching borderless visual system", async ({ page }) => {
+    await page.goto("/");
+    const deliveryInfo = page.getByTestId("delivery-info");
+    await deliveryInfo.scrollIntoViewIfNeeded();
+    await expect(page.getByRole("heading", { name: "Delivery Made Simple" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Free Delivery" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "R150 Flat Rate" })).toBeVisible();
+    await expect(deliveryInfo).toHaveScreenshot("mobile-home-delivery-info.png", {
+      animations: "disabled",
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
   test("mobile checkout journey matches its stable visual baseline", async ({ page, request }) => {
     const reset = await request.post("/api/e2e/reset");
     expect(reset.status()).toBe(204);

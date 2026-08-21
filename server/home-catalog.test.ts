@@ -32,7 +32,7 @@ describe("home catalog products and categories", () => {
   it("presents both catalogue brands and all four main compound types in the hero panel", () => {
     const home = source("client/src/pages/Home.tsx");
     expect(home).toContain("HD Labs <span className=\"text-[#64748B]\">+</span> BP Pharma");
-    expect(home).toContain("Pharmaceutical Grade Catalogue");
+    expect(home).toContain("Controlled Access Catalogue");
     expect(home).toContain('{ icon: Syringe, label: "Injectables"');
     expect(home).toContain('{ icon: Pill, label: "Orals"');
     expect(home).toContain('{ icon: Dna, label: "Peptides"');
@@ -52,6 +52,23 @@ describe("home catalog products and categories", () => {
     expect(home).toContain("WalletCards");
     expect(home).toContain("grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-10");
     expect(home).toContain("relative flex gap-5 py-1 sm:gap-6");
+  });
+
+  it("uses controlled-access language and a borderless delivery-information section", () => {
+    const home = source("client/src/pages/Home.tsx");
+    const footer = source("client/src/components/Footer.tsx");
+    const hdLabsMark = source("client/src/components/HdLabsMark.tsx");
+    expect(home).toContain("transparent quoting, and delivery updates");
+    expect(home).toContain('data-testid="delivery-info"');
+    expect(home).toContain("Delivery Made");
+    expect(home).toContain("Free Delivery");
+    expect(home).toContain("R150 Flat Rate");
+    expect(home).toContain("MapPin");
+    expect(home).toContain("Send");
+    expect(home).not.toContain("rounded-lg border border-[#0EA5E9]/20");
+    expect(home).not.toMatch(/pharmaceutical/gi);
+    expect(footer).not.toMatch(/pharmaceutical/gi);
+    expect(hdLabsMark).not.toMatch(/pharmaceutical/gi);
   });
 
   it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {

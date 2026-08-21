@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Shield, ShieldCheck, Truck, CreditCard, WalletCards, Boxes, Lock, ChevronRight, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
+import { Shield, ShieldCheck, Truck, CreditCard, WalletCards, Boxes, MapPin, Send, Lock, ChevronRight, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -109,7 +109,7 @@ export default function Home() {
               </h1>
 
               <p className="mb-7 max-w-xl text-base leading-relaxed text-[#94A3B8] sm:text-lg md:text-xl">
-                Premium pharmaceutical-grade compounds from <strong className="text-white">HD Labs</strong> and <strong className="text-white">BP Pharma</strong>. Controlled access. Built for serious athletes who demand the highest quality.
+                A curated compound catalogue from <strong className="text-white">HD Labs</strong> and <strong className="text-white">BP Pharma</strong>. Controlled access, transparent quoting, and delivery updates in one streamlined member experience.
               </p>
 
               {/* CTA */}
@@ -167,7 +167,7 @@ export default function Home() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-gradient-to-br from-[#0EA5E9] to-[#0284C7] font-black text-white">HD</div>
                   <div className="min-w-0">
                     <p className="text-sm font-black uppercase tracking-widest text-white">HD Labs <span className="text-[#64748B]">+</span> BP Pharma</p>
-                    <p className="truncate text-[10px] uppercase tracking-widest text-[#64748B]">Pharmaceutical Grade Catalogue</p>
+                    <p className="truncate text-[10px] uppercase tracking-widest text-[#64748B]">Controlled Access Catalogue</p>
                   </div>
                 </div>
                 <span className="shrink-0 rounded border border-[#E11D48]/30 bg-[#E11D48]/10 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-[#E11D48]">Members Only</span>
@@ -206,7 +206,7 @@ export default function Home() {
                       </div>
                       <div>
                         <div className="text-white font-black uppercase tracking-widest text-sm">HD Labs <span className="text-[#64748B]">+</span> BP Pharma</div>
-                        <div className="text-[#64748B] text-xs uppercase tracking-widest">Pharmaceutical Grade Catalogue</div>
+                        <div className="text-[#64748B] text-xs uppercase tracking-widest">Controlled Access Catalogue</div>
                       </div>
                     </div>
 
@@ -390,28 +390,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Delivery Info Banner ─────────────────────────────────────────── */}
-      <section className="py-12 border-t border-[#1E293B]">
+      {/* ── Delivery Information ─────────────────────────────────────────── */}
+      <section data-testid="delivery-info" className="border-t border-[#1E293B] py-14 sm:py-20">
         <div className="container">
-          <div className="grid gap-4 md:grid-cols-2 md:gap-5">
-            <div className="flex items-start gap-4 rounded-lg border border-[#0EA5E9]/20 bg-[#0EA5E9]/5 p-4 sm:items-center sm:gap-5 sm:p-6">
-              <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0"
-                style={{ background: "#0EA5E915", border: "1px solid #0EA5E930" }}>
-                <Truck className="h-6 w-6" style={{ color: "#0EA5E9" }} />
-              </div>
-              <div>
-                <div className="text-white font-black uppercase tracking-wide text-sm mb-1">Free Delivery — Port Elizabeth</div>
-                <div className="text-[#64748B] text-sm">All orders within Port Elizabeth ship free, no minimum order required.</div>
-              </div>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16">
+            <div className="max-w-md">
+              <div className="mb-3 flex items-center gap-2"><div className="h-0.5 w-8 bg-[#0EA5E9]" /><span className="text-xs font-bold uppercase tracking-widest text-[#0EA5E9]">Delivery, clarified</span></div>
+              <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl md:text-4xl">Delivery Made <span className="text-[#E11D48]">Simple</span></h2>
+              <p className="mt-3 text-sm leading-relaxed text-[#64748B] sm:text-base">Clear delivery pricing is shown before customers submit a quote, then delivery updates remain connected to the order.</p>
             </div>
-            <div className="flex items-start gap-4 rounded-lg border border-[#E11D48]/20 bg-[#E11D48]/5 p-4 sm:items-center sm:gap-5 sm:p-6">
-              <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0"
-                style={{ background: "#E11D4815", border: "1px solid #E11D4830" }}>
-                <Truck className="h-6 w-6" style={{ color: "#E11D48" }} />
+            <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
+              <div className="relative flex gap-5 py-1 sm:gap-6">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.24)]" style={{ background: "linear-gradient(145deg, #0EA5E924, #0EA5E90A)" }}><MapPin className="h-6 w-6 text-[#0EA5E9]" strokeWidth={1.7} /></div>
+                <div className="min-w-0 pt-0.5"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0EA5E9]">Port Elizabeth</span><h3 className="mt-1 text-base font-black uppercase tracking-wide text-white sm:text-lg">Free Delivery</h3><p className="mt-2 text-sm leading-relaxed text-[#94A3B8]">Orders within Port Elizabeth ship free, with no minimum order required.</p></div>
               </div>
-              <div>
-                <div className="text-white font-black uppercase tracking-wide text-sm mb-1">R150 Flat Rate — Nationwide</div>
-                <div className="text-[#64748B] text-sm">Flat R150 delivery fee for all other South African locations.</div>
+              <div className="relative flex gap-5 py-1 sm:gap-6">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.24)]" style={{ background: "linear-gradient(145deg, #E11D4824, #E11D480A)" }}><Send className="h-6 w-6 text-[#E11D48]" strokeWidth={1.7} /></div>
+                <div className="min-w-0 pt-0.5"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#E11D48]">Nationwide</span><h3 className="mt-1 text-base font-black uppercase tracking-wide text-white sm:text-lg">R150 Flat Rate</h3><p className="mt-2 text-sm leading-relaxed text-[#94A3B8]">A transparent R150 delivery fee applies to all other South African locations.</p></div>
               </div>
             </div>
           </div>

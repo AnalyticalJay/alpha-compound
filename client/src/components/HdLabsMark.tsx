@@ -17,7 +17,7 @@ export default function HdLabsMark({ size = "sm", className = "" }: HdLabsMarkPr
       {!compact && (
         <span className="flex flex-col text-left leading-none">
           <span className="text-xs font-black uppercase tracking-[0.12em] text-white">HD Labs</span>
-          <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Pharmaceutical grade</span>
+          <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">HD Labs collection</span>
         </span>
       )}
     </span>
