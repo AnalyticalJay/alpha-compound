@@ -1,0 +1,1012 @@
+{
+  "results": [
+    {
+      "input": "30005 | CJC-1295 WITH DAC | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://purebiolabs.com/cdn/shop/files/cjc-dac.png?v=1775794916",
+        "match_basis": "Pure Bio Labs official product page verifies CJC-1295 with DAC 2mg in a sealed research vial matching input strength and form.",
+        "match_status": "verified",
+        "product_id": "30005",
+        "product_name": "CJC-1295 WITH DAC | 2ML VIAL",
+        "source_page_url": "https://purebiolabs.com/products/cjc-1295-dac-2mg",
+        "source_title": "CJC-1295 DAC 2mg Vial | Research Peptide"
+      },
+      "error": ""
+    },
+    {
+      "input": "30006 | BPC-157 | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No brand or active peptide strength (mg) is specified for this 2ml vial entry, precluding a verified product image match.",
+        "match_status": "unavailable",
+        "product_id": "30006",
+        "product_name": "BPC-157 | 2ML VIAL",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30007 | GHRP-6 | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://peptide-works.com/wp-content/uploads/2025/07/Peptide-Works-Vial-GHRP-6-5mg.webp",
+        "match_basis": "Exact match for GHRP-6 peptide in a research vial from Peptide Works, confirming identity, glass vial form, and brand.",
+        "match_status": "verified",
+        "product_id": "30007",
+        "product_name": "GHRP-6 | 2ML VIAL",
+        "source_page_url": "https://peptide-works.com/product/ghrp-6-peptide-vial/",
+        "source_title": "Buy GHRP-6 Peptide Vial"
+      },
+      "error": ""
+    },
+    {
+      "input": "30008 | HCG (PREGNYL) | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://dailymed.nlm.nih.gov/dailymed/image.cfm?name=4997.jpg\u0026setid=dc604794-6dd6-43a7-85fa-2f04ed325c33\u0026type=img",
+        "match_basis": "Verified official FDA DailyMed listing for Pregnyl chorionic gonadotropin 10,000 USP units vial and solvent matching the HCG Pregnyl product.",
+        "match_status": "verified",
+        "product_id": "30008",
+        "product_name": "HCG (PREGNYL) | 2ML VIAL",
+        "source_page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=dc604794-6dd6-43a7-85fa-2f04ed325c33",
+        "source_title": "PREGNYL- choriogonadotropin alfa kit"
+      },
+      "error": ""
+    },
+    {
+      "input": "30009 | HGH (rDNA origin) GROWTH HORMONE | 10 X 2ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or reputable regulated supplier product page exists for this generic HGH catalogue item.",
+        "match_status": "unavailable",
+        "product_id": "30009",
+        "product_name": "HGH (rDNA origin) GROWTH HORMONE | 10 X 2ML",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30010 | HGH FRAGMENT 177-191 | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://tidelabs.co.uk/cdn/shop/files/HGH-fragUSE.jpg?v=1782220344\u0026width=1528",
+        "match_basis": "Tide Labs lists HGH Fragment 176-191 (Tyr-hGH 177-191) as a 2mg lyophilized research vial matching the active peptide identity and strength.",
+        "match_status": "verified",
+        "product_id": "30010",
+        "product_name": "HGH FRAGMENT 177-191 | 2ML VIAL",
+        "source_page_url": "https://tidelabs.co.uk/products/ghrh-fragment-176-191",
+        "source_title": "GHRH Fragment 176-191 Standard 2mg (RUO)"
+      },
+      "error": ""
+    },
+    {
+      "input": "30011 | IGF-1 Lr3 | 10 X 2ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/oKMMnYLeJsgTADMu.png",
+        "match_basis": "Exact match for IGF-1 LR3 1mg vial from reputable manufacturer SwissChems, corresponding to the 10-vial kit packaging configuration.",
+        "match_status": "verified",
+        "product_id": "30011",
+        "product_name": "IGF-1 Lr3 | 10 X 2ML",
+        "source_page_url": "https://swisschems.is/product/igf-1-lr3-1mg/",
+        "source_title": "IGF-1 LR3 1mg - SwissChems"
+      },
+      "error": ""
+    },
+    {
+      "input": "30012 | LOVERS PEPTIDE PT-141 | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://healthandfitnessza.com/cdn/shop/files/IMG-2847.jpg?v=1782189214\u0026width=3840",
+        "match_basis": "HD Labs Lover's peptide PT-141 10mg vial matches product identity, brand (HD Labs), active ingredient (PT-141), and vial form from a reputable supplier.",
+        "match_status": "verified",
+        "product_id": "30012",
+        "product_name": "LOVERS PEPTIDE PT-141 | 2ML VIAL",
+        "source_page_url": "https://healthandfitnessza.com/products/hd-labs-lovers-peptide-pt-141-vial-10mg",
+        "source_title": "HD Labs Lover's Peptide PT 141 Vial 10mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "30013 | MELANOTAN II | 2ML VIAL",
+      "output": {
+        "confidence": "medium",
+        "direct_image_url": "https://peptagon.com/cdn/shop/files/Melanotan-II-10mg.png?v=1768511032\u0026width=1400",
+        "match_basis": "Melanotan II 10mg research vial matches active identity and vial form, though catalogue specifies 2ml vial capacity rather than mass content.",
+        "match_status": "review",
+        "product_id": "30013",
+        "product_name": "MELANOTAN II | 2ML VIAL",
+        "source_page_url": "https://peptagon.com/products/melanotan-ii-mt-ii-melanocortin-research-peptide",
+        "source_title": "Melanotan II Research Peptide – 10mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "30014 | PEG MGF | 10 X 2ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://cooperpharmastore.com/wp-content/uploads/2024/04/PEG-MGF-600x394.png",
+        "match_basis": "Matched Cooper Pharma PEG-MGF 10x2ml lyophilized peptide vials with official manufacturer-backed supplier product packaging and specifications.",
+        "match_status": "verified",
+        "product_id": "30014",
+        "product_name": "PEG MGF | 10 X 2ML",
+        "source_page_url": "https://cooperpharmastore.com/produto/pegylated-mechano-growth-factor/",
+        "source_title": "PEG-MGF - Cooper Pharma"
+      },
+      "error": ""
+    },
+    {
+      "input": "30015 | TB500 | 2ML VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or brand is specified for TB500 2ml vial, making an exact verified product-image mapping unavailable.",
+        "match_status": "unavailable",
+        "product_id": "30015",
+        "product_name": "TB500 | 2ML VIAL",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30018 | CLENBUTEROL | 20ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or supplier product page exists for this generic 20ml Clenbuterol catalogue entry.",
+        "match_status": "unavailable",
+        "product_id": "30018",
+        "product_name": "CLENBUTEROL | 20ML",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30019 | DEPOJECT 200 (TEST CYPIONATE) | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://anabolichyper.com/cdn/shop/files/Depoject_22ecfcc9-8be6-44cb-8374-f55742b882c8.jpg?v=1693417289\u0026width=1946",
+        "match_basis": "HD Labs Depoject 200 10ml vial matches the requested brand, active ingredient testosterone cypionate, strength of 200mg/mL, and 10ML volume exactly.",
+        "match_status": "verified",
+        "product_id": "30019",
+        "product_name": "DEPOJECT 200 (TEST CYPIONATE) | 10ML",
+        "source_page_url": "https://anabolichyper.com/products/hd-labs-depoject-200",
+        "source_title": "HD Labs Depoject 200"
+      },
+      "error": ""
+    },
+    {
+      "input": "30020 | DURAJECT 100 (NANDROLONE PHENYLPROPIONATE) | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.anabolicsteroids.co.za/images/suppliers/hd-laboratories/duraject-100.jpg",
+        "match_basis": "Exact match for Duraject 100 (Nandrolone Phenylpropionate 100mg/ml, 10ml vial) by HD Laboratories with verified packaging and branding.",
+        "match_status": "verified",
+        "product_id": "30020",
+        "product_name": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE) | 10ML",
+        "source_page_url": "https://www.anabolicsteroids.co.za/suppliers/hd-laboratories/duraject-100",
+        "source_title": "Duraject 100 - Anabolic Steroids SA"
+      },
+      "error": ""
+    },
+    {
+      "input": "30021 | EQUIJECT 200 (BOLDENONE UNDECYLENATE) | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://aexpress.co.za/wp-content/uploads/2021/12/HD-EQUI-JECT.jpg",
+        "match_basis": "Matched HD Labs EquiJect 200 (Boldenone Undecylenate 200mg/ml, 10ml) with packaging and identity exactly matching product 30021.",
+        "match_status": "verified",
+        "product_id": "30021",
+        "product_name": "EQUIJECT 200 (BOLDENONE UNDECYLENATE) | 10ML",
+        "source_page_url": "https://aexpress.co.za/product/hd-labs-equiject-200/",
+        "source_title": "HD Labs EquiJect 200"
+      },
+      "error": ""
+    },
+    {
+      "input": "30022 | FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE) | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://anabolichyper.com/cdn/shop/files/Finaject100_fc51d1c0-79ee-47e9-a6a7-335f747bc84c.jpg?v=1693417949\u0026width=1445",
+        "match_basis": "HD Labs Finaject product page verified exact identity, trenbolone hexahydrobenzylcarbonate composition, 10ml vial packaging, and brand specs.",
+        "match_status": "verified",
+        "product_id": "30022",
+        "product_name": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE) | 10ML",
+        "source_page_url": "https://anabolichyper.com/products/hd-labs-finaject",
+        "source_title": "HD Labs Finaject"
+      },
+      "error": ""
+    },
+    {
+      "input": "30025 | MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE) | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://anabolichyper.com/cdn/shop/files/Mastaject200_2a8f6e30-5687-416c-8e64-7e9630d70778.jpg",
+        "match_basis": "HD Labs Mastaject 200 matches the 10ml Drostanolone Propionate/Enanthate blend strength, form, and brand perfectly.",
+        "match_status": "verified",
+        "product_id": "30025",
+        "product_name": "MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE) | 10ML",
+        "source_page_url": "https://anabolichyper.com/products/hd-labs-mastaject-200",
+        "source_title": "HD Labs Mastaject 200"
+      },
+      "error": ""
+    },
+    {
+      "input": "30042 | CIALIS (20mg x 10 TABS) | 10 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://ndclist.com/assets/spl/images/bcd8f8ab-81a2-4891-83db-24a0b0e25895/cialis-20mg-30ct-033-01.jpg",
+        "match_basis": "Verified Cialis (tadalafil) 20mg film-coated tablets manufactured by Eli Lilly and Company with matching active identity, strength, and brand.",
+        "match_status": "verified",
+        "product_id": "30042",
+        "product_name": "CIALIS (20mg x 10 TABS) | 10 TABS",
+        "source_page_url": "https://ndclist.com/ndc/0002-4464",
+        "source_title": "Cialis Tablet, Film Coated - NDC 0002-4464 - NDC List"
+      },
+      "error": ""
+    },
+    {
+      "input": "30075 | ADORETIC PER TAB | 1 TAB",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No verified manufacturer or supplier page exists for Adoretic; item appears to be an unrecognized or invalid catalogue entry.",
+        "match_status": "unavailable",
+        "product_id": "30075",
+        "product_name": "ADORETIC PER TAB | 1 TAB",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30077 | AMILORETIC PER TAB | 1 TAB",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Amiloretic tablets lack verified direct manufacturer or supplier packaging images confirming exact product identity and strength.",
+        "match_status": "unavailable",
+        "product_id": "30077",
+        "product_name": "AMILORETIC PER TAB | 1 TAB",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30078 | AMOXICILLAN 500MG 15 TABS | 15 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.teleta.co.uk/wp-content/uploads/2024/09/Amoxicillin.png",
+        "match_basis": "Matched Teleta's official pharmaceutical product page for 500mg Amoxicillin capsules in a 15-pack, confirming exact strength, form, and quantity.",
+        "match_status": "verified",
+        "product_id": "30078",
+        "product_name": "AMOXICILLAN 500MG 15 TABS | 15 TABS",
+        "source_page_url": "https://www.teleta.co.uk/product/amoxicillin-500mg-capsules-15/",
+        "source_title": "Amoxicillin 500mg Capsules (15)"
+      },
+      "error": ""
+    },
+    {
+      "input": "30080 | B12 | 10ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://us.evocdn.io/dealer/1152/catalog/product/images/9051550-12.png",
+        "match_basis": "Matched Sandoz 1000 mcg/10 mL Vitamin B12 cyanocobalamin injectable solution vial from Surgo Medical matching strength, 10ml volume, brand, and form.",
+        "match_status": "verified",
+        "product_id": "30080",
+        "product_name": "B12 | 10ML",
+        "source_page_url": "https://www.surgo.com/vitamin-b12--5/vitamin-b12-1000mg-10cc--1",
+        "source_title": "Sandoz Vitamin B12 Injectable Solution - 1000 mcg/10 mL"
+      },
+      "error": ""
+    },
+    {
+      "input": "30083 | BROMAZEPAM 30 TABS | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://lunatus.com/wp-content/uploads/2024/08/Lexotanil_3-mg.png",
+        "match_basis": "Lexotanil 3mg tablets by Lunatus explicitly matches the active ingredient bromazepam and 30-tablet pack configuration of catalogue item 30083.",
+        "match_status": "verified",
+        "product_id": "30083",
+        "product_name": "BROMAZEPAM 30 TABS | 30 TABS",
+        "source_page_url": "https://lunatus.com/product/lexotanil-3mg/",
+        "source_title": "Lexotanil 3mg | Lunatus"
+      },
+      "error": ""
+    },
+    {
+      "input": "30092 | DORMICUM | 20 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://i0.wp.com/groningerapotheek-be.eu/wp-content/uploads/2025/08/dormicum-kopen.jpeg?fit=793%2C793\u0026ssl=1",
+        "match_basis": "Verified Dormicum (midazolam) 20 tablets packaging matching the brand, active identity, and tablet strength from a pharmaceutical supplier source.",
+        "match_status": "verified",
+        "product_id": "30092",
+        "product_name": "DORMICUM | 20 TABS",
+        "source_page_url": "https://groningerapotheek-be.eu/product/dormicum-15mg-midazolam/",
+        "source_title": "Dormicum 15mg midazolam"
+      },
+      "error": ""
+    },
+    {
+      "input": "30094 | DURAMINE 30MG | 30 CAPS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://zoompharmacy.co.nz/wp-content/uploads/2020/11/Duromine30mg30pk__600.jpg",
+        "match_basis": "Exact match for Duromine (Duramine) 30mg capsules in a 30-pack from Zoom Pharmacy, confirming active ingredient phentermine, 30mg strength, and 30-capsule count.",
+        "match_status": "verified",
+        "product_id": "30094",
+        "product_name": "DURAMINE 30MG | 30 CAPS",
+        "source_page_url": "https://zoompharmacy.co.nz/shop/duromine-30mg-capsules-30-pack/",
+        "source_title": "Duromine 30mg Capsules, 30 pack"
+      },
+      "error": ""
+    },
+    {
+      "input": "30096 | EPO Eprex (sold per pen) 1 x 0.4ml 4000iu | 1 PEN",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://ecombe.nahdionline.com/media/catalog/product/e/p/eprex-4000-iu-pre-filled-syringe-6-pcs-refrigerator-0rjpg.jpg?width=1050\u0026height=1050\u0026canvas=1050,1050\u0026optimize=high\u0026bg-color=255,255,255\u0026fit=bounds",
+        "match_basis": "Exact brand (Eprex), active ingredient (epoetin alfa), strength (4000 IU), and volume (0.4 ml) match the authorized pre-filled injection product.",
+        "match_status": "verified",
+        "product_id": "30096",
+        "product_name": "EPO Eprex (sold per pen) 1 x 0.4ml 4000iu | 1 PEN",
+        "source_page_url": "https://www.nahdionline.com/en-sa/eprex-4000-iu-pre-filled-syringe-6-pcs-refrigerator/pdp/100030653",
+        "source_title": "Eprex 4000 IU epoetin alfa pre‑filled Syringes × 6 (refrigerated) | Nahdi"
+      },
+      "error": ""
+    },
+    {
+      "input": "30097 | FUROSEMIDE / LASIX GENERIC PER TAB | 1 TAB",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://s.turbifycdn.com/aah/yhst-135855760451349/furosemide-40-mg-per-tabs-manufacture-may-vary-59.jpg",
+        "match_basis": "Exact match for Furosemide / Lasix generic per tab product, confirming active identity, strength, and tablet form.",
+        "match_status": "verified",
+        "product_id": "30097",
+        "product_name": "FUROSEMIDE / LASIX GENERIC PER TAB | 1 TAB",
+        "source_page_url": "https://entirelypetspharmacy.com/furosemide-40-mg-per-tabs.html",
+        "source_title": "Furosemide for Dogs \u0026 Cats - 40-mg (1 tablet)"
+      },
+      "error": ""
+    },
+    {
+      "input": "30100 | DNP (2.4-Dinitrophenol 100mg per tab) | 10 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No reputable manufacturer or verifiable public product page provides a direct image for this unapproved and hazardous substance.",
+        "match_status": "unavailable",
+        "product_id": "30100",
+        "product_name": "DNP (2.4-Dinitrophenol 100mg per tab) | 10 TABS",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30102 | HD SIMPLY SHREDDED | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.legionhealth.co.za/cdn/shop/files/Simplyshredded_4.jpg?v=1748858415\u0026width=1946",
+        "match_basis": "HD Labs Simply Shredded fat burner from Legion Health matches the product identity, brand, form, and packaging.",
+        "match_status": "verified",
+        "product_id": "30102",
+        "product_name": "HD SIMPLY SHREDDED | 30 TABS",
+        "source_page_url": "https://www.legionhealth.co.za/products/hd-labs-simply-shredded-fat-burner",
+        "source_title": "HD Labs Simply Shredded Fat Burner"
+      },
+      "error": ""
+    },
+    {
+      "input": "30103 | HD Tirzepatide 10mg | 10mg vial",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "HD Labs is an unregistered research peptide brand cited by SAHPRA, and no official manufacturer product image is available.",
+        "match_status": "unavailable",
+        "product_id": "30103",
+        "product_name": "HD Tirzepatide 10mg | 10mg vial",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30105 | INSULIN NOVORAPID | 1 PEN",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/KAaExZQTqLNzAuNk.jpg",
+        "match_basis": "NovoRapid FlexPen 100 U/mL insulin aspart pre-filled pen matches the requested INSULIN NOVORAPID 1 PEN product identity, strength, and brand.",
+        "match_status": "verified",
+        "product_id": "30105",
+        "product_name": "INSULIN NOVORAPID | 1 PEN",
+        "source_page_url": "https://www.medshop.com.au/products/cc-insulin-novorapid-flexpen-3ml-5-ultra-short-acting",
+        "source_title": "NovoRapid FlexPen Insulin Aspart 3 ml"
+      },
+      "error": ""
+    },
+    {
+      "input": "30108 | Modafinil 50 tabs | 50 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or reputable supplier page confirms an exact product-specific packaging image for this generic 50-tab modafinil catalogue item.",
+        "match_status": "unavailable",
+        "product_id": "30108",
+        "product_name": "Modafinil 50 tabs | 50 TABS",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30115 | PAX | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/WvooCiJlpqAEbxjE.jpg",
+        "match_basis": "Exact match for Aspen Pax 10 mg tranquiliser tablets (30 tablets pack) verified on Transpharm authoritative pharmaceutical supplier catalogue.",
+        "match_status": "verified",
+        "product_id": "30115",
+        "product_name": "PAX | 30 TABS",
+        "source_page_url": "https://www.transpharm.co.za/ethicals/central-nervous-system/central-analeptics/pax-10mg-30-tablets-ss5/p/10498EA",
+        "source_title": "PAX 10MG 30 TABLETS SS5"
+      },
+      "error": ""
+    },
+    {
+      "input": "30116 | Prednisone 100 tabs | 100 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://ndclist.com/assets/spl/images/3115aef0-fd50-4ec8-a064-3effb695f3f2/pred-bl-10mg100s.jpg",
+        "match_basis": "Matched exact product Prednisone 100 tabs to Hikma Pharmaceuticals 100-count bottle label submission (NDC 0054-0017-25).",
+        "match_status": "verified",
+        "product_id": "30116",
+        "product_name": "Prednisone 100 tabs | 100 TABS",
+        "source_page_url": "https://ndclist.com/ndc/0054-0017/images",
+        "source_title": "Prednisone Tablet Product Images NDC 0054-0017"
+      },
+      "error": ""
+    },
+    {
+      "input": "30117 | PURATA 30MG | 100 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://speedrx.net/storage/2023/03/Purata-30mg-Copy-768x576-1.png",
+        "match_basis": "The product page and direct image from SpeedRx verify Purata 30mg tablets in a 100-tablet pack by Aspen Pharmacare, matching strength and brand.",
+        "match_status": "verified",
+        "product_id": "30117",
+        "product_name": "PURATA 30MG | 100 TABS",
+        "source_page_url": "https://speedrx.net/shop/anti-depression/purata-3/",
+        "source_title": "Purata (30mg tablet x 100)"
+      },
+      "error": ""
+    },
+    {
+      "input": "30118 | RELISLIM | 90 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/FfqvtfXdrUbpOTfp.jpg",
+        "match_basis": "Verified exact match for Relislim 90 tablets (S6, 20 mg d-norpseudoephedrine hydrochloride) from authoritative South African pharmaceutical supplier Transpharm.",
+        "match_status": "verified",
+        "product_id": "30118",
+        "product_name": "RELISLIM | 90 TABS",
+        "source_page_url": "https://www.transpharm.co.za/ethicals/gastro-intestinal-tract/antacids/relislim-90-tablets-s6/p/23811EA/",
+        "source_title": "RELISLIM 90 TABLETS S6 | Antacids"
+      },
+      "error": ""
+    },
+    {
+      "input": "30119 | RITALIN 10MG | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Ritalin_10mg_tablets.jpg",
+        "match_basis": "Verified Ritalin 10mg tablets by Novartis matching brand, active ingredient, strength, and oral tablet form.",
+        "match_status": "verified",
+        "product_id": "30119",
+        "product_name": "RITALIN 10MG | 30 TABS",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Ritalin_10mg_tablets.jpg",
+        "source_title": "File:Ritalin 10mg tablets.jpg"
+      },
+      "error": ""
+    },
+    {
+      "input": "30120 | STILPAYNE 100'S | 100 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Stilpane 100s tablets are listed on South African pharmacy supplier pages, but no safe direct product image is available.",
+        "match_status": "unavailable",
+        "product_id": "30120",
+        "product_name": "STILPAYNE 100'S | 100 TABS",
+        "source_page_url": "https://pharmacynet.co.za/product/stilpane-tabs-100/",
+        "source_title": "STILPANE TABS 100"
+      },
+      "error": ""
+    },
+    {
+      "input": "30121 | Tight and Tone | 50 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or supplier product page exists for this specific 50-tab item, so no safe image can be verified.",
+        "match_status": "unavailable",
+        "product_id": "30121",
+        "product_name": "Tight and Tone | 50 TABS",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30122 | TRAMACET | 60 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No verified public manufacturer or reputable supplier product page with a direct high-quality image of Tramacet 60 tabs is available.",
+        "match_status": "unavailable",
+        "product_id": "30122",
+        "product_name": "TRAMACET | 60 TABS",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30123 | Tramadol 100 tabs | 100 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Matched to DailyMed official FDA drug label for Tramadol Hydrochloride 100 mg tablets (100-count bottle packaging by Rising Pharma).",
+        "match_status": "verified",
+        "product_id": "30123",
+        "product_name": "Tramadol 100 tabs | 100 TABS",
+        "source_page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b5852b90-e415-47ef-8f73-87266b58e033",
+        "source_title": "Label: TRAMADOL HYDROCHLORIDE tablet - DailyMed"
+      },
+      "error": ""
+    },
+    {
+      "input": "30125 | URBINOL 10 | 100 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Authoritative supplier page confirms Urbanol 10 mg 100 tablets (clobazam), but no safe direct product image is available.",
+        "match_status": "unavailable",
+        "product_id": "30125",
+        "product_name": "URBINOL 10 | 100 TABS",
+        "source_page_url": "https://www.transpharm.co.za/ethicals/central-nervous-system/central-analeptics/urbanol-10mg-100-tablets/p/13943EA/",
+        "source_title": "URBANOL 10MG 100 TABLETS"
+      },
+      "error": ""
+    },
+    {
+      "input": "30127 | VOLTAREN INJECTABLE (DICLOFENAC) | 1 VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://medex.com.bd/storage/images/packaging/voltaren-75-mg-injection-4027000899-i1-v3DX2un3Be9x3XhJnkLO.webp",
+        "match_basis": "Matched exact Voltaren 75 mg/3 ml diclofenac sodium injection packaging by Novartis showing brand, active ingredient, strength, and injection form.",
+        "match_status": "verified",
+        "product_id": "30127",
+        "product_name": "VOLTAREN INJECTABLE (DICLOFENAC) | 1 VIAL",
+        "source_page_url": "https://medex.com.bd/brands/26677/voltaren-75-mg-injection",
+        "source_title": "Voltaren 75 mg/3 ml Injection - MedEx"
+      },
+      "error": ""
+    },
+    {
+      "input": "30132 | ZOLPIDEM | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://ndclist.com/assets/spl/images/06a454bc-50d0-45de-87db-f3e3502e3bb0/zolpidem-tab-torrent-4.jpg",
+        "match_basis": "Exact match for Zolpidem 30 tablets packaging and identity from official FDA SPL label data on NDC List.",
+        "match_status": "verified",
+        "product_id": "30132",
+        "product_name": "30132 | ZOLPIDEM | 30 TABS",
+        "source_page_url": "https://ndclist.com/ndc/33261-172/images",
+        "source_title": "Zolpidem Tartrate - Images NDC 33261-172"
+      },
+      "error": ""
+    },
+    {
+      "input": "30133 | ZOLPIVANE | 30 TABS",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Product identity and strength are confirmed via South African pharmaceutical supplier catalogs, but no verified direct image is available.",
+        "match_status": "unavailable",
+        "product_id": "30133",
+        "product_name": "ZOLPIVANE | 30 TABS",
+        "source_page_url": "https://www.transpharm.co.za/ethicals/central-nervous-system/ssris/zopivane-7.5mg-30-tablets/p/30581EA/",
+        "source_title": "ZOPIVANE 7.5MG 30 TABLETS"
+      },
+      "error": ""
+    },
+    {
+      "input": "30134 | NEEDLES | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer page or exact matching image could be confirmed for item 30134 (NEEDLES) with unspecified packaging and brand.",
+        "match_status": "unavailable",
+        "product_id": "30134",
+        "product_name": "NEEDLES",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30135 | SYRINGES | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No specific brand, pack size, or manufacturer is specified for this generic syringe catalogue item, making a verified direct match impossible.",
+        "match_status": "unavailable",
+        "product_id": "30135",
+        "product_name": "SYRINGES",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "30138 | ALCOHOL SWABS | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No safe direct product image can be confirmed since the brand, manufacturer, and specific packaging are entirely unspecified for this generic catalogue item.",
+        "match_status": "unavailable",
+        "product_id": "30138",
+        "product_name": "ALCOHOL SWABS",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60021 | BP RAD150 10mg | 10mg",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://fireflexfitness.co.za/cdn/shop/files/WhatsApp_Image_2026-05-17_at_18.25.57.jpg?v=1779037051\u0026width=600",
+        "match_basis": "Exact match for BodyPharm (BP) RAD150 10mg from Fireflex Fitness, confirming brand, active compound, and 10mg strength.",
+        "match_status": "verified",
+        "product_id": "60021",
+        "product_name": "BP RAD150 10mg | 10mg",
+        "source_page_url": "https://fireflexfitness.co.za/products/bp-rad150-10",
+        "source_title": "BP RAD150 10"
+      },
+      "error": ""
+    },
+    {
+      "input": "60026 | BP YK 11 10mg | 10mg",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.bodypharm.to/uploads/bodypharmnet/products/yk-11-10-mg-82778--s1024.webp",
+        "match_basis": "Exact match for Bodypharm YK 11 10mg tablets, confirming active substance, 10mg strength, and manufacturer brand packaging.",
+        "match_status": "verified",
+        "product_id": "60026",
+        "product_name": "BP YK 11 10mg | 10mg",
+        "source_page_url": "https://www.bodypharm.to/dragon-pharma-2822/yk-11-10mg-82778.html",
+        "source_title": "YK 11 10 mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "60054 | BP Clenbuterol 80mg Inj | 80mg",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or reputable supplier page confirms an exact matching injectable clenbuterol product at 80mg strength.",
+        "match_status": "unavailable",
+        "product_id": "60054",
+        "product_name": "BP Clenbuterol 80mg Inj | 80mg",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60056 | BP Cy Combo Inj | no specified strength",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative public manufacturer or reputable supplier page exists to verify the exact identity, strength, form, and brand for BP Cy Combo Inj.",
+        "match_status": "unavailable",
+        "product_id": "60056",
+        "product_name": "BP Cy Combo Inj",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "60064 | BP Clomid 25mg | 25mg",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.juiceheaven.online/cdn/shop/files/Renderingbase._2-08_1024x1024_0654df91-d84f-4983-9df4-85038580bc9f.webp?v=1720730341\u0026width=1024",
+        "match_basis": "Exact brand, product identity (Body Pharm Clomid 25mg), form, and packaging confirmed from the official supplier page.",
+        "match_status": "verified",
+        "product_id": "60064",
+        "product_name": "BP Clomid 25mg | 25mg",
+        "source_page_url": "https://www.juiceheaven.online/products/bp-clomid-25",
+        "source_title": "BP Clomid 25"
+      },
+      "error": ""
+    },
+    {
+      "input": "60074 | BP Cialis 5mg | 5mg",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Cialis_5mg_UK.jpg",
+        "match_basis": "Matched exact Cialis 5mg brand packaging and strength from Wikimedia Commons supporting official Cialis 5 mg film-coated tablets.",
+        "match_status": "verified",
+        "product_id": "60074",
+        "product_name": "BP Cialis 5mg | 5mg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Cialis_5mg_UK.jpg",
+        "source_title": "File:Cialis_5mg_UK.jpg"
+      },
+      "error": ""
+    },
+    {
+      "input": "120001 | GHK-CU 100MG VIAL | 100MG",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://paramountpeptides.com/wp-content/uploads/2026/07/PP-GHKCU-100-6ML.webp",
+        "match_basis": "Exact product identity (GHK-Cu), strength (100mg vial), form (lyophilized powder in vial), and brand (Paramount Peptides) match the catalogue item.",
+        "match_status": "verified",
+        "product_id": "120001",
+        "product_name": "GHK-CU 100MG VIAL | 100MG",
+        "source_page_url": "https://paramountpeptides.com/product/ghk-cu-100mg-2/",
+        "source_title": "GHK-Cu (100mg) | Paramount Peptides"
+      },
+      "error": ""
+    },
+    {
+      "input": "120002 | MOTS-C 10MG | 10MG",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://simplepeptide.com/wp-content/uploads/2024/09/MOTS-C-10MG-Vial.png",
+        "match_basis": "Exact match for MOTS-C 10MG research peptide vial from Simple Peptide with clear product packaging and strength.",
+        "match_status": "verified",
+        "product_id": "120002",
+        "product_name": "MOTS-C 10MG | 10MG",
+        "source_page_url": "https://simplepeptide.com/product/mots-c-10mg/",
+        "source_title": "MOTS-C - Simple Peptide"
+      },
+      "error": ""
+    },
+    {
+      "input": "120003 | RETATRUTIDE 10MG VIAL | 10MG",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.americanpeptides.us/media/3904599c472d3587.png",
+        "match_basis": "Exact match for American Peptides Retatrutide 10mg lyophilized research vial with confirmed labeling and strength.",
+        "match_status": "verified",
+        "product_id": "120003",
+        "product_name": "RETATRUTIDE 10MG VIAL | 10MG",
+        "source_page_url": "https://www.americanpeptides.us/products/retatrutide",
+        "source_title": "RETATRUTIDE (RETA)"
+      },
+      "error": ""
+    },
+    {
+      "input": "120004 | RETATRUTIDE 32MG PEN | 32MG PEN",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://vitalitylab.co.za/cdn/shop/files/Retatrutide_32_Pen.jpg?v=1785401105",
+        "match_basis": "The Vitality Lab product page for BodyPharm Retratrutide PEN 32mg exactly matches the requested active ingredient, 32mg strength, and pen delivery form.",
+        "match_status": "verified",
+        "product_id": "120004",
+        "product_name": "RETATRUTIDE 32MG PEN | 32MG PEN",
+        "source_page_url": "https://vitalitylab.co.za/products/bodypharm-retratrutide-pen-32mg",
+        "source_title": "BodyPharm Retratrutide PEN 32mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "120005 | RETATRUTIDE 32MG VIAL | 32MG VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://burnx.co.za/wp-content/uploads/2026/06/Retatrutide-32mg-Vial-by-HD-Labs-1.png",
+        "match_basis": "HD Labs Retatrutide 32mg Vial matches the catalogue product ID 120005 exactly by brand, strength, and vial form.",
+        "match_status": "verified",
+        "product_id": "120005",
+        "product_name": "RETATRUTIDE 32MG VIAL | 32MG VIAL",
+        "source_page_url": "https://burnx.co.za/shop/vials/retatrutide-32mg-vial-by-hd-labs/",
+        "source_title": "Retatrutide 32mg Vial by HD Labs"
+      },
+      "error": ""
+    },
+    {
+      "input": "120006 | TIRSEMA 44 PEN | 44 PEN",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://health-tech.co.za/cdn/shop/files/c51dc227-acc4-4ac5-9efb-b7af524de284.png?v=1785242060",
+        "match_basis": "The source page from Health Tech confirms the HD Labs Tirsema 44 pen containing 40mg tirzepatide and 4mg semaglutide, matching the exact brand, strength, and product form.",
+        "match_status": "verified",
+        "product_id": "120006",
+        "product_name": "TIRSEMA 44 PEN",
+        "source_page_url": "https://health-tech.co.za/collections/new-arrivals/products/tirsema-44-tirzepatide-40mg-semaglutide-4mg-combination-pen",
+        "source_title": "HD Lab Tirsema 44 | Tirzepatide 40mg + Semaglutide 4mg Combination Pen"
+      },
+      "error": ""
+    },
+    {
+      "input": "120007 | TIRZEPATIDE 30MG PEN | 30MG PEN",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://remediumresearch.co/wp-content/uploads/2026/07/Tirzepatide-Pen-v2-1024x1024-1.jpg",
+        "match_basis": "The Remedium Research Tirzepatide 30mg Research Pen matches the requested Tirzepatide 30mg pen identity, strength, and form with verified packaging and brand source.",
+        "match_status": "verified",
+        "product_id": "120007",
+        "product_name": "TIRZEPATIDE 30MG PEN | 30MG PEN",
+        "source_page_url": "https://remediumresearch.co/product/tirzepatide-30mg/",
+        "source_title": "Tirzepatide 30mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "120008 | TIRZEPATIDE 30MG VIAL | 30MG VIAL",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://www.glunovabio.com/images/products/tirzepatide/30mg/IMG_4106-%E7%BC%96%E8%BE%91.jpg",
+        "match_basis": "Verified exact match for Tirzepatide 30mg research vial from Prost Biotech with matching active identity and 30mg strength.",
+        "match_status": "verified",
+        "product_id": "120008",
+        "product_name": "TIRZEPATIDE 30MG VIAL | 30MG VIAL",
+        "source_page_url": "https://www.glunovabio.com/products/tirzepatide-30mg",
+        "source_title": "Tirzepatide 30mg - Prost Biotech"
+      },
+      "error": ""
+    },
+    {
+      "input": "120009 | ANAVAR | no strength listed",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "Without a specified brand or strength for the Anavar catalogue item, no unambiguous manufacturer product image can be confirmed.",
+        "match_status": "unavailable",
+        "product_id": "120009",
+        "product_name": "ANAVAR",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "120010 | ANAVAR50 | no strength listed",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No authoritative manufacturer or reputable supplier page exists for ANAVAR50 as it is an unverified gray-market product.",
+        "match_status": "unavailable",
+        "product_id": "120010",
+        "product_name": "ANAVAR50",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "120011 | DIANABOL50 30 TABS | no strength listed",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/YBTjeUuDjxvAGmYt.png",
+        "match_basis": "HD Labs Dianabol 50mg 30 Tablets matches product 120011 DIANABOL50 30 TABS with exact brand, strength, and form.",
+        "match_status": "verified",
+        "product_id": "120011",
+        "product_name": "DIANABOL50 30 TABS",
+        "source_page_url": "https://aexpress.co.za/product/hd-labs-dianabol-50mg/",
+        "source_title": "HD Labs – Dianabol 50mg"
+      },
+      "error": ""
+    },
+    {
+      "input": "120012 | WINSTROL50 30 TABS | no strength listed",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/zJWFIHNQhHGnlGkf.png",
+        "match_basis": "Matched HD Labs Winstrol50 30 tablets packaging with exact active product identity, 50mg strength, and 30 tabs count.",
+        "match_status": "verified",
+        "product_id": "120012",
+        "product_name": "WINSTROL50 30 TABS",
+        "source_page_url": "https://anabolicsalot.co.za/hd-labs-orals/1053-hd-labs-winstrol-50mg.html",
+        "source_title": "HD Labs - Winstrol 50 | 30Tabs - Anabolics A Lot"
+      },
+      "error": ""
+    },
+    {
+      "input": "120013 | PEPTIDE PEN NEEDLES | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "",
+        "match_basis": "No specific brand or pack size is specified for this generic peptide pen needles item, making an exact verified product image unavailable.",
+        "match_status": "unavailable",
+        "product_id": "120013",
+        "product_name": "PEPTIDE PEN NEEDLES",
+        "source_page_url": "",
+        "source_title": ""
+      },
+      "error": ""
+    },
+    {
+      "input": "120014 | Betamox 500 (15 tabs) | 500mg 15 tabs",
+      "output": {
+        "confidence": "medium",
+        "direct_image_url": "https://medsgo.ph/images/detailed/36/Betamox.png",
+        "match_basis": "Matched Betamox 500mg amoxicillin capsule brand and strength from MedsGo, though package size variant differs from 15 tabs.",
+        "match_status": "review",
+        "product_id": "120014",
+        "product_name": "Betamox 500 (15 tabs)",
+        "source_page_url": "https://medsgo.ph/prescription-medicines/antibiotics/betamox-amoxicillin-500mg-capsule-1s/?srsltid=AfmBOooAtt1uqM-s5a6fFtEl3bbDSDVf3QTxAt9onoQyhC5MoPfyCvCw",
+        "source_title": "BETAMOX Amoxicillin 500mg - 1 Capsule"
+      },
+      "error": ""
+    },
+    {
+      "input": "120015 | IVERMECTIM 50ML | 50ML",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://cdn11.bigcommerce.com/s-sjodmfzphz/images/stencil/1280x1280/products/13586/79814/51374_L_vvs_000__65545.1782479681.jpg?c=1",
+        "match_basis": "Matched to Durvet Ivermectin Injection 1% 50 mL; active ingredient and 50 mL volume match exactly, with brand inferred from leading veterinary supplier.",
+        "match_status": "review",
+        "product_id": "120015",
+        "product_name": "IVERMECTIM 50ML | 50ML",
+        "source_page_url": "https://www.valleyvet.com/ivermectin-injection-1-for-cattle-and-swine/",
+        "source_title": "Ivermectin Injection 1% for Cattle and Swine Durvet"
+      },
+      "error": ""
+    },
+    {
+      "input": "120016 | Modafinil Shree 200mg 10 tabs | 200mg 10 tabs",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/MkhJimRZOKsceQpv.jpg",
+        "match_basis": "Shree Venkatesh Rapofil-200 matches exact brand, 200mg strength, and modafinil tablets USP form with 10 tabs packaging.",
+        "match_status": "verified",
+        "product_id": "120016",
+        "product_name": "Modafinil Shree 200mg 10 tabs | 200mg 10 tabs",
+        "source_page_url": "https://www.shreevenkatesh.com/Modafinil-Tablets-USP-Rapofil-200",
+        "source_title": "Rapofil-200 (Modafinil Tablets USP)"
+      },
+      "error": ""
+    },
+    {
+      "input": "120017 | NEUROBIAN | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663346956907/HlMKYBUCvojiWuBe.jpg",
+        "match_basis": "Matched NEUROBIAN to Neurobion high-potency vitamin B complex tablets (thiamine, pyridoxine, cyanocobalamin) from CVS authoritative product page.",
+        "match_status": "verified",
+        "product_id": "120017",
+        "product_name": "NEUROBIAN",
+        "source_page_url": "https://www.cvs.com/shop/neurobion-high-potency-formula-clasica-tablets-100-ct-prodid-242895",
+        "source_title": "NeuroBion High Potency Formula Clasica Tablets, 100 CT - CVS"
+      },
+      "error": ""
+    },
+    {
+      "input": "120018 | Zolpihexal | no specified pack",
+      "output": {
+        "confidence": "high",
+        "direct_image_url": "https://ixxilon.mauve.de/500/10347437_1.jpg?ver=1736245809",
+        "match_basis": "Zolpihexal corresponds to Zolpidem Hexal 10 mg film-coated tablets by Hexal AG, verified by exact brand, active ingredient, strength, and packaging form.",
+        "match_status": "verified",
+        "product_id": "120018",
+        "product_name": "Zolpihexal",
+        "source_page_url": "https://www.besamex.de/produkt/zolpidem-hexal-10-mg-filmtabletten-28-st-10347437.html",
+        "source_title": "ZOLPIDEM HEXAL 10 mg Filmtabletten 28 St"
+      },
+      "error": ""
+    }
+  ]
+}

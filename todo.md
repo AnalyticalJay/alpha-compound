@@ -472,3 +472,10 @@
 - [x] Add products present in the authoritative tabs but absent from the website catalogue
 - [x] Remove products absent from all authoritative tabs only after dependency checks
 - [x] Validate full Retail-price and image coverage for the reconciled catalogue, then save a checkpoint
+
+## Phase 63: Source Images for Remaining Authoritative Catalogue Products
+- [x] Export and classify all active products that still lack a primary image
+- [x] Research credible manufacturer or supplier sources for high-quality exact image matches
+- [x] Import only verified product-specific images without replacing existing primary images
+- [x] Preserve unavailable, inaccessible, or variant-ambiguous products in a source audit
+- [x] Validate product-image coverage and storefront rendering, then save a checkpoint

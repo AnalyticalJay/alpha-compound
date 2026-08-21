@@ -1,0 +1,410 @@
+{
+  "mode": "dry-run",
+  "imported": [],
+  "ready": [],
+  "skipped": [
+    {
+      "productId": 30005,
+      "productName": "CJC-1295 WITH DAC ",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30007,
+      "productName": "GHRP-6 ",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30008,
+      "productName": "HCG (PREGNYL)  ",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30010,
+      "productName": "HGH FRAGMENT 177-191",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30012,
+      "productName": "LOVERS PEPTIDE PT-141",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30019,
+      "productName": "DEPOJECT 200 (TEST CYPIONATE)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30020,
+      "productName": "DURAJECT 100 (NANDROLONE PHENYLPROPIONATE)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30022,
+      "productName": "FINAJECT (TRENBOLONE HEXAHYDROBENZYLCARBONATE)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30025,
+      "productName": "MASTAJECT 200 (50MG DROSTANOLONE PROP/150MG ENANTHATE)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30078,
+      "productName": "AMOXICILLAN 500MG 15 TABS",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30080,
+      "productName": "B12",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30083,
+      "productName": "BROMAZEPAM 30 TABS",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30092,
+      "productName": "DORMICUM",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30094,
+      "productName": "DURAMINE 30MG",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30096,
+      "productName": "EPO Eprex (sold per pen)  1 x 0.4ml 4000iu",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30097,
+      "productName": "FUROSEMIDE / LASIX GENERIC PER TAB",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30102,
+      "productName": "HD SIMPLY SHREDDED",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30117,
+      "productName": "PURATA 30MG",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30119,
+      "productName": "RITALIN 10MG",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 30127,
+      "productName": "VOLTAREN INJECTABLE (DICLOFENAC)",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60021,
+      "productName": "BP RAD150 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60026,
+      "productName": "BP YK 11 10mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60064,
+      "productName": "BP Clomid 25mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 60074,
+      "productName": "BP Cialis 5mg",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120001,
+      "productName": "GHK-CU 100MG VIAL",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120002,
+      "productName": "MOTS-C 10MG",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120003,
+      "productName": "RETATRUTIDE 10MG VIAL",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120004,
+      "productName": "RETATRUTIDE 32MG PEN",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120005,
+      "productName": "RETATRUTIDE 32MG VIAL",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120006,
+      "productName": "TIRSEMA 44 PEN",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120007,
+      "productName": "TIRZEPATIDE 30MG PEN",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120008,
+      "productName": "TIRZEPATIDE 30MG VIAL",
+      "reason": "primary_image_already_exists"
+    },
+    {
+      "productId": 120018,
+      "productName": "Zolpihexal",
+      "reason": "primary_image_already_exists"
+    }
+  ],
+  "reviewRequired": [
+    {
+      "productId": "30013",
+      "productName": "MELANOTAN II | 2ML VIAL",
+      "sourcePageUrl": "https://peptagon.com/products/melanotan-ii-mt-ii-melanocortin-research-peptide",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120014",
+      "productName": "Betamox 500 (15 tabs)",
+      "sourcePageUrl": "https://medsgo.ph/prescription-medicines/antibiotics/betamox-amoxicillin-500mg-capsule-1s/?srsltid=AfmBOooAtt1uqM-s5a6fFtEl3bbDSDVf3QTxAt9onoQyhC5MoPfyCvCw",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120015",
+      "productName": "IVERMECTIM 50ML | 50ML",
+      "sourcePageUrl": "https://www.valleyvet.com/ivermectin-injection-1-for-cattle-and-swine/",
+      "reason": "not_in_reviewed_allowlist"
+    }
+  ],
+  "unavailable": [
+    {
+      "productId": "30006",
+      "productName": "BPC-157 | 2ML VIAL",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30009",
+      "productName": "HGH (rDNA origin) GROWTH HORMONE | 10 X 2ML",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30011",
+      "productName": "IGF-1 Lr3 | 10 X 2ML",
+      "sourcePageUrl": "https://swisschems.is/product/igf-1-lr3-1mg/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": 30014,
+      "productName": "PEG MGF",
+      "sourcePageUrl": "https://cooperpharmastore.com/produto/pegylated-mechano-growth-factor/",
+      "reason": "invalid_image_response_network_"
+    },
+    {
+      "productId": "30015",
+      "productName": "TB500 | 2ML VIAL",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30018",
+      "productName": "CLENBUTEROL | 20ML",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": 30021,
+      "productName": "EQUIJECT 200 (BOLDENONE UNDECYLENATE)",
+      "sourcePageUrl": "https://aexpress.co.za/product/hd-labs-equiject-200/",
+      "reason": "invalid_image_response_403_text/html; charset=UTF-8"
+    },
+    {
+      "productId": 30042,
+      "productName": "CIALIS (20mg x 10 TABS)",
+      "sourcePageUrl": "https://ndclist.com/ndc/0002-4464",
+      "reason": "invalid_image_response_403_text/html; charset=UTF-8"
+    },
+    {
+      "productId": "30075",
+      "productName": "ADORETIC PER TAB | 1 TAB",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30077",
+      "productName": "AMILORETIC PER TAB | 1 TAB",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30100",
+      "productName": "DNP (2.4-Dinitrophenol 100mg per tab) | 10 TABS",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30103",
+      "productName": "HD Tirzepatide 10mg | 10mg vial",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30105",
+      "productName": "INSULIN NOVORAPID | 1 PEN",
+      "sourcePageUrl": "https://www.medshop.com.au/products/cc-insulin-novorapid-flexpen-3ml-5-ultra-short-acting",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30108",
+      "productName": "Modafinil 50 tabs | 50 TABS",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30115",
+      "productName": "PAX | 30 TABS",
+      "sourcePageUrl": "https://www.transpharm.co.za/ethicals/central-nervous-system/central-analeptics/pax-10mg-30-tablets-ss5/p/10498EA",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": 30116,
+      "productName": "Prednisone 100 tabs",
+      "sourcePageUrl": "https://ndclist.com/ndc/0054-0017/images",
+      "reason": "invalid_image_response_403_text/html; charset=UTF-8"
+    },
+    {
+      "productId": "30118",
+      "productName": "RELISLIM | 90 TABS",
+      "sourcePageUrl": "https://www.transpharm.co.za/ethicals/gastro-intestinal-tract/antacids/relislim-90-tablets-s6/p/23811EA/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30120",
+      "productName": "STILPAYNE 100'S | 100 TABS",
+      "sourcePageUrl": "https://pharmacynet.co.za/product/stilpane-tabs-100/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30121",
+      "productName": "Tight and Tone | 50 TABS",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30122",
+      "productName": "TRAMACET | 60 TABS",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30123",
+      "productName": "Tramadol 100 tabs | 100 TABS",
+      "sourcePageUrl": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b5852b90-e415-47ef-8f73-87266b58e033",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30125",
+      "productName": "URBINOL 10 | 100 TABS",
+      "sourcePageUrl": "https://www.transpharm.co.za/ethicals/central-nervous-system/central-analeptics/urbanol-10mg-100-tablets/p/13943EA/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": 30132,
+      "productName": "ZOLPIDEM",
+      "sourcePageUrl": "https://ndclist.com/ndc/33261-172/images",
+      "reason": "invalid_image_response_403_text/html; charset=UTF-8"
+    },
+    {
+      "productId": "30133",
+      "productName": "ZOLPIVANE | 30 TABS",
+      "sourcePageUrl": "https://www.transpharm.co.za/ethicals/central-nervous-system/ssris/zopivane-7.5mg-30-tablets/p/30581EA/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30134",
+      "productName": "NEEDLES",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30135",
+      "productName": "SYRINGES",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "30138",
+      "productName": "ALCOHOL SWABS",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "60054",
+      "productName": "BP Clenbuterol 80mg Inj | 80mg",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "60056",
+      "productName": "BP Cy Combo Inj",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120009",
+      "productName": "ANAVAR",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120010",
+      "productName": "ANAVAR50",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120011",
+      "productName": "DIANABOL50 30 TABS",
+      "sourcePageUrl": "https://aexpress.co.za/product/hd-labs-dianabol-50mg/",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120012",
+      "productName": "WINSTROL50 30 TABS",
+      "sourcePageUrl": "https://anabolicsalot.co.za/hd-labs-orals/1053-hd-labs-winstrol-50mg.html",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120013",
+      "productName": "PEPTIDE PEN NEEDLES",
+      "sourcePageUrl": null,
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120016",
+      "productName": "Modafinil Shree 200mg 10 tabs | 200mg 10 tabs",
+      "sourcePageUrl": "https://www.shreevenkatesh.com/Modafinil-Tablets-USP-Rapofil-200",
+      "reason": "not_in_reviewed_allowlist"
+    },
+    {
+      "productId": "120017",
+      "productName": "NEUROBIAN",
+      "sourcePageUrl": "https://www.cvs.com/shop/neurobion-high-potency-formula-clasica-tablets-100-ct-prodid-242895",
+      "reason": "not_in_reviewed_allowlist"
+    }
+  ]
+}
