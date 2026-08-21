@@ -36,6 +36,17 @@ test.describe("public catalogue stability", () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   });
 
+  test("mobile hero presents both brands and all four primary categories", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expect(page.getByText("HD Labs + BP Pharma").first()).toBeVisible();
+    await expect(page.getByText("Injectables", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Orals", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Peptides", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("SARMS", { exact: true }).first()).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  });
+
   test("administrator can find the imported BP Pharma product with its normalized strength", async ({ page }) => {
     await page.setExtraHTTPHeaders({ "x-e2e-role": "admin" });
     await page.goto("/admin/products");

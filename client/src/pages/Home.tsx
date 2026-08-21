@@ -78,7 +78,7 @@ export default function Home() {
               </h1>
 
               <p className="mb-7 max-w-xl text-base leading-relaxed text-[#94A3B8] sm:text-lg md:text-xl">
-                Premium pharmaceutical-grade compounds by <strong className="text-white">HD Labs</strong>. Controlled access. Built for serious athletes who demand the highest quality.
+                Premium pharmaceutical-grade compounds from <strong className="text-white">HD Labs</strong> and <strong className="text-white">BP Pharma</strong>. Controlled access. Built for serious athletes who demand the highest quality.
               </p>
 
               {/* CTA */}
@@ -132,17 +132,17 @@ export default function Home() {
             {/* Compact mobile brand panel */}
             <div className="rounded-xl border border-[#0EA5E9]/20 bg-[#0A0A0A] p-4 shadow-[0_0_40px_rgba(14,165,233,0.06)] lg:hidden">
               <div className="mb-4 flex items-center justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-3">
+                <div className="flex min-w-0 items-center gap-2.5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-gradient-to-br from-[#0EA5E9] to-[#0284C7] font-black text-white">HD</div>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-black uppercase tracking-widest text-white">HD Labs</p>
-                    <p className="truncate text-[10px] uppercase tracking-widest text-[#64748B]">Pharmaceutical Grade</p>
+                    <p className="text-sm font-black uppercase tracking-widest text-white">HD Labs <span className="text-[#64748B]">+</span> BP Pharma</p>
+                    <p className="truncate text-[10px] uppercase tracking-widest text-[#64748B]">Pharmaceutical Grade Catalogue</p>
                   </div>
                 </div>
                 <span className="shrink-0 rounded border border-[#E11D48]/30 bg-[#E11D48]/10 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-[#E11D48]">Members Only</span>
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                {[["Injectables", Syringe, "#0EA5E9"], ["Orals", Pill, "#E11D48"], ["Peptides", FlaskConical, "#0EA5E9"]].map(([label, Icon, color]) => {
+              <div className="grid grid-cols-2 gap-2">
+                {[["Injectables", Syringe, "#0EA5E9"], ["Orals", Pill, "#E11D48"], ["Peptides", Dna, "#A78BFA"], ["SARMS", FlaskConical, "#38BDF8"]].map(([label, Icon, color]) => {
                   const CategoryIcon = Icon as typeof Syringe;
                   return <div key={label as string} className="flex min-w-0 flex-col items-center gap-1.5 rounded border border-[#1E293B] bg-[#111111] p-2.5"><CategoryIcon className="h-4 w-4" style={{ color: color as string }} /><span className="truncate text-[9px] font-bold uppercase tracking-wider text-[#64748B]">{label as string}</span></div>;
                 })}
@@ -167,31 +167,32 @@ export default function Home() {
                   <div className="hex-pattern absolute inset-0 opacity-30" />
 
                   <div className="relative z-10">
-                    {/* HD Labs logo mark */}
+                    {/* Brand marks */}
                     <div className="flex items-center gap-3 mb-8">
                       <div className="w-12 h-12 rounded flex items-center justify-center font-black text-white text-lg"
                         style={{ background: "linear-gradient(135deg, #0EA5E9, #0284C7)" }}>
                         HD
                       </div>
                       <div>
-                        <div className="text-white font-black uppercase tracking-widest text-sm">HD Labs</div>
-                        <div className="text-[#64748B] text-xs uppercase tracking-widest">Pharmaceutical Grade</div>
+                        <div className="text-white font-black uppercase tracking-widest text-sm">HD Labs <span className="text-[#64748B]">+</span> BP Pharma</div>
+                        <div className="text-[#64748B] text-xs uppercase tracking-widest">Pharmaceutical Grade Catalogue</div>
                       </div>
                     </div>
 
-                    {/* Category pills */}
-                    <div className="grid grid-cols-3 gap-3 mb-8">
+                    {/* Primary categories */}
+                    <div className="grid grid-cols-2 gap-3 mb-8 sm:grid-cols-4">
                       {[
                         { icon: Syringe, label: "Injectables", color: "#0EA5E9" },
                         { icon: Pill, label: "Orals", color: "#E11D48" },
-                        { icon: FlaskConical, label: "Peptides", color: "#0EA5E9" },
+                        { icon: Dna, label: "Peptides", color: "#A78BFA" },
+                        { icon: FlaskConical, label: "SARMS", color: "#38BDF8" },
                       ].map(({ icon: Icon, label, color }) => (
-                        <div key={label} className="flex flex-col items-center gap-2 p-4 rounded border border-[#1E293B] bg-[#111111]">
+                        <div key={label} className="flex min-w-0 flex-col items-center gap-2 rounded border border-[#1E293B] bg-[#111111] p-3">
                           <div className="w-8 h-8 rounded flex items-center justify-center"
                             style={{ background: `${color}15` }}>
                             <Icon className="h-4 w-4" style={{ color }} />
                           </div>
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#64748B]">{label}</span>
+                          <span className="text-center text-[9px] font-bold uppercase tracking-widest text-[#64748B]">{label}</span>
                         </div>
                       ))}
                     </div>

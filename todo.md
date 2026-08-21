@@ -486,3 +486,10 @@
 - [x] Assign the placeholder as a primary image only to unresolved products and set new entries to stock quantity 50
 - [x] Verify visible in-stock status and stock badge behaviour on product pages
 - [x] Add regression coverage, validate catalogue records, and save a checkpoint
+
+## Phase 65: Dual-Brand Hero Panel and Main Category Coverage
+- [x] Inspect the existing homepage hero brand panel and responsive category grid
+- [x] Add BP Pharma alongside HD Labs in the hero brand presentation
+- [x] Present Injectables, Orals, Peptides, and SARMS clearly in the hero category row
+- [x] Add regression coverage and validate desktop/mobile hero presentation
+- [x] Save a checkpoint

@@ -29,6 +29,16 @@ describe("home catalog products and categories", () => {
     expect(home).toContain("/products?category=${category.id}");
   });
 
+  it("presents both catalogue brands and all four main compound types in the hero panel", () => {
+    const home = source("client/src/pages/Home.tsx");
+    expect(home).toContain("HD Labs <span className=\"text-[#64748B]\">+</span> BP Pharma");
+    expect(home).toContain("Pharmaceutical Grade Catalogue");
+    expect(home).toContain('{ icon: Syringe, label: "Injectables"');
+    expect(home).toContain('{ icon: Pill, label: "Orals"');
+    expect(home).toContain('{ icon: Dna, label: "Peptides"');
+    expect(home).toContain('{ icon: FlaskConical, label: "SARMS"');
+  });
+
   it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {
     const home = source("client/src/pages/Home.tsx");
     expect(home).toContain("category-injectables-banner_e7d7a02b.png");
