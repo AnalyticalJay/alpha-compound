@@ -34,3 +34,13 @@ The final reel is assembled from two ten-second vertical motion sequences with a
 | `anabolics-africa-launch-bed.mp3` | Original instrumental music bed |
 | `anabolics-africa-launch-clip-01.mp4` | Gym-to-members-only-storefront sequence |
 | `anabolics-africa-launch-clip-02.mp4` | Customer-dashboard payment-confirmation sequence |
+
+## Screen-Focused Remake Reference Set
+
+The revised reel will use authentic Anabolics Africa application screenshots as the primary visual content. The approved homepage reference shows the real members-only launch panel, HD Labs and BP Pharma positioning, and the four primary catalogue groups. The customer order-detail reference shows the real quote progress panel, payment history, delivery tracking, quote contents, and secure PayFast action within the mobile customer experience. Both images are test-environment screenshots with isolated quote data and are used only to demonstrate genuine application interface patterns.
+
+| Reference | Reel role |
+|---|---|
+| `public-home-linux.png` | Opening membership-only homepage and platform identity |
+| `mobile-quote-detail-linux.png` | Mobile customer dashboard, order detail, delivery, and secure-payment sequence |
+| `mobile-checkout-linux.png` | Payment handoff moment and checkout transition |
