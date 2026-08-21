@@ -500,3 +500,13 @@
 - [x] Exercise the isolated quote submission, approval, payment, fulfilment, and notification sales flow
 - [x] Diagnose and correct any verified functional or usability defects
 - [x] Validate all fixes, document audit findings, and save a checkpoint
+
+## Phase 67: Courier Tracking Status and Integration Requirements
+- [x] Inspect the current waybill, shipping-status, notification, and customer timeline capabilities
+- [x] Define the courier API, authentication, webhook, and status-mapping inputs required for live tracking
+- [x] Report the current delivery workflow and next integration steps
+
+## Phase 68: Customer Delivery Timeline Verification
+- [x] Inspect the isolated shipping fixture and customer tracking assertions
+- [x] Run an isolated admin shipping update with a waybill and tracking URL
+- [x] Verify the customer order dashboard shows the tracking details and timeline progress

@@ -182,6 +182,7 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await page.getByLabel("Shipping status").selectOption("dispatched");
     await page.getByPlaceholder("e.g. The Courier Guy").fill("E2E Courier");
     await page.getByPlaceholder("Tracking reference").fill("E2E-TRACK-001");
+    await page.getByPlaceholder("https://courier.example/track/...").fill("https://tracking.example.test/E2E-TRACK-001");
     await page.getByRole("button", { name: "Save shipping update" }).click();
     await expect(page.getByText("Shipping details updated")).toBeVisible();
 
@@ -189,5 +190,13 @@ test.describe("disposable quote and PayFast payment write flows", () => {
     await page.goto("/notifications");
     await expect(page.getByText("Shipping updated for Quote #42001")).toBeVisible();
     await expect(page.getByText("with tracking number E2E-TRACK-001.")).toBeVisible();
+
+    await page.goto("/orders/42001");
+    await expect(page.getByRole("heading", { name: "Delivery tracking" })).toBeVisible();
+    await expect(page.getByText("E2E Courier", { exact: true })).toBeVisible();
+    await expect(page.getByText("E2E-TRACK-001", { exact: true })).toBeVisible();
+    await expect(page.getByText("dispatched", { exact: true })).toBeVisible();
+    await expect(page.getByText("The parcel has left our fulfilment point.")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Track shipment" })).toHaveAttribute("href", "https://tracking.example.test/E2E-TRACK-001");
   });
 });
