@@ -161,8 +161,14 @@ export default function ProductDetail() {
               {/* Stock */}
               <div className="mb-6">
                 {product.stockQuantity > 0 ? (
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#4ADE80" }}>
-                    ✓ In Stock ({product.stockQuantity} available)
+                  <span
+                    role="status"
+                    aria-label={`In Stock: ${product.stockQuantity} available`}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#22C55E]/40 bg-[#14532D]/35 px-3 py-1.5 text-xs font-black uppercase tracking-widest text-[#86EFAC]"
+                  >
+                    <span aria-hidden="true" className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] text-[#052E16]">✓</span>
+                    In Stock
+                    <span className="border-l border-[#86EFAC]/30 pl-2 text-[#DCFCE7]">{product.stockQuantity} available</span>
                   </span>
                 ) : (
                   <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#F87171" }}>

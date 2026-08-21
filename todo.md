@@ -479,3 +479,10 @@
 - [x] Import only verified product-specific images without replacing existing primary images
 - [x] Preserve unavailable, inaccessible, or variant-ambiguous products in a source audit
 - [x] Validate product-image coverage and storefront rendering, then save a checkpoint
+
+## Phase 64: Branded Placeholders and Default Catalogue Stock
+- [x] Inventory the active products without verified imagery and newly created catalogue entries
+- [x] Create an explicit Anabolics Africa "Product image pending" placeholder visual
+- [x] Assign the placeholder as a primary image only to unresolved products and set new entries to stock quantity 50
+- [x] Verify visible in-stock status and stock badge behaviour on product pages
+- [x] Add regression coverage, validate catalogue records, and save a checkpoint
