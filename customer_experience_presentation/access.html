@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #06090f; color: #f8fafc; font-family: Arial, Helvetica, sans-serif; position: relative; overflow: hidden; }
+    .topline { height: 7px; background: linear-gradient(90deg,#e11d48 0 33%,#0ea5e9 33% 100%); }
+    .side { position:absolute; left:0; top:7px; width:310px; min-height:713px; background:#0a0f17; border-right:1px solid #233347; padding:66px 34px 0 52px; }
+    .number { color:#38bdf8; font-size:15px; font-weight:700; letter-spacing:3px; }
+    h1 { margin-top:20px; font-size:43px; line-height:1.02; letter-spacing:-1px; }
+    h1 span { color:#38bdf8; }
+    .summary { margin-top:22px; color:#cbd5e1; font-size:18px; line-height:1.45; }
+    .point { border-top:1px solid #334155; margin-top:24px; padding-top:15px; }
+    .point strong { display:block; color:#f8fafc; font-size:15px; margin-bottom:6px; }
+    .point span { color:#94a3b8; font-size:13px; line-height:1.35; }
+    .main { position:absolute; left:345px; top:58px; width:890px; min-height:610px; }
+    .kicker { color:#fda4af; font-size:14px; font-weight:700; letter-spacing:2px; }
+    .desktop { position:absolute; left:0; top:42px; width:650px; height:455px; border:2px solid #334155; background:#020617; box-shadow:0 18px 38px rgba(0,0,0,.48); overflow:hidden; }
+    .browserbar { height:38px; background:#111827; display:flex; align-items:center; gap:8px; padding-left:16px; }
+    .dot { width:10px; height:10px; border-radius:50%; }
+    .desktop img { display:block; width:646px; height:413px; object-fit:contain; background:#000; }
+    .phone { position:absolute; right:0; top:88px; width:210px; height:472px; background:#030712; border:4px solid #64748b; border-radius:34px; overflow:hidden; box-shadow:0 18px 38px rgba(0,0,0,.55); }
+    .notch { position:absolute; top:8px; left:72px; width:58px; height:9px; background:#1e293b; border-radius:8px; z-index:2; }
+    .phone img { display:block; width:202px; height:448px; margin-top:20px; object-fit:contain; background:#000; }
+    .caption { position:absolute; left:0; top:524px; width:650px; color:#cbd5e1; font-size:16px; line-height:1.4; }
+    .caption b { color:#38bdf8; }
+    .footer { position:absolute; left:345px; bottom:28px; color:#64748b; font-size:13px; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="topline"></div>
+    <aside class="side">
+      <div class="number">01 / ACCESS</div>
+      <h1>MEMBERS-ONLY<br><span>ACCESS</span> SETS<br>THE TONE</h1>
+      <p class="summary">The customer journey begins with a premium, controlled storefront that makes the platform purpose clear from the first screen.</p>
+      <div class="point"><strong>Controlled entry</strong><span>Access and pricing remain aligned to the approved-member experience.</span></div>
+      <div class="point"><strong>One catalogue</strong><span>HD Labs and BP Pharma are visible within a unified platform.</span></div>
+      <div class="point"><strong>Responsive by design</strong><span>Desktop and mobile preserve the same access hierarchy.</span></div>
+    </aside>
+    <main class="main">
+      <div class="kicker">ACTUAL PLATFORM HOME EXPERIENCE</div>
+      <div class="desktop">
+        <div class="browserbar"><i class="dot" style="background:#e11d48"></i><i class="dot" style="background:#f59e0b"></i><i class="dot" style="background:#38bdf8"></i></div>
+        <img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/public-home-linux.png" alt="Desktop homepage mockup">
+      </div>
+      <div class="phone"><div class="notch"></div><img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/mobile-checkout-linux.png" alt="Mobile customer entry mockup"></div>
+      <div class="caption"><b>Client takeaway:</b> the brand promise, access rules, and category visibility are immediately clear before the customer begins browsing.</div>
+    </main>
+    <div class="footer">ANABOLICS AFRICA · CUSTOMER EXPERIENCE &amp; SALES FLOW</div>
+  </div>
+</body>
+</html>

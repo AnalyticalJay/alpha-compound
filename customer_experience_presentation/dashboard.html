@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #06090f; color: #f8fafc; font-family: Arial, Helvetica, sans-serif; position: relative; overflow: hidden; }
+    .topline { height: 7px; background: linear-gradient(90deg, #e11d48 0 38%, #0ea5e9 38% 100%); }
+    .rail { position: absolute; top: 7px; left: 0; width: 326px; min-height: 713px; background: #0a0f17; border-right: 1px solid #233347; padding: 64px 34px 0 52px; }
+    .eyebrow { color: #38bdf8; font-size: 14px; font-weight: 700; letter-spacing: 3px; }
+    h1 { margin-top: 19px; font-size: 41px; line-height: 1.02; letter-spacing: -1px; }
+    h1 span { color: #38bdf8; }
+    .intro { margin-top: 20px; color: #cbd5e1; font-size: 17px; line-height: 1.45; }
+    .feature { margin-top: 24px; border-top: 1px solid #334155; padding-top: 14px; }
+    .feature b { display: block; color: #f8fafc; font-size: 15px; margin-bottom: 6px; }
+    .feature p { color: #94a3b8; font-size: 13px; line-height: 1.38; }
+    .stage { position: absolute; left: 354px; top: 62px; width: 872px; min-height: 615px; }
+    .label { color: #fda4af; font-size: 14px; font-weight: 700; letter-spacing: 2px; }
+    .desktop { position: absolute; left: 0; top: 43px; width: 660px; height: 462px; border: 2px solid #334155; background: #020617; overflow: hidden; box-shadow: 0 20px 46px rgba(0,0,0,0.55); }
+    .browserbar { height: 38px; background: #111827; display: flex; align-items: center; gap: 8px; padding-left: 16px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .desktop img { display: block; width: 656px; height: 420px; object-fit: contain; background: #000; }
+    .phone { position: absolute; right: 4px; top: 92px; width: 201px; height: 478px; border: 4px solid #64748b; border-radius: 34px; background: #030712; overflow: hidden; box-shadow: 0 20px 46px rgba(0,0,0,0.62); }
+    .notch { position: absolute; top: 8px; left: 68px; width: 57px; height: 9px; border-radius: 7px; background: #1e293b; z-index: 2; }
+    .phone img { display: block; width: 193px; height: 450px; margin-top: 20px; object-fit: contain; background: #000; }
+    .screen-title { position: absolute; left: 0; top: 524px; width: 660px; color: #cbd5e1; font-size: 16px; line-height: 1.42; }
+    .screen-title b { color: #38bdf8; }
+    .mobile-label { position: absolute; right: -8px; top: 585px; color: #94a3b8; font-size: 12px; letter-spacing: 1px; text-align: center; width: 212px; }
+    .footer { position: absolute; left: 354px; bottom: 26px; color: #64748b; font-size: 13px; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="topline"></div>
+    <aside class="rail">
+      <div class="eyebrow">03 / CUSTOMER DASHBOARD</div>
+      <h1>ONE VIEW.<br><span>EVERY</span><br>ORDER.</h1>
+      <p class="intro">The customer dashboard turns an approved quote into an understandable, action-ready order experience.</p>
+      <div class="feature"><b>Quote progress</b><p>Submission, review, approval, payment and completion remain visible.</p></div>
+      <div class="feature"><b>Payment-ready visibility</b><p>Customers can see exactly when an approved order requires action.</p></div>
+      <div class="feature"><b>Order context</b><p>Products, messages, payment history and delivery stay connected in one place.</p></div>
+    </aside>
+    <main class="stage">
+      <div class="label">ACTUAL CUSTOMER ORDER EXPERIENCE</div>
+      <div class="desktop">
+        <div class="browserbar"><i class="dot" style="background:#e11d48"></i><i class="dot" style="background:#f59e0b"></i><i class="dot" style="background:#38bdf8"></i></div>
+        <img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/customer-quote-detail-linux.png" alt="Desktop customer order detail mockup">
+      </div>
+      <div class="phone"><div class="notch"></div><img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/mobile-quote-detail-linux.png" alt="Mobile customer order detail mockup"></div>
+      <div class="screen-title"><b>Client takeaway:</b> the dashboard makes the status of every customer order clear, so the next customer action is never ambiguous.</div>
+      <div class="mobile-label">MOBILE ORDER DETAIL</div>
+    </main>
+    <div class="footer">ANABOLICS AFRICA · CUSTOMER EXPERIENCE &amp; SALES FLOW</div>
+  </div>
+</body>
+</html>

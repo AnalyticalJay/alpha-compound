@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #05080d; color: #f8fafc; font-family: Arial, Helvetica, sans-serif; position: relative; overflow: hidden; }
+    .topline { height: 7px; background: linear-gradient(90deg,#e11d48 0 34%,#0ea5e9 34% 100%); }
+    .blue-field { position:absolute; right:-150px; top:50px; width:600px; height:610px; border-radius:50%; background:rgba(14,165,233,.10); }
+    .left { position:absolute; left:72px; top:62px; width:350px; }
+    .number { color:#38bdf8; font-size:14px; letter-spacing:3px; font-weight:700; }
+    h1 { margin-top:20px; font-size:43px; line-height:1.03; letter-spacing:-1px; }
+    h1 span { color:#38bdf8; }
+    .intro { margin-top:20px; color:#cbd5e1; font-size:17px; line-height:1.46; }
+    .cap { border-top:1px solid #334155; margin-top:20px; padding-top:12px; }
+    .cap b { display:block; font-size:15px; color:#f8fafc; margin-bottom:4px; }
+    .cap span { display:block; color:#94a3b8; font-size:13px; line-height:1.35; }
+    .desktop { position:absolute; left:460px; top:72px; width:570px; height:420px; background:#020617; border:2px solid #334155; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,.54); }
+    .bar { height:36px; background:#111827; display:flex; align-items:center; gap:8px; padding-left:15px; }
+    .dot { width:9px; height:9px; border-radius:50%; }
+    .desktop img { display:block; width:566px; height:380px; object-fit:contain; background:#000; }
+    .phone { position:absolute; right:70px; top:126px; width:195px; height:448px; background:#030712; border:4px solid #64748b; border-radius:32px; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,.62); }
+    .notch { position:absolute; top:8px; left:65px; width:56px; height:9px; border-radius:8px; background:#1e293b; z-index:2; }
+    .phone img { display:block; width:187px; height:422px; margin-top:18px; object-fit:contain; background:#000; }
+    .progress-wrap { position:absolute; left:460px; bottom:72px; width:570px; }
+    .progress-label { display:flex; justify-content:space-between; color:#cbd5e1; font-size:14px; margin-bottom:9px; }
+    .progress-track { height:11px; background:#1e293b; }
+    .progress-fill { width:83%; height:11px; background:linear-gradient(90deg,#e11d48,#38bdf8); }
+    .journey { margin-top:13px; color:#94a3b8; font-size:13px; letter-spacing:.5px; }
+    .journey b { color:#38bdf8; }
+    .footer { position:absolute; left:72px; bottom:33px; color:#64748b; font-size:13px; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="topline"></div>
+    <div class="blue-field"></div>
+    <section class="left">
+      <div class="number">06 / DELIVERY EXPERIENCE</div>
+      <h1>TRACKING <span>STAYS</span><br>WITH THE CUSTOMER</h1>
+      <p class="intro">Post-payment communication remains visible inside the customer order experience—not hidden in a courier email.</p>
+      <div class="cap"><b>Waybill + courier link</b><span>The customer can copy the waybill and open the courier tracking link in one click.</span></div>
+      <div class="cap"><b>Transparent delivery estimate</b><span>Status-based delivery guidance updates from dispatch through Out for delivery.</span></div>
+      <div class="cap"><b>Progress made visual</b><span>The six-stage timeline and percentage bar make the current delivery state intuitive.</span></div>
+    </section>
+    <section class="desktop">
+      <div class="bar"><i class="dot" style="background:#e11d48"></i><i class="dot" style="background:#f59e0b"></i><i class="dot" style="background:#38bdf8"></i></div>
+      <img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/customer-quote-detail-linux.png" alt="Desktop customer order tracking view">
+    </section>
+    <section class="phone"><div class="notch"></div><img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/mobile-quote-detail-linux.png" alt="Mobile customer delivery tracking view"></section>
+    <section class="progress-wrap">
+      <div class="progress-label"><span>DELIVERY PROGRESS</span><span>OUT FOR DELIVERY · 83%</span></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <div class="journey"><b>Packed</b> → Dispatched → In transit → <b>Out for delivery</b> → Delivered</div>
+    </section>
+    <div class="footer">ANABOLICS AFRICA · CUSTOMER EXPERIENCE &amp; SALES FLOW</div>
+  </div>
+</body>
+</html>

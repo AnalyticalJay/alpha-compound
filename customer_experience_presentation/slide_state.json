@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "title": "Anabolics Africa — Customer Experience & Sales Flow",
+    "created": 1787319984.92,
+    "last_updated": 1787320124.657,
+    "total_slides": 8
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "access",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "browse_quote",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "dashboard",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "payment",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "delivery",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "flow",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "closing",
+      "state": "edited",
+      "pageNum": 8
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "Anabolics Africa — Customer Experience & Sales Flow",
+      "summary": "Client-facing overview of the premium members-only experience across desktop and mobile.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "access",
+      "title": "Members-only access sets the tone",
+      "summary": "Show the controlled-access branded homepage in enlarged desktop and mobile mockups, explaining the premium access positioning.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "browse_quote",
+      "title": "Browse, build, and submit",
+      "summary": "Show the actual product catalogue on desktop and a mobile quote-building/checkout view, emphasizing catalogue filters and the quote-first purchase model.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "dashboard",
+      "title": "One customer dashboard for every order",
+      "summary": "Show desktop and mobile customer order views, highlighting quote progress, order details, messages, and payment-ready visibility.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "payment",
+      "title": "Approved quotes unlock secure payment",
+      "summary": "Show desktop and mobile payment views with the real PayFast and Instant EFT choices after quote approval.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "delivery",
+      "title": "Delivery tracking remains customer-facing",
+      "summary": "Show the delivery tracking view in both form factors, including waybill, tracking link, estimate, progress bar, and timeline.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "flow",
+      "title": "A connected journey from access to delivery",
+      "summary": "Summarize the customer flow: join, browse, submit quote, receive approval, pay securely, and track delivery.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "closing",
+      "title": "Built for a premium customer journey",
+      "summary": "Minimal close that reinforces the Anabolics Africa customer experience proposition.",
+      "image_plan": "Use a suitable image if needed"
+    }
+  ]
+}

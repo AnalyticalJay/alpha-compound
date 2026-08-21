@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #05080d; color: #f8fafc; font-family: Arial, Helvetica, sans-serif; position: relative; overflow: hidden; }
+    .topline { position:absolute; left:0; top:0; width:100%; height:7px; background:linear-gradient(90deg,#e11d48 0 35%,#0ea5e9 35% 100%); }
+    .blue { position:absolute; right:-150px; top:-120px; width:680px; height:620px; border-radius:50%; background:rgba(14,165,233,.16); }
+    .red { position:absolute; left:-190px; bottom:-230px; width:650px; height:470px; border-radius:50%; background:rgba(225,29,72,.16); }
+    .brand { position:absolute; left:92px; top:76px; color:#38bdf8; font-size:17px; font-weight:700; letter-spacing:3px; }
+    .copy { position:absolute; left:92px; top:208px; width:650px; }
+    .eyebrow { color:#fda4af; font-size:15px; font-weight:700; letter-spacing:2px; }
+    h1 { margin-top:24px; font-size:64px; line-height:.98; letter-spacing:-2px; }
+    h1 span { color:#38bdf8; }
+    p { margin-top:26px; width:545px; color:#cbd5e1; font-size:22px; line-height:1.42; }
+    .rule { margin-top:36px; width:455px; height:2px; background:linear-gradient(90deg,#e11d48,#38bdf8); }
+    .phone { position:absolute; right:180px; top:95px; width:240px; height:535px; background:#030712; border:4px solid #64748b; border-radius:40px; overflow:hidden; box-shadow:0 24px 52px rgba(0,0,0,.58); }
+    .notch { position:absolute; left:82px; top:9px; width:72px; height:10px; background:#1e293b; border-radius:8px; z-index:2; }
+    .phone img { display:block; width:232px; height:507px; margin-top:20px; object-fit:contain; background:#000; }
+    .closing { position:absolute; left:92px; bottom:58px; color:#94a3b8; font-size:15px; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="topline"></div>
+    <div class="blue"></div>
+    <div class="red"></div>
+    <div class="brand">ANABOLICS AFRICA</div>
+    <section class="copy">
+      <div class="eyebrow">PREMIUM CUSTOMER EXPERIENCE</div>
+      <h1>CONTROLLED ACCESS.<br><span>CLEARER FLOW.</span></h1>
+      <p>A connected, mobile-first journey that keeps customers informed from catalogue access through quote approval, payment, and delivery.</p>
+      <div class="rule"></div>
+    </section>
+    <section class="phone">
+      <div class="notch"></div>
+      <img src="/home/ubuntu/alpha-compound/e2e/visual-baselines.spec.ts-snapshots/mobile-quote-detail-linux.png" alt="Anabolics Africa mobile customer order view">
+    </section>
+    <div class="closing">CLIENT PRESENTATION · CUSTOMER EXPERIENCE &amp; SALES FLOW</div>
+  </div>
+</body>
+</html>
