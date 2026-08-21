@@ -549,3 +549,9 @@
 - [x] Write the client-facing customer experience and sales-flow narrative
 - [x] Generate and validate a client-ready presentation with paired mockups
 - [x] Deliver the finished presentation
+
+## Phase 75: Correct Presentation Mobile Viewport Mockups
+- [x] Inspect the presentation phone-frame image references and their viewport fidelity
+- [x] Capture true narrow mobile viewport references for the homepage, quote, order, payment, and delivery states
+- [x] Replace full-page images in every presentation phone frame and recompile the deck
+- [x] Verify the corrected mobile mockups and deliver the revised presentation

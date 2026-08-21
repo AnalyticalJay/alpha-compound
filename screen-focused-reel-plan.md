@@ -25,3 +25,7 @@ The revised reel was assembled from the authentic homepage and customer mobile q
 | Asset | Purpose |
 |---|---|
 | `anabolics-africa-mobile-platform-launch-reel.mp4` | Final screen-focused 20-second vertical launch reel |
+
+## Corrected Presentation Mobile Viewports
+
+The rebuilt client presentation uses genuine **390 × 844** customer viewport captures rather than full-page mobile screenshots. The payment view visibly contains the approved quote and quote-progress state inside one phone screen. The quote-build view visibly contains the Quote Cart, selected item, quote summary, and Submit Quote Request action inside one phone screen.
