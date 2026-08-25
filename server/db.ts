@@ -877,12 +877,19 @@ export async function confirmEftPayment(orderId: number) {
 
 export async function updateOrderPayment(
   payfastReference: string,
-  paymentStatus: "paid" | "failed"
+  paymentStatus: "paid" | "failed",
+  receivedAmount: string,
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   const order = await db.select().from(orders).where(eq(orders.payfastReference, payfastReference)).limit(1);
-  if (!order[0]) return;
+  if (!order[0]) throw new Error("Payment reference not found");
+  const expectedAmount = Number.parseFloat(order[0].totalAmount).toFixed(2);
+  if (receivedAmount !== expectedAmount) throw new Error("PayFast payment amount does not match the approved quote");
+  if (order[0].paymentStatus === "paid") return;
+  if (order[0].status !== "awaiting_payment" || !["payfast", "eft"].includes(order[0].paymentMethod ?? "")) {
+    throw new Error("Quote is not awaiting a PayFast payment");
+  }
   const paymentMethod = order[0].paymentMethod ?? "payfast";
   const methodLabel = paymentMethod === "eft" ? "PayFast Instant EFT" : "PayFast";
   await db

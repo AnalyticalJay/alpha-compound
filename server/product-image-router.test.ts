@@ -71,7 +71,7 @@ describe("admin product image router", () => {
     await caller.products.uploadImage({
       productId: 123,
       fileName: "sample-product.jpg",
-      fileData: Buffer.from("image-bytes").toString("base64"),
+      fileData: Buffer.from([0xff, 0xd8, 0xff, 0xd9]).toString("base64"),
       mimeType: "image/jpeg",
       isPrimary: true,
     });

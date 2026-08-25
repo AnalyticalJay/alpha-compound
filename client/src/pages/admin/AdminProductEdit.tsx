@@ -105,6 +105,17 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || isNew) return;
+    const mimeType = file.type;
+    if (mimeType !== "image/jpeg" && mimeType !== "image/png") {
+      toast.error("Only JPEG and PNG product images are supported.");
+      e.target.value = "";
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      toast.error("Product images must be 8 MB or smaller.");
+      e.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       const base64 = (reader.result as string).split(",")[1];
@@ -112,7 +123,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
         productId: parseInt(productId!),
         fileName: file.name,
         fileData: base64!,
-        mimeType: file.type,
+        mimeType,
         isPrimary: images.length === 0,
       });
     };

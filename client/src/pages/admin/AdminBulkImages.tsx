@@ -137,12 +137,18 @@ export default function AdminBulkImages() {
       if (!product) continue;
       setFiles((current) => current.map((candidate) => candidate.file === item.file ? { ...candidate, uploadStatus: "uploading", error: undefined } : candidate));
       try {
+        if (item.file.type !== "image/jpeg" && item.file.type !== "image/png") {
+          throw new Error("Only JPEG and PNG product images are supported.");
+        }
+        if (item.file.size > 8 * 1024 * 1024) {
+          throw new Error("Each product image must be 8 MB or smaller.");
+        }
         const fileData = await fileToBase64(item.file);
         await uploadMutation.mutateAsync({
           productId: product.id,
           fileName: item.file.name,
           fileData,
-          mimeType: item.file.type || "application/octet-stream",
+          mimeType: item.file.type,
           isPrimary: true,
         });
         uploaded += 1;

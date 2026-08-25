@@ -92,7 +92,7 @@ export default function AdminDashboard() {
               <CartesianGrid stroke="#1E293B" strokeDasharray="3 3" vertical={false} />
               <XAxis dataKey="label" tick={{ fill: "#64748B", fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis allowDecimals={false} tick={{ fill: "#64748B", fontSize: 10 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={chartTooltipStyle} formatter={(value: number) => [`R${value.toFixed(2)}`, "Revenue"]} />
+              <Tooltip contentStyle={chartTooltipStyle} formatter={(value) => [`R${Number(value ?? 0).toFixed(2)}`, "Revenue"]} />
               <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#E11D48" strokeWidth={2} fill="url(#revenueFill)" />
             </AreaChart>
           </ResponsiveContainer>

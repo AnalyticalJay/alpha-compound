@@ -43,24 +43,32 @@ export default function AdminBulkImport() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    if (!file.name.toLowerCase().endsWith(".xlsx")) {
+      toast.error("Please upload an .xlsx workbook or use the CSV import option.");
+      e.target.value = "";
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Excel workbooks must be 5 MB or smaller.");
+      e.target.value = "";
+      return;
+    }
+
     try {
       const buffer = await file.arrayBuffer();
-      const uint8Array = new Uint8Array(buffer);
-      
-      // Dynamically import xlsx
-      const XLSX = await import('xlsx');
-      const workbook = XLSX.read(uint8Array, { type: 'array' });
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+      const ExcelJS = await import("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      await workbook.xlsx.load(buffer);
+      const worksheet = workbook.worksheets[0];
+      if (!worksheet) throw new Error("The workbook does not contain a worksheet.");
 
       // Extract products from Excel
       let csvLines = ['name,category,dosageInfo,description,brand'];
       let currentCategory = '';
 
-      for (const row of data) {
-        if (!row || row.length === 0) continue;
-        
-        const cell = String(row[0]).trim();
+      worksheet.eachRow({ includeEmpty: false }, (row) => {
+        const cell = row.getCell(1).text.trim();
+        if (!cell) return;
         
         // Check if this is a category header (ends with colon)
         if (cell.endsWith(':')) {
@@ -68,14 +76,15 @@ export default function AdminBulkImport() {
         } else if (cell && currentCategory) {
           // This is a product
           const productName = cell;
-          const dosage = row[1] ? String(row[1]).trim() : '';
+          const dosage = row.getCell(2).text.trim();
           
           // Determine brand based on current category or file name
-          const brand = file.name.includes('HD') ? 'HD Labs' : file.name.includes('BP') ? 'BP Pharma' : 'Unknown';
+          const fileName = file.name.toUpperCase();
+          const brand = fileName.includes('HD') ? 'HD Labs' : fileName.includes('BP') ? 'BP Pharma' : 'Unknown';
           
           csvLines.push(`"${productName}","${currentCategory}","${dosage}","${brand} - ${currentCategory}","${brand}"`);
         }
-      }
+      });
 
       if (csvLines.length > 1) {
         setCsvContent(csvLines.join('\n'));
@@ -132,10 +141,10 @@ BP ANAPOLAN 25,ORAL STEROIDS,25,BP Pharma - ORAL STEROIDS,BP Pharma`;
                 <label className="cursor-pointer text-center">
                   <FileUp className="h-12 w-12 mx-auto mb-3 text-blue-400" />
                   <p className="text-white font-semibold mb-1">Click to upload Excel file</p>
-                  <p className="text-gray-400 text-sm">or drag and drop</p>
+                  <p className="text-gray-400 text-sm">.xlsx format, up to 5 MB</p>
                   <input
                     type="file"
-                    accept=".xlsx,.xls"
+                    accept=".xlsx"
                     onChange={handleExcelUpload}
                     className="hidden"
                     disabled={isLoading}

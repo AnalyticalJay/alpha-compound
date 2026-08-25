@@ -9,6 +9,13 @@ export function registerStorageProxy(app: Express) {
       return;
     }
 
+    // Financial proof and other order attachments are deliberately served only
+    // through an authenticated, signed-download procedure.
+    if (key.replace(/^\/+/, "").startsWith("orders/")) {
+      res.status(404).end();
+      return;
+    }
+
     if (!ENV.forgeApiUrl || !ENV.forgeApiKey) {
       res.status(500).send("Storage proxy not configured");
       return;

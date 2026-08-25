@@ -62,6 +62,12 @@ import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
 import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
 import {
+  decodeBase64File,
+  hasExpectedFileSignature,
+  MAX_UPLOAD_BASE64_LENGTH,
+  sanitizeUploadFilename,
+} from "./uploadSecurity";
+import {
   chooseE2EPayment,
   confirmE2EEftPayment,
   clearE2ECart,
@@ -162,7 +168,9 @@ export const appRouter = router({
 
         // Create session token
         const { sdk } = await import("./_core/sdk");
-        const token = await sdk.createSessionToken(user.id.toString());
+        const token = await sdk.createSessionToken(user.id.toString(), {
+          name: user.fullName || user.email || "member",
+        });
         const cookieOptions = getSessionCookieOptions(ctx.req);
         ctx.res.cookie(COOKIE_NAME, token, cookieOptions);
 
@@ -321,14 +329,24 @@ export const appRouter = router({
     uploadImage: adminProcedure
       .input(z.object({
         productId: z.number(),
-        fileName: z.string(),
-        fileData: z.string(), // base64
-        mimeType: z.string(),
+        fileName: z.string().min(1).max(255),
+        fileData: z.string().min(1).max(MAX_UPLOAD_BASE64_LENGTH),
+        mimeType: z.enum(["image/jpeg", "image/png"]),
         isPrimary: z.boolean().default(false),
       }))
       .mutation(async ({ input }) => {
-        const buffer = Buffer.from(input.fileData, "base64");
-        const key = `products/${input.productId}/${Date.now()}-${input.fileName}`;
+        let buffer: Buffer;
+        let fileName: string;
+        try {
+          buffer = decodeBase64File(input.fileData);
+          fileName = sanitizeUploadFilename(input.fileName);
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Image upload is invalid" });
+        }
+        if (!hasExpectedFileSignature(buffer, input.mimeType)) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Image content does not match the declared file type" });
+        }
+        const key = `products/${input.productId}/${Date.now()}-${fileName}`;
         const { url } = await storagePut(key, buffer, input.mimeType);
         await addProductImage({ productId: input.productId, imageUrl: url, imageKey: key, isPrimary: input.isPrimary });
         return { url, key };
@@ -598,7 +616,7 @@ export const appRouter = router({
       .input(z.object({
         orderId: z.number(),
         fileName: z.string().min(1).max(255),
-        fileData: z.string().min(1).max(12_000_000), // base64, bounded to keep the upload request safe
+        fileData: z.string().min(1).max(MAX_UPLOAD_BASE64_LENGTH),
         mimeType: z.enum(["application/pdf", "image/jpeg", "image/png"]),
       }))
       .mutation(async ({ ctx, input }) => {
@@ -607,18 +625,25 @@ export const appRouter = router({
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         if (quote.userId !== ctx.user.id) throw new TRPCError({ code: "FORBIDDEN" });
 
-        const buffer = Buffer.from(input.fileData, "base64");
-        if (buffer.length > 8 * 1024 * 1024) {
-          throw new TRPCError({ code: "BAD_REQUEST", message: "EFT proof must be 8 MB or smaller." });
+        let buffer: Buffer;
+        let fileName: string;
+        try {
+          buffer = decodeBase64File(input.fileData);
+          fileName = sanitizeUploadFilename(input.fileName);
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "EFT proof is invalid" });
         }
-        const key = `orders/${input.orderId}/eft-${Date.now()}-${input.fileName}`;
+        if (!hasExpectedFileSignature(buffer, input.mimeType)) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "EFT proof content does not match the declared file type" });
+        }
+        const key = `orders/${input.orderId}/eft-${Date.now()}-${fileName}`;
         const { url } = await storagePut(key, buffer, input.mimeType);
 
         await updateOrderEftProof({
           orderId: input.orderId,
           eftProofUrl: url,
           eftProofKey: key,
-          eftProofName: input.fileName,
+          eftProofName: fileName,
           paymentStatus: "awaiting_eft",
         });
 
@@ -628,9 +653,9 @@ export const appRouter = router({
           paymentStatus: "awaiting_eft",
           paymentMethod: "eft",
           amount: quote.totalAmount,
-          reference: input.fileName,
+          reference: fileName,
           actorUserId: ctx.user.id,
-          note: `Customer uploaded EFT proof of payment (${input.fileName}). Awaiting admin verification.`,
+          note: `Customer uploaded EFT proof of payment (${fileName}). Awaiting admin verification.`,
         });
         await notifyAllAdmins({
           orderId: input.orderId,

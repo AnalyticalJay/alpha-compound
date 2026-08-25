@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { buildPayFastFormConfig, createPayFastSignature, verifyPayFastSignature } from "./payfast";
+import { assertTrustedPayFastOrigin, buildPayFastFormConfig, createPayFastSignature, verifyPayFastSignature } from "./payfast";
 
 describe("PayFast runtime configuration", () => {
   it("builds the real payment form from managed server credentials without exposing the passphrase", () => {
@@ -51,5 +51,10 @@ describe("PayFast runtime configuration", () => {
 
     expect(verifyPayFastSignature(signedPayload)).toBe(true);
     expect(verifyPayFastSignature({ ...signedPayload, amount_gross: "451.00" })).toBe(false);
+  });
+
+  it("permits only configured public origins for a production checkout form", () => {
+    expect(assertTrustedPayFastOrigin("https://anabolicsafrica.co.za/checkout")).toBe("https://anabolicsafrica.co.za");
+    expect(() => assertTrustedPayFastOrigin("https://attacker.example/checkout")).toThrow("Untrusted checkout origin");
   });
 });

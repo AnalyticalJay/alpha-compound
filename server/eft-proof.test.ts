@@ -73,7 +73,7 @@ describe("EFT proof of payment workflow", () => {
     const result = await appRouter.createCaller(context()).orders.uploadEftProof({
       orderId: 42,
       fileName: "proof.pdf",
-      fileData: "cGRm",
+      fileData: Buffer.from("%PDF-1.7\n").toString("base64"),
       mimeType: "application/pdf",
     });
 

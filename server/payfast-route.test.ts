@@ -33,6 +33,7 @@ describe("PayFast ITN route", () => {
 
   it("accepts a signed form callback and updates the referenced payment", async () => {
     const payload = {
+      merchant_id: process.env.PAYFAST_MERCHANT_ID!,
       amount_gross: "450.00",
       m_payment_id: "AA-42-123",
       payment_status: "COMPLETE",
@@ -47,7 +48,7 @@ describe("PayFast ITN route", () => {
 
     expect(response.status).toBe(200);
     expect(await response.text()).toBe("OK");
-    expect(mocks.updateOrderPayment).toHaveBeenCalledWith("AA-42-123", "paid");
+    expect(mocks.updateOrderPayment).toHaveBeenCalledWith("AA-42-123", "paid", "450.00");
   });
 
   it("rejects an invalid signature without changing payment state", async () => {
@@ -55,6 +56,7 @@ describe("PayFast ITN route", () => {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
+        merchant_id: process.env.PAYFAST_MERCHANT_ID!,
         amount_gross: "450.00",
         m_payment_id: "AA-42-123",
         payment_status: "COMPLETE",
@@ -64,6 +66,23 @@ describe("PayFast ITN route", () => {
 
     expect(response.status).toBe(400);
     expect(await response.text()).toBe("Invalid PayFast notification");
+    expect(mocks.updateOrderPayment).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects a validly signed notification for a different merchant", async () => {
+    const payload = {
+      merchant_id: "unexpected-merchant",
+      amount_gross: "450.00",
+      m_payment_id: "AA-42-123",
+      payment_status: "COMPLETE",
+    };
+    const response = await fetch(`${baseUrl}/api/payfast/itn`, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ ...payload, signature: createPayFastSignature(payload) }),
+    });
+
+    expect(response.status).toBe(400);
     expect(mocks.updateOrderPayment).toHaveBeenCalledTimes(1);
   });
 });
