@@ -79,6 +79,20 @@ test.describe("390px mobile visual baselines", () => {
     });
   });
 
+  test("mobile main CTA shows the compact quote-to-delivery expectation timeline", async ({ page }) => {
+    await page.goto("/");
+    const journey = page.getByTestId("quote-delivery-timeline");
+    await journey.scrollIntoViewIfNeeded();
+    await expect(page.getByText("Your member journey", { exact: true })).toBeVisible();
+    await expect(page.getByText("Build a quote", { exact: true })).toBeVisible();
+    await expect(page.getByText("Pay securely", { exact: true })).toBeVisible();
+    await expect(page.getByText("Track delivery", { exact: true })).toBeVisible();
+    await expect(journey).toHaveScreenshot("mobile-cta-quote-delivery-timeline.png", {
+      animations: "disabled",
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
   test("mobile checkout journey matches its stable visual baseline", async ({ page, request }) => {
     const reset = await request.post("/api/e2e/reset");
     expect(reset.status()).toBe(204);

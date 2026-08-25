@@ -82,6 +82,22 @@ describe("home catalog products and categories", () => {
     expect(footer).not.toContain("✓");
   });
 
+  it("places a compact quote-to-delivery expectation timeline beside the main access CTA", () => {
+    const home = source("client/src/pages/Home.tsx");
+    expect(home).toContain("const CTA_JOURNEY_STEPS");
+    expect(home).toContain('data-testid="quote-delivery-timeline"');
+    expect(home).toContain('title: "Apply"');
+    expect(home).toContain('title: "Build a quote"');
+    expect(home).toContain('title: "Pay securely"');
+    expect(home).toContain('title: "Track delivery"');
+    expect(home).toContain("UserRoundCheck");
+    expect(home).toContain("ClipboardList");
+    expect(home).toContain("CircleDollarSign");
+    expect(home).toContain("MapPinned");
+    expect(home).toContain("sm:grid-cols-4");
+    expect(home).toContain("sm:hidden");
+  });
+
   it("gives each category a dedicated visual banner and keeps decorative images hidden from assistive text", () => {
     const home = source("client/src/pages/Home.tsx");
     expect(home).toContain("category-injectables-banner_e7d7a02b.png");

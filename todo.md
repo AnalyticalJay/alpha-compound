@@ -572,3 +572,9 @@
 - [x] Restyle the footer delivery list with the shared premium icon-led visual language
 - [x] Add regression coverage and validate footer legibility on desktop and 390px mobile
 - [x] Save a checkpoint and deliver the footer refinement
+
+## Phase 79: Quote-to-Delivery CTA Timeline
+- [x] Add a compact quote-to-delivery expectation timeline beside the homepage access CTA
+- [x] Ensure the timeline is premium, accessible, and responsive across desktop and 390px mobile
+- [x] Add regression coverage and visual verification for the CTA timeline
+- [x] Save a checkpoint and deliver the completed enhancement

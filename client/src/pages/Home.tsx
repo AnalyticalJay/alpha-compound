@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Shield, ShieldCheck, Truck, CreditCard, WalletCards, Boxes, MapPin, Send, Lock, ChevronRight, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3 } from "lucide-react";
+import { Shield, ShieldCheck, Truck, CreditCard, WalletCards, Boxes, MapPin, Send, Lock, ChevronRight, Package, FlaskConical, Pill, Syringe, Flame, Dna, Layers3, UserRoundCheck, ClipboardList, CircleDollarSign, MapPinned } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -49,6 +49,13 @@ const HOME_FEATURE_SPECS = [
     title: "100+ Products",
     desc: "Explore injectables, orals, peptides, ancillaries and post-cycle products by brand and category.",
   },
+] as const;
+
+const CTA_JOURNEY_STEPS = [
+  { icon: UserRoundCheck, color: "#0EA5E9", step: "01", title: "Apply", detail: "Request member access" },
+  { icon: ClipboardList, color: "#E11D48", step: "02", title: "Build a quote", detail: "Select your products" },
+  { icon: CircleDollarSign, color: "#0EA5E9", step: "03", title: "Pay securely", detail: "After quote approval" },
+  { icon: MapPinned, color: "#E11D48", step: "04", title: "Track delivery", detail: "Follow every update" },
 ] as const;
 
 export default function Home() {
@@ -439,6 +446,25 @@ export default function Home() {
                     <ChevronRight className="h-4 w-4 ml-1" />
                   </Button>
                 </Link>
+                <div data-testid="quote-delivery-timeline" className="mx-auto mt-10 max-w-4xl text-left sm:mt-12">
+                  <div className="mb-5 flex items-center justify-center gap-2"><div className="h-0.5 w-7 bg-[#E11D48]" /><span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8]">Your member journey</span><div className="h-0.5 w-7 bg-[#0EA5E9]" /></div>
+                  <ol className="relative grid gap-5 sm:grid-cols-4 sm:gap-0">
+                    <div aria-hidden="true" className="absolute left-[12.5%] right-[12.5%] top-6 hidden h-px bg-[#1E293B] sm:block" />
+                    {CTA_JOURNEY_STEPS.map(({ icon: Icon, color, step, title, detail }, index) => (
+                      <li key={title} className="relative z-10 flex items-center gap-3 sm:flex-col sm:items-center sm:text-center">
+                        {index < CTA_JOURNEY_STEPS.length - 1 && <div aria-hidden="true" className="absolute left-6 top-12 h-[calc(100%+0.25rem)] w-px bg-[#1E293B] sm:hidden" />}
+                        <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.24)]" style={{ background: `linear-gradient(145deg, ${color}24, ${color}0A)` }}>
+                          <Icon className="h-5 w-5" style={{ color }} strokeWidth={1.7} />
+                          <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#111111] px-1 text-[8px] font-black" style={{ color, boxShadow: `0 0 0 2px #0D1A2E` }}>{step}</span>
+                        </div>
+                        <div className="min-w-0 sm:mt-2">
+                          <span className="block text-xs font-black uppercase tracking-wide text-white">{title}</span>
+                          <span className="mt-1 block text-xs leading-relaxed text-[#64748B]">{detail}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
             </div>
           </div>
