@@ -573,10 +573,7 @@ export async function createOrder(data: {
       paymentStatus: "pending",
       quoteNotes: data.quoteNotes ?? null,
     });
-    const orderId = Number((orderResult as unknown as { insertId: number }).insertId);
-    if (!Number.isSafeInteger(orderId) || orderId <= 0) {
-      throw new Error("Order creation did not return a valid identifier");
-    }
+    const orderId = extractInsertId(orderResult);
 
     await tx.insert(orderItems).values(lineItems.map((item) => ({ orderId, ...item })));
     await tx.insert(shippingDetails).values({ orderId, ...data.shipping });
@@ -616,6 +613,15 @@ export function normalizeOrderLineItems(items: Array<{ productId: number; quanti
 
     return { productId, quantity, priceAtPurchase: price.toFixed(2) };
   });
+}
+
+export function extractInsertId(result: unknown) {
+  const header = Array.isArray(result) ? result[0] : result;
+  const orderId = Number((header as { insertId?: unknown } | undefined)?.insertId);
+  if (!Number.isSafeInteger(orderId) || orderId <= 0) {
+    throw new Error("Order creation did not return a valid identifier");
+  }
+  return orderId;
 }
 
 export async function recordPaymentEvent(data: {

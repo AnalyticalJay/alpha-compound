@@ -615,3 +615,16 @@
 - [x] Repair order creation so the order header, line items, shipping record, and payment event are atomic
 - [x] Add regression coverage for durable order-item persistence, including payment and invoice preconditions
 - [x] Validate quote submission and downstream payment/invoice workflows before any PayFast retry
+
+## Phase 86: Published Repair and Corrected R10 PayFast Validation
+- [ ] Securely apply and validate the supplied live PayFast merchant key without exposing it
+- [ ] Confirm the published production site runs the atomic order-line persistence repair
+- [ ] Create, approve, and verify a fresh R10.00 test quote with a persisted product line
+- [ ] Complete the authorised live payment and verify signed ITN, payment, invoice, order state, and replay protection
+- [ ] Deactivate the fresh test product and document final release readiness
+
+## Phase 87: Transaction Insert-Identifier Compatibility Fix
+- [x] Inspect the transaction insert-result shape that blocked fresh R10 quote creation before any order was committed
+- [x] Repair transaction-safe order identifier retrieval without reintroducing partial order persistence
+- [x] Add coverage for the transaction insert-result contract and retest quote creation
+- [ ] Publish the compatibility repair before another live payment attempt

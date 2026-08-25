@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { normalizeOrderLineItems } from "./db";
+import { extractInsertId, normalizeOrderLineItems } from "./db";
 
 describe("order persistence safeguards", () => {
   it("normalizes durable order line values and rejects malformed items before any order header can be created", () => {
@@ -20,5 +20,11 @@ describe("order persistence safeguards", () => {
     expect(source).toContain("await tx.insert(shippingDetails).values({ orderId, ...data.shipping })");
     expect(source).toContain("await tx.insert(paymentEvents).values({");
     expect(source).toContain("await tx.delete(cartItems).where(eq(cartItems.userId, data.userId))");
+  });
+
+  it("accepts both direct and tuple-shaped MySQL insert results while rejecting an absent identifier", () => {
+    expect(extractInsertId({ insertId: 210001 })).toBe(210001);
+    expect(extractInsertId([{ insertId: 210001 }, []])).toBe(210001);
+    expect(() => extractInsertId([{ affectedRows: 1 }, []])).toThrow("Order creation did not return a valid identifier");
   });
 });
