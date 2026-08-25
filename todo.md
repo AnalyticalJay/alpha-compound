@@ -585,3 +585,33 @@
 - [x] Run dependency, static-analysis, unit, end-to-end, and workflow regression checks
 - [x] Remediate any verified critical or high-severity findings and rerun affected checks
 - [x] Produce a go-live readiness assessment, preserve the audit evidence, and save a checkpoint
+
+## Phase 81: PayFast Production Whitelist and Live Payment Smoke Test
+- [x] Confirm the production ITN, return, and cancel URLs and define a low-risk smoke-test procedure capped at R10.00
+- [x] Add the verified ITN URL to the PayFast merchant dashboard and confirm Instant EFT is enabled
+- [ ] Run one controlled live payment and verify callback, order state, payment record, invoice, and duplicate-callback behaviour (blocked: invalid merchant key and repair deployment)
+- [ ] Document the live outcome and update go-live release status
+
+## Phase 82: Authorised R10 PayFast ITN and Database Validation
+- [x] Review live ITN route logging and order/payment persistence before initiating the transaction
+- [x] Initiate the authorised R10.00 payment only after confirming the production merchant and checkout total
+- [ ] Verify the signed ITN callback, payment record, order status, invoice access, and repeat-callback protection (blocked before charge: PayFast invalid merchant key)
+- [ ] Record the live outcome and final release status without exposing customer or merchant secrets
+
+## Phase 83: Temporary R10 Live-Test Product and Transaction
+- [x] Create an isolated clearly labelled R10.00 test-only product for one authorised live payment
+- [x] Submit and approve a quote containing only the test product
+- [ ] Complete the authorised payment and verify ITN, payment, invoice, and order lifecycle evidence (blocked before charge: PayFast invalid merchant key)
+- [x] Deactivate the test product while retaining the genuine rejected quote and payment-handoff evidence for audit
+
+## Phase 84: PayFast Merchant-Key Failure Recovery
+- [x] Verify that PayFast's invalid-merchant-key rejection produced no charge and no paid-order update
+- [x] Deactivate the temporary R10 test product while retaining the rejected test quote as audit evidence
+- [x] Request secure re-entry of the verified live PayFast merchant key from the merchant-account owner
+- [ ] Re-run the authorised R10 live payment test after the corrected key is configured
+
+## Phase 85: Order-Line Persistence Defect Remediation
+- [x] Trace the missing line-item persistence found on authorised R10 test order #90001
+- [x] Repair order creation so the order header, line items, shipping record, and payment event are atomic
+- [x] Add regression coverage for durable order-item persistence, including payment and invoice preconditions
+- [x] Validate quote submission and downstream payment/invoice workflows before any PayFast retry

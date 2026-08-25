@@ -496,7 +496,6 @@ export const appRouter = router({
           shipping: input.shipping,
         });
 
-        await clearCart(ctx.user.id);
         await notifyOwner({
           title: "New Quote Request",
           content: `Quote #${quoteId} submitted by ${ctx.user.fullName} (${ctx.user.email}) for review.`,

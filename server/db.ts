@@ -561,37 +561,61 @@ export async function createOrder(data: {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const orderResult = await db.insert(orders).values({
-    userId: data.userId,
-    totalAmount: data.totalAmount,
-    deliveryFee: data.deliveryFee,
-    deliveryType: data.deliveryType,
-    status: data.status ?? "quote_pending",
-    paymentStatus: "pending",
-    quoteNotes: data.quoteNotes ?? null,
-  });
-  const orderId = (orderResult as unknown as { insertId: number }).insertId;
+  const lineItems = normalizeOrderLineItems(data.items);
 
-  for (const item of data.items) {
-    await db.insert(orderItems).values({
-      orderId,
-      productId: item.productId,
-      quantity: item.quantity,
-      priceAtPurchase: typeof item.priceAtPurchase === "number" ? (item.priceAtPurchase as number).toFixed(2) : String(item.priceAtPurchase ?? "0"),
+  return db.transaction(async (tx) => {
+    const orderResult = await tx.insert(orders).values({
+      userId: data.userId,
+      totalAmount: data.totalAmount,
+      deliveryFee: data.deliveryFee,
+      deliveryType: data.deliveryType,
+      status: data.status ?? "quote_pending",
+      paymentStatus: "pending",
+      quoteNotes: data.quoteNotes ?? null,
     });
+    const orderId = Number((orderResult as unknown as { insertId: number }).insertId);
+    if (!Number.isSafeInteger(orderId) || orderId <= 0) {
+      throw new Error("Order creation did not return a valid identifier");
+    }
+
+    await tx.insert(orderItems).values(lineItems.map((item) => ({ orderId, ...item })));
+    await tx.insert(shippingDetails).values({ orderId, ...data.shipping });
+    await tx.insert(paymentEvents).values({
+      orderId,
+      eventType: "quote_submitted",
+      paymentStatus: "pending",
+      amount: data.totalAmount,
+      actorUserId: data.userId,
+      note: "Quote request submitted for admin review.",
+    });
+    await tx.delete(cartItems).where(eq(cartItems.userId, data.userId));
+
+    return orderId;
+  });
+}
+
+export function normalizeOrderLineItems(items: Array<{ productId: number; quantity: number; priceAtPurchase: string | number }>) {
+  if (items.length === 0) {
+    throw new Error("Order requires at least one item");
   }
 
-  await db.insert(shippingDetails).values({ orderId, ...data.shipping });
-  await recordPaymentEvent({
-    orderId,
-    eventType: "quote_submitted",
-    paymentStatus: "pending",
-    amount: data.totalAmount,
-    actorUserId: data.userId,
-    note: "Quote request submitted for admin review.",
-  });
+  return items.map((item, index) => {
+    const productId = Number(item.productId);
+    const quantity = Number(item.quantity);
+    const price = Number.parseFloat(String(item.priceAtPurchase));
 
-  return orderId;
+    if (!Number.isSafeInteger(productId) || productId <= 0) {
+      throw new Error(`Invalid product on order line ${index + 1}`);
+    }
+    if (!Number.isSafeInteger(quantity) || quantity <= 0) {
+      throw new Error(`Invalid quantity on order line ${index + 1}`);
+    }
+    if (!Number.isFinite(price) || price < 0) {
+      throw new Error(`Invalid price on order line ${index + 1}`);
+    }
+
+    return { productId, quantity, priceAtPurchase: price.toFixed(2) };
+  });
 }
 
 export async function recordPaymentEvent(data: {

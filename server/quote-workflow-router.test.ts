@@ -4,7 +4,6 @@ import type { TrpcContext } from "./_core/context";
 const dbMocks = vi.hoisted(() => ({
   getCartItems: vi.fn(),
   createOrder: vi.fn(),
-  clearCart: vi.fn(),
   getOrderById: vi.fn(),
   chooseQuotePayment: vi.fn(),
   reviewQuote: vi.fn(),
@@ -58,12 +57,11 @@ describe("quote workflow router", () => {
     vi.clearAllMocks();
   });
 
-  it("submits the approved user's quote cart as a quote_pending order and clears the cart", async () => {
+  it("submits the approved user's quote cart as a quote_pending order and delegates atomic persistence to createOrder", async () => {
     dbMocks.getCartItems.mockResolvedValue([
       { productId: 11, quantity: 2, productPrice: "100.00", productStock: 5 },
     ]);
     dbMocks.createOrder.mockResolvedValue(55);
-    dbMocks.clearCart.mockResolvedValue(undefined);
 
     const caller = appRouter.createCaller(makeContext());
     const result = await caller.orders.submitQuote({
@@ -86,7 +84,6 @@ describe("quote workflow router", () => {
       totalAmount: "200.00",
       deliveryFee: "0.00",
     }));
-    expect(dbMocks.clearCart).toHaveBeenCalledWith(7);
   });
 
   it("allows an admin to approve or reject a quote with review notes", async () => {
