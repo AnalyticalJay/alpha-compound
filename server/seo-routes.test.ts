@@ -22,6 +22,7 @@ describe("public crawl controls and metadata", () => {
     expect(template).toContain('property="og:title"');
     expect(metadata).toContain('setMeta("robots", isIndexable ? "index,follow" : "noindex,nofollow")');
     expect(metadata).toContain('const PUBLIC_ROUTES');
+    expect(metadata).toContain("if (!isProduct)");
   });
 
   it("uses catalogue data for product detail titles, descriptions, and canonical URLs", () => {

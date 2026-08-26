@@ -37,17 +37,21 @@ export function SeoMeta() {
       : null);
     const isIndexable = Boolean(metadata);
 
-    document.title = metadata?.title ?? "Anabolics Africa";
-    setMeta("description", metadata?.description ?? "Member account and administration area for Anabolics Africa.");
+    if (!isProduct) {
+      document.title = metadata?.title ?? "Anabolics Africa";
+      setMeta("description", metadata?.description ?? "Member account and administration area for Anabolics Africa.");
+    }
     setMeta("robots", isIndexable ? "index,follow" : "noindex,nofollow");
 
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
+    if (!isProduct) {
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = `${SITE_ORIGIN}${location === "/" ? "/" : location}`;
     }
-    canonical.href = `${SITE_ORIGIN}${location === "/" ? "/" : location}`;
   }, [location]);
 
   return null;
