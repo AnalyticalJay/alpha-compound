@@ -24,3 +24,9 @@ Focused 390px Playwright visual baselines now cover both revised administrator l
 An authenticated 390px no-overflow audit was added and passed for every registered route group. The public suite covers home, registration, login, catalogue, and product detail. The customer suite covers quote cart, checkout, account tabs, notifications, approval state, order detail, success, and cancellation. The administrator suite covers dashboard, users, products, product editor, bulk import, bulk images, categories, quotes, quote detail, payments, notifications, and reports.
 
 The audit found no document-level horizontal overflow at the 390px viewport. Desktop tables remain available from the medium breakpoint upward, while the two remaining dense operational lists now use cards for mobile. No further mobile layout defect was reproduced in the final route sweep.
+
+## Theme Preference Verification — 26 August 2026
+
+At 390×844, the storefront toggle remains visible and touch-safe in the header. The dark presentation keeps white primary headings, muted supporting copy, electric-blue actions, and the mobile bottom navigation legible against the branded near-black surfaces. The mobile dark-mode visual baseline is stable.
+
+Theme selection is intentionally **user-preference first**. A saved `light` or `dark` selection persists across reloads. When no preference is stored, the site uses its branded dark default; it does not automatically follow `prefers-color-scheme`. This prevents a device-level setting from unexpectedly overriding a member’s explicit selection.
