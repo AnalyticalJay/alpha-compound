@@ -16,6 +16,10 @@ The indexable estate is intentionally limited to the homepage, public catalogue,
 
 Branded versus non-branded query data was not provided. The current release cannot establish whether discovery depends on Anabolics Africa brand searches or non-branded catalogue demand. Search Console query exports are required before setting a credible organic acquisition KPI.
 
+### Published rendered metadata verification
+
+After publication, the public `HD TESTOVIRON 250mg 1ml AMP` route was opened in a browser and rendered the expected product-specific document title, `HD TESTOVIRON 250mg 1ml AMP | Anabolics Africa`. This confirms the final metadata precedence correction is active in the client-rendered public experience.
+
 ## Keyword Portfolio
 
 Keyword, ranking, click, and landing-page data was not provided. Product-detail metadata now uses the active product name and description at runtime, so each public product URL has a better defined page topic than the prior single site-wide title. The next audit should validate rendered metadata with Search Console URL Inspection and collect query coverage before evaluating keyword concentration.
