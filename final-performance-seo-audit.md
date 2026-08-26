@@ -50,7 +50,7 @@ The final production build is now route-split: public Home and Products chunks a
 
 ## Final Prioritization
 
-1. **Problem:** The current live domain will not receive the corrected crawl controls, metadata, cache policy, and route splitting until this checkpoint is published. **Fix:** Publish checkpoint `7ceb6af8` only if it includes the completed audit changes, or publish the dedicated SEO/performance checkpoint created from this audit.
+1. **Resolved:** The crawl controls, metadata, cache policy, and route splitting were published in checkpoint `60b35448`. Live verification confirms a text `robots.txt`, a 232-location XML sitemap, the homepage canonical, and a long-lived static-asset cache policy.
 2. **Problem:** Organic visibility, branded/non-branded mix, backlinks, and field Core Web Vitals are unknown. **Fix:** Verify Search Console and GA4, submit the sitemap, and export the first 30–60 days of coverage, query, and Core Web Vitals data for the next evidence-led review.
 3. **Problem:** The common runtime chunk remains material for a public mobile experience. **Fix:** Use the next bundle inspection to split shared vendor dependencies and reduce public-image transfer volume without reintroducing eager admin imports.
 4. **Problem:** Product metadata is set client-side in a SPA. **Fix:** Validate rendered pages in Search Console; if indexing remains inconsistent, introduce server-rendered or pre-rendered public metadata for home, catalogue, and product pages.
