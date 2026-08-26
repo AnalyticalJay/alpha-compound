@@ -735,3 +735,9 @@
 - [x] Refine all confirmed mobile layout and interaction defects across storefront and dashboards
 - [x] Add or update responsive regression coverage and verify refined views on 390px mobile
 - [x] Save the verified mobile-responsiveness audit and deliver the readiness summary
+
+## Phase 106: All-Route 390px Mobile Audit Coverage
+- [x] Map every registered public, customer, and administrator route to an authenticated 390px audit scenario
+- [x] Add no-overflow and mobile-shell regression coverage for each route group
+- [x] Resolve any confirmed 390px overflow, navigation, touch-target, or hierarchy findings
+- [x] Validate all route groups and update the comprehensive mobile audit report
