@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Lock, ArrowLeft, ChevronLeft, ChevronRight, Package } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "wouter";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -19,6 +19,20 @@ export default function ProductDetail() {
   const utils = trpc.useUtils();
   const productQuery = trpc.products.bySlug.useQuery({ slug: slug ?? "" }, { enabled: !!slug });
   const product = productQuery.data;
+
+  useEffect(() => {
+    if (!product || !slug) return;
+    document.title = `${product.name} | Anabolics Africa`;
+
+    const description = (product.description || `${product.name} product details from Anabolics Africa.`)
+      .replace(/\s+/g, " ")
+      .slice(0, 155);
+    const descriptionElement = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (descriptionElement) descriptionElement.content = description;
+
+    const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (canonical) canonical.href = `https://anabolicsafrica.co.za/products/${encodeURIComponent(slug)}`;
+  }, [product, slug]);
 
   const addToCart = trpc.cart.upsert.useMutation({
     onSuccess: () => {

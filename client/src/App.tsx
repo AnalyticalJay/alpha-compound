@@ -1,41 +1,47 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
+import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
-import Account from "./pages/Account";
-import Notifications from "./pages/Notifications";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminUsers from "./pages/admin/AdminUsers";
-import AdminProducts from "./pages/admin/AdminProducts";
-import AdminCategories from "./pages/admin/AdminCategories";
-import AdminOrders from "./pages/admin/AdminOrders";
-import AdminProductEdit from "./pages/admin/AdminProductEdit";
-import ApprovalPending from "./pages/ApprovalPending";
-import OrderDetail from "./pages/OrderDetail";
-import OrderCancelled from "./pages/OrderCancelled";
-import AdminOrderDetail from "./pages/admin/AdminOrderDetail";
-import AdminPayments from "./pages/admin/AdminPayments";
-import AdminNotifications from "./pages/admin/AdminNotifications";
-import AdminReports from "./pages/admin/AdminReports";
-import AdminBulkImport from "./pages/admin/AdminBulkImport";
-import AdminBulkImages from "./pages/admin/AdminBulkImages";
 import MobileBottomNav from "./components/MobileBottomNav";
 import { shouldShowMobileNav } from "@shared/mobileNav";
+import { SeoMeta } from "./components/SeoMeta";
+
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const Home = lazy(() => import("./pages/Home"));
+const Register = lazy(() => import("./pages/Register"));
+const Login = lazy(() => import("./pages/Login"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
+const Account = lazy(() => import("./pages/Account"));
+const Notifications = lazy(() => import("./pages/Notifications"));
+const ApprovalPending = lazy(() => import("./pages/ApprovalPending"));
+const OrderDetail = lazy(() => import("./pages/OrderDetail"));
+const OrderCancelled = lazy(() => import("./pages/OrderCancelled"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminUsers = lazy(() => import("./pages/admin/AdminUsers"));
+const AdminProducts = lazy(() => import("./pages/admin/AdminProducts"));
+const AdminCategories = lazy(() => import("./pages/admin/AdminCategories"));
+const AdminOrders = lazy(() => import("./pages/admin/AdminOrders"));
+const AdminProductEdit = lazy(() => import("./pages/admin/AdminProductEdit"));
+const AdminOrderDetail = lazy(() => import("./pages/admin/AdminOrderDetail"));
+const AdminPayments = lazy(() => import("./pages/admin/AdminPayments"));
+const AdminNotifications = lazy(() => import("./pages/admin/AdminNotifications"));
+const AdminReports = lazy(() => import("./pages/admin/AdminReports"));
+const AdminBulkImport = lazy(() => import("./pages/admin/AdminBulkImport"));
+const AdminBulkImages = lazy(() => import("./pages/admin/AdminBulkImages"));
 
 function Router() {
   return (
-    <Switch>
+    <>
+      <SeoMeta />
+      <Suspense fallback={<div className="min-h-screen bg-[#0A0A0A]" aria-label="Loading page" />}>
+        <Switch>
       {/* Public */}
       <Route path="/" component={Home} />
       <Route path="/register" component={Register} />
@@ -149,7 +155,9 @@ function Router() {
 
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
-    </Switch>
+        </Switch>
+      </Suspense>
+    </>
   );
 }
 

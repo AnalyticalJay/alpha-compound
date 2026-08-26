@@ -10,6 +10,7 @@ import { registerPayFastCheckoutBridge } from "../payfastCheckoutBridge";
 import { registerInvoiceRoutes } from "../invoiceRoute";
 import { registerReportRoutes } from "../reportRoute";
 import { registerE2EWriteFlowRoutes } from "../e2eRoute";
+import { registerSeoRoutes } from "../seoRoutes";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
@@ -59,6 +60,7 @@ async function startServer() {
   registerInvoiceRoutes(app);
   registerReportRoutes(app);
   registerE2EWriteFlowRoutes(app);
+  registerSeoRoutes(app);
   registerOAuthRoutes(app);
   // tRPC API
   app.use(
