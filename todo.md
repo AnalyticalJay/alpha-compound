@@ -699,3 +699,21 @@
 - [x] Replace the failing in-page form submission with navigation to the secure bridge
 - [x] Add bridge authorization, parameter-escape, signature, and handoff regression coverage
 - [ ] Publish and verify the authorised R10 checkout reaches the hosted PayFast page
+
+## Phase 100: Published Checkout-Bridge R10 Validation
+- [ ] Confirm order #150001 reaches the authenticated checkout bridge on the published domain
+- [ ] Complete the authorised R10.00 payment from the hosted PayFast checkout
+- [ ] Verify signed ITN, transaction event, invoice authorization, and final paid order state
+- [ ] Deactivate remaining test assets and update the go-live status
+
+## Phase 101: Browser-Blocked Bridge POST Diagnosis
+- [ ] Capture the form POST response and browser policy behavior from the published checkout bridge
+- [ ] Identify the browser-compatible PayFast transition compatible with the real provider response
+- [ ] Replace the blocked bridge transition with regression coverage and safe hosted-checkout validation
+- [ ] Publish the verified transition before resuming the authorised R10 payment
+
+## Phase 102: PayFast Hosted Redirect CSP Allowlist
+- [x] Record the verified PayFast 302 redirect target from the signed checkout handoff
+- [x] Permit only the verified PayFast hosted-payment domain in the production form-action policy
+- [x] Add CSP regression coverage and validate the non-charging redirected handoff
+- [ ] Publish the policy correction before the authorised R10 payment retry

@@ -46,7 +46,7 @@ async function startServer() {
       res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
       res.setHeader(
         "Content-Security-Policy",
-        "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://www.payfast.co.za; img-src 'self' data: blob: https:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; upgrade-insecure-requests",
+        "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://www.payfast.co.za https://payment.payfast.io; img-src 'self' data: blob: https:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; upgrade-insecure-requests",
       );
     }
     next();
