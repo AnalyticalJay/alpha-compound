@@ -18,7 +18,11 @@ describe("PayFast payment UI", () => {
     expect(orderDetailSource).toContain("Connecting securely to PayFast");
     expect(orderDetailSource).toContain("role=\"status\" aria-live=\"polite\"");
     expect(orderDetailSource).toContain("disabled={paymentPending}");
-    expect(orderDetailSource).toContain("window.setTimeout(() => form.submit(), 220)");
+    expect(orderDetailSource).toContain("form.requestSubmit()");
+    expect(orderDetailSource).toContain("form.target = \"_self\"");
+    expect(orderDetailSource).toContain("PayFast checkout did not open. Please try again.");
+    expect(orderDetailSource).toContain("}, 5000)");
+    expect(orderDetailSource).not.toContain("window.setTimeout(() => form.submit(), 220)");
   });
 
   it("keeps payment-ready actions visible and directs EFT selections to PayFast Instant EFT", () => {

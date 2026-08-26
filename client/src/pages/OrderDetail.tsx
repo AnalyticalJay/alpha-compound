@@ -177,6 +177,8 @@ export default function OrderDetail() {
     const form = document.createElement("form");
     form.method = "POST";
     form.action = payment.action;
+    form.target = "_self";
+    form.noValidate = true;
     Object.entries(payment.fields).forEach(([key, value]) => {
       const input = document.createElement("input");
       input.type = "hidden";
@@ -185,7 +187,13 @@ export default function OrderDetail() {
       form.appendChild(input);
     });
     document.body.appendChild(form);
-    window.setTimeout(() => form.submit(), 220);
+    form.requestSubmit();
+    window.setTimeout(() => {
+      if (!document.body.contains(form)) return;
+      form.remove();
+      setIsPayFastRedirecting(false);
+      toast.error("PayFast checkout did not open. Please try again.");
+    }, 5000);
   }
 
   if (orderQuery.isLoading) {

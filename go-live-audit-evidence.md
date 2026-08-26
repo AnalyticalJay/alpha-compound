@@ -23,6 +23,10 @@ The remedial scope is limited to adding the required ordered checkout signature 
 - [PayFast Custom Integration Documentation](https://developers.payfast.co.za/docs#step_1_create_a_checkout_form)
 - [PayFast Integration Requirements](https://payfast.io/integration/submit-your-solution/)
 
+## Published Signature-Repair Retest — Pending Handoff Observation
+
+After publication, the preserved R10.00 quote remained unpaid and showed the normal PayFast handoff loading state. The browser console contained no client-side exception during the observed transition. Further validation is required to distinguish a delayed form submission from a returned checkout error before any payment can be completed.
+
 ## Final Remediation and Validation Record
 
 - Removed unused AWS SDK and rich markdown-rendering packages that contributed production audit findings.

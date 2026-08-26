@@ -664,3 +664,26 @@
 - [x] Add PayFast-required ordered checkout signatures and ordered ITN verification without changing credentials
 - [x] Add regression coverage for exact signature fields, encoding, and order of parameters
 - [ ] Publish the repair and rerun the authorised R10 PayFast and ITN validation
+
+## Phase 94: Published PayFast Signature Repair Validation
+- [ ] Confirm the published R10 checkout form contains the required signature before payment
+- [ ] Complete the authorised R10 payment once the hosted PayFast checkout accepts the handoff
+- [ ] Verify signed ITN, payment event, order state, invoice authorization, and repeat-callback protection
+- [ ] Deactivate test assets and update the final go-live release status
+
+## Phase 95: Explicitly Authorised R10 PayFast Completion
+- [ ] Confirm the hosted checkout identifies the expected merchant and exact R10.00 total
+- [ ] Complete the user-authorised R10.00 payment once and retain the transaction reference for audit
+- [ ] Verify ITN, payment, invoice, order, and duplicate-callback behavior from the real transaction
+- [ ] Preserve the audit record, deactivate test assets, and record final go-live readiness
+
+## Phase 96: Account-Holder Payment Completion
+- [ ] Account holder completes the authorised R10.00 hosted PayFast payment using their own payment credentials
+- [ ] Verify the live provider result through ITN, order status, payment timeline, and invoice access
+- [ ] Preserve the real transaction evidence and deactivate all temporary test assets
+
+## Phase 97: Client-Side PayFast Handoff Repair
+- [x] Diagnose the form-submission transition that leaves the customer on “Connecting securely to PayFast”
+- [x] Replace the stalled handoff with a reliable hosted-checkout submission and visible recovery path
+- [x] Add regression coverage for immediate form submission and stale-loading recovery
+- [ ] Publish the repair and rerun the authorised R10 payment lifecycle validation
