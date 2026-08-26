@@ -12,6 +12,17 @@ PayFast's developer documentation states that ITN notifications must have their 
 
 - [PayFast Developer Documentation](https://developers.payfast.co.za/)
 
+## PayFast Checkout Signature Finding — 25 August 2026
+
+The verified PayFast production Developer Settings profile has ITN enabled at `https://anabolicsafrica.co.za/api/payfast/itn`. A controlled R10.00 quote was successfully created on the published site with a durable order line, shipping detail, and payment-handoff reference; no payment completed.
+
+PayFast's official custom-integration documentation requires a generated MD5 `signature` field on every checkout POST. It also requires the signature input string to preserve the documentation field order, use form-style URL encoding, append the passphrase, and avoid the alphabetically sorted API-signature format. The production checkout helper was found to omit the outbound `signature` field and to use alphabetic ordering for its shared signature helper. The hosted PayFast endpoint rejected the handoff before payment with `400 — Invalid merchant key`.
+
+The remedial scope is limited to adding the required ordered checkout signature and aligning ITN signature construction with PayFast's documented order/encoding rules. Merchant credentials and ITN settings are not changed by this code repair.
+
+- [PayFast Custom Integration Documentation](https://developers.payfast.co.za/docs#step_1_create_a_checkout_form)
+- [PayFast Integration Requirements](https://payfast.io/integration/submit-your-solution/)
+
 ## Final Remediation and Validation Record
 
 - Removed unused AWS SDK and rich markdown-rendering packages that contributed production audit findings.

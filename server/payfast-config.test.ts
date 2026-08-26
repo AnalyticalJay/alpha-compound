@@ -19,6 +19,21 @@ describe("PayFast runtime configuration", () => {
     expect(config.fields.notify_url).toBe("https://anabolicsafrica.co.za/api/payfast/itn");
     expect(config.fields.amount).toBe("450.00");
     expect(config.fields).not.toHaveProperty("passphrase");
+    expect(config.fields.signature).toBe(createPayFastSignature(config.fields));
+    expect(Object.keys(config.fields)).toEqual([
+      "merchant_id",
+      "merchant_key",
+      "return_url",
+      "cancel_url",
+      "notify_url",
+      "name_first",
+      "name_last",
+      "email_address",
+      "m_payment_id",
+      "amount",
+      "item_name",
+      "signature",
+    ]);
 
     const instantEftConfig = buildPayFastFormConfig({
       origin: "https://anabolicsafrica.co.za/",
@@ -30,6 +45,8 @@ describe("PayFast runtime configuration", () => {
       paymentMethod: "ef",
     });
     expect(instantEftConfig.fields.payment_method).toBe("ef");
+    expect(Object.keys(instantEftConfig.fields).at(-2)).toBe("payment_method");
+    expect(Object.keys(instantEftConfig.fields).at(-1)).toBe("signature");
   });
 
   it("wires OrderDetail to the runtime server configuration path", () => {
@@ -51,6 +68,25 @@ describe("PayFast runtime configuration", () => {
 
     expect(verifyPayFastSignature(signedPayload)).toBe(true);
     expect(verifyPayFastSignature({ ...signedPayload, amount_gross: "451.00" })).toBe(false);
+  });
+
+  it("uses documented form ordering and form-style encoding rather than API-style alphabetic ordering", () => {
+    const documentedOrder = {
+      merchant_id: "10000100",
+      merchant_key: "key",
+      item_name: "Test item & delivery",
+      return_url: "https://example.test/paid order",
+    };
+    const reorderedFields = {
+      item_name: "Test item & delivery",
+      merchant_id: "10000100",
+      merchant_key: "key",
+      return_url: "https://example.test/paid order",
+    };
+
+    expect(createPayFastSignature(documentedOrder, "pass phrase")).not.toBe(
+      createPayFastSignature(reorderedFields, "pass phrase"),
+    );
   });
 
   it("permits only configured public origins for a production checkout form", () => {

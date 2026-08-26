@@ -628,3 +628,39 @@
 - [x] Repair transaction-safe order identifier retrieval without reintroducing partial order persistence
 - [x] Add coverage for the transaction insert-result contract and retest quote creation
 - [ ] Publish the compatibility repair before another live payment attempt
+
+## Phase 88: Published R10 Quote and ITN Lifecycle Verification
+- [ ] Submit the prepared R10 quote through the newly published repair and verify its persisted line item
+- [ ] Approve the verified quote and confirm the production PayFast form carries the correct merchant and R10 total
+- [ ] Complete the authorised PayFast payment and verify signed ITN, payment, invoice, order state, and replay protection
+- [ ] Deactivate the test product and preserve the genuine test transaction as audit evidence
+
+## Phase 89: Repeated Invalid Merchant-Key Recovery
+- [ ] Verify the second hosted PayFast invalid-key rejection left quote #150001 unpaid and without a successful payment event
+- [ ] Deactivate the temporary R10 product while preserving the verified quote and failed handoff evidence
+- [ ] Obtain the merchant key that is paired with the active live PayFast merchant ID from the merchant-account owner
+- [ ] Retry the authorised R10 payment only after the paired key is securely configured
+
+## Phase 90: Matched PayFast Production Credential Update
+- [ ] Securely enter the live Merchant ID and Merchant Key copied from the same PayFast production profile
+- [ ] Validate the matched server-side configuration without initiating a charge
+- [ ] Retry the authorised R10 payment only after the matched pair and approved domain are confirmed
+- [ ] Record the final ITN outcome and release status
+
+## Phase 91: Verified PayFast Developer Settings Profile
+- [ ] Confirm the full saved ITN URL is `https://anabolicsafrica.co.za/api/payfast/itn`
+- [ ] Securely configure the Merchant ID and Merchant Key shown together in the verified production profile
+- [ ] Retest checkout only after the credentials are stored without further disclosure
+- [ ] Rotate the Merchant Key and security passphrase exposed in the screenshot after successful validation
+
+## Phase 92: No-Change PayFast Wiring Audit
+- [ ] Preserve the unpaid R10 test order and inactive test product while reviewing production wiring
+- [ ] Audit non-sensitive Merchant ID, signature, endpoint, and checkout-form fields without changing credentials
+- [ ] Identify the likely source of the invalid-merchant-key response or required PayFast account restriction
+- [ ] Apply only client-approved changes before another authorised payment attempt
+
+## Phase 93: PayFast Checkout Signature Remediation
+- [x] Document the missing outbound checkout signature and incompatible signature ordering found in the live integration
+- [x] Add PayFast-required ordered checkout signatures and ordered ITN verification without changing credentials
+- [x] Add regression coverage for exact signature fields, encoding, and order of parameters
+- [ ] Publish the repair and rerun the authorised R10 PayFast and ITN validation

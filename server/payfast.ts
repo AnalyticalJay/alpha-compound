@@ -20,6 +20,12 @@ export type PayFastFormInput = {
 
 export type PayFastItnPayload = Record<string, string | undefined>;
 
+function formEncode(value: string) {
+  return encodeURIComponent(value.trim())
+    .replace(/[!'()*]/g, (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`)
+    .replace(/%20/g, "+");
+}
+
 export function getPayFastCredentials() {
   const merchantId = process.env.PAYFAST_MERCHANT_ID?.trim();
   const merchantKey = process.env.PAYFAST_MERCHANT_KEY?.trim();
@@ -65,21 +71,28 @@ export function buildPayFastFormConfig(input: PayFastFormInput) {
   const origin = assertTrustedPayFastOrigin(input.origin);
   const [firstName, ...lastNameParts] = input.fullName.trim().split(/\s+/).filter(Boolean);
 
+  // PayFast requires this exact documented field order when computing the checkout signature.
+  // Do not alphabetize these fields: checkout and API signature formats are different.
+  const fields: PayFastItnPayload = {
+    merchant_id: merchantId,
+    merchant_key: merchantKey,
+    return_url: `${origin}/order-success/${input.orderId}`,
+    cancel_url: `${origin}/orders/${input.orderId}`,
+    notify_url: `${origin}/api/payfast/itn`,
+    name_first: firstName ?? "",
+    name_last: lastNameParts.join(" ") || ".",
+    email_address: input.email,
+    m_payment_id: input.payfastReference,
+    amount: Number.parseFloat(input.total).toFixed(2),
+    item_name: `Anabolics Africa Approved Quote #${input.orderId}`,
+    ...(input.paymentMethod ? { payment_method: input.paymentMethod } : {}),
+  };
+
   return {
     action: PAYFAST_PROCESS_URL,
     fields: {
-      merchant_id: merchantId,
-      merchant_key: merchantKey,
-      return_url: `${origin}/order-success/${input.orderId}`,
-      cancel_url: `${origin}/orders/${input.orderId}`,
-      notify_url: `${origin}/api/payfast/itn`,
-      m_payment_id: input.payfastReference,
-      amount: Number.parseFloat(input.total).toFixed(2),
-      item_name: `Anabolics Africa Approved Quote #${input.orderId}`,
-      email_address: input.email,
-      name_first: firstName ?? "",
-      name_last: lastNameParts.join(" ") || ".",
-      ...(input.paymentMethod ? { payment_method: input.paymentMethod } : {}),
+      ...fields,
+      signature: createPayFastSignature(fields),
     },
   };
 }
@@ -87,10 +100,9 @@ export function buildPayFastFormConfig(input: PayFastFormInput) {
 export function createPayFastSignature(payload: PayFastItnPayload, passphrase = getPayFastCredentials().passphrase) {
   const query = Object.entries(payload)
     .filter(([key, value]) => key !== "signature" && value !== undefined && value !== "")
-    .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-    .map(([key, value]) => `${key}=${encodeURIComponent(String(value).trim())}`)
+    .map(([key, value]) => `${key}=${formEncode(String(value))}`)
     .join("&");
-  const suffix = passphrase ? `${query ? "&" : ""}passphrase=${encodeURIComponent(passphrase)}` : "";
+  const suffix = passphrase ? `${query ? "&" : ""}passphrase=${formEncode(passphrase)}` : "";
   return createHash("md5").update(`${query}${suffix}`).digest("hex");
 }
 

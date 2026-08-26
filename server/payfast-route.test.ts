@@ -51,6 +51,31 @@ describe("PayFast ITN route", () => {
     expect(mocks.updateOrderPayment).toHaveBeenCalledWith("AA-42-123", "paid", "450.00");
   });
 
+  it("rejects an ITN whose signed parameter order was changed", async () => {
+    const signedOrder = {
+      merchant_id: process.env.PAYFAST_MERCHANT_ID!,
+      amount_gross: "450.00",
+      m_payment_id: "AA-42-123",
+      payment_status: "COMPLETE",
+    };
+    const body = new URLSearchParams({
+      payment_status: "COMPLETE",
+      m_payment_id: "AA-42-123",
+      amount_gross: "450.00",
+      merchant_id: process.env.PAYFAST_MERCHANT_ID!,
+      signature: createPayFastSignature(signedOrder),
+    });
+
+    const response = await fetch(`${baseUrl}/api/payfast/itn`, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body,
+    });
+
+    expect(response.status).toBe(400);
+    expect(mocks.updateOrderPayment).toHaveBeenCalledTimes(1);
+  });
+
   it("rejects an invalid signature without changing payment state", async () => {
     const response = await fetch(`${baseUrl}/api/payfast/itn`, {
       method: "POST",
