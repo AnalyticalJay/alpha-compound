@@ -741,3 +741,9 @@
 - [x] Add no-overflow and mobile-shell regression coverage for each route group
 - [x] Resolve any confirmed 390px overflow, navigation, touch-target, or hierarchy findings
 - [x] Validate all route groups and update the comprehensive mobile audit report
+
+## Phase 107: Persistent Light and Dark Mode
+- [x] Inspect the existing theme provider, global tokens, and shared navigation surfaces
+- [x] Add an accessible persistent theme toggle across storefront and admin navigation
+- [x] Verify theme switching across desktop and 390px mobile layouts
+- [x] Add regression coverage, save a checkpoint, and deliver the theme enhancement

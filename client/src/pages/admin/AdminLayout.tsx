@@ -20,6 +20,7 @@ import {
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true, color: "#0EA5E9" },
@@ -134,6 +135,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <p className="text-[10px] text-[#64748B] truncate">{(user as any)?.email}</p>
             </div>
           </div>
+          <ThemeToggle showLabel />
           <button
             onClick={logout}
             className="w-full flex items-center gap-2 px-3 py-2 rounded text-xs font-semibold uppercase tracking-wide text-[#64748B] hover:text-[#E11D48] hover:bg-[#E11D48]/5 transition-colors"
@@ -163,8 +165,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span style={{ color: "#0EA5E9" }}>Africa</span>
           </span>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             {pendingQuotes > 0 && <span aria-label={`${pendingQuotes} pending quote${pendingQuotes === 1 ? "" : "s"}`} className="rounded-full bg-[#E11D48] px-2 py-1 text-[10px] font-black text-white">{pendingQuotes > 99 ? "99+" : pendingQuotes}</span>}
-            <div className="w-8" />
           </div>
         </header>
 

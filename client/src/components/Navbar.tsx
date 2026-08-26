@@ -4,6 +4,7 @@ import { ShoppingCart, Menu, X, User, LogOut, Shield, Bell } from "lucide-react"
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "./ui/button";
+import ThemeToggle from "./ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -81,6 +82,7 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             {/* Notification center */}
             {isAuthenticated && <Link href={notificationHref} aria-label={`${unreadNotifications} unread notifications`} className="relative rounded p-2 text-[#94A3B8] transition-colors hover:bg-white/5 hover:text-white"><Bell className="h-5 w-5" />{unreadNotifications > 0 && <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#E11D48] px-1 text-[10px] font-bold text-white">{unreadNotifications > 9 ? "9+" : unreadNotifications}</span>}</Link>}
 
@@ -171,6 +173,9 @@ export default function Navbar() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden max-h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-[#1E293B] py-3 space-y-1">
+            <div className="px-4 pb-2">
+              <ThemeToggle showLabel />
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.href}

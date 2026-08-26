@@ -109,6 +109,68 @@
   --sidebar-ring: oklch(0.65 0.19 220);
 }
 
+/* ─── Persistent Light Mode ──────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: oklch(0.97 0.006 220);
+  --foreground: oklch(0.18 0.02 230);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 230);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 230);
+  --primary: oklch(0.55 0.17 220);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.93 0.01 220);
+  --secondary-foreground: oklch(0.18 0.02 230);
+  --muted: oklch(0.94 0.01 220);
+  --muted-foreground: oklch(0.45 0.02 230);
+  --accent: oklch(0.54 0.20 15);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.54 0.20 15);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.84 0.015 220);
+  --input: oklch(0.93 0.01 220);
+  --ring: oklch(0.55 0.17 220);
+  --sidebar: oklch(0.96 0.01 220);
+  --sidebar-foreground: oklch(0.18 0.02 230);
+  --sidebar-primary: oklch(0.55 0.17 220);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.01 220);
+  --sidebar-accent-foreground: oklch(0.18 0.02 230);
+  --sidebar-border: oklch(0.84 0.015 220);
+  --sidebar-ring: oklch(0.55 0.17 220);
+}
+
+html[data-theme="light"] .bg-\[\#0A0A0A\],
+html[data-theme="light"] .bg-\[\#090909\],
+html[data-theme="light"] .bg-\[\#111111\],
+html[data-theme="light"] .bg-black {
+  background-color: #f8fafc !important;
+}
+
+html[data-theme="light"] .border-\[\#1E293B\] {
+  border-color: #cbd5e1 !important;
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-\[\#F8FAFC\] {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-\[\#94A3B8\],
+html[data-theme="light"] .text-\[\#64748B\] {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] .theme-toggle:hover {
+  background-color: #fff;
+}
+
+html[data-theme="light"] [style*="linear-gradient"].text-white {
+  color: #fff !important;
+}
+
 /* ─── HD Labs Brand Utility Classes ─────────────────────────────────────── */
 
 /* Blue gradient (primary CTA) */
