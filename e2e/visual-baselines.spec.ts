@@ -113,4 +113,20 @@ test.describe("390px mobile visual baselines", () => {
     await page.goto("/orders/42001");
     await expect(page).toHaveScreenshot("mobile-quote-detail.png", { animations: "disabled", fullPage: true, maxDiffPixelRatio: 0.01 });
   });
+
+  test("mobile administrator products use touch-friendly cards instead of a horizontal table", async ({ page }) => {
+    await page.setExtraHTTPHeaders({ "x-e2e-role": "admin" });
+    await page.goto("/admin/products");
+    await expect(page.getByText("Product Management")).toBeVisible();
+    await expect(page.getByRole("button", { name: /Add Product/i })).toBeVisible();
+    await expect(page).toHaveScreenshot("mobile-admin-products.png", { animations: "disabled", fullPage: false, maxDiffPixelRatio: 0.01 });
+  });
+
+  test("mobile administrator quotes use touch-friendly cards instead of a horizontal table", async ({ page }) => {
+    await page.setExtraHTTPHeaders({ "x-e2e-role": "admin" });
+    await page.goto("/admin/orders");
+    await expect(page.getByRole("heading", { name: /Quote Management/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Quote #\d+/ }).first()).toBeVisible();
+    await expect(page).toHaveScreenshot("mobile-admin-orders.png", { animations: "disabled", fullPage: false, maxDiffPixelRatio: 0.01 });
+  });
 });

@@ -60,7 +60,8 @@ export default function AdminOrders() {
         {ordersQuery.isLoading ? <div className="p-6 space-y-3">{[...Array(5)].map((_, i) => <div key={i} className="h-14 bg-accent/20 rounded animate-pulse" />)}</div> : orders.length === 0 ? (
           <div className="p-12 text-center"><ShoppingBag className="h-12 w-12 mx-auto mb-3 text-muted-foreground opacity-30" /><p className="text-muted-foreground">No quote requests yet</p></div>
         ) : (
-          <div className="overflow-x-auto">
+          <>
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full min-w-[980px]">
               <thead><tr className="border-b border-border/40 text-xs text-muted-foreground"><th className="text-left p-4 font-medium">Quote</th><th className="text-left p-4 font-medium">Customer</th><th className="text-left p-4 font-medium">Total</th><th className="text-left p-4 font-medium">Payment</th><th className="text-left p-4 font-medium">Status</th><th className="text-left p-4 font-medium">Date</th><th className="text-left p-4 font-medium">Actions</th></tr></thead>
               <tbody>{orders.map((order) => (
@@ -78,6 +79,29 @@ export default function AdminOrders() {
               ))}</tbody>
             </table>
           </div>
+          <div className="space-y-3 p-3 md:hidden">
+            {orders.map((order) => (
+              <div key={order.id} className="rounded-lg border border-border/30 bg-background/30 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <Link href={`/admin/orders/${order.id}`} className="text-sm font-black text-primary no-underline hover:underline">Quote #{order.id}</Link>
+                    <p className="mt-1 truncate text-xs text-muted-foreground">{order.userFullName ?? "—"}</p>
+                    <p className="truncate text-[11px] text-muted-foreground">{order.userEmail ?? "No email"}</p>
+                  </div>
+                  <StatusBadge status={order.status} />
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-3 border-y border-border/20 py-3 text-xs">
+                  <div><p className="uppercase tracking-wide text-muted-foreground">Total</p><p className="mt-1 font-black text-primary">R{parseFloat(order.totalAmount).toFixed(2)}</p></div>
+                  <div><p className="uppercase tracking-wide text-muted-foreground">Payment</p><p className="mt-1 capitalize text-foreground">{order.paymentMethod ? `${order.paymentMethod} · ` : ""}{order.paymentStatus.replaceAll("_", " ")}</p></div>
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <p className="text-[11px] text-muted-foreground">{format(new Date(order.createdAt), "d MMM yyyy")}</p>
+                  <Link href={`/admin/orders/${order.id}`} className="inline-flex min-h-10 items-center gap-1 rounded-md bg-accent px-3 text-xs font-bold text-foreground no-underline hover:bg-accent/80"><Eye className="h-3.5 w-3.5" />Manage</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          </>
         )}
       </div>
     </div>

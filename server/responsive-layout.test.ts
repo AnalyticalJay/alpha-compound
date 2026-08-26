@@ -40,6 +40,17 @@ describe("responsive layout contracts", () => {
     expect(adminPayments).toContain("w-40");
   });
 
+  it("replaces dense administrator product and quote tables with touch-friendly mobile cards", () => {
+    const adminProducts = source("client/src/pages/admin/AdminProducts.tsx");
+    const adminOrders = source("client/src/pages/admin/AdminOrders.tsx");
+    expect(adminProducts).toContain("hidden overflow-x-auto md:block");
+    expect(adminProducts).toContain("space-y-3 p-3 md:hidden");
+    expect(adminProducts).toContain("min-h-11 w-full");
+    expect(adminOrders).toContain("hidden overflow-x-auto md:block");
+    expect(adminOrders).toContain("space-y-3 p-3 md:hidden");
+    expect(adminOrders).toContain("Quote #{order.id}");
+  });
+
   it("keeps tracking, notification, and report cards responsive", () => {
     const orderDetail = source("client/src/pages/OrderDetail.tsx");
     const notifications = source("client/src/components/NotificationList.tsx");

@@ -55,7 +55,8 @@ export default function AdminProducts() {
             </Link>
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <>
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full min-w-[720px]">
               <thead>
                 <tr className="border-b border-border/40 text-xs text-muted-foreground">
@@ -129,6 +130,27 @@ export default function AdminProducts() {
               </tbody>
             </table>
           </div>
+          <div className="space-y-3 p-3 md:hidden">
+            {products.map((product) => (
+              <div key={product.id} className="rounded-lg border border-border/30 bg-background/30 p-3">
+                <div className="flex gap-3">
+                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-muted/30">
+                    {product.primaryImage ? <img src={product.primaryImage} alt="" className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center text-xs text-muted-foreground">AC</div>}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="line-clamp-2 text-sm font-bold text-foreground">{product.name}</p>
+                    <p className="mt-1 truncate text-[11px] text-muted-foreground">{product.categoryName ?? "Uncategorised"}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs"><span className="font-black text-primary">{product.price ? `R${parseFloat(product.price).toFixed(2)}` : "No price"}</span><span className={product.stockQuantity === 0 ? "text-destructive" : "text-green-400"}>{product.stockQuantity} in stock</span>{product.isActive ? <Badge className="bg-green-500/20 text-[10px] text-green-400">Active</Badge> : <Badge className="bg-muted text-[10px] text-muted-foreground">Inactive</Badge>}</div>
+                  </div>
+                </div>
+                <div className="mt-3 flex gap-2 border-t border-border/20 pt-3">
+                  <Link href={`/admin/products/${product.id}/edit`} className="flex-1 no-underline"><button className="flex min-h-11 w-full items-center justify-center gap-1 rounded bg-accent px-3 text-xs font-bold text-foreground hover:bg-accent/80"><Edit className="h-3.5 w-3.5" />Edit</button></Link>
+                  <button onClick={() => { if (confirm(`Delete "${product.name}"?`)) deleteProduct.mutate({ id: product.id }); }} className="flex min-h-11 items-center justify-center gap-1 rounded bg-destructive/20 px-3 text-xs font-bold text-destructive hover:bg-destructive/30"><Trash2 className="h-3.5 w-3.5" />Delete</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          </>
         )}
       </div>
     </div>
