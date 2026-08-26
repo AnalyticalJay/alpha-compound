@@ -758,3 +758,11 @@
 - [x] Measure indexability, titles, descriptions, canonical behavior, structured data, robots/sitemap, and page-load performance
 - [x] Remediate verified release-critical technical SEO or performance issues
 - [x] Validate the production artifact and record a final evidence-led release assessment
+
+## Phase 110: Search Console and GA4 Measurement Setup Guide
+- [x] Identify client-owned account prerequisites, site verification choices, and post-launch measurement owners
+- [x] Verify current official setup guidance for Search Console, GA4 web streams, sitemap submission, and Core Web Vitals reporting
+- [x] Write a tailored client-ready setup checklist with a 30–60 day measurement plan
+- [x] Save and deliver the measurement setup guide
+- [ ] Client: verify the Search Console Domain property through DNS and submit the live sitemap
+- [ ] Client: create the GA4 Web stream, confirm privacy/consent requirements, and securely provide the approved `G-...` Measurement ID if tag implementation is wanted
