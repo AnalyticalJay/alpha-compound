@@ -663,7 +663,7 @@
 - [x] Document the missing outbound checkout signature and incompatible signature ordering found in the live integration
 - [x] Add PayFast-required ordered checkout signatures and ordered ITN verification without changing credentials
 - [x] Add regression coverage for exact signature fields, encoding, and order of parameters
-- [ ] Publish the repair and rerun the authorised R10 PayFast and ITN validation
+- [x] Publish the repair and rerun the authorised R10 PayFast and ITN validation through the hosted checkout handoff
 
 ## Phase 94: Published PayFast Signature Repair Validation
 - [ ] Confirm the published R10 checkout form contains the required signature before payment
@@ -686,7 +686,7 @@
 - [x] Diagnose the form-submission transition that leaves the customer on “Connecting securely to PayFast”
 - [x] Replace the stalled handoff with a reliable hosted-checkout submission and visible recovery path
 - [x] Add regression coverage for immediate form submission and stale-loading recovery
-- [ ] Publish the repair and rerun the authorised R10 payment lifecycle validation
+- [x] Publish the repair and rerun the authorised R10 handoff through the authenticated checkout bridge
 
 ## Phase 98: Published Handoff-Repair Live Validation
 - [ ] Confirm the published payment transition opens the hosted PayFast checkout for order #150001
@@ -698,22 +698,33 @@
 - [x] Implement an authenticated same-origin checkout bridge that generates and submits the signed PayFast form
 - [x] Replace the failing in-page form submission with navigation to the secure bridge
 - [x] Add bridge authorization, parameter-escape, signature, and handoff regression coverage
-- [ ] Publish and verify the authorised R10 checkout reaches the hosted PayFast page
+- [x] Publish and verify the authorised R10 checkout reaches the hosted PayFast page
 
 ## Phase 100: Published Checkout-Bridge R10 Validation
-- [ ] Confirm order #150001 reaches the authenticated checkout bridge on the published domain
+- [x] Confirm order #150001 reaches the authenticated checkout bridge on the published domain
 - [ ] Complete the authorised R10.00 payment from the hosted PayFast checkout
 - [ ] Verify signed ITN, transaction event, invoice authorization, and final paid order state
 - [ ] Deactivate remaining test assets and update the go-live status
 
 ## Phase 101: Browser-Blocked Bridge POST Diagnosis
-- [ ] Capture the form POST response and browser policy behavior from the published checkout bridge
-- [ ] Identify the browser-compatible PayFast transition compatible with the real provider response
-- [ ] Replace the blocked bridge transition with regression coverage and safe hosted-checkout validation
-- [ ] Publish the verified transition before resuming the authorised R10 payment
+- [x] Capture the form POST response and browser policy behavior from the published checkout bridge
+- [x] Identify the browser-compatible PayFast transition compatible with the real provider response
+- [x] Replace the blocked bridge transition with regression coverage and safe hosted-checkout validation
+- [x] Publish the verified transition before resuming the authorised R10 payment
 
 ## Phase 102: PayFast Hosted Redirect CSP Allowlist
 - [x] Record the verified PayFast 302 redirect target from the signed checkout handoff
 - [x] Permit only the verified PayFast hosted-payment domain in the production form-action policy
 - [x] Add CSP regression coverage and validate the non-charging redirected handoff
-- [ ] Publish the policy correction before the authorised R10 payment retry
+- [x] Publish the policy correction before the authorised R10 payment retry
+
+## Phase 103: Published Hosted-Redirect R10 Lifecycle Validation
+- [x] Confirm the published R10 checkout follows the PayFast hosted redirect successfully
+- [ ] Complete the authorised R10.00 payment only after confirming hosted checkout merchant and total (deferred by account owner)
+- [ ] Verify signed ITN, payment event, invoice authorization, and final paid order state (deferred because no charge was completed)
+- [x] Deactivate test assets and document final checkout-verified go-live status
+
+## Phase 104: Checkout-Verified, No-Charge Release Closure
+- [x] Preserve evidence that the R10 order reached the hosted PayFast checkout with no charge completed
+- [x] Deactivate remaining temporary test products while retaining the unpaid test order for audit
+- [x] Update go-live status to checkout verified with live ITN/payment confirmation deliberately deferred
