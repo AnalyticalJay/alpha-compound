@@ -53,6 +53,7 @@ describe("PayFast runtime configuration", () => {
     const source = readFileSync(new URL("../client/src/pages/OrderDetail.tsx", import.meta.url), "utf8");
     expect(source).toContain("trpc.orders.payfastForm.useMutation");
     expect(source).toContain("window.location.origin");
+    expect(source).toContain("window.location.assign(payment.checkoutUrl)");
     expect(source).not.toContain("VITE_PAYFAST_MERCHANT_ID");
     expect(source).not.toContain("10000100");
     expect(source).not.toContain("46f0cd694581a");

@@ -687,3 +687,15 @@
 - [x] Replace the stalled handoff with a reliable hosted-checkout submission and visible recovery path
 - [x] Add regression coverage for immediate form submission and stale-loading recovery
 - [ ] Publish the repair and rerun the authorised R10 payment lifecycle validation
+
+## Phase 98: Published Handoff-Repair Live Validation
+- [ ] Confirm the published payment transition opens the hosted PayFast checkout for order #150001
+- [ ] Complete the authorised R10.00 provider payment only after confirming the hosted checkout details
+- [ ] Verify signed ITN, payment event, invoice access, order state, and replay protection
+- [ ] Deactivate remaining test assets and record final go-live readiness
+
+## Phase 99: Server-Side PayFast Checkout Bridge
+- [x] Implement an authenticated same-origin checkout bridge that generates and submits the signed PayFast form
+- [x] Replace the failing in-page form submission with navigation to the secure bridge
+- [x] Add bridge authorization, parameter-escape, signature, and handoff regression coverage
+- [ ] Publish and verify the authorised R10 checkout reaches the hosted PayFast page

@@ -60,7 +60,7 @@ import { eq } from "drizzle-orm";
 import { ENV } from "./_core/env";
 import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
-import { buildPayFastFormConfig, handlePayFastItn } from "./payfast";
+import { assertTrustedPayFastOrigin, handlePayFastItn } from "./payfast";
 import {
   decodeBase64File,
   hasExpectedFileSignature,
@@ -587,15 +587,7 @@ export const appRouter = router({
         if (quote.status !== "awaiting_payment" || !["payfast", "eft"].includes(quote.paymentMethod ?? "") || !quote.payfastReference) {
           throw new TRPCError({ code: "PRECONDITION_FAILED", message: "PayFast is not ready for this quote" });
         }
-        const formConfig = buildPayFastFormConfig({
-          origin: input.origin,
-          orderId: input.orderId,
-          payfastReference: quote.payfastReference,
-          total: quote.totalAmount,
-          email: ctx.user.email ?? "",
-          fullName: ctx.user.fullName ?? "",
-          paymentMethod: quote.paymentMethod === "eft" ? "ef" : undefined,
-        });
+        assertTrustedPayFastOrigin(input.origin);
         await recordPaymentEvent({
           orderId: input.orderId,
           eventType: "payfast_handoff",
@@ -608,7 +600,7 @@ export const appRouter = router({
             ? "Secure PayFast Instant EFT form prepared."
             : "Secure PayFast payment form prepared.",
         });
-        return formConfig;
+        return { checkoutUrl: `/api/payfast/checkout/${input.orderId}` };
       }),
 
     uploadEftProof: approvedProcedure

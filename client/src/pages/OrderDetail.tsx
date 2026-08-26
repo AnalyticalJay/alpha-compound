@@ -173,7 +173,16 @@ export default function OrderDetail() {
     }
   }
 
-  function submitPayFast(payment: { action: string; fields: Record<string, string> }) {
+  function submitPayFast(payment: { action?: string; fields?: Record<string, string>; checkoutUrl?: string }) {
+    if (payment.checkoutUrl) {
+      window.location.assign(payment.checkoutUrl);
+      return;
+    }
+    if (!payment.action || !payment.fields) {
+      setIsPayFastRedirecting(false);
+      toast.error("PayFast checkout could not be prepared. Please try again.");
+      return;
+    }
     const form = document.createElement("form");
     form.method = "POST";
     form.action = payment.action;

@@ -18,10 +18,9 @@ describe("PayFast payment UI", () => {
     expect(orderDetailSource).toContain("Connecting securely to PayFast");
     expect(orderDetailSource).toContain("role=\"status\" aria-live=\"polite\"");
     expect(orderDetailSource).toContain("disabled={paymentPending}");
+    expect(orderDetailSource).toContain("window.location.assign(payment.checkoutUrl)");
+    expect(orderDetailSource).toContain("PayFast checkout could not be prepared. Please try again.");
     expect(orderDetailSource).toContain("form.requestSubmit()");
-    expect(orderDetailSource).toContain("form.target = \"_self\"");
-    expect(orderDetailSource).toContain("PayFast checkout did not open. Please try again.");
-    expect(orderDetailSource).toContain("}, 5000)");
     expect(orderDetailSource).not.toContain("window.setTimeout(() => form.submit(), 220)");
   });
 

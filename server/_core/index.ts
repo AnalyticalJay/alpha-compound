@@ -6,6 +6,7 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
 import { registerStorageProxy } from "./storageProxy";
 import { registerPayFastRoutes } from "../payfastRoute";
+import { registerPayFastCheckoutBridge } from "../payfastCheckoutBridge";
 import { registerInvoiceRoutes } from "../invoiceRoute";
 import { registerReportRoutes } from "../reportRoute";
 import { registerE2EWriteFlowRoutes } from "../e2eRoute";
@@ -54,6 +55,7 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "16mb", extended: true }));
   registerStorageProxy(app);
   registerPayFastRoutes(app);
+  registerPayFastCheckoutBridge(app);
   registerInvoiceRoutes(app);
   registerReportRoutes(app);
   registerE2EWriteFlowRoutes(app);
