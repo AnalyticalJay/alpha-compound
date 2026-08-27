@@ -7,6 +7,7 @@ import { Trash2, ShoppingCart, ArrowRight, Plus, Minus } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import ProductImage from "@/components/ProductImage";
 
 export default function Cart() {
   const { user, isAuthenticated } = useAuth();
@@ -89,7 +90,7 @@ export default function Cart() {
                     <Link href={`/products/${item.productSlug}`} className="no-underline">
                       <div className="w-20 h-20 rounded-lg overflow-hidden bg-muted/30 shrink-0">
                         {item.primaryImage ? (
-                          <img src={item.primaryImage} alt={item.productName} className="w-full h-full object-cover" />
+                          <ProductImage src={item.primaryImage} alt={item.productName} />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
                             <span className="text-xs text-muted-foreground">AC</span>

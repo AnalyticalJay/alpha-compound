@@ -9,6 +9,7 @@ import { useState, useRef } from "react";
 import { Link, useParams, useLocation } from "wouter";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import ProductImage from "@/components/ProductImage";
 
 type FormData = {
   name: string;
@@ -274,7 +275,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
                   <div className="grid grid-cols-2 gap-2">
                     {images.map((img) => (
                       <div key={img.id} className="relative group rounded-lg overflow-hidden aspect-square bg-muted/30">
-                        <img src={img.imageUrl} alt="" className="w-full h-full object-cover" />
+                        <ProductImage src={img.imageUrl} alt="" wrapperClassName="absolute inset-0" />
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                           <button
                             type="button"

@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import HdLabsMark from "./HdLabsMark";
 import { getProductBrand } from "@/lib/productFilters";
 import { toast } from "sonner";
+import ProductImage from "./ProductImage";
 
 type Product = {
   id: number;
@@ -46,10 +47,11 @@ export default function ProductCard({
       <Link href={`/products/${product.slug}`} className="block no-underline">
         <div className="relative aspect-square bg-[#0D0D0D] overflow-hidden">
           {product.primaryImage ? (
-            <img
+            <ProductImage
               src={product.primaryImage}
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+              wrapperClassName="absolute inset-0"
+              imageClassName="group-hover:scale-105 transition-transform duration-400"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">

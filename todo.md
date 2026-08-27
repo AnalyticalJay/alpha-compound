@@ -766,3 +766,9 @@
 - [x] Save and deliver the measurement setup guide
 - [ ] Client: verify the Search Console Domain property through DNS and submit the live sitemap
 - [ ] Client: create the GA4 Web stream, confirm privacy/consent requirements, and securely provide the approved `G-...` Measurement ID if tag implementation is wanted
+
+## Phase 111: Product Image Watermarking
+- [x] Map all reusable product-image render paths and define a subtle, accessible Anabolics Africa watermark treatment
+- [x] Apply the watermark consistently to customer catalogue, product-detail, and administrator product-image displays without replacing source image files
+- [x] Add regression coverage and verify the treatment at desktop and 390px mobile widths
+- [x] Save a checkpoint and deliver the watermark enhancement

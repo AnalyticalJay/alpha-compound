@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { selectCategoryPromotion } from "@shared/categoryPromotion";
+import ProductImage from "@/components/ProductImage";
 
 const HOME_CATEGORY_SPECS = [
   { slug: "injectables", label: "Injectables", promo: "Core injectable products, organised for fast catalogue review.", icon: Syringe, accent: "#0EA5E9", image: "/manus-storage/category-injectables-banner_e7d7a02b.png" },
@@ -344,9 +345,9 @@ export default function Home() {
                     <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-lg border shadow-lg" style={{ color: accent, background: "rgba(5,5,5,0.82)", borderColor: `${accent}70`, boxShadow: `0 0 20px ${accent}25` }}><Icon className="h-5 w-5" /></div>
                     <div className="relative z-10"><p className="text-sm font-black uppercase tracking-wide text-white transition-colors group-hover:text-[#F8FAFC]">{label}</p><p className="mt-1 max-w-56 text-xs leading-relaxed text-[#CBD5E1]">{promo}</p><span className="mt-3 inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-[#CBD5E1] group-hover:text-white">Browse <ChevronRight className="ml-1 h-3 w-3" /></span></div>
                   </Link>
-                  {featuredProduct ? (
+                  {featuredProduct?.primaryImage ? (
                     <Link href={`/products/${featuredProduct.slug}`} className="group/product flex items-center gap-3 border-t border-white/10 bg-[#090909] p-3 no-underline hover:bg-[#101010]">
-                      <img src={featuredProduct.primaryImage ?? undefined} alt={featuredProduct.name} className="h-14 w-14 rounded-md border border-[#1E293B] object-cover" />
+                      <ProductImage src={featuredProduct.primaryImage} alt={featuredProduct.name} wrapperClassName="h-14 w-14 shrink-0 rounded-md border border-[#1E293B]" />
                       <div className="min-w-0"><span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accent }}>Featured product</span><p className="mt-1 line-clamp-2 text-xs font-bold leading-snug text-white group-hover/product:text-[#38BDF8]">{featuredProduct.name}</p></div>
                     </Link>
                   ) : (

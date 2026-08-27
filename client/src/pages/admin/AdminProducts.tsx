@@ -6,6 +6,7 @@ import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import ProductImage from "@/components/ProductImage";
 
 export default function AdminProducts() {
   const [search, setSearch] = useState("");
@@ -75,7 +76,7 @@ export default function AdminProducts() {
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg overflow-hidden bg-muted/30 shrink-0">
                           {product.primaryImage ? (
-                            <img src={product.primaryImage} alt={product.name} className="w-full h-full object-cover" />
+                            <ProductImage src={product.primaryImage} alt={product.name} />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
                               <span className="text-xs text-muted-foreground">AC</span>
@@ -135,7 +136,7 @@ export default function AdminProducts() {
               <div key={product.id} className="rounded-lg border border-border/30 bg-background/30 p-3">
                 <div className="flex gap-3">
                   <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-muted/30">
-                    {product.primaryImage ? <img src={product.primaryImage} alt="" className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center text-xs text-muted-foreground">AC</div>}
+                    {product.primaryImage ? <ProductImage src={product.primaryImage} alt="" /> : <div className="flex h-full w-full items-center justify-center text-xs text-muted-foreground">AC</div>}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-2 text-sm font-bold text-foreground">{product.name}</p>

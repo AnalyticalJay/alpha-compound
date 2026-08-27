@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "wouter";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import ProductImage from "@/components/ProductImage";
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -96,10 +97,10 @@ export default function ProductDetail() {
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <div className="relative aspect-square rounded-lg overflow-hidden border border-[#1E293B] bg-[#111111] mb-4">
                 {currentImage ? (
-                  <img
+                  <ProductImage
                     src={currentImage.imageUrl}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    wrapperClassName="absolute inset-0"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
@@ -135,7 +136,7 @@ export default function ProductDetail() {
                       className="w-16 h-16 rounded border-2 overflow-hidden transition-colors"
                       style={{ borderColor: i === imgIndex ? "#0EA5E9" : "#1E293B" }}
                     >
-                      <img src={img.imageUrl} alt="" className="w-full h-full object-cover" />
+                      <ProductImage src={img.imageUrl} alt="" />
                     </button>
                   ))}
                 </div>
