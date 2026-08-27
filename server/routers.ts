@@ -39,6 +39,7 @@ import {
   normalizeProductImageKey,
   getUserByEmail,
   getUserById,
+  getWatermarkSettings,
   markNotificationRead,
   notifyAllAdmins,
   removeCartItem,
@@ -52,6 +53,7 @@ import {
   updateOrderStatus,
   updateShippingDetails,
   updateUserStatus,
+  updateWatermarkSettings,
   upsertCartItem,
 } from "./db";
 import { z } from "zod";
@@ -433,6 +435,47 @@ export const appRouter = router({
 
         return { imported, skipped, errors: errors.slice(0, 5), message: `Imported ${imported}, skipped ${skipped}` };
       }),
+  }),
+
+  // ─── Global Product Image Watermark ──────────────────────────────────────
+  watermark: router({
+    get: publicProcedure.query(() => getWatermarkSettings()),
+
+    update: adminProcedure
+      .input(z.object({
+        isEnabled: z.boolean().optional(),
+        watermarkText: z.string().trim().min(2).max(96).optional(),
+      }).refine((value) => value.isEnabled !== undefined || value.watermarkText !== undefined, {
+        message: "Provide at least one watermark setting to update",
+      }))
+      .mutation(({ ctx, input }) => updateWatermarkSettings(input, ctx.user.id)),
+
+    uploadLogo: adminProcedure
+      .input(z.object({
+        fileName: z.string().min(1).max(255),
+        fileData: z.string().min(1).max(MAX_UPLOAD_BASE64_LENGTH),
+        mimeType: z.enum(["image/jpeg", "image/png"]),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        let buffer: Buffer;
+        let fileName: string;
+        try {
+          buffer = decodeBase64File(input.fileData);
+          fileName = sanitizeUploadFilename(input.fileName);
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Watermark logo upload is invalid" });
+        }
+        if (!hasExpectedFileSignature(buffer, input.mimeType)) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Watermark logo content does not match the declared file type" });
+        }
+
+        const key = `watermark/logo-${Date.now()}-${fileName}`;
+        const { url } = await storagePut(key, buffer, input.mimeType);
+        return updateWatermarkSettings({ logoUrl: url, logoKey: key }, ctx.user.id);
+      }),
+
+    removeLogo: adminProcedure
+      .mutation(({ ctx }) => updateWatermarkSettings({ logoUrl: null, logoKey: null }, ctx.user.id)),
   }),
 
   // ─── Cart ─────────────────────────────────────────────────────────────────

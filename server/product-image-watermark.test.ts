@@ -13,8 +13,9 @@ const adminProducts = readSource("client/src/pages/admin/AdminProducts.tsx");
 const adminProductEdit = readSource("client/src/pages/admin/AdminProductEdit.tsx");
 
 describe("product image watermark", () => {
-  it("renders a faint, non-interactive brand watermark over an unmodified source image", () => {
-    expect(productImage).toContain("Anabolics Africa");
+  it("renders a faint, non-interactive configurable watermark over an unmodified source image", () => {
+    expect(productImage).toContain("useWatermark");
+    expect(productImage).toContain("watermarkText");
     expect(productImage).toContain('data-product-watermark="anabolics-africa"');
     expect(productImage).toContain('aria-hidden="true"');
     expect(productImage).toContain("pointer-events-none");

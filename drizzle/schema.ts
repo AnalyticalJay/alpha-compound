@@ -92,6 +92,20 @@ export const productImages = mysqlTable("product_images", {
 
 export type ProductImage = typeof productImages.$inferSelect;
 
+// ─── Watermark Settings ──────────────────────────────────────────────────────
+// Singleton record (id = 1) controlling the overlay rendered above product images.
+export const watermarkSettings = mysqlTable("watermark_settings", {
+  id: int("id").primaryKey(),
+  isEnabled: boolean("isEnabled").default(true).notNull(),
+  watermarkText: varchar("watermarkText", { length: 96 }).default("ANABOLICS AFRICA").notNull(),
+  logoUrl: varchar("logoUrl", { length: 1024 }),
+  logoKey: varchar("logoKey", { length: 512 }),
+  updatedBy: int("updatedBy").references(() => users.id),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type WatermarkSettings = typeof watermarkSettings.$inferSelect;
+
 // ─── Cart Items ───────────────────────────────────────────────────────────────
 export const cartItems = mysqlTable("cart_items", {
   id: int("id").autoincrement().primaryKey(),

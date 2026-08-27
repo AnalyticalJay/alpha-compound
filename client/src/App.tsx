@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import MobileBottomNav from "./components/MobileBottomNav";
 import { shouldShowMobileNav } from "@shared/mobileNav";
 import { SeoMeta } from "./components/SeoMeta";
+import { WatermarkProvider } from "./contexts/WatermarkContext";
 
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
@@ -35,6 +36,7 @@ const AdminNotifications = lazy(() => import("./pages/admin/AdminNotifications")
 const AdminReports = lazy(() => import("./pages/admin/AdminReports"));
 const AdminBulkImport = lazy(() => import("./pages/admin/AdminBulkImport"));
 const AdminBulkImages = lazy(() => import("./pages/admin/AdminBulkImages"));
+const AdminWatermark = lazy(() => import("./pages/admin/AdminWatermark"));
 
 function Router() {
   return (
@@ -110,6 +112,13 @@ function Router() {
           </AdminLayout>
         )}
       </Route>
+      <Route path="/admin/watermark">
+        {() => (
+          <AdminLayout>
+            <AdminWatermark />
+          </AdminLayout>
+        )}
+      </Route>
       <Route path="/admin/categories">
         {() => (
           <AdminLayout>
@@ -178,8 +187,10 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark" switchable>
         <TooltipProvider>
-          <Toaster richColors position="top-right" />
-          <AppShell />
+          <WatermarkProvider>
+            <Toaster richColors position="top-right" />
+            <AppShell />
+          </WatermarkProvider>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

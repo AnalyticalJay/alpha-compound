@@ -1,8 +1,10 @@
-import { AlertTriangle, ArrowRight, BarChart3, CheckCircle, Clock, DollarSign, ShoppingBag, TrendingUp, Users } from "lucide-react";
+import { AlertTriangle, ArrowRight, BarChart3, CheckCircle, Clock, DollarSign, ShoppingBag, Stamp, TrendingUp, Users } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { trpc } from "@/lib/trpc";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner";
 
 const chartTooltipStyle = {
   backgroundColor: "#111111",
@@ -14,6 +16,15 @@ const chartTooltipStyle = {
 
 export default function AdminDashboard() {
   const statsQuery = trpc.admin.stats.useQuery();
+  const watermarkQuery = trpc.watermark.get.useQuery();
+  const utils = trpc.useUtils();
+  const updateWatermark = trpc.watermark.update.useMutation({
+    onSuccess: (settings) => {
+      utils.watermark.get.setData(undefined, settings);
+      toast.success(settings.isEnabled ? "Product image watermark enabled" : "Product image watermark disabled");
+    },
+    onError: (error) => toast.error(error.message || "Could not update watermark"),
+  });
   const stats = statsQuery.data;
   const analytics = stats?.analytics;
 
@@ -54,6 +65,25 @@ export default function AdminDashboard() {
           </Link>
         </div>
       )}
+
+      <div className="mb-6 flex flex-col gap-4 rounded-xl border border-[#0EA5E9]/35 bg-[#0EA5E9]/5 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+        <div className="flex min-w-0 items-start gap-3">
+          <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0EA5E9]/15 text-[#38BDF8]"><Stamp className="h-5 w-5" /></span>
+          <div className="min-w-0">
+            <p className="text-sm font-black uppercase tracking-wide text-white">Product image watermark</p>
+            <p className="mt-1 text-xs leading-relaxed text-[#94A3B8]">{watermarkQuery.data?.isEnabled === false ? "Hidden across every product image." : "Visible across every product image."} Use settings to change the text or upload a logo.</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between gap-3 rounded-lg border border-[#1E293B] bg-[#090909] px-3 py-2.5 sm:shrink-0">
+          <Link href="/admin/watermark" className="text-xs font-bold uppercase tracking-wide text-[#38BDF8] hover:text-white">Configure</Link>
+          <Switch
+            aria-label="Enable product image watermark"
+            checked={watermarkQuery.data?.isEnabled ?? true}
+            disabled={watermarkQuery.isLoading || updateWatermark.isPending}
+            onCheckedChange={(isEnabled) => updateWatermark.mutate({ isEnabled })}
+          />
+        </div>
+      </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {cards.map((card, i) => (

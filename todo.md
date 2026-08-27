@@ -772,3 +772,10 @@
 - [x] Apply the watermark consistently to customer catalogue, product-detail, and administrator product-image displays without replacing source image files
 - [x] Add regression coverage and verify the treatment at desktop and 390px mobile widths
 - [x] Save a checkpoint and deliver the watermark enhancement
+
+## Phase 112: Administrator Watermark Controls
+- [x] Inspect current configuration, storage, administrator routing, and product-image data-flow patterns
+- [x] Persist global watermark enablement, text, and optional custom-logo settings with administrator-only API access
+- [x] Add secure custom watermark-logo upload validation and protected storage
+- [x] Build responsive administrator controls and connect live settings to every product-image watermark
+- [x] Add regression coverage, verify customer/admin views, and save a checkpoint

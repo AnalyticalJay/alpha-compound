@@ -15,6 +15,7 @@ import {
   shippingDetails,
   userApprovals,
   users,
+  watermarkSettings,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
@@ -462,6 +463,72 @@ export async function deleteProductImage(imageId: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.delete(productImages).where(eq(productImages.id, imageId));
+}
+
+// ─── Watermark Settings ──────────────────────────────────────────────────────
+
+export const DEFAULT_WATERMARK_SETTINGS = {
+  isEnabled: true,
+  watermarkText: "ANABOLICS AFRICA",
+  logoUrl: null,
+  logoKey: null,
+} as const;
+
+export type WatermarkSettingsUpdate = Partial<{
+  isEnabled: boolean;
+  watermarkText: string;
+  logoUrl: string | null;
+  logoKey: string | null;
+}>;
+
+export async function getWatermarkSettings() {
+  const db = await getDb();
+  if (!db) return DEFAULT_WATERMARK_SETTINGS;
+
+  const settings = await db
+    .select({
+      isEnabled: watermarkSettings.isEnabled,
+      watermarkText: watermarkSettings.watermarkText,
+      logoUrl: watermarkSettings.logoUrl,
+      logoKey: watermarkSettings.logoKey,
+      updatedAt: watermarkSettings.updatedAt,
+    })
+    .from(watermarkSettings)
+    .where(eq(watermarkSettings.id, 1))
+    .limit(1);
+
+  return settings[0] ?? DEFAULT_WATERMARK_SETTINGS;
+}
+
+export async function updateWatermarkSettings(data: WatermarkSettingsUpdate, adminId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const existing = await db
+    .select({ id: watermarkSettings.id })
+    .from(watermarkSettings)
+    .where(eq(watermarkSettings.id, 1))
+    .limit(1);
+
+  const updatedAt = new Date();
+  if (existing[0]) {
+    await db
+      .update(watermarkSettings)
+      .set({ ...data, updatedBy: adminId, updatedAt })
+      .where(eq(watermarkSettings.id, 1));
+  } else {
+    await db.insert(watermarkSettings).values({
+      id: 1,
+      isEnabled: data.isEnabled ?? DEFAULT_WATERMARK_SETTINGS.isEnabled,
+      watermarkText: data.watermarkText ?? DEFAULT_WATERMARK_SETTINGS.watermarkText,
+      logoUrl: data.logoUrl ?? null,
+      logoKey: data.logoKey ?? null,
+      updatedBy: adminId,
+      updatedAt,
+    });
+  }
+
+  return getWatermarkSettings();
 }
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────
