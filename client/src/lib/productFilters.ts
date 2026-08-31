@@ -1,12 +1,17 @@
 export type BrandFilter = "all" | "HD Labs" | "BP Pharma";
 
 export type ProductSearchRecord = {
+  brand?: "hd_labs" | "bp_pharma" | "other" | null;
   name?: string | null;
   slug?: string | null;
   description?: string | null;
 };
 
 export function getProductBrand(product: ProductSearchRecord) {
+  if (product.brand === "hd_labs") return "HD Labs" as const;
+  if (product.brand === "bp_pharma") return "BP Pharma" as const;
+  if (product.brand === "other") return "Other" as const;
+
   const nameAndSlug = [product.name, product.slug]
     .filter(Boolean)
     .join(" ")

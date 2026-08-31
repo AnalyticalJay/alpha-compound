@@ -66,6 +66,7 @@ export const products = mysqlTable("products", {
   id: int("id").autoincrement().primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
+  brand: mysqlEnum("brand", ["hd_labs", "bp_pharma", "other"]).default("other").notNull(),
   description: text("description"),
   dosageInfo: text("dosageInfo"),
   categoryId: int("categoryId").references(() => categories.id),

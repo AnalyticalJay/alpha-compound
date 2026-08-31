@@ -230,6 +230,7 @@ export async function getProducts(opts?: {
       id: products.id,
       name: products.name,
       slug: products.slug,
+      brand: products.brand,
       description: products.description,
       dosageInfo: products.dosageInfo,
       categoryId: products.categoryId,
@@ -325,6 +326,7 @@ export async function getProductById(id: number) {
 export async function createProduct(data: {
   name: string;
   slug: string;
+  brand?: "hd_labs" | "bp_pharma" | "other";
   description?: string;
   dosageInfo?: string;
   categoryId?: number;
@@ -344,6 +346,7 @@ export async function updateProduct(
   data: Partial<{
     name: string;
     slug: string;
+    brand: "hd_labs" | "bp_pharma" | "other";
     description: string;
     dosageInfo: string;
     categoryId: number;

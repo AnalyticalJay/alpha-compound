@@ -85,6 +85,13 @@
       "when": 1787861140058,
       "tag": "0011_sticky_vulture",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1788183847606,
+      "tag": "0012_fantastic_hobgoblin",
+      "breakpoints": true
     }
   ]
 }

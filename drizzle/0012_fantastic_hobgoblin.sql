@@ -1,0 +1,1 @@
+ALTER TABLE `products` ADD `brand` enum('hd_labs','bp_pharma','other') DEFAULT 'other' NOT NULL;

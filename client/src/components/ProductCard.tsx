@@ -11,6 +11,7 @@ type Product = {
   id: number;
   name: string;
   slug: string;
+  brand?: "hd_labs" | "bp_pharma" | "other";
   description: string | null;
   price: string | null;
   primaryImage: string | null;
@@ -41,7 +42,7 @@ export default function ProductCard({
   const hasConfiguredPrice = product.price !== null && Number(product.price) > 0;
 
   return (
-    <div className="rounded-lg border border-[#1E293B] bg-[#111111] overflow-hidden group hover:border-[#0EA5E9]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all duration-200 flex flex-col h-full">
+    <div data-testid="product-card" className="rounded-lg border border-[#1E293B] bg-[#111111] overflow-hidden group hover:border-[#0EA5E9]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all duration-200 flex flex-col h-full">
 
       {/* Image */}
       <Link href={`/products/${product.slug}`} className="block no-underline">

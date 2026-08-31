@@ -793,3 +793,10 @@
 - [x] Reset progressive visibility predictably when filters, search, or sort order change
 - [x] Add regression coverage and verify desktop and 390px mobile browsing behaviour
 - [x] Save a checkpoint and deliver the progressive catalogue enhancement
+
+## Phase 117: Complete Brand-Filter Validation
+- [x] Count active catalogue products by verified brand and compare those totals with each public filter result
+- [x] Correct brand classification or filter behaviour that excludes valid HD Labs or BP Pharma products
+- [x] Ensure progressive loading exposes the complete filtered result set for All products, HD Labs, and BP Pharma
+- [x] Add regression coverage and verify the three filter states on desktop and 390px mobile
+- [x] Save a checkpoint and deliver the verified filter outcome

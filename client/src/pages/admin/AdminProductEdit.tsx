@@ -14,6 +14,7 @@ import ProductImage from "@/components/ProductImage";
 type FormData = {
   name: string;
   slug: string;
+  brand: "hd_labs" | "bp_pharma" | "other";
   description?: string;
   dosageInfo?: string;
   price: string;
@@ -51,6 +52,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
     defaultValues: {
       name: product?.name ?? "",
       slug: product?.slug ?? "",
+      brand: product?.brand ?? "other",
       description: product?.description ?? "",
       dosageInfo: product?.dosageInfo ?? "",
       price: product?.price ?? "",
@@ -62,6 +64,7 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
     values: product ? {
       name: product.name,
       slug: product.slug,
+      brand: product.brand,
       description: product.description ?? "",
       dosageInfo: product.dosageInfo ?? "",
       price: product.price,
@@ -209,6 +212,22 @@ export default function AdminProductEdit({ productId: productIdProp }: { product
                       {categories.map((c) => (
                         <SelectItem key={c.id} value={c.id.toString()}>{c.name}</SelectItem>
                       ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium">Brand</Label>
+                  <Select
+                    value={watch("brand")}
+                    onValueChange={(value) => setValue("brand", value as FormData["brand"])}
+                  >
+                    <SelectTrigger className="mt-1.5 min-h-11 bg-input border-border">
+                      <SelectValue placeholder="Select brand" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="hd_labs">HD Labs</SelectItem>
+                      <SelectItem value="bp_pharma">BP Pharma</SelectItem>
+                      <SelectItem value="other">Other / Pharma</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

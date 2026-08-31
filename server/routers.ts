@@ -260,6 +260,7 @@ export const appRouter = router({
       .input(z.object({
         name: z.string().min(1),
         slug: z.string().min(1),
+        brand: z.enum(["hd_labs", "bp_pharma", "other"]).default("other"),
         description: z.string().optional(),
         dosageInfo: z.string().optional(),
         categoryId: z.number().optional(),
@@ -278,6 +279,7 @@ export const appRouter = router({
         id: z.number(),
         name: z.string().optional(),
         slug: z.string().optional(),
+        brand: z.enum(["hd_labs", "bp_pharma", "other"]).optional(),
         description: z.string().optional(),
         dosageInfo: z.string().optional(),
         categoryId: z.number().optional(),

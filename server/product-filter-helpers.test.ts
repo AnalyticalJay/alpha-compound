@@ -2,6 +2,11 @@ import { describe, expect, it } from "vitest";
 import { getProductBrand, matchesBrand } from "../client/src/lib/productFilters";
 
 describe("product brand filters", () => {
+  it("prefers a persisted verified brand over inconsistent legacy product naming", () => {
+    expect(getProductBrand({ name: "Aquaject 100", brand: "hd_labs" })).toBe("HD Labs");
+    expect(getProductBrand({ name: "Anavar HD", brand: "other" })).toBe("Other");
+  });
+
   it("detects HD Labs from a product name", () => {
     expect(getProductBrand({ name: "Testosterone Enanthate 250mg HD Labs" })).toBe("HD Labs");
   });
