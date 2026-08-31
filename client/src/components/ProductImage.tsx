@@ -24,6 +24,7 @@ export default function ProductImage({
   ...imageProps
 }: ProductImageProps) {
   const { isEnabled, watermarkText, logoUrl } = useWatermark();
+  const { loading, decoding, ...restImageProps } = imageProps;
 
   return (
     <div
@@ -31,9 +32,11 @@ export default function ProductImage({
       data-product-image="watermarked"
     >
       <img
-        {...imageProps}
+        {...restImageProps}
         src={src}
         alt={alt}
+        loading={loading ?? "lazy"}
+        decoding={decoding ?? "async"}
         className={cn("h-full w-full object-cover", imageClassName)}
       />
       {isEnabled && (

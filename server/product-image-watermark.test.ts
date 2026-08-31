@@ -21,6 +21,8 @@ describe("product image watermark", () => {
     expect(productImage).toContain("pointer-events-none");
     expect(productImage).toContain("text-white/35");
     expect(productImage).toContain("object-cover");
+    expect(productImage).toContain('loading={loading ?? "lazy"}');
+    expect(productImage).toContain('decoding={decoding ?? "async"}');
   });
 
   it("uses the shared treatment for every current customer and administrator product image display", () => {

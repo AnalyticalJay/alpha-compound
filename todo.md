@@ -779,3 +779,10 @@
 - [x] Add secure custom watermark-logo upload validation and protected storage
 - [x] Build responsive administrator controls and connect live settings to every product-image watermark
 - [x] Add regression coverage, verify customer/admin views, and save a checkpoint
+
+## Phase 115: Customer Catalogue Visibility and Image Delivery Audit
+- [x] Count active HD Labs and BP Pharma catalogue products, current product-image associations, and valid image URLs
+- [x] Trace customer catalogue limits, filters, loading, and image rendering to identify verified visibility defects
+- [x] Correct verified product visibility, primary-image assignment, or image-delivery defects without altering catalogue pricing or stock
+- [x] Validate customer-visible product and image counts, desktop/mobile catalogue rendering, and affected regressions
+- [x] Save a checkpoint and deliver the evidence-led audit outcome
