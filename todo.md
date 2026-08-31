@@ -786,3 +786,10 @@
 - [x] Correct verified product visibility, primary-image assignment, or image-delivery defects without altering catalogue pricing or stock
 - [x] Validate customer-visible product and image counts, desktop/mobile catalogue rendering, and affected regressions
 - [x] Save a checkpoint and deliver the evidence-led audit outcome
+
+## Phase 116: Progressive Catalogue Loading
+- [x] Inspect product-list filtering, sorting, rendering, and existing catalogue test coverage
+- [x] Render an initial product set with an accessible Load more control for the remaining filtered results
+- [x] Reset progressive visibility predictably when filters, search, or sort order change
+- [x] Add regression coverage and verify desktop and 390px mobile browsing behaviour
+- [x] Save a checkpoint and deliver the progressive catalogue enhancement

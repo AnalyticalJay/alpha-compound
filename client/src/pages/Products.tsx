@@ -11,6 +11,7 @@ import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { BrandFilter, matchesBrand } from "@/lib/productFilters";
 import { CatalogSort, sortCatalogProducts } from "@/lib/catalogSorting";
+import { CATALOGUE_PAGE_SIZE, getNextCatalogueVisibleCount, getVisibleCatalogueItems } from "@/lib/cataloguePagination";
 import HdLabsMark from "@/components/HdLabsMark";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -27,6 +28,7 @@ export default function Products() {
   const [selectedBrand, setSelectedBrand] = useState<BrandFilter>("all");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState<CatalogSort>("featured");
+  const [visibleCount, setVisibleCount] = useState(CATALOGUE_PAGE_SIZE);
 
   useEffect(() => {
     setSelectedCategory(getCategoryFromUrl());
@@ -44,6 +46,16 @@ export default function Products() {
     const brandFiltered = selectedBrand === "all" ? products : products.filter((product) => matchesBrand(product, selectedBrand));
     return sortCatalogProducts(brandFiltered, selectedSort);
   }, [products, selectedBrand, selectedSort]);
+  const visibleProducts = useMemo(
+    () => getVisibleCatalogueItems(filteredProducts, visibleCount),
+    [filteredProducts, visibleCount],
+  );
+  const remainingProductCount = Math.max(0, filteredProducts.length - visibleProducts.length);
+  const hasMoreProducts = remainingProductCount > 0;
+
+  useEffect(() => {
+    setVisibleCount(CATALOGUE_PAGE_SIZE);
+  }, [search, selectedCategory, selectedBrand, selectedSort]);
 
   const activeFilterCount = Number(Boolean(search)) + Number(selectedCategory !== undefined) + Number(selectedBrand !== "all");
   const selectedCategoryName = categories.find((category) => category.id === selectedCategory)?.name;
@@ -234,7 +246,7 @@ export default function Products() {
                 </div>
               ) : filteredProducts.length > 0 ? (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                  {filteredProducts.map((product) => <ProductCard key={product.id} product={product} isApproved={isApproved} />)}
+                  {visibleProducts.map((product) => <ProductCard key={product.id} product={product} isApproved={isApproved} />)}
                 </motion.div>
               ) : (
                 <div className="py-24 text-center text-[#64748B]">
@@ -242,6 +254,23 @@ export default function Products() {
                   <p className="mb-2 text-lg font-bold text-white">No products found</p>
                   <p className="mb-5 text-sm">Try another brand, search term, or category.</p>
                   <Button onClick={clearFilters} variant="outline" className="border-[#1E293B] text-[#94A3B8] hover:text-white">Clear filters</Button>
+                </div>
+              )}
+              {hasMoreProducts && (
+                <div className="mt-8 flex flex-col items-center gap-3 border-t border-[#1E293B] pt-7 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]" aria-live="polite">
+                    Showing {visibleProducts.length} of {filteredProducts.length} products
+                  </p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setVisibleCount((count) => getNextCatalogueVisibleCount(filteredProducts.length, count))}
+                    className="min-h-11 border-[#0EA5E9]/50 bg-[#0EA5E9]/5 px-6 text-xs font-bold uppercase tracking-widest text-[#7DD3FC] hover:border-[#0EA5E9] hover:bg-[#0EA5E9]/15 hover:text-white"
+                    aria-label={`Load ${Math.min(CATALOGUE_PAGE_SIZE, remainingProductCount)} more products`}
+                  >
+                    Load {Math.min(CATALOGUE_PAGE_SIZE, remainingProductCount)} more products
+                    <ChevronDown className="ml-2 h-4 w-4" aria-hidden="true" />
+                  </Button>
                 </div>
               )}
             </main>
