@@ -13,6 +13,7 @@ import {
   productImages,
   products,
   shippingDetails,
+  shipmentTrackingEvents,
   userApprovals,
   users,
   watermarkSettings,
@@ -833,7 +834,67 @@ export async function getOrderById(orderId: number) {
 
   const comments = await getOrderComments(orderId);
   const paymentHistory = await getPaymentEvents(orderId);
-  return { ...orderResult[0], items, shipping: shipping[0] ?? null, comments, paymentHistory };
+  const trackingEvents = await getShipmentTrackingEvents(orderId);
+  return { ...orderResult[0], items, shipping: shipping[0] ?? null, comments, paymentHistory, trackingEvents };
+}
+
+export async function getShipmentTrackingEvents(orderId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(shipmentTrackingEvents)
+    .where(eq(shipmentTrackingEvents.orderId, orderId))
+    .orderBy(desc(shipmentTrackingEvents.occurredAt), desc(shipmentTrackingEvents.createdAt));
+}
+
+export async function persistShiplogicTracking(data: {
+  orderId: number;
+  trackingReference: string;
+  providerStatus: string;
+  normalizedStatus: "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned";
+  events: Array<{
+    providerEventId: string | null;
+    providerStatus: string;
+    normalizedStatus: "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned";
+    message: string | null;
+    location: string | null;
+    occurredAt: Date | null;
+  }>;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const now = new Date();
+  const current = await db.select({ id: shippingDetails.id }).from(shippingDetails).where(eq(shippingDetails.orderId, data.orderId)).limit(1);
+  if (current[0]) {
+    await db.update(shippingDetails).set({ trackingProvider: "shiplogic", trackingNumber: data.trackingReference, shippingStatus: data.normalizedStatus, trackingLastCheckedAt: now, trackingLastError: null }).where(eq(shippingDetails.orderId, data.orderId));
+  }
+  const existing = await db.select({ providerEventId: shipmentTrackingEvents.providerEventId }).from(shipmentTrackingEvents).where(eq(shipmentTrackingEvents.orderId, data.orderId));
+  const known = new Set(existing.map((event) => event.providerEventId).filter(Boolean));
+  let insertedEvents = 0;
+  for (const event of data.events) {
+    if (event.providerEventId && known.has(event.providerEventId)) continue;
+    await db.insert(shipmentTrackingEvents).values({
+      orderId: data.orderId,
+      provider: "shiplogic",
+      trackingReference: data.trackingReference,
+      providerEventId: event.providerEventId,
+      providerStatus: event.providerStatus,
+      normalizedStatus: event.normalizedStatus,
+      message: event.message,
+      location: event.location,
+      occurredAt: event.occurredAt,
+    });
+    if (event.providerEventId) known.add(event.providerEventId);
+    insertedEvents += 1;
+  }
+  return { checkedAt: now, insertedEvents };
+}
+
+export async function markShiplogicTrackingError(orderId: number, message: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(shippingDetails).set({ trackingLastCheckedAt: new Date(), trackingLastError: message.slice(0, 512) }).where(eq(shippingDetails.orderId, orderId));
 }
 
 export async function getOrderComments(orderId: number) {
@@ -894,6 +955,7 @@ export async function getAllOrders() {
 export async function updateShippingDetails(data: {
   orderId: number;
   courierName?: string | null;
+  trackingProvider?: string | null;
   trackingNumber?: string | null;
   trackingUrl?: string | null;
   shippingStatus: "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned";
@@ -907,6 +969,7 @@ export async function updateShippingDetails(data: {
   const deliveredAt = data.shippingStatus === "delivered" ? (current[0]?.deliveredAt ?? now) : current[0]?.deliveredAt ?? null;
   const details = {
     courierName: data.courierName || null,
+    trackingProvider: data.trackingProvider || null,
     trackingNumber: data.trackingNumber || null,
     trackingUrl: data.trackingUrl || null,
     shippingStatus: data.shippingStatus,

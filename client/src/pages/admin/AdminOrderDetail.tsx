@@ -3,7 +3,7 @@ import { useParams, Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, CheckCircle2, Eye, FileText, Package, MapPin, CreditCard, Truck, User } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Eye, FileText, Package, MapPin, CreditCard, RefreshCw, Truck, User } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -36,6 +36,7 @@ export default function AdminOrderDetail() {
   const [newStatus, setNewStatus] = useState<string>("");
   const [shippingStatus, setShippingStatus] = useState("pending");
   const [courierName, setCourierName] = useState("");
+  const [trackingProvider, setTrackingProvider] = useState("manual");
   const [trackingNumber, setTrackingNumber] = useState("");
   const [trackingUrl, setTrackingUrl] = useState("");
   const [shippingNotes, setShippingNotes] = useState("");
@@ -64,6 +65,7 @@ export default function AdminOrderDetail() {
     if (!order?.shipping) return;
     setShippingStatus(order.shipping.shippingStatus ?? "pending");
     setCourierName(order.shipping.courierName ?? "");
+    setTrackingProvider(order.shipping.trackingProvider ?? (order.shipping.courierName?.toLowerCase().includes("flash") ? "shiplogic" : "manual"));
     setTrackingNumber(order.shipping.trackingNumber ?? "");
     setTrackingUrl(order.shipping.trackingUrl ?? "");
     setShippingNotes(order.shipping.shippingNotes ?? "");
@@ -72,6 +74,15 @@ export default function AdminOrderDetail() {
   const updateShipping = trpc.orders.adminUpdateShipping.useMutation({
     onSuccess: () => {
       toast.success("Shipping details updated");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+      utils.orders.adminList.invalidate();
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const refreshShiplogic = trpc.orders.adminRefreshShiplogicTracking.useMutation({
+    onSuccess: () => {
+      toast.success("Flash Parcels tracking refreshed");
       utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
       utils.orders.adminList.invalidate();
     },
@@ -261,11 +272,13 @@ export default function AdminOrderDetail() {
             </div>
             <div className="space-y-3">
               <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Shipping status<select value={shippingStatus} onChange={(event) => setShippingStatus(event.target.value)} className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground"><option value="pending">Pending</option><option value="packed">Packed</option><option value="dispatched">Dispatched</option><option value="in_transit">In transit</option><option value="out_for_delivery">Out for delivery</option><option value="delivered">Delivered</option><option value="returned">Returned</option></select></label>
-              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Courier<input value={courierName} onChange={(event) => setCourierName(event.target.value)} placeholder="e.g. The Courier Guy" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
-              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking number<input value={trackingNumber} onChange={(event) => setTrackingNumber(event.target.value)} placeholder="Tracking reference" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Courier<input value={courierName} onChange={(event) => setCourierName(event.target.value)} placeholder="e.g. Flash Parcels" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking provider<select value={trackingProvider} onChange={(event) => setTrackingProvider(event.target.value)} className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground"><option value="shiplogic">Flash Parcels / Shiplogic</option><option value="manual">Manual / other courier</option></select></label>
+              <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking number<input value={trackingNumber} onChange={(event) => setTrackingNumber(event.target.value)} placeholder="Flash waybill reference" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
               <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking URL<input value={trackingUrl} onChange={(event) => setTrackingUrl(event.target.value)} placeholder="https://courier.example/track/..." className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
               <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Customer-facing notes<textarea value={shippingNotes} onChange={(event) => setShippingNotes(event.target.value)} rows={3} placeholder="Add dispatch or delivery instructions" className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
-              <Button type="button" className="min-h-11 w-full bg-[#0EA5E9] font-bold text-white hover:bg-[#0284C7]" onClick={() => updateShipping.mutate({ orderId: order.id, courierName, trackingNumber, trackingUrl, shippingStatus: shippingStatus as "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned", shippingNotes })} disabled={updateShipping.isPending}><Truck className="mr-2 h-4 w-4" />{updateShipping.isPending ? "Saving tracking…" : "Save shipping update"}</Button>
+              <Button type="button" className="min-h-11 w-full bg-[#0EA5E9] font-bold text-white hover:bg-[#0284C7]" onClick={() => updateShipping.mutate({ orderId: order.id, courierName, trackingProvider, trackingNumber, trackingUrl, shippingStatus: shippingStatus as "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned", shippingNotes })} disabled={updateShipping.isPending}><Truck className="mr-2 h-4 w-4" />{updateShipping.isPending ? "Saving tracking…" : "Save shipping update"}</Button>
+              {trackingProvider === "shiplogic" && trackingNumber.trim() && order.paymentStatus === "paid" && <Button type="button" variant="outline" className="min-h-11 w-full border-[#38BDF8]/40 font-bold text-[#38BDF8]" onClick={() => refreshShiplogic.mutate({ orderId: order.id })} disabled={refreshShiplogic.isPending}><RefreshCw className={`mr-2 h-4 w-4 ${refreshShiplogic.isPending ? "animate-spin" : ""}`} />{refreshShiplogic.isPending ? "Refreshing Flash tracking…" : "Refresh Flash tracking"}</Button>}
             </div>
           </div>
         </div>

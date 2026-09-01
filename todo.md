@@ -829,12 +829,12 @@
 - [x] Deliver the launch-readiness summary and checkpoint
 
 ## Phase 122: Credential-Ready Shiplogic Integration
-- [ ] Confirm the current Shiplogic tracking endpoint, authentication contract, status payload, and credential prerequisites
-- [ ] Add secure server-side Shiplogic configuration without exposing credentials to client code
-- [ ] Implement protected tracking lookup, status normalization, and safe shipment-event persistence
-- [ ] Connect paid-order-only waybill management to administrator and customer delivery views
-- [ ] Add automated tests for credential handling, payment gating, tracking errors, status mapping, and responsive timeline behaviour
-- [ ] Request the Shiplogic API key securely and save a checkpoint for the credential-ready integration
+- [x] Confirm the current Shiplogic tracking endpoint, authentication contract, status payload, and credential prerequisites
+- [x] Add secure server-side Shiplogic configuration without exposing credentials to client code
+- [x] Implement protected tracking lookup, status normalization, and safe shipment-event persistence
+- [x] Connect paid-order-only waybill management to administrator and customer delivery views
+- [x] Add automated tests for credential handling, payment gating, tracking errors, status mapping, and responsive timeline behaviour
+- [x] Request the Shiplogic API key securely and save a checkpoint for the credential-ready integration
 
 ## Phase 123: Tristan Cilliers Administrator Access
 - [x] Verify the account for `tcilliers@gmail.com` and inspect its current role/status

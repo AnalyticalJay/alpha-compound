@@ -52,6 +52,8 @@ import {
   updateOrderEftProof,
   updateOrderStatus,
   updateShippingDetails,
+  persistShiplogicTracking,
+  markShiplogicTrackingError,
   updateUserStatus,
   updateWatermarkSettings,
   upsertCartItem,
@@ -62,6 +64,7 @@ import { eq } from "drizzle-orm";
 import { ENV } from "./_core/env";
 import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
+import { ShiplogicError, shiplogicTrackingUrl, trackShiplogicShipment } from "./shiplogic";
 import { assertTrustedPayFastOrigin, handlePayFastItn } from "./payfast";
 import {
   decodeBase64File,
@@ -772,10 +775,35 @@ export const appRouter = router({
       }))
       .mutation(({ input }) => isE2ETestMode() ? updateE2EOrderStatus(input.orderId, input.status) : updateOrderStatus(input.orderId, input.status, input.notes)),
 
+    adminRefreshShiplogicTracking: adminProcedure
+      .input(z.object({ orderId: z.number() }))
+      .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return { success: true, provider: "shiplogic", normalizedStatus: "in_transit", trackingEvents: [] };
+        const order = await getOrderById(input.orderId);
+        if (!order) throw new TRPCError({ code: "NOT_FOUND", message: "Order not found." });
+        if (order.paymentStatus !== "paid") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Shiplogic tracking is available after payment is confirmed." });
+        const trackingNumber = order.shipping?.trackingNumber?.trim();
+        if (!trackingNumber) throw new TRPCError({ code: "BAD_REQUEST", message: "Save a Flash Parcels waybill before refreshing tracking." });
+        try {
+          const result = await trackShiplogicShipment(trackingNumber);
+          await persistShiplogicTracking({ orderId: input.orderId, ...result });
+          await recordPaymentEvent({ orderId: input.orderId, eventType: "shipping_tracking_refreshed", paymentStatus: "pending", amount: null, actorUserId: ctx.user.id, note: `Shiplogic tracking refreshed: ${result.providerStatus}.` });
+          const refreshed = await getOrderById(input.orderId);
+          if (refreshed) await createNotification({ userId: refreshed.userId, orderId: input.orderId, type: "shipping", title: `Delivery tracking updated for Quote #${input.orderId}`, body: `Flash Parcels status: ${result.normalizedStatus.replaceAll("_", " ")}.` });
+          return { success: true, provider: "shiplogic", normalizedStatus: result.normalizedStatus, providerStatus: result.providerStatus, trackingEvents: result.events };
+        } catch (error) {
+          const message = error instanceof ShiplogicError ? error.message : "Shiplogic tracking could not be refreshed.";
+          await markShiplogicTrackingError(input.orderId, message).catch(() => {});
+          if (error instanceof ShiplogicError && error.code === "provider_rejected") throw new TRPCError({ code: "PRECONDITION_FAILED", message });
+          throw new TRPCError({ code: "BAD_GATEWAY", message });
+        }
+      }),
+
     adminUpdateShipping: adminProcedure
       .input(z.object({
         orderId: z.number(),
         courierName: z.string().max(128).optional(),
+        trackingProvider: z.string().max(64).optional(),
         trackingNumber: z.string().max(128).optional(),
         trackingUrl: z.string().url().max(1024).optional().or(z.literal("")),
         shippingStatus: z.enum(["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered", "returned"]),
@@ -783,6 +811,8 @@ export const appRouter = router({
       }))
       .mutation(async ({ ctx, input }) => {
         if (isE2ETestMode()) return updateE2EShipping(input.orderId, input);
+        const existing = await getOrderById(input.orderId);
+        if (input.trackingNumber?.trim() && existing?.paymentStatus !== "paid") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Save a waybill only after payment is confirmed." });
         await updateShippingDetails(input);
         const quote = await getOrderById(input.orderId);
         if (quote) await createNotification({ userId: quote.userId, orderId: input.orderId, type: "shipping", title: `Shipping updated for Quote #${input.orderId}`, body: `Your delivery is now marked ${input.shippingStatus.replaceAll("_", " ")}${input.trackingNumber ? ` with tracking number ${input.trackingNumber}.` : "."}` });

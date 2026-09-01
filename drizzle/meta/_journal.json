@@ -92,6 +92,13 @@
       "when": 1788183847606,
       "tag": "0012_fantastic_hobgoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1788258135161,
+      "tag": "0013_tough_shaman",
+      "breakpoints": true
     }
   ]
 }

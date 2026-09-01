@@ -196,15 +196,34 @@ export const shippingDetails = mysqlTable("shipping_details", {
   postalCode: varchar("postalCode", { length: 16 }).notNull(),
   country: varchar("country", { length: 64 }).default("South Africa").notNull(),
   courierName: varchar("courierName", { length: 128 }),
+  trackingProvider: varchar("trackingProvider", { length: 64 }),
   trackingNumber: varchar("trackingNumber", { length: 128 }),
   trackingUrl: varchar("trackingUrl", { length: 1024 }),
   shippingStatus: mysqlEnum("shippingStatus", ["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered", "returned"]).default("pending").notNull(),
   shippedAt: timestamp("shippedAt"),
   deliveredAt: timestamp("deliveredAt"),
+  trackingLastCheckedAt: timestamp("trackingLastCheckedAt"),
+  trackingLastError: varchar("trackingLastError", { length: 512 }),
   shippingNotes: text("shippingNotes"),
 });
 
 export type ShippingDetail = typeof shippingDetails.$inferSelect;
+
+export const shipmentTrackingEvents = mysqlTable("shipment_tracking_events", {
+  id: int("id").autoincrement().primaryKey(),
+  orderId: int("orderId").notNull().references(() => orders.id),
+  provider: varchar("provider", { length: 64 }).notNull(),
+  trackingReference: varchar("trackingReference", { length: 128 }).notNull(),
+  providerEventId: varchar("providerEventId", { length: 128 }),
+  providerStatus: varchar("providerStatus", { length: 64 }).notNull(),
+  normalizedStatus: mysqlEnum("normalizedStatus", ["pending", "packed", "dispatched", "in_transit", "out_for_delivery", "delivered", "returned"]).notNull(),
+  message: varchar("message", { length: 512 }),
+  location: varchar("location", { length: 255 }),
+  occurredAt: timestamp("occurredAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ShipmentTrackingEvent = typeof shipmentTrackingEvents.$inferSelect;
 
 // ─── Delivery Rules ───────────────────────────────────────────────────────────
 export const deliveryRules = mysqlTable("delivery_rules", {
