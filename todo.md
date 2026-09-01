@@ -927,3 +927,11 @@
 - [x] Add regression coverage for the affected product subset and full authenticated catalogue loading
 - [x] Verify canonical desktop and mobile catalogue image rendering after the repair
 - [x] Save checkpoint `fb6fedcc` for the remaining canonical image verification
+
+## Phase 136: Full Catalogue Category Audit
+- [x] Audit every active product against its current category, name, dosage, and description evidence; also isolated all seven malformed category references
+- [x] Verify highlighted examples: Andarine (S4), Anaps50, and Anabolicum (LGD-4033)
+- [x] Correct 37 verified misclassifications without changing product names, pricing, or stock; ambiguous pharmaceutical classifications remain conservatively assigned or flagged for review
+- [x] Add regression coverage for corrected category assignments and filter results
+- [x] Verify all audited category filters on desktop and 390px mobile
+- [ ] Save a checkpoint and report the corrected category audit
