@@ -891,3 +891,11 @@
 - [x] Add regression coverage for version fingerprinting and prompt contracts
 - [x] Verify desktop and 390px mobile prompt behaviour
 - [x] Save a checkpoint for the completed stale-build recovery enhancement
+
+## Phase 131: Authenticated Catalogue Image Regression
+- [x] Compare the reported email-sign-in symptom with incognito/public requests; the exact credentialed failure was not reproducible in this sandbox, while the equivalent approved-customer path passed
+- [x] Trace authenticated catalogue image URLs, storage-proxy responses, cache headers, and browser error details
+- [x] Apply a targeted fix that preserves gated access and watermark rendering
+- [x] Add regression coverage for authenticated image loading and fallback recovery
+- [x] Verify the catalogue on desktop and 390px mobile after the approved-user transition path
+- [x] Save a checkpoint for the authenticated image regression fix

@@ -25,6 +25,14 @@ describe("product image watermark", () => {
     expect(productImage).toContain('decoding={decoding ?? "async"}');
   });
 
+  it("replaces a failed storage image with the branded fallback and avoids a broken icon", () => {
+    expect(productImage).toContain("PRODUCT_FALLBACK_IMAGE");
+    expect(productImage).toContain("onError={handleImageError}");
+    expect(productImage).toContain('data-image-status={displaySrc === PRODUCT_FALLBACK_IMAGE ? "fallback" : "primary"}');
+    expect(productImage).toContain('data-image-status="unavailable"');
+    expect(productImage).toContain("Image temporarily unavailable");
+  });
+
   it("uses the shared treatment for every current customer and administrator product image display", () => {
     [productCard, productDetail, cart, home, adminProducts, adminProductEdit].forEach((source) => {
       expect(source).toContain("ProductImage");

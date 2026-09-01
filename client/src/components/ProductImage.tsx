@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
-import type { ImgHTMLAttributes } from "react";
+import { useEffect, useState, type ImgHTMLAttributes } from "react";
 import { useWatermark } from "@/contexts/WatermarkContext";
+
+const PRODUCT_FALLBACK_IMAGE = "/manus-storage/anabolics-africa-product-image-pending_8ff48682.png";
 
 type ProductImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "alt" | "className" | "src"> & {
   src: string;
@@ -25,20 +27,48 @@ export default function ProductImage({
 }: ProductImageProps) {
   const { isEnabled, watermarkText, logoUrl } = useWatermark();
   const { loading, decoding, ...restImageProps } = imageProps;
+  const [displaySrc, setDisplaySrc] = useState(src);
+  const [imageUnavailable, setImageUnavailable] = useState(false);
+
+  useEffect(() => {
+    setDisplaySrc(src);
+    setImageUnavailable(false);
+  }, [src]);
+
+  const handleImageError = () => {
+    if (displaySrc === PRODUCT_FALLBACK_IMAGE) {
+      setImageUnavailable(true);
+      return;
+    }
+    setDisplaySrc(PRODUCT_FALLBACK_IMAGE);
+  };
 
   return (
     <div
       className={cn("relative isolate h-full w-full overflow-hidden [container-type:inline-size]", wrapperClassName)}
       data-product-image="watermarked"
     >
-      <img
-        {...restImageProps}
-        src={src}
-        alt={alt}
-        loading={loading ?? "lazy"}
-        decoding={decoding ?? "async"}
-        className={cn("h-full w-full object-cover", imageClassName)}
-      />
+      {imageUnavailable ? (
+        <div
+          role="img"
+          aria-label={`${alt} image unavailable`}
+          data-image-status="unavailable"
+          className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,_rgba(14,165,233,0.16),_transparent_62%),#0D0D0D] px-5 text-center"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#64748B]">Image temporarily unavailable</span>
+        </div>
+      ) : (
+        <img
+          {...restImageProps}
+          src={displaySrc}
+          alt={alt}
+          loading={loading ?? "lazy"}
+          decoding={decoding ?? "async"}
+          onError={handleImageError}
+          data-image-status={displaySrc === PRODUCT_FALLBACK_IMAGE ? "fallback" : "primary"}
+          className={cn("h-full w-full object-cover", imageClassName)}
+        />
+      )}
       {isEnabled && (
         <div
           aria-hidden="true"
