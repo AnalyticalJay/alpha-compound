@@ -827,3 +827,18 @@
 - [x] Classify blockers, operational dependencies, and non-blocking content-quality issues
 - [x] Write and save a client-ready go-live audit outcome
 - [x] Deliver the launch-readiness summary and checkpoint
+
+## Phase 122: Credential-Ready Shiplogic Integration
+- [ ] Confirm the current Shiplogic tracking endpoint, authentication contract, status payload, and credential prerequisites
+- [ ] Add secure server-side Shiplogic configuration without exposing credentials to client code
+- [ ] Implement protected tracking lookup, status normalization, and safe shipment-event persistence
+- [ ] Connect paid-order-only waybill management to administrator and customer delivery views
+- [ ] Add automated tests for credential handling, payment gating, tracking errors, status mapping, and responsive timeline behaviour
+- [ ] Request the Shiplogic API key securely and save a checkpoint for the credential-ready integration
+
+## Phase 123: Tristan Cilliers Administrator Access
+- [x] Verify the account for `tcilliers@gmail.com` and inspect its current role/status
+- [x] Grant administrator access only to the verified Tristan Cilliers account
+- [x] Add or verify a safe admin navigation path to Tristan’s own customer-account view
+- [x] Add regression coverage for role access, account ownership, and admin/customer navigation boundaries
+- [x] Save a checkpoint and deliver the verified access update
