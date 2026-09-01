@@ -8,7 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Lock, MessageSquare, Send, Truck } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { AddressAutocompleteInput, SelectedAddress } from "@/components/AddressAutocompleteInput";
 import { toast } from "sonner";
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -29,7 +31,7 @@ export default function Checkout() {
   const cartQuery = trpc.cart.get.useQuery(undefined, { enabled: isApproved });
   const items = cartQuery.data ?? [];
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<FormData>({
     defaultValues: {
       fullName: (user as any)?.fullName ?? "",
       phone: (user as any)?.phone ?? "",
@@ -39,6 +41,15 @@ export default function Checkout() {
   });
 
   const city = watch("city");
+  const addressLine1 = register("addressLine1", { required: "Address is required" });
+  const handleAddressSelected = useCallback((address: SelectedAddress) => {
+    setValue("addressLine1", address.addressLine1, { shouldValidate: true, shouldDirty: true });
+    setValue("addressLine2", address.addressLine2, { shouldDirty: true });
+    setValue("city", address.city, { shouldValidate: true, shouldDirty: true });
+    setValue("postalCode", address.postalCode, { shouldValidate: true, shouldDirty: true });
+    setValue("country", address.country, { shouldDirty: true });
+    toast.success("Delivery address details filled in");
+  }, [setValue]);
   const deliveryQuery = trpc.delivery.calculate.useQuery(
     { city: city || "" },
     { enabled: city?.length > 1 }
@@ -135,11 +146,22 @@ export default function Checkout() {
                       <Input {...register("city", { required: "City is required" })} className="mt-1.5 bg-input border-border" />
                       {errors.city && <p className="text-destructive text-xs mt-1">{errors.city.message}</p>}
                     </div>
-                    <div className="sm:col-span-2">
-                      <Label className="text-sm font-medium">Address Line 1</Label>
-                      <Input {...register("addressLine1", { required: "Address is required" })} placeholder="Street address" className="mt-1.5 bg-input border-border" />
+                                        <div className="sm:col-span-2">
+                      <Label htmlFor="addressLine1" className="text-sm font-medium">Address Line 1</Label>
+                      <AddressAutocompleteInput
+                        ref={addressLine1.ref}
+                        name={addressLine1.name}
+                        value={watch("addressLine1") ?? ""}
+                        onChange={addressLine1.onChange}
+                        onBlur={addressLine1.onBlur}
+                        onAddressSelected={handleAddressSelected}
+                        placeholder="Start typing your street address"
+                        describedBy="address-help"
+                      />
+                      <p id="address-help" className="sr-only">Choose an address suggestion to fill the city and postal code, or continue with manual entry.</p>
                       {errors.addressLine1 && <p className="text-destructive text-xs mt-1">{errors.addressLine1.message}</p>}
                     </div>
+
                     <div className="sm:col-span-2">
                       <Label className="text-sm font-medium">Address Line 2 (Optional)</Label>
                       <Input {...register("addressLine2")} placeholder="Apartment, suite, etc." className="mt-1.5 bg-input border-border" />

@@ -807,3 +807,10 @@
 - [x] Resolve any missing HD Labs or BP Pharma primary images using existing verified assets or safe branded fallbacks
 - [x] Validate complete results for every category and full image coverage for both brands on desktop and 390px mobile
 - [x] Save a checkpoint and deliver the verified category and image-coverage correction
+
+## Phase 119: Checkout Delivery Address Autocomplete
+- [x] Inspect checkout address fields and the available map/address integration pattern
+- [x] Add accessible address suggestions while the customer types, with exact-address selection
+- [x] Map selected address details into the courier-relevant delivery fields and retain manual fallback entry
+- [x] Add regression coverage and verify privacy, selection, validation, and responsive checkout behaviour
+- [x] Save a checkpoint and deliver the verified address-autocomplete enhancement
