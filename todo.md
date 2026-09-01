@@ -800,3 +800,10 @@
 - [x] Ensure progressive loading exposes the complete filtered result set for All products, HD Labs, and BP Pharma
 - [x] Add regression coverage and verify the three filter states on desktop and 390px mobile
 - [x] Save a checkpoint and deliver the verified filter outcome
+
+## Phase 118: Category Filter and Brand Image Coverage Audit
+- [x] Inventory active category assignments, filter rules, brand groups, and primary-image coverage
+- [x] Correct verified category assignments for Injectables, Orals, SARMS, Peptides, and Fat Loss
+- [x] Resolve any missing HD Labs or BP Pharma primary images using existing verified assets or safe branded fallbacks
+- [x] Validate complete results for every category and full image coverage for both brands on desktop and 390px mobile
+- [x] Save a checkpoint and deliver the verified category and image-coverage correction

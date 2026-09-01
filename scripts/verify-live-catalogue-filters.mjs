@@ -1,8 +1,11 @@
 import { chromium } from "@playwright/test";
 
 const baseUrl = process.env.CATALOGUE_BASE_URL ?? "http://127.0.0.1:3000";
+const mobileViewport = process.env.CATALOGUE_VIEWPORT === "mobile";
 const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+const page = await browser.newPage({
+  viewport: mobileViewport ? { width: 390, height: 844 } : { width: 1280, height: 720 },
+});
 
 async function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -10,7 +13,8 @@ async function assert(condition, message) {
 
 async function expectResultCount(expected) {
   const countLabel = page.getByText(`${expected} results`, { exact: true }).first();
-  await countLabel.waitFor({ state: "visible", timeout: 10_000 });
+  await countLabel.waitFor({ state: "attached", timeout: 10_000 });
+  await page.getByTestId("product-card").first().waitFor({ state: "attached", timeout: 10_000 });
 }
 
 async function revealAll(expected) {
@@ -30,15 +34,36 @@ async function revealAll(expected) {
   await assert(await page.getByTestId("product-card").count() === expected, `Expected ${expected} visible product cards after loading all results`);
 }
 
+async function chooseFilter(actionName) {
+  if (mobileViewport) {
+    await page.getByRole("button", { name: /Filters(?: \d+)?/i }).click();
+    if (actionName instanceof RegExp && /Filter HD Labs/i.test(actionName.source)) {
+      await page.getByRole("button", { name: "HD Labs", exact: true }).click();
+      await page.getByRole("button", { name: "Close filters" }).click();
+      return;
+    }
+    if (actionName instanceof RegExp && /Browse BP Pharma/i.test(actionName.source)) {
+      await page.getByRole("button", { name: "BP Pharma", exact: true }).click();
+      await page.getByRole("button", { name: "Close filters" }).click();
+      return;
+    }
+  }
+  await page.getByRole("button", { name: actionName, exact: true }).click();
+  if (mobileViewport) await page.getByRole("button", { name: "Close filters" }).click();
+}
+
 async function verifyFilter({ actionName, expected }) {
   await page.goto(`${baseUrl}/products`, { waitUntil: "networkidle" });
   await expectResultCount(230);
   await assert(await page.getByTestId("product-card").count() === 12, "Expected the initial catalogue batch to contain 12 products");
 
   if (actionName) {
-    await page.getByRole("button", { name: actionName }).click();
+    await chooseFilter(actionName);
     await expectResultCount(expected);
-    await assert(await page.getByTestId("product-card").count() === 12, "Expected a filtered catalogue to reset to its first 12 products");
+    await assert(
+      await page.getByTestId("product-card").count() === Math.min(12, expected),
+      `Expected a filtered catalogue to reset to its first batch of ${Math.min(12, expected)} products`,
+    );
   }
 
   await revealAll(expected);
@@ -49,7 +74,20 @@ try {
   await verifyFilter({ expected: 230 });
   await verifyFilter({ actionName: /Filter HD Labs/i, expected: 112 });
   await verifyFilter({ actionName: /Browse BP Pharma/i, expected: 112 });
-  console.log("Verified live catalogue filters: All 230, HD Labs 112, BP Pharma 112.");
+
+  const categories = [
+    { name: "INJECTABLES", expected: 27 },
+    { name: "ORALS", expected: 19 },
+    { name: "SARMS", expected: 12 },
+    { name: "PEPTIDES", expected: 47 },
+    { name: "FAT LOSS", expected: 10 },
+  ];
+  for (const category of categories) {
+    await verifyFilter({ actionName: category.name, expected: category.expected });
+  }
+
+  const viewportLabel = mobileViewport ? "390px mobile" : "desktop";
+  console.log(`Verified ${viewportLabel} catalogue filters: All 230, HD Labs 112, BP Pharma 112; Injectables 27, Orals 19, SARMS 12, Peptides 47, Fat Loss 10.`);
 } finally {
   await browser.close();
 }
