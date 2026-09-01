@@ -8,6 +8,7 @@ import MobileBottomNav from "./components/MobileBottomNav";
 import { shouldShowMobileNav } from "@shared/mobileNav";
 import { SeoMeta } from "./components/SeoMeta";
 import { WatermarkProvider } from "./contexts/WatermarkContext";
+import StaleBuildPrompt from "./components/StaleBuildPrompt";
 
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const Home = lazy(() => import("./pages/Home"));
@@ -189,6 +190,7 @@ function App() {
         <TooltipProvider>
           <WatermarkProvider>
             <Toaster richColors position="top-right" />
+            <StaleBuildPrompt />
             <AppShell />
           </WatermarkProvider>
         </TooltipProvider>

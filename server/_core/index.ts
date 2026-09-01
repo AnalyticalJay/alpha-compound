@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
+import { getBuildVersion } from "../buildVersion";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
@@ -54,6 +55,16 @@ async function startServer() {
   });
   app.use(express.json({ limit: "16mb" }));
   app.use(express.urlencoded({ limit: "16mb", extended: true }));
+  app.get("/api/build-version", async (_req, res) => {
+    try {
+      const version = await getBuildVersion();
+      res.setHeader("Cache-Control", "no-store, max-age=0");
+      res.setHeader("X-App-Version", version);
+      res.json({ version });
+    } catch {
+      res.status(503).json({ error: "Build version unavailable" });
+    }
+  });
   registerStorageProxy(app);
   registerPayFastRoutes(app);
   registerPayFastCheckoutBridge(app);

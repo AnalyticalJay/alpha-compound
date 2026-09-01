@@ -878,9 +878,16 @@
 - [x] Save a checkpoint and deliver the verified approved-user image correction
 
 ## Phase 129: Stale Build Refresh Recovery
-- [ ] Inspect build-version metadata, app bootstrap, cache headers, and navigation lifecycle
-- [ ] Add stale-build detection with a subtle refresh prompt and safe refresh action
-- [ ] Avoid automatic reloads during checkout, forms, or other unsaved user input
-- [ ] Add an image-error recovery path for stale asset or storage failures
-- [ ] Add regression coverage and verify desktop and 390px mobile behaviour
-- [ ] Save a checkpoint and deliver the verified stale-build recovery enhancement
+- [x] Inspect build-version metadata, app bootstrap, cache headers, and navigation lifecycle
+- [x] Add stale-build detection with a subtle refresh prompt and safe refresh action
+- [x] Avoid automatic reloads during checkout, forms, or other unsaved user input
+- [x] Add an image-error recovery path for stale asset or storage failures
+- [x] Add regression coverage and verify desktop and 390px mobile behaviour
+- [x] Save a checkpoint and deliver the verified stale-build recovery enhancement
+
+## Phase 130: Stale Build Refresh Recovery — Implementation Update
+- [x] Add build fingerprint endpoint and client-side version polling
+- [x] Mount a dismissible refresh prompt that never reloads automatically
+- [x] Add regression coverage for version fingerprinting and prompt contracts
+- [x] Verify desktop and 390px mobile prompt behaviour
+- [x] Save a checkpoint for the completed stale-build recovery enhancement

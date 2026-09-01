@@ -39,10 +39,18 @@ export default function StaleBuildPrompt() {
     void checkForNewBuild();
     const interval = window.setInterval(() => void checkForNewBuild(), CHECK_INTERVAL_MS);
     const onFocus = () => void checkForNewBuild();
+    const onImageError = (event: Event) => {
+      const image = event.target;
+      if (image instanceof HTMLImageElement && image.currentSrc.includes("/manus-storage/")) {
+        void checkForNewBuild();
+      }
+    };
     window.addEventListener("focus", onFocus);
+    window.addEventListener("error", onImageError, true);
     return () => {
       window.clearInterval(interval);
       window.removeEventListener("focus", onFocus);
+      window.removeEventListener("error", onImageError, true);
     };
   }, [checkForNewBuild]);
 
