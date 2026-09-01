@@ -31,22 +31,31 @@ describe("storage proxy", () => {
     expect(response.status).toBe(404);
   });
 
-  it("reuses a short-lived signed product URL instead of repeatedly calling storage", async () => {
+  it("streams a signed product object same-origin and reuses its short-lived signed URL", async () => {
     const nativeFetch = globalThis.fetch;
+    let forgeCalls = 0;
     const fetchMock = vi.fn(async (input: string | URL | Request, init?: RequestInit) => {
       const requestUrl = typeof input === "string" ? input : input.toString();
       if (requestUrl.startsWith(baseUrl)) return nativeFetch(input, init);
-      return new Response(JSON.stringify({ url: "https://storage.example.test/product.jpg" }), { status: 200 });
+      if (requestUrl.includes("presign/get")) {
+        forgeCalls += 1;
+        return new Response(JSON.stringify({ url: "https://storage.example.test/product.jpg" }), { status: 200 });
+      }
+      return new Response(Buffer.from("image-bytes"), { status: 200, headers: { "content-type": "image/png", "content-length": "11" } });
     });
     vi.stubGlobal("fetch", fetchMock);
 
-    const first = await fetch(`${baseUrl}/manus-storage/products/cache-check.jpg`, { redirect: "manual" });
-    const second = await fetch(`${baseUrl}/manus-storage/products/cache-check.jpg`, { redirect: "manual" });
+    const first = await fetch(`${baseUrl}/manus-storage/products/cache-check.jpg`);
+    const second = await fetch(`${baseUrl}/manus-storage/products/cache-check.jpg`);
 
-    expect(first.status).toBe(307);
-    expect(second.status).toBe(307);
-    expect(first.headers.get("cache-control")).toContain("max-age=120");
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    expect(first.headers.get("content-type")).toContain("image/png");
+    expect(first.headers.get("cache-control")).toContain("max-age=300");
+    expect(await first.text()).toBe("image-bytes");
+    expect(await second.text()).toBe("image-bytes");
     const upstreamCalls = fetchMock.mock.calls.filter(([input]) => !String(input).startsWith(baseUrl));
-    expect(upstreamCalls).toHaveLength(1);
+    expect(upstreamCalls).toHaveLength(3);
+    expect(forgeCalls).toBe(1);
   });
 });

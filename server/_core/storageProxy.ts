@@ -99,8 +99,22 @@ export function registerStorageProxy(app: Express) {
 
     try {
       const url = await getSignedUrl(key);
-      res.set("Cache-Control", "public, max-age=120, stale-while-revalidate=60");
-      res.redirect(307, url);
+      const upstream = await fetch(url, {
+        redirect: "follow",
+        signal: AbortSignal.timeout(60_000),
+      });
+      if (!upstream.ok || !upstream.body) {
+        throw new Error(`Storage object unavailable (${upstream.status})`);
+      }
+
+      const contentType = upstream.headers.get("content-type");
+      const contentLength = upstream.headers.get("content-length");
+      if (contentType) res.set("Content-Type", contentType);
+      if (contentLength) res.set("Content-Length", contentLength);
+      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=60");
+      res.set("X-Content-Type-Options", "nosniff");
+      const payload = Buffer.from(await upstream.arrayBuffer());
+      res.end(payload);
     } catch (err) {
       console.error("[StorageProxy] failed:", err);
       res.status(502).send(err instanceof Error ? err.message : "Storage proxy error");

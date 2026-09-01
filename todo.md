@@ -899,3 +899,12 @@
 - [x] Add regression coverage for authenticated image loading and fallback recovery
 - [x] Verify the catalogue on desktop and 390px mobile after the approved-user transition path
 - [x] Save a checkpoint for the authenticated image regression fix
+
+## Phase 132: Email/Password Authenticated Asset Failure
+- [x] Reproduce the signed-in email/password catalogue and header-logo image failures from the supplied mobile evidence; the common `/manus-storage/` failure was confirmed from the shared symptoms
+- [x] Compare email/password and Manus OAuth asset requests, response status, redirects, and cache behaviour
+- [x] Fix the shared asset delivery path without weakening authentication or gated catalogue access
+- [x] Preserve branded fallback recovery for product images and ensure the header logo has a valid fallback path through same-origin delivery
+- [x] Add regression coverage for the authenticated asset path and exact public-to-email-login transition
+- [x] Verify the published-style flow at desktop and 390px mobile widths
+- [ ] Save a checkpoint for the email/password authenticated asset fix
