@@ -935,3 +935,10 @@
 - [x] Add regression coverage for corrected category assignments and filter results
 - [x] Verify all audited category filters on desktop and 390px mobile
 - [x] Save checkpoint `fd5a3a1a` and record the corrected category audit
+
+## Phase 137: HD Labs AMPS versus Injectables Reclassification
+- [x] Audit every active HD Labs product currently assigned to AMPS or INJECTABLES and identify whether its name explicitly contains AMP
+- [x] Move HD Labs injectable products without AMP in the name to INJECTABLES, preserving only the three explicit AMP products in AMPS
+- [x] Add regression coverage for the HD Labs category split and highlighted product examples
+- [x] Verify AMPS and INJECTABLES filters on desktop and 390px mobile
+- [ ] Save a checkpoint and report the corrected HD Labs category split

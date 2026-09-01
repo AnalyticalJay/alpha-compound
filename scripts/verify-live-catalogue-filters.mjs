@@ -76,7 +76,7 @@ try {
   await verifyFilter({ actionName: /Browse BP Pharma/i, expected: 112 });
 
   const categories = [
-    { name: "INJECTABLES", expected: 27 },
+    { name: "INJECTABLES", expected: 50 },
     { name: "ORALS", expected: 29 },
     { name: "SARMS", expected: 19 },
     { name: "PEPTIDES", expected: 51 },
@@ -87,7 +87,7 @@ try {
   }
 
   const viewportLabel = mobileViewport ? "390px mobile" : "desktop";
-  console.log(`Verified ${viewportLabel} catalogue filters: All 230, HD Labs 112, BP Pharma 112; Injectables 27, Orals 29, SARMS 19, Peptides 51, Fat Loss 13.`);
+  console.log(`Verified ${viewportLabel} catalogue filters: All 230, HD Labs 112, BP Pharma 112; Injectables 50, Orals 29, SARMS 19, Peptides 51, Fat Loss 13.`);
 } finally {
   await browser.close();
 }

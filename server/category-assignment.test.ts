@@ -52,6 +52,22 @@ describe("catalogue category assignments", () => {
     });
   });
 
+  it("keeps only explicit HD Labs AMP names in the AMPS category", async () => {
+    const db = await getDb();
+    const rows = await db
+      .select({ id: products.id, name: products.name, categoryName: categories.name })
+      .from(products)
+      .leftJoin(categories, eq(products.categoryId, categories.id))
+      .where(eq(products.brand, "hd_labs"));
+
+    const hdAmpRows = rows.filter((row) => row.categoryName === "AMPS");
+    expect(hdAmpRows.length).toBeGreaterThan(0);
+    expect(hdAmpRows.every((row) => /amp/i.test(row.name))).toBe(true);
+    expect(rows.find((row) => row.id === 30009)?.categoryName).toBe("INJECTABLES");
+    expect(rows.find((row) => row.id === 30017)?.categoryName).toBe("INJECTABLES");
+    expect(rows.find((row) => row.id === 30033)?.categoryName).toBe("INJECTABLES");
+  });
+
   it("matches every audited high-confidence correction", async () => {
     const db = await getDb();
     const ids = Object.keys(expectedCategoryByProductId).map(Number);
