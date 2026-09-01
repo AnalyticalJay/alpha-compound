@@ -910,10 +910,10 @@
 - [x] Save checkpoint `fb6fedcc` containing the verified runtime and canonical-domain image findings
 
 ## Phase 133: Canonical Domain Routing
-- [ ] Inspect the current deployment and domain bindings for alphashop-fvmuktca.manus.space, anabolicsafrica.co.za, and www.anabolicsafrica.co.za
-- [ ] Align anabolicsafrica.co.za with the latest Anabolics Africa deployment and preserve the www redirect
-- [ ] Verify the canonical domain serves the latest build and same-origin image responses
-- [ ] Document any platform-managed routing action that must be completed in the Management UI
+- [x] Inspect the current deployment and domain bindings for alphashop-fvmuktca.manus.space, anabolicsafrica.co.za, and www.anabolicsafrica.co.za
+- [x] Align anabolicsafrica.co.za with the latest Anabolics Africa deployment and preserve the www redirect
+- [ ] Verify the canonical domain serves the latest build and same-origin image responses; browser image decoding is verified, but the live storage route still reports a redirect and remains a platform-runtime observation
+- [x] Document any platform-managed routing action that must be completed in the Management UI
 
 ## Phase 134: Latest Runtime Refresh
 - [x] Confirm the latest corrected checkpoint is saved and identify the runtime currently serving the canonical domain
@@ -934,4 +934,4 @@
 - [x] Correct 37 verified misclassifications without changing product names, pricing, or stock; ambiguous pharmaceutical classifications remain conservatively assigned or flagged for review
 - [x] Add regression coverage for corrected category assignments and filter results
 - [x] Verify all audited category filters on desktop and 390px mobile
-- [ ] Save a checkpoint and report the corrected category audit
+- [x] Save checkpoint `fd5a3a1a` and record the corrected category audit
