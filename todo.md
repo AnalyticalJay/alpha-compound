@@ -819,3 +819,11 @@
 - [x] Measure active brand products, primary-image associations, and any missing or fallback image exceptions
 - [x] Verify customer-facing HD Labs and BP Pharma image loading on desktop and 390px mobile catalogue views
 - [x] Report the verified image coverage and any remaining delivery exceptions
+
+## Phase 121: Public Go-Live Readiness Audit
+- [x] Define launch acceptance criteria and distinguish verified controls from client-owned dependencies
+- [x] Audit public storefront, gated access, catalogue, customer account, administrator workflows, checkout, and delivery readiness
+- [x] Verify SEO, performance, security, payment handoff, responsive behaviour, and image-placeholder impact
+- [x] Classify blockers, operational dependencies, and non-blocking content-quality issues
+- [x] Write and save a client-ready go-live audit outcome
+- [x] Deliver the launch-readiness summary and checkpoint
