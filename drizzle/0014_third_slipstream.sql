@@ -1,0 +1,2 @@
+ALTER TABLE `order_items` ADD `availabilityStatus` enum('pending','in_stock','out_of_stock') DEFAULT 'pending' NOT NULL;--> statement-breakpoint
+ALTER TABLE `order_items` ADD `availabilityNotes` varchar(512);

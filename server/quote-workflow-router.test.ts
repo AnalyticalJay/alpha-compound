@@ -87,6 +87,7 @@ describe("quote workflow router", () => {
   });
 
   it("allows an admin to approve or reject a quote with review notes", async () => {
+    dbMocks.getOrderById.mockResolvedValue({ userId: 7 });
     const caller = appRouter.createCaller(makeContext(makeUser({ role: "admin" })));
 
     await caller.orders.review({

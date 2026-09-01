@@ -40,6 +40,8 @@ export default function AdminOrderDetail() {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [trackingUrl, setTrackingUrl] = useState("");
   const [shippingNotes, setShippingNotes] = useState("");
+  const [reviewNotes, setReviewNotes] = useState("");
+  const [itemAvailability, setItemAvailability] = useState<Record<number, { status: "pending" | "in_stock" | "out_of_stock"; notes: string }>>({});
 
   const orderQuery = trpc.orders.adminDetail.useQuery(
     { orderId: parseInt(orderId ?? "0") },
@@ -60,6 +62,11 @@ export default function AdminOrderDetail() {
     },
     onError: (e) => toast.error(e.message),
   });
+
+  useEffect(() => {
+    if (!order) return;
+    setItemAvailability(Object.fromEntries(order.items.map((item: any) => [item.id, { status: item.availabilityStatus ?? "pending", notes: item.availabilityNotes ?? "" }])) as Record<number, { status: "pending" | "in_stock" | "out_of_stock"; notes: string }>);
+  }, [order?.id, order?.items]);
 
   useEffect(() => {
     if (!order?.shipping) return;
@@ -85,6 +92,24 @@ export default function AdminOrderDetail() {
       toast.success("Flash Parcels tracking refreshed");
       utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
       utils.orders.adminList.invalidate();
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const updateItemAvailability = trpc.orders.adminUpdateItemAvailability.useMutation({
+    onSuccess: () => {
+      toast.success("Quote item availability updated");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const reviewQuote = trpc.orders.review.useMutation({
+    onSuccess: () => {
+      toast.success("Quote review saved");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+      utils.orders.adminList.invalidate();
+      setReviewNotes("");
     },
     onError: (error) => toast.error(error.message),
   });
@@ -226,27 +251,27 @@ export default function AdminOrderDetail() {
       <div className="glass-card rounded-xl p-6">
         <div className="flex items-center gap-2 mb-4">
           <Package className="h-4 w-4 text-primary" />
-          <h2 className="font-bold">Items Ordered</h2>
+          <h2 className="font-bold">Items Ordered & Availability</h2>
         </div>
-        <div className="space-y-3">
-          {order.items.map((item: any) => (
-            <div key={item.id} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
-              <div>
-                <p className="font-medium text-sm">{item.productName}</p>
-                <p className="text-xs text-muted-foreground">
-                  Qty: {item.quantity} × R{parseFloat(item.priceAtPurchase).toFixed(2)}
-                </p>
+        <p className="mb-4 text-sm text-muted-foreground">Review each line before approving the quote. Customers will see these saved availability decisions in their dashboard.</p>
+        <div className="space-y-4">
+          {order.items.map((item: any) => {
+            const draft = itemAvailability[item.id] ?? { status: "pending" as const, notes: "" };
+            return <div key={item.id} className="rounded-lg border border-border/30 p-4">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div><p className="font-medium text-sm">{item.productName}</p><p className="text-xs text-muted-foreground">Qty: {item.quantity} × R{parseFloat(item.priceAtPurchase).toFixed(2)}</p></div>
+                <p className="font-bold text-sm text-primary">R{(parseFloat(item.priceAtPurchase) * item.quantity).toFixed(2)}</p>
               </div>
-              <p className="font-bold text-sm text-primary">
-                R{(parseFloat(item.priceAtPurchase) * item.quantity).toFixed(2)}
-              </p>
-            </div>
-          ))}
-          <div className="flex justify-between font-bold pt-2">
-            <span>Total</span>
-            <span className="text-primary">R{parseFloat(order.totalAmount).toFixed(2)}</span>
-          </div>
+              <div className="mt-3 grid gap-3 sm:grid-cols-[minmax(0,190px)_1fr_auto] sm:items-end">
+                <label className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Availability<select value={draft.status} onChange={(event) => setItemAvailability((current) => ({ ...current, [item.id]: { ...draft, status: event.target.value as typeof draft.status } }))} className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground"><option value="pending">Needs review</option><option value="in_stock">In stock</option><option value="out_of_stock">Out of stock</option></select></label>
+                <label className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Customer note<input value={draft.notes} onChange={(event) => setItemAvailability((current) => ({ ...current, [item.id]: { ...draft, notes: event.target.value } }))} placeholder="Optional availability note" className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
+                <Button type="button" variant="outline" className="min-h-10 font-bold" onClick={() => updateItemAvailability.mutate({ orderId: order.id, itemId: item.id, availabilityStatus: draft.status, availabilityNotes: draft.notes })} disabled={updateItemAvailability.isPending}>Save item</Button>
+              </div>
+            </div>;
+          })}
+          <div className="flex justify-between font-bold pt-2"><span>Total</span><span className="text-primary">R{parseFloat(order.totalAmount).toFixed(2)}</span></div>
         </div>
+        {order.status === "quote_pending" && <div className="mt-5 border-t border-border/30 pt-5"><label className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Quote review note<textarea value={reviewNotes} onChange={(event) => setReviewNotes(event.target.value)} rows={2} placeholder="Add a note for the customer" className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label><div className="mt-3 flex flex-wrap gap-3"><Button type="button" className="min-h-10 bg-emerald-600 font-bold text-white hover:bg-emerald-700" onClick={() => reviewQuote.mutate({ orderId: order.id, decision: "quote_approved", notes: reviewNotes || undefined })} disabled={reviewQuote.isPending || order.items.some((item: any) => (itemAvailability[item.id]?.status ?? item.availabilityStatus ?? "pending") !== "in_stock")}>Approve quote</Button><Button type="button" variant="outline" className="min-h-10 border-red-400/40 font-bold text-red-300" onClick={() => reviewQuote.mutate({ orderId: order.id, decision: "quote_rejected", notes: reviewNotes || undefined })} disabled={reviewQuote.isPending}>Reject quote</Button></div><p className="mt-2 text-xs text-muted-foreground">Every item must be saved as In stock before approval and payment becomes available.</p></div>}
       </div>
 
       {/* Shipping Details */}

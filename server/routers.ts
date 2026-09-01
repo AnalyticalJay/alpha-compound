@@ -51,6 +51,7 @@ import {
   updateProduct,
   updateOrderEftProof,
   updateOrderStatus,
+  updateOrderItemAvailability,
   updateShippingDetails,
   persistShiplogicTracking,
   markShiplogicTrackingError,
@@ -717,9 +718,10 @@ export const appRouter = router({
       }),
 
     review: adminProcedure
-      .input(z.object({ orderId: z.number(), decision: z.enum(["quote_approved", "quote_rejected"]), notes: z.string().max(2000).optional() }))
+      .input(z.object({ orderId: z.number(), decision: z.enum(["quote_approved", "quote_rejected"]), notes: z.string().optional() }))
       .mutation(async ({ ctx, input }) => {
         const quote = await getOrderById(input.orderId);
+        if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         await reviewQuote(input.orderId, ctx.user.id, input.decision, input.notes);
         if (quote) await createNotification({
           userId: quote.userId,
@@ -766,6 +768,18 @@ export const appRouter = router({
     adminDetail: adminProcedure
       .input(z.object({ orderId: z.number() }))
       .query(({ input }) => isE2ETestMode() ? getE2EOrder(input.orderId) as any : getOrderById(input.orderId)),
+
+    adminUpdateItemAvailability: adminProcedure
+      .input(z.object({
+        orderId: z.number(),
+        itemId: z.number(),
+        availabilityStatus: z.enum(["pending", "in_stock", "out_of_stock"]),
+        availabilityNotes: z.string().max(512).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        if (isE2ETestMode()) return { success: true };
+        return updateOrderItemAvailability(input);
+      }),
 
     adminUpdateStatus: adminProcedure
       .input(z.object({

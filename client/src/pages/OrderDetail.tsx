@@ -213,7 +213,8 @@ export default function OrderDetail() {
     return <div className="min-h-screen flex flex-col bg-background"><Navbar /><main className="flex-1 container py-12 text-center"><p className="text-muted-foreground">Quote not found.</p><Link href="/account"><Button className="mt-4 text-white font-bold">Back to Account</Button></Link></main><Footer /></div>;
   }
 
-  const isApprovedForPayment = (order.status === "quote_approved" || order.status === "awaiting_payment") && order.paymentStatus !== "paid" && order.paymentStatus !== "awaiting_eft";
+  const hasUnavailableItems = order.items.some((item: any) => (item.availabilityStatus ?? "pending") !== "in_stock");
+  const isApprovedForPayment = !hasUnavailableItems && (order.status === "quote_approved" || order.status === "awaiting_payment") && order.paymentStatus !== "paid" && order.paymentStatus !== "awaiting_eft";
   const isEftAwaiting = order.status === "awaiting_payment" && order.paymentMethod === "eft";
 
   return (
@@ -235,7 +236,8 @@ export default function OrderDetail() {
 
             <div className="glass-card rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4"><Package className="h-4 w-4 text-primary" /><h2 className="font-bold">Products in Quote</h2></div>
-              <div className="space-y-3">{order.items.map((item: any) => <div key={item.id} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0"><div><p className="font-medium text-sm">{item.productName}</p><p className="text-xs text-muted-foreground">Qty: {item.quantity}</p></div><p className="font-bold text-sm text-primary">R{(parseFloat(item.priceAtPurchase) * item.quantity).toFixed(2)}</p></div>)}</div>
+              <div className="space-y-3">{order.items.map((item: any) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-b border-border/20 py-2 last:border-0"><div><div className="flex flex-wrap items-center gap-2"><p className="font-medium text-sm">{item.productName}</p><Badge className={`text-[10px] ${item.availabilityStatus === "in_stock" ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" : item.availabilityStatus === "out_of_stock" ? "border-red-400/30 bg-red-400/10 text-red-300" : "border-yellow-400/30 bg-yellow-400/10 text-yellow-300"}`}>{item.availabilityStatus === "in_stock" ? "In stock" : item.availabilityStatus === "out_of_stock" ? "Out of stock" : "Availability pending"}</Badge></div><p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>{item.availabilityNotes && <p className="mt-1 text-xs text-muted-foreground">{item.availabilityNotes}</p>}</div><p className="font-bold text-sm text-primary">R{(parseFloat(item.priceAtPurchase) * item.quantity).toFixed(2)}</p></div>)}</div>
+              {hasUnavailableItems && <div className="mt-4 rounded-lg border border-amber-400/30 bg-amber-400/10 p-3 text-sm text-amber-200" role="status">This quote is awaiting stock confirmation. Payment will become available after every item is confirmed as in stock.</div>}
             </div>
 
             {order.shipping && <div className="glass-card rounded-xl p-6"><div className="flex items-center gap-2 mb-4"><MapPin className="h-4 w-4 text-primary" /><h2 className="font-bold">Delivery Address</h2></div><div className="text-sm space-y-1"><p className="font-medium">{order.shipping.fullName}</p><p className="text-muted-foreground">{order.shipping.addressLine1}</p>{order.shipping.addressLine2 && <p className="text-muted-foreground">{order.shipping.addressLine2}</p>}<p className="text-muted-foreground">{order.shipping.city}, {order.shipping.postalCode}</p><p className="text-muted-foreground">{order.shipping.country}</p><p className="text-muted-foreground mt-2">{order.shipping.phone}</p></div></div>}

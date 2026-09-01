@@ -741,6 +741,10 @@ export async function reviewQuote(
   const order = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
   if (!order[0]) throw new Error("Quote not found");
   if (order[0].status !== "quote_pending") throw new Error("Quote has already been reviewed");
+  if (decision === "quote_approved") {
+    const unavailable = await db.select({ id: orderItems.id }).from(orderItems).where(and(eq(orderItems.orderId, orderId), inArray(orderItems.availabilityStatus, ["pending", "out_of_stock"]))).limit(1);
+    if (unavailable[0]) throw new Error("Confirm every quote item as in stock before approval");
+  }
 
   await db.update(orders).set({
     status: decision,
@@ -760,6 +764,21 @@ export async function reviewQuote(
   });
 }
 
+export async function updateOrderItemAvailability(data: {
+  orderId: number;
+  itemId: number;
+  availabilityStatus: "pending" | "in_stock" | "out_of_stock";
+  availabilityNotes?: string | null;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const item = await db.select({ id: orderItems.id, orderStatus: orders.status }).from(orderItems).innerJoin(orders, eq(orderItems.orderId, orders.id)).where(and(eq(orderItems.id, data.itemId), eq(orderItems.orderId, data.orderId))).limit(1);
+  if (!item[0]) throw new Error("Quote item not found");
+  if (item[0].orderStatus !== "quote_pending") throw new Error("Only quotes awaiting review can change item availability");
+  await db.update(orderItems).set({ availabilityStatus: data.availabilityStatus, availabilityNotes: data.availabilityNotes?.trim() || null }).where(eq(orderItems.id, data.itemId));
+  return { success: true };
+}
+
 export async function chooseQuotePayment(
   orderId: number,
   userId: number,
@@ -769,6 +788,8 @@ export async function chooseQuotePayment(
   if (!db) throw new Error("Database not available");
   const order = await db.select().from(orders).where(and(eq(orders.id, orderId), eq(orders.userId, userId))).limit(1);
   if (!order[0]) throw new Error("Quote not found");
+  const unavailable = await db.select({ id: orderItems.id }).from(orderItems).where(and(eq(orderItems.orderId, orderId), inArray(orderItems.availabilityStatus, ["pending", "out_of_stock"]))).limit(1);
+  if (unavailable[0]) throw new Error("Payment is unavailable until every quote item is confirmed in stock");
   const canSelectPayment = order[0].status === "quote_approved"
     || (order[0].status === "awaiting_payment" && order[0].paymentStatus !== "awaiting_eft");
   if (!canSelectPayment) throw new Error("Quote is not available for payment selection");
@@ -818,6 +839,8 @@ export async function getOrderById(orderId: number) {
       id: orderItems.id,
       quantity: orderItems.quantity,
       priceAtPurchase: orderItems.priceAtPurchase,
+      availabilityStatus: orderItems.availabilityStatus,
+      availabilityNotes: orderItems.availabilityNotes,
       productId: products.id,
       productName: products.name,
       productSlug: products.slug,

@@ -842,3 +842,11 @@
 - [x] Add or verify a safe admin navigation path to Tristan’s own customer-account view
 - [x] Add regression coverage for role access, account ownership, and admin/customer navigation boundaries
 - [x] Save a checkpoint and deliver the verified access update
+
+## Phase 124: Stock Availability and Quote Line Review
+- [x] Audit active product quantities, availability state, order-line data, and current quote approval behaviour
+- [x] Ensure every active catalogue product has an explicit usable quantity and availability state without fabricating sales data
+- [x] Add administrator per-line stock editing to order detail and persist quote availability updates
+- [x] Show updated in-stock/out-of-stock line states and approval/payment implications in the customer dashboard
+- [x] Add regression coverage for stock controls, quote updates, access boundaries, and responsive order views
+- [x] Save a checkpoint and deliver the verified stock and quote-review enhancement

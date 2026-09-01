@@ -180,6 +180,8 @@ export const orderItems = mysqlTable("order_items", {
   productId: int("productId").notNull().references(() => products.id),
   quantity: int("quantity").notNull(),
   priceAtPurchase: decimal("priceAtPurchase", { precision: 10, scale: 2 }).notNull(),
+  availabilityStatus: mysqlEnum("availabilityStatus", ["pending", "in_stock", "out_of_stock"]).default("pending").notNull(),
+  availabilityNotes: varchar("availabilityNotes", { length: 512 }),
 });
 
 export type OrderItem = typeof orderItems.$inferSelect;
