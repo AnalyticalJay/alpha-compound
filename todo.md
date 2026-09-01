@@ -814,3 +814,8 @@
 - [x] Map selected address details into the courier-relevant delivery fields and retain manual fallback entry
 - [x] Add regression coverage and verify privacy, selection, validation, and responsive checkout behaviour
 - [x] Save a checkpoint and deliver the verified address-autocomplete enhancement
+
+## Phase 120: HD Labs and BP Pharma Image Display Verification
+- [x] Measure active brand products, primary-image associations, and any missing or fallback image exceptions
+- [x] Verify customer-facing HD Labs and BP Pharma image loading on desktop and 390px mobile catalogue views
+- [x] Report the verified image coverage and any remaining delivery exceptions
