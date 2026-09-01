@@ -942,3 +942,9 @@
 - [x] Add regression coverage for the HD Labs category split and highlighted product examples
 - [x] Verify AMPS and INJECTABLES filters on desktop and 390px mobile
 - [x] Save checkpoint `fb993ddb` and report the corrected HD Labs category split
+
+## Phase 138: Non-Charging PayFast Readiness Audit
+- [x] Review the current PayFast runtime, checkout bridge, signature generation, and ITN verification paths
+- [x] Validate non-sensitive production checkout fields, endpoint derivation, and callback replay protections
+- [x] Add or improve regression coverage without initiating a live charge or changing credentials; existing configuration, route, bridge, signature, and UI suites all pass
+- [x] Document client-owned steps that remain blocked on matched credentials and an authorised R10 payment
