@@ -864,3 +864,15 @@
 - [x] Preserve watermark, gallery navigation, fallback, and responsive behaviour during image transitions
 - [x] Add regression coverage and verify representative product pages at desktop and 390px mobile widths
 - [x] Save a checkpoint and deliver the verified loading-skeleton enhancement
+
+## Phase 127: Regular Customer Product Image Verification
+- [x] Inspect public catalogue cards and product-detail image rendering as a non-administrator
+- [x] Verify actual product images display beneath the watermark on desktop and 390px mobile views
+- [x] Report any remaining watermark-only or image-delivery exceptions
+
+## Phase 128: Approved-User Product Image Delivery Fix
+- [x] Reproduce public versus approved-user image behaviour and inspect authenticated catalogue responses
+- [x] Trace authenticated image URL generation, storage access, browser loading, and watermark layering
+- [x] Apply the minimal verified fix without weakening catalogue access controls
+- [x] Add regression coverage and verify public and approved-user catalogue images at desktop and 390px mobile widths
+- [x] Save a checkpoint and deliver the verified approved-user image correction
