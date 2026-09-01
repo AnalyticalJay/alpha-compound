@@ -876,3 +876,11 @@
 - [x] Apply the minimal verified fix without weakening catalogue access controls
 - [x] Add regression coverage and verify public and approved-user catalogue images at desktop and 390px mobile widths
 - [x] Save a checkpoint and deliver the verified approved-user image correction
+
+## Phase 129: Stale Build Refresh Recovery
+- [ ] Inspect build-version metadata, app bootstrap, cache headers, and navigation lifecycle
+- [ ] Add stale-build detection with a subtle refresh prompt and safe refresh action
+- [ ] Avoid automatic reloads during checkout, forms, or other unsaved user input
+- [ ] Add an image-error recovery path for stale asset or storage failures
+- [ ] Add regression coverage and verify desktop and 390px mobile behaviour
+- [ ] Save a checkpoint and deliver the verified stale-build recovery enhancement
