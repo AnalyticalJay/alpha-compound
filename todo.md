@@ -857,3 +857,10 @@
 - [x] Add regression coverage for image delivery, watermark overlay, fallback handling, and detail-gallery rendering
 - [x] Verify representative product pages at desktop and 390px mobile widths
 - [x] Save a checkpoint and deliver the verified product-detail image correction
+
+## Phase 126: Product Detail Image Loading Skeleton
+- [x] Inspect shared skeleton patterns and the product-detail image load lifecycle
+- [x] Add an accessible image-area skeleton that clears only after the eager image has loaded
+- [x] Preserve watermark, gallery navigation, fallback, and responsive behaviour during image transitions
+- [x] Add regression coverage and verify representative product pages at desktop and 390px mobile widths
+- [x] Save a checkpoint and deliver the verified loading-skeleton enhancement

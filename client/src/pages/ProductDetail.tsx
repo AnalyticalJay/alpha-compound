@@ -9,6 +9,7 @@ import { Link, useParams } from "wouter";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import ProductImage from "@/components/ProductImage";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,10 +17,17 @@ export default function ProductDetail() {
   const isApproved = (user as any)?.status === "approved";
   const [quantity, setQuantity] = useState(1);
   const [imgIndex, setImgIndex] = useState(0);
+  const [isPrimaryImageLoaded, setIsPrimaryImageLoaded] = useState(false);
 
   const utils = trpc.useUtils();
   const productQuery = trpc.products.bySlug.useQuery({ slug: slug ?? "" }, { enabled: !!slug });
   const product = productQuery.data;
+  const images = product?.images ?? [];
+  const currentImage = images[imgIndex];
+
+  useEffect(() => {
+    setIsPrimaryImageLoaded(false);
+  }, [currentImage?.imageUrl]);
 
   useEffect(() => {
     if (!product || !slug) return;
@@ -78,9 +86,6 @@ export default function ProductDetail() {
     );
   }
 
-  const images = product.images ?? [];
-  const currentImage = images[imgIndex];
-
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Navbar />
@@ -97,13 +102,23 @@ export default function ProductDetail() {
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <div className="relative aspect-square rounded-lg overflow-hidden border border-[#1E293B] bg-[#111111] mb-4">
                 {currentImage ? (
-                  <ProductImage
-                    src={currentImage.imageUrl}
-                    alt={product.name}
-                    loading="eager"
-                    fetchPriority="high"
-                    wrapperClassName="absolute inset-0"
-                  />
+                  <>
+                    <ProductImage
+                      src={currentImage.imageUrl}
+                      alt={product.name}
+                      loading="eager"
+                      fetchPriority="high"
+                      onLoad={() => setIsPrimaryImageLoaded(true)}
+                      onError={() => setIsPrimaryImageLoaded(true)}
+                      wrapperClassName="absolute inset-0"
+                      imageClassName={`transition-opacity duration-300 ${isPrimaryImageLoaded ? "opacity-100" : "opacity-0"}`}
+                    />
+                    <Skeleton
+                      aria-hidden="true"
+                      data-product-image-skeleton="true"
+                      className={`pointer-events-none absolute inset-0 z-20 rounded-none bg-gradient-to-br from-[#111111] via-[#1E293B] to-[#111111] transition-opacity duration-300 ${isPrimaryImageLoaded ? "opacity-0" : "opacity-100"}`}
+                    />
+                  </>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="w-24 h-24 rounded-full flex items-center justify-center"
