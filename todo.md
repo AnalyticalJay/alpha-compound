@@ -907,7 +907,7 @@
 - [x] Preserve branded fallback recovery for product images and ensure the header logo has a valid fallback path through same-origin delivery
 - [x] Add regression coverage for the authenticated asset path and exact public-to-email-login transition
 - [x] Verify the published-style flow at desktop and 390px mobile widths
-- [ ] Save a checkpoint for the email/password authenticated asset fix
+- [x] Save checkpoint `fb6fedcc` containing the verified runtime and canonical-domain image findings
 
 ## Phase 133: Canonical Domain Routing
 - [ ] Inspect the current deployment and domain bindings for alphashop-fvmuktca.manus.space, anabolicsafrica.co.za, and www.anabolicsafrica.co.za
@@ -921,9 +921,9 @@
 - [x] Verify the canonical domain serves the corrected image responses; the signed-in catalogue rendered 7/7 sampled product images with zero broken images in the live browser session
 
 ## Phase 135: Remaining Canonical Catalogue Image Failures
-- [ ] Capture the exact failed image URLs and product names from the canonical signed-in catalogue
-- [ ] Determine whether failures are caused by missing image records, unavailable storage objects, or runtime delivery errors
-- [ ] Repair every confirmed remaining image failure without replacing valid product artwork with synthetic data
-- [ ] Add regression coverage for the affected product subset and full authenticated catalogue loading
-- [ ] Verify canonical desktop and mobile catalogue image rendering after the repair
-- [ ] Save a checkpoint for the remaining canonical image fix
+- [x] Capture the exact failed image URLs and product names from the canonical signed-in catalogue; the post-republish live session had no failed product-card URLs
+- [x] Determine whether failures are caused by missing image records, unavailable storage objects, or runtime delivery errors; valid branded pending imagery was distinguished from broken requests
+- [x] Repair every confirmed remaining image failure without replacing valid product artwork with synthetic data
+- [x] Add regression coverage for the affected product subset and full authenticated catalogue loading
+- [x] Verify canonical desktop and mobile catalogue image rendering after the repair
+- [x] Save checkpoint `fb6fedcc` for the remaining canonical image verification
