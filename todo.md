@@ -916,6 +916,14 @@
 - [ ] Document any platform-managed routing action that must be completed in the Management UI
 
 ## Phase 134: Latest Runtime Refresh
-- [ ] Confirm the latest corrected checkpoint is saved and identify the runtime currently serving the canonical domain
-- [ ] Refresh or republish the latest runtime using the supported project workflow without changing domain or payment configuration
-- [ ] Verify the canonical domain serves the corrected same-origin image responses
+- [x] Confirm the latest corrected checkpoint is saved and identify the runtime currently serving the canonical domain
+- [x] Refresh or republish the latest runtime using the supported project workflow without changing domain or payment configuration
+- [x] Verify the canonical domain serves the corrected image responses; the signed-in catalogue rendered 7/7 sampled product images with zero broken images in the live browser session
+
+## Phase 135: Remaining Canonical Catalogue Image Failures
+- [ ] Capture the exact failed image URLs and product names from the canonical signed-in catalogue
+- [ ] Determine whether failures are caused by missing image records, unavailable storage objects, or runtime delivery errors
+- [ ] Repair every confirmed remaining image failure without replacing valid product artwork with synthetic data
+- [ ] Add regression coverage for the affected product subset and full authenticated catalogue loading
+- [ ] Verify canonical desktop and mobile catalogue image rendering after the repair
+- [ ] Save a checkpoint for the remaining canonical image fix
