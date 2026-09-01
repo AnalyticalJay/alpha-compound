@@ -100,6 +100,8 @@ export default function ProductDetail() {
                   <ProductImage
                     src={currentImage.imageUrl}
                     alt={product.name}
+                    loading="eager"
+                    fetchPriority="high"
                     wrapperClassName="absolute inset-0"
                   />
                 ) : (

@@ -850,3 +850,10 @@
 - [x] Show updated in-stock/out-of-stock line states and approval/payment implications in the customer dashboard
 - [x] Add regression coverage for stock controls, quote updates, access boundaries, and responsive order views
 - [x] Save a checkpoint and deliver the verified stock and quote-review enhancement
+
+## Phase 125: Product Detail Image Rendering Fix
+- [x] Reproduce the product-detail image failure and trace the detail gallery, shared watermark, and storage-image paths
+- [x] Correct the verified defect so product images render beneath the watermark on product-detail pages
+- [x] Add regression coverage for image delivery, watermark overlay, fallback handling, and detail-gallery rendering
+- [x] Verify representative product pages at desktop and 390px mobile widths
+- [x] Save a checkpoint and deliver the verified product-detail image correction

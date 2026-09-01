@@ -29,5 +29,7 @@ describe("product image watermark", () => {
     [productCard, productDetail, cart, home, adminProducts, adminProductEdit].forEach((source) => {
       expect(source).toContain("ProductImage");
     });
+    expect(productDetail).toContain('loading="eager"');
+    expect(productDetail).toContain('fetchPriority="high"');
   });
 });
