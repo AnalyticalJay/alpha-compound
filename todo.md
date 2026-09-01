@@ -941,4 +941,4 @@
 - [x] Move HD Labs injectable products without AMP in the name to INJECTABLES, preserving only the three explicit AMP products in AMPS
 - [x] Add regression coverage for the HD Labs category split and highlighted product examples
 - [x] Verify AMPS and INJECTABLES filters on desktop and 390px mobile
-- [ ] Save a checkpoint and report the corrected HD Labs category split
+- [x] Save checkpoint `fb993ddb` and report the corrected HD Labs category split
