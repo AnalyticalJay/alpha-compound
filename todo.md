@@ -908,3 +908,14 @@
 - [x] Add regression coverage for the authenticated asset path and exact public-to-email-login transition
 - [x] Verify the published-style flow at desktop and 390px mobile widths
 - [ ] Save a checkpoint for the email/password authenticated asset fix
+
+## Phase 133: Canonical Domain Routing
+- [ ] Inspect the current deployment and domain bindings for alphashop-fvmuktca.manus.space, anabolicsafrica.co.za, and www.anabolicsafrica.co.za
+- [ ] Align anabolicsafrica.co.za with the latest Anabolics Africa deployment and preserve the www redirect
+- [ ] Verify the canonical domain serves the latest build and same-origin image responses
+- [ ] Document any platform-managed routing action that must be completed in the Management UI
+
+## Phase 134: Latest Runtime Refresh
+- [ ] Confirm the latest corrected checkpoint is saved and identify the runtime currently serving the canonical domain
+- [ ] Refresh or republish the latest runtime using the supported project workflow without changing domain or payment configuration
+- [ ] Verify the canonical domain serves the corrected same-origin image responses
