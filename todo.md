@@ -961,7 +961,7 @@
 - [x] Fix the shared persistence or storage delivery issue without replacing user-uploaded artwork; both uploaded images are primary and return 200 image responses
 - [x] Add regression coverage for image replacement and both named products
 - [x] Verify admin and signed-in customer catalogue rendering through the primary storage paths
-- [ ] Save a checkpoint for the verified product image fix
+- [x] Save checkpoint `ae10df00` for the verified product image fix
 
 ## Phase 141: HD LABS Workbook Cross-Reference
 - [x] Read the latest uploaded workbook and isolate only the HD LABS worksheet
