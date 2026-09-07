@@ -948,3 +948,23 @@
 - [x] Validate non-sensitive production checkout fields, endpoint derivation, and callback replay protections
 - [x] Add or improve regression coverage without initiating a live charge or changing credentials; existing configuration, route, bridge, signature, and UI suites all pass
 - [x] Document client-owned steps that remain blocked on matched credentials and an authorised R10 payment
+
+## Phase 139: Remove Contact Number
+- [ ] Locate every contact telephone number in public pages, footer/header content, account forms, admin views, metadata, and tests
+- [ ] Remove the displayed contact number while preserving required delivery and address fields
+- [ ] Add regression coverage ensuring the contact number is absent from site-facing content
+- [ ] Verify representative public, customer, and admin routes
+- [ ] Save a checkpoint for the contact-number removal
+
+## Phase 140: EQUIJECT 200 and HD BPC-157 Image Persistence
+- [ ] Trace the saved image records, admin upload mutation, and storage URLs for EQUIJECT 200 and HD BPC-157
+- [ ] Fix the shared persistence or storage delivery issue without replacing user-uploaded artwork
+- [ ] Add regression coverage for image replacement and both named products
+- [ ] Verify admin and signed-in customer catalogue rendering
+- [ ] Save a checkpoint for the verified product image fix
+
+## Phase 141: HD LABS Workbook Cross-Reference
+- [x] Read the latest uploaded workbook and isolate only the HD LABS worksheet
+- [x] Export and normalize the active HD Labs website catalogue and inventory
+- [x] Cross-reference product names, embedded dosage values, categories, prices, and stock
+- [x] Produce a discrepancy report without changing database records
