@@ -91,6 +91,19 @@
     "isActive": true
   },
   {
+    "id": 120010,
+    "name": "ANAVAR50",
+    "slug": "anavar50",
+    "brand": "hd_labs",
+    "description": "Listed in the authoritative HD Retail Price list. Refer to the product label for formulation and use information.",
+    "dosageInfo": null,
+    "categoryId": 60001,
+    "categoryName": "ORALS",
+    "price": "700.00",
+    "stockQuantity": 50,
+    "isActive": true
+  },
+  {
     "id": 30064,
     "name": "ANDARINE (S4)",
     "slug": "andarine-s4",

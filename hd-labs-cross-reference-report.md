@@ -6,38 +6,37 @@ This comparison uses the uploaded workbook `WebsiteHDBPPricelist2026.xlsx` and s
 
 ## Executive result
 
-The workbook contains **86 priced HD Labs product rows** after excluding category-heading rows. The active website catalogue contains **110 HD Labs products**. **78 workbook rows matched** to website products, while **8 workbook rows require manual name matching** and **32 active website products do not have a confident workbook counterpart** under the current normalization rules.
+The workbook contains **84 included priced HD Labs product rows** after excluding the user-approved workbook rows **33 (CLENBUTEROL)** and **76 (SIBUTRAMAX)**, in addition to category-heading rows. The active website catalogue contains **111 HD Labs products** after activating website product ID **120010 (ANAVAR50)**. **79 workbook rows matched** to website products, while **5 workbook rows remain for manual confirmation** and **32 active website products do not have a confident workbook counterpart** under the current normalization rules. Workbook row 57, **ANAVAR50**, is manually mapped to website product ID 120010.
 
-All 78 confident matches have matching prices, all have stock greater than zero, and no dosage mismatch was found where a dosage was explicitly present in both records. There are **16 category discrepancies** between the workbook section and the website category. These are findings for review only; no automatic category changes were made.
+All 79 confident or approved matches have stock greater than zero, and no dosage mismatch was found where a dosage was explicitly present in both records. Two price differences remain flagged for review in the refreshed active catalogue comparison. There are **16 category discrepancies** between the workbook section and the website category. These are findings for review only; no automatic category changes were made.
 
 | Measure | Result |
 |---|---:|
-| HD workbook priced rows | 86 |
-| Active HD Labs website products | 110 |
-| Confident name matches | 78 |
-| Workbook rows needing manual matching | 8 |
+| HD workbook rows included | 84 |
+| Excluded workbook rows | 33, 76 |
+| Active HD Labs website products | 111 |
+| Confident and approved matches | 79 |
+| Workbook rows needing manual matching | 5 |
 | Website-only products | 32 |
 | Category mismatches among matches | 16 |
-| Price mismatches among matches | 0 |
+| Price mismatches among matches | 2 |
 | Dosage mismatches among matches | 0 |
 | Matched products with zero stock | 0 |
 
 ## Workbook rows requiring manual matching
 
-The following rows did not reach the conservative matching threshold. Some are likely naming variants or duplicate entries and should not be changed automatically.
+The following included rows remain below the conservative matching threshold. Rows 33 and 76 were intentionally excluded from this list at the user’s direction, and row 57 was manually approved as ANAVAR50 → website product ID 120010. The remaining rows should not be changed automatically.
 
 | Workbook row | Workbook product | Likely website candidate |
 |---:|---|---|
-| 33 | CLENBUTEROL | HELIOSJECT (40MCG CLENBUTEROL HCL) |
 | 38 | HELIOSJECT 20ML | HELIOSJECT (40MCG CLENBUTEROL HCL) |
 | 52 | TRINAJECT (MIX) | TRINAJECT (50MG/ML TREN ACETATE) |
-| 57 | ANAVAR50 | DIANABOL50 30 TABS |
+| 57 | ANAVAR50 | ANAVAR50 (website product ID 120010) |
 | 61 | CLENBUTEROL | HELIOSJECT (40MCG CLENBUTEROL HCL) |
 | 67 | DNP 100mg 10 TABS | DNP (2.4-Dinitrophenol 100mg per tab) |
-| 76 | SIBUTRAMAX | TRAMACET |
 | 85 | ZMA (10mg Zinc, 150mg Magnesium, 3.5mg Vitamin B6, 2mg Boron) 90 caps | HD ZMA (10MG Zinc) |
 
-The repeated `CLENBUTEROL` rows should be reviewed against the intended product and dosage before any catalogue update. The `ANAVAR50`, `SIBUTRAMAX`, and `ZMA` candidates are not safe automatic matches based on name similarity alone.
+The remaining repeated `CLENBUTEROL` row, `HELIOSJECT 20ML`, and other unresolved entries should be reviewed before any catalogue update. ANAVAR50 is no longer unresolved: it is approved against website product ID 120010. Rows 33 and 76 are excluded from the workbook comparison only and have not been deleted from the live catalogue.
 
 ## Category discrepancies requiring review
 
@@ -66,13 +65,13 @@ Several entries are expected to require business confirmation because the workbo
 
 ## Website-only records
 
-The 32 active HD Labs records without a confident workbook match are listed below. These may represent catalogue additions, naming differences, duplicate records, or products that are absent from the latest workbook.
+The 32 active HD Labs records without a confident workbook match are listed below. This list reflects the active catalogue after ANAVAR50 was activated. These may represent catalogue additions, naming differences, duplicate records, or products that are absent from the latest workbook.
 
 `ANABOLICUM (LGD-4033)`, `ANANDROL 50`, `ANAPS50`, `ANAVAR 50`, `ANDARINE (S4)`, `BOLDENONE 200`, `CJC-1295 NO DAC`, `CLENBUTEROL 40MCG`, `DROSTANOLONE 100`, `EQUIJECT 200 (BOLDENONE UNDECYLENATE)`, `FAT BURNER`, `FENZOL (FENBENDAZOLE)`, `FINAJECT`, `HD BPC-157`, `HD D3 (Vitamin D3)`, `HD GHRP-6`, `HD HCG`, `HD HGH`, `HD IGF-1 LR3`, `HD TB-500`, `HELIOSJECT (40MCG CLENBUTEROL HCL)`, `HGH FRAGMENT 177-191`, `MASTERON 100`, `METHYLTEST 10`, `NPP 100`, `OXANDROLONE 10`, `PEPTIDE BLEND`, `RAD-140`, `SUPERDROL 10`, `TESTAJECT 250 (TEST ENANTHATE)`, `TREN AJECT 100 (TREN ACETATE)`, `WILDMASS 300`.
 
 ## Recommended next review order
 
-The safest next step is to confirm the eight low-confidence name matches first, particularly the repeated CLENBUTEROL rows and the `ANAVAR50`/`ANAVAR 50` naming pair. After that, confirm whether the workbook’s category headings are authoritative for the 16 discrepancies. Only once those two decisions are confirmed should catalogue records be updated. The comparison found no price or stock corrections to apply.
+The safest next step is to confirm the five remaining low-confidence name matches, particularly the repeated CLENBUTEROL row and the HELIOSJECT 20ML entry. ANAVAR50 has already been approved and activated as website product ID 120010. The comparison found two refreshed price differences for review; no automatic price changes were made.
 
 ## Method note
 

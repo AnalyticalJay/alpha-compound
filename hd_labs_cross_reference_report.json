@@ -9,12 +9,12 @@
     "approved_manual_mappings": {
       "ANAVAR 50MG": 120010
     },
-    "active_hd_labs_catalogue_count": 110,
-    "matched": 78,
-    "unmatched_source": 6,
+    "active_hd_labs_catalogue_count": 111,
+    "matched": 79,
+    "unmatched_source": 5,
     "website_only": 32,
     "matched_category_mismatches": 16,
-    "matched_price_mismatches": 0,
+    "matched_price_mismatches": 2,
     "matched_dosage_mismatches": 0,
     "matched_zero_stock": 0
   },
@@ -1589,13 +1589,46 @@
     },
     {
       "status": "matched",
-      "score": 0.856,
+      "score": 1.007,
       "source": {
         "row_number": 56,
         "source_name": "ANAVAR",
         "source_price": 400.0,
         "source_category": "ORALS",
         "source_key": "ANAVAR",
+        "source_dosage": []
+      },
+      "catalogue": {
+        "id": 120010,
+        "name": "ANAVAR50",
+        "slug": "anavar50",
+        "brand": "hd_labs",
+        "description": "Listed in the authoritative HD Retail Price list. Refer to the product label for formulation and use information.",
+        "dosageInfo": null,
+        "categoryId": 60001,
+        "categoryName": "ORALS",
+        "price": "700.00",
+        "stockQuantity": 50,
+        "isActive": true,
+        "catalogue_key": "ANAVAR50",
+        "catalogue_dosage": []
+      },
+      "checks": {
+        "category_match": true,
+        "price_match": false,
+        "dosage_overlap": true,
+        "stock_present": true
+      }
+    },
+    {
+      "status": "matched",
+      "score": 0.737,
+      "source": {
+        "row_number": 57,
+        "source_name": "ANAVAR50",
+        "source_price": 700.0,
+        "source_category": "ORALS",
+        "source_key": "ANAVAR50",
         "source_dosage": []
       },
       "catalogue": {
@@ -1617,36 +1650,9 @@
       },
       "checks": {
         "category_match": true,
-        "price_match": true,
+        "price_match": false,
         "dosage_overlap": true,
         "stock_present": true
-      }
-    },
-    {
-      "status": "unmatched_source",
-      "score": 0.476,
-      "source": {
-        "row_number": 57,
-        "source_name": "ANAVAR50",
-        "source_price": 700.0,
-        "source_category": "ORALS",
-        "source_key": "ANAVAR50",
-        "source_dosage": []
-      },
-      "catalogue": {
-        "id": 120011,
-        "name": "DIANABOL50 30 TABS",
-        "slug": "dianabol50-30-tabs",
-        "brand": "hd_labs",
-        "description": "Listed in the authoritative HD Retail Price list. Refer to the product label for formulation and use information.",
-        "dosageInfo": null,
-        "categoryId": 60001,
-        "categoryName": "ORALS",
-        "price": "400.00",
-        "stockQuantity": 50,
-        "isActive": true,
-        "catalogue_key": "DIANABOL50 30",
-        "catalogue_dosage": []
       }
     },
     {
