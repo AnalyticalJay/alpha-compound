@@ -984,3 +984,9 @@
 - [x] Hide PHARMA from public categories and exclude all 34 PHARMA-assigned products from public catalogue responses without deleting records; admin list access remains available
 - [x] Add regression coverage and verify the public exclusion contract; TypeScript and production build passed
 - [ ] Save a checkpoint for the PHARMA visibility change
+
+## Phase 145: Live HD Labs Customer Image Failure
+- [x] Inspect live signed-in HD Labs image URLs, primary-image records, and storage responses; active records have primary images and representative live assets return valid bytes
+- [x] Repair the shared image loading path without replacing valid artwork by retrying a failed primary URL with a cache-busting query before showing the fallback
+- [x] Add regression coverage and complete TypeScript, focused image tests, PHARMA visibility tests, and production build validation
+- [ ] Save a checkpoint for the live HD Labs image fix

@@ -29,15 +29,23 @@ export default function ProductImage({
   const { loading, decoding, ...restImageProps } = imageProps;
   const [displaySrc, setDisplaySrc] = useState(src);
   const [imageUnavailable, setImageUnavailable] = useState(false);
+  const [retriedPrimary, setRetriedPrimary] = useState(false);
 
   useEffect(() => {
     setDisplaySrc(src);
     setImageUnavailable(false);
+    setRetriedPrimary(false);
   }, [src]);
 
   const handleImageError = () => {
     if (displaySrc === PRODUCT_FALLBACK_IMAGE) {
       setImageUnavailable(true);
+      return;
+    }
+    if (!retriedPrimary) {
+      const separator = src.includes("?") ? "&" : "?";
+      setRetriedPrimary(true);
+      setDisplaySrc(`${src}${separator}imageRetry=1`);
       return;
     }
     setDisplaySrc(PRODUCT_FALLBACK_IMAGE);
