@@ -158,10 +158,13 @@ export async function updateUserStatus(
 
 // ─── Categories ───────────────────────────────────────────────────────────────
 
-export async function getCategories() {
+export async function getCategories(opts?: { excludeNames?: string[] }) {
   const db = await getDb();
   if (!db) return [];
-  return db.select().from(categories).where(eq(categories.isActive, true)).orderBy(categories.name);
+  const rows = await db.select().from(categories).where(eq(categories.isActive, true)).orderBy(categories.name);
+  if (!opts?.excludeNames?.length) return rows;
+  const excluded = new Set(opts.excludeNames.map((name) => name.trim().toLowerCase()));
+  return rows.filter((row) => !excluded.has(row.name.trim().toLowerCase()));
 }
 
 export async function getAllCategories() {
@@ -222,6 +225,7 @@ export async function getProducts(opts?: {
   featuredOnly?: boolean;
   imageOnly?: boolean;
   activeOnly?: boolean;
+  excludeCategoryNames?: string[];
 }) {
   const db = await getDb();
   if (!db) return [];
@@ -265,6 +269,10 @@ export async function getProducts(opts?: {
   const imageMap = new Map(images.map((img) => [img.productId, img.imageUrl]));
 
   let filtered = rows;
+  if (opts?.excludeCategoryNames?.length) {
+    const excluded = new Set(opts.excludeCategoryNames.map((name) => name.trim().toLowerCase()));
+    filtered = filtered.filter((row) => !excluded.has((row.categoryName ?? "").trim().toLowerCase()));
+  }
   if (opts?.search) {
     const q = opts.search.toLowerCase();
     filtered = rows.filter(

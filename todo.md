@@ -978,3 +978,9 @@
 - [x] Activate product ID 120010 without changing price, stock, category, or image data
 - [x] Verify the product is active and appears in the HD Labs Orals catalogue filter; the active HD Labs Orals count is now 16
 - [x] Save checkpoint `df84095b` for the activation
+
+## Phase 144: Hide PHARMA Category
+- [x] Inspect the PHARMA category and public catalogue query paths
+- [x] Hide PHARMA from public categories and exclude all 34 PHARMA-assigned products from public catalogue responses without deleting records; admin list access remains available
+- [x] Add regression coverage and verify the public exclusion contract; TypeScript and production build passed
+- [ ] Save a checkpoint for the PHARMA visibility change

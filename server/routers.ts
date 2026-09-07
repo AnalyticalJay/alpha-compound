@@ -201,7 +201,7 @@ export const appRouter = router({
 
   // ─── Categories ───────────────────────────────────────────────────────────
   categories: router({
-    list: publicProcedure.query(() => getCategories()),
+    list: publicProcedure.query(() => getCategories({ excludeNames: ["PHARMA"] })),
     listAll: adminProcedure.query(() => getAllCategories()),
 
     create: adminProcedure
@@ -229,7 +229,7 @@ export const appRouter = router({
     list: publicProcedure
       .input(z.object({ categoryId: z.number().optional(), search: z.string().optional(), featuredOnly: z.boolean().optional(), imageOnly: z.boolean().optional() }).optional())
       .query(async ({ ctx, input }) => {
-        const rows = await getProducts({ ...input, activeOnly: true });
+        const rows = await getProducts({ ...input, activeOnly: true, excludeCategoryNames: ["PHARMA"] });
         const isApproved = ctx.user && (ctx.user as any).status === "approved";
         // Strip prices for non-approved users — server-enforced
         return rows.map((p) => ({
@@ -255,7 +255,7 @@ export const appRouter = router({
           return { ...product, price: (ctx.user as any)?.status === "approved" ? product.price : null };
         }
         const product = await getProductBySlug(input.slug);
-        if (!product) throw new TRPCError({ code: "NOT_FOUND" });
+        if (!product || product.category?.name?.trim().toLowerCase() === "pharma") throw new TRPCError({ code: "NOT_FOUND" });
         const isApproved = ctx.user && (ctx.user as any).status === "approved";
         return { ...product, price: isApproved ? product.price : null };
       }),
