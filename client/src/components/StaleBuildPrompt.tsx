@@ -68,17 +68,22 @@ export default function StaleBuildPrompt() {
   }, [checkForNewBuild]);
 
   useEffect(() => {
-    if (!availableVersion || !isSafeToRefresh()) return;
-    if (window.sessionStorage.getItem(AUTO_REFRESHED_VERSION_KEY) === availableVersion) return;
-    const timeout = window.setTimeout(() => {
+    if (!availableVersion) return;
+    const attemptRefresh = () => {
       if (!isSafeToRefresh()) return;
+      if (window.sessionStorage.getItem(AUTO_REFRESHED_VERSION_KEY) === availableVersion) return;
       window.sessionStorage.setItem(AUTO_REFRESHED_VERSION_KEY, availableVersion);
       window.sessionStorage.setItem(BUILD_VERSION_KEY, availableVersion);
       const nextUrl = new URL(window.location.href);
       nextUrl.searchParams.set("__build", availableVersion);
       window.location.replace(nextUrl.toString());
-    }, AUTO_REFRESH_DELAY_MS);
-    return () => window.clearTimeout(timeout);
+    };
+    const timeout = window.setTimeout(attemptRefresh, AUTO_REFRESH_DELAY_MS);
+    const retryInterval = window.setInterval(attemptRefresh, 5_000);
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearInterval(retryInterval);
+    };
   }, [availableVersion, isSafeToRefresh]);
 
   if (!availableVersion) return null;

@@ -1003,4 +1003,4 @@
 - [x] Add automatic idle refresh for new deployments without interrupting forms or checkout; protected routes and non-empty form fields defer the reload
 - [x] Add query-based cache-busting for stale frontend bundles and preserve the manual refresh fallback
 - [x] Add regression coverage and complete TypeScript, full Vitest, production build, desktop, and 390px mobile verification
-- [ ] Save a checkpoint for the automatic cache-busting implementation
+- [x] Save checkpoint `b543fcde` for the automatic cache-busting implementation
