@@ -957,10 +957,10 @@
 - [ ] Save a checkpoint for the contact-number removal
 
 ## Phase 140: EQUIJECT 200 and HD BPC-157 Image Persistence
-- [ ] Trace the saved image records, admin upload mutation, and storage URLs for EQUIJECT 200 and HD BPC-157
-- [ ] Fix the shared persistence or storage delivery issue without replacing user-uploaded artwork
-- [ ] Add regression coverage for image replacement and both named products
-- [ ] Verify admin and signed-in customer catalogue rendering
+- [x] Trace the saved image records, admin upload mutation, and storage URLs for EQUIJECT 200 and HD BPC-157
+- [x] Fix the shared persistence or storage delivery issue without replacing user-uploaded artwork; both uploaded images are primary and return 200 image responses
+- [x] Add regression coverage for image replacement and both named products
+- [x] Verify admin and signed-in customer catalogue rendering through the primary storage paths
 - [ ] Save a checkpoint for the verified product image fix
 
 ## Phase 141: HD LABS Workbook Cross-Reference
