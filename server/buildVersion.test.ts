@@ -16,11 +16,16 @@ describe("build version recovery", () => {
     const source = await fs.readFile(path.resolve(process.cwd(), "client/src/components/StaleBuildPrompt.tsx"), "utf8");
 
     expect(source).toContain("setInterval");
-    expect(source).toContain("window.location.reload()");
+    expect(source).toContain("window.location.replace(nextUrl.toString())");
+    expect(source).toContain("AUTO_REFRESH_DELAY_MS");
+    expect(source).toContain("isSafeToRefresh");
+    expect(source).toContain("__build");
     expect(source).toContain("Not now");
     expect(source).toContain("sessionStorage");
     expect(source).toContain("onImageError");
     expect(source).toContain("/manus-storage/");
     expect(source).not.toContain("setTimeout(() => window.location.reload()");
+    expect(source).toContain("(checkout|login|register)");
+    expect(source).toContain("/admin");
   });
 });

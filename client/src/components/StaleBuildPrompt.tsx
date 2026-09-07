@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 const BUILD_VERSION_KEY = "anabolics-africa-build-version";
 const DISMISSED_VERSION_KEY = "anabolics-africa-dismissed-build-version";
 const CHECK_INTERVAL_MS = 60_000;
+const AUTO_REFRESH_DELAY_MS = 1_500;
+const AUTO_REFRESHED_VERSION_KEY = "anabolics-africa-auto-refreshed-build-version";
 
 function getVersionHeader(response: Response) {
   return response.headers.get("X-App-Version") ?? response.headers.get("ETag") ?? "";
@@ -10,6 +12,17 @@ function getVersionHeader(response: Response) {
 
 export default function StaleBuildPrompt() {
   const [availableVersion, setAvailableVersion] = useState<string | null>(null);
+
+  const isSafeToRefresh = useCallback(() => {
+    const path = window.location.pathname;
+    if (/^\/(checkout|login|register)(\/|$)/.test(path) || path.startsWith("/admin")) return false;
+    if (document.querySelector("input:focus, textarea:focus, select:focus, [contenteditable=\"true\"]:focus")) return false;
+    const hasUnsavedInput = Array.from(document.querySelectorAll("input, textarea, select"))
+      .some((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement
+        ? field.value.length > 0
+        : false);
+    return !hasUnsavedInput;
+  }, []);
 
   const checkForNewBuild = useCallback(async () => {
     try {
@@ -54,6 +67,20 @@ export default function StaleBuildPrompt() {
     };
   }, [checkForNewBuild]);
 
+  useEffect(() => {
+    if (!availableVersion || !isSafeToRefresh()) return;
+    if (window.sessionStorage.getItem(AUTO_REFRESHED_VERSION_KEY) === availableVersion) return;
+    const timeout = window.setTimeout(() => {
+      if (!isSafeToRefresh()) return;
+      window.sessionStorage.setItem(AUTO_REFRESHED_VERSION_KEY, availableVersion);
+      window.sessionStorage.setItem(BUILD_VERSION_KEY, availableVersion);
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("__build", availableVersion);
+      window.location.replace(nextUrl.toString());
+    }, AUTO_REFRESH_DELAY_MS);
+    return () => window.clearTimeout(timeout);
+  }, [availableVersion, isSafeToRefresh]);
+
   if (!availableVersion) return null;
 
   const dismiss = () => {
@@ -64,7 +91,10 @@ export default function StaleBuildPrompt() {
   const refresh = () => {
     window.sessionStorage.setItem(BUILD_VERSION_KEY, availableVersion);
     window.sessionStorage.removeItem(DISMISSED_VERSION_KEY);
-    window.location.reload();
+    window.sessionStorage.setItem(AUTO_REFRESHED_VERSION_KEY, availableVersion);
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.set("__build", availableVersion);
+    window.location.replace(nextUrl.toString());
   };
 
   return (

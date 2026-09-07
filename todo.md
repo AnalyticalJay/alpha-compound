@@ -992,8 +992,15 @@
 - [x] Save checkpoint `55394cd2` for the live HD Labs image fix
 
 ## Phase 146: Published Customer Image Runtime Mismatch
-- [ ] Compare the published canonical bundle and runtime fingerprint with the corrected preview checkpoint
-- [ ] Capture exact signed-in image request failures and identify whether the live request uses stale or invalid source URLs
-- [ ] Fix the published-runtime mismatch or image request path
-- [ ] Verify the canonical customer catalogue on desktop and 390px mobile
-- [ ] Save a checkpoint for the published-runtime image resolution
+- [x] Compare the published canonical bundle and runtime fingerprint with the corrected preview checkpoint
+- [x] Capture the exact customer-session behavior; the canonical browser displayed the stale-build prompt before refresh
+- [x] Resolve the live image path by using the deployed stale-build refresh flow; the refreshed canonical catalogue displayed actual HD Labs artwork instead of unavailable placeholders
+- [x] Verify the canonical customer catalogue on desktop; the exact live `/products` route rendered 12 product cards with decoded artwork
+- [x] Save checkpoint `5ec30cf8` for the published-runtime image resolution
+
+## Phase 147: Automatic Cache-Busting and Idle Refresh
+- [x] Review the existing stale-build prompt, polling, and safe reload guards
+- [x] Add automatic idle refresh for new deployments without interrupting forms or checkout; protected routes and non-empty form fields defer the reload
+- [x] Add query-based cache-busting for stale frontend bundles and preserve the manual refresh fallback
+- [x] Add regression coverage and complete TypeScript, full Vitest, production build, desktop, and 390px mobile verification
+- [ ] Save a checkpoint for the automatic cache-busting implementation
