@@ -34,7 +34,10 @@ def product_key(value):
 # Parse workbook rows and carry section headers forward.
 workbook_products = []
 current_category = None
+excluded_rows = {33, 76}
 for item in workbook['records']:
+    if item['row_number'] in excluded_rows:
+        continue
     data = item['data']
     raw_name = data.get('PRODUCT') or ''
     raw_price = data.get('PRICE')
@@ -93,9 +96,27 @@ for m in matches:
         'stock_present': int(product.get('stockQuantity') or 0) > 0,
     }
 
+# User-approved manual mapping: workbook ANAVAR50 / ANAVAR 50MG -> website product ID 120010.
+for match in matches:
+    if match.get('status') == 'unmatched_source' and match.get('source', {}).get('row_number') == 57:
+        approved = next((product for product in catalogue if str(product['id']) == '120010'), None)
+        if approved:
+            match['status'] = 'matched'
+            match['score'] = 1.0
+            match['catalogue'] = approved
+            match['checks'] = {
+                'category_match': match['source']['source_category'] == (approved.get('categoryName') or '').upper(),
+                'price_match': match['source']['source_price'] == float(approved['price']),
+                'dosage_overlap': True,
+                'stock_present': int(approved.get('stockQuantity') or 0) > 0,
+                'approved_manual_mapping': True,
+            }
+
 summary = {
     'workbook_sheet': workbook['sheet'],
     'workbook_product_rows': len(workbook_products),
+    'excluded_workbook_rows': sorted(excluded_rows),
+    'approved_manual_mappings': {'ANAVAR 50MG': 120010},
     'active_hd_labs_catalogue_count': len(catalogue),
     'matched': sum(1 for m in matches if m['status'] == 'matched'),
     'unmatched_source': sum(1 for m in matches if m['status'] == 'unmatched_source'),

@@ -968,3 +968,13 @@
 - [x] Export and normalize the active HD Labs website catalogue and inventory
 - [x] Cross-reference product names, embedded dosage values, categories, prices, and stock
 - [x] Produce a discrepancy report without changing database records
+
+## Phase 142: Approved HD LABS Cross-Reference Decisions
+- [ ] Map workbook ANAVAR 50MG to website product ID 120010 (ANAVAR50)
+- [ ] Exclude workbook rows 33 and 76 from the HD workbook/cross-reference import list only
+- [ ] Regenerate and verify the revised HD Labs comparison without changing live catalogue records
+
+## Phase 143: Activate ANAVAR50 Product
+- [x] Activate product ID 120010 without changing price, stock, category, or image data
+- [x] Verify the product is active and appears in the HD Labs Orals catalogue filter; the active HD Labs Orals count is now 16
+- [ ] Save a checkpoint for the activation

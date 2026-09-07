@@ -1,10 +1,17 @@
 {
   "summary": {
     "workbook_sheet": "HD",
-    "workbook_product_rows": 86,
+    "workbook_product_rows": 84,
+    "excluded_workbook_rows": [
+      33,
+      76
+    ],
+    "approved_manual_mappings": {
+      "ANAVAR 50MG": 120010
+    },
     "active_hd_labs_catalogue_count": 110,
     "matched": 78,
-    "unmatched_source": 8,
+    "unmatched_source": 6,
     "website_only": 32,
     "matched_category_mismatches": 16,
     "matched_price_mismatches": 0,
@@ -887,35 +894,6 @@
         "price_match": true,
         "dosage_overlap": true,
         "stock_present": true
-      }
-    },
-    {
-      "status": "unmatched_source",
-      "score": 0.662,
-      "source": {
-        "row_number": 33,
-        "source_name": "CLENBUTEROL",
-        "source_price": 350.0,
-        "source_category": "INJECTABLES",
-        "source_key": "CLENBUTEROL",
-        "source_dosage": []
-      },
-      "catalogue": {
-        "id": 30023,
-        "name": "HELIOSJECT (40MCG CLENBUTEROL HCL",
-        "slug": "heliosject-40mcg-clenbuterol-hcl",
-        "brand": "hd_labs",
-        "description": "Heliosject ampoules contain clenbuterol HCl 40 mcg per ampoule, a beta-2 adrenergic agonist. Used as a bronchodilator to relax airway smooth muscle.",
-        "dosageInfo": "AMPS",
-        "categoryId": 60004,
-        "categoryName": "FAT LOSS",
-        "price": "360.00",
-        "stockQuantity": 100,
-        "isActive": true,
-        "catalogue_key": "HELIOSJECT 40MCG CLENBUTEROL HCL",
-        "catalogue_dosage": [
-          "40MCG"
-        ]
       }
     },
     {
@@ -2274,33 +2252,6 @@
         "price_match": true,
         "dosage_overlap": true,
         "stock_present": true
-      }
-    },
-    {
-      "status": "unmatched_source",
-      "score": 0.556,
-      "source": {
-        "row_number": 76,
-        "source_name": "SIBUTRAMAX",
-        "source_price": 240.0,
-        "source_category": "ORALS",
-        "source_key": "SIBUTRAMAX",
-        "source_dosage": []
-      },
-      "catalogue": {
-        "id": 30122,
-        "name": "TRAMACET",
-        "slug": "tramacet",
-        "brand": "hd_labs",
-        "description": "Tramacet is an oral analgesic combining tramadol and paracetamol. It is used as a pain medication in clinical practice.",
-        "dosageInfo": "60 TABS",
-        "categoryId": 30009,
-        "categoryName": "PHARMA",
-        "price": "540.00",
-        "stockQuantity": 100,
-        "isActive": true,
-        "catalogue_key": "TRAMACET",
-        "catalogue_dosage": []
       }
     },
     {
