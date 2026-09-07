@@ -990,3 +990,10 @@
 - [x] Repair the shared image loading path without replacing valid artwork by retrying a failed primary URL with a cache-busting query before showing the fallback
 - [x] Add regression coverage and complete TypeScript, focused image tests, PHARMA visibility tests, and production build validation
 - [x] Save checkpoint `55394cd2` for the live HD Labs image fix
+
+## Phase 146: Published Customer Image Runtime Mismatch
+- [ ] Compare the published canonical bundle and runtime fingerprint with the corrected preview checkpoint
+- [ ] Capture exact signed-in image request failures and identify whether the live request uses stale or invalid source URLs
+- [ ] Fix the published-runtime mismatch or image request path
+- [ ] Verify the canonical customer catalogue on desktop and 390px mobile
+- [ ] Save a checkpoint for the published-runtime image resolution
