@@ -912,7 +912,7 @@
 ## Phase 133: Canonical Domain Routing
 - [x] Inspect the current deployment and domain bindings for alphashop-fvmuktca.manus.space, anabolicsafrica.co.za, and www.anabolicsafrica.co.za
 - [x] Align anabolicsafrica.co.za with the latest Anabolics Africa deployment and preserve the www redirect
-- [ ] Verify the canonical domain serves the latest build and same-origin image responses; browser image decoding is verified, but the live storage route still reports a redirect and remains a platform-runtime observation
+- [x] Verify the canonical domain serves the latest build and browser-renderable same-origin product-image responses through `/api/public-product-image/*`; the live endpoint now returns `200 OK` with an image MIME type
 - [x] Document any platform-managed routing action that must be completed in the Management UI
 
 ## Phase 134: Latest Runtime Refresh
@@ -1028,4 +1028,4 @@
 - [x] Trigger customer notification for order shipped, including status-based and shipping-update paths
 - [x] Use the existing notification inbox, unread count, mark-read action, and admin/customer notification routes for desktop and mobile
 - [x] Add focused regression coverage and verify the existing quote, payment, shipping, and role-access workflows
-- [ ] Save a checkpoint for in-app notifications
+- [x] Save checkpoint `01aa6b28` for in-app notifications
