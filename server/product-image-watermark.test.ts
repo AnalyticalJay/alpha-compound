@@ -27,7 +27,9 @@ describe("product image watermark", () => {
 
   it("replaces a failed storage image with the branded fallback and avoids a broken icon", () => {
     expect(productImage).toContain("PRODUCT_FALLBACK_IMAGE");
-    expect(productImage).toContain("setDisplaySrc(`${src}${separator}imageRetry=1`)");
+    expect(productImage).toContain("/api/public-product-image/");
+    expect(productImage).toContain("resolveProductImageSrc");
+    expect(productImage).toContain("setDisplaySrc(`${displaySrc}${separator}imageRetry=1`)");
     expect(productImage).toContain("onError={handleImageError}");
     expect(productImage).toContain('data-image-status={displaySrc === PRODUCT_FALLBACK_IMAGE ? "fallback" : "primary"}');
     expect(productImage).toContain('data-image-status="unavailable"');

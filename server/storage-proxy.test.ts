@@ -31,6 +31,25 @@ describe("storage proxy", () => {
     expect(response.status).toBe(404);
   });
 
+  it("streams a product object through the auth-independent public image endpoint", async () => {
+    const nativeFetch = globalThis.fetch;
+    const fetchMock = vi.fn(async (input: string | URL | Request, init?: RequestInit) => {
+      const requestUrl = typeof input === "string" ? input : input.toString();
+      if (requestUrl.startsWith(baseUrl)) return nativeFetch(input, init);
+      if (requestUrl.includes("presign/get")) {
+        return new Response(JSON.stringify({ url: "https://storage.example.test/customer-product.jpg" }), { status: 200 });
+      }
+      return new Response(Buffer.from("customer-image"), { status: 200, headers: { "content-type": "image/jpeg", "content-length": "14" } });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const response = await fetch(`${baseUrl}/api/public-product-image/products/customer-path.jpg`);
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("image/jpeg");
+    expect(await response.text()).toBe("customer-image");
+  });
+
   it("streams a signed product object same-origin and reuses its short-lived signed URL", async () => {
     const nativeFetch = globalThis.fetch;
     let forgeCalls = 0;

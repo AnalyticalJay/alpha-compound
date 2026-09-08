@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Response as ExpressResponse } from "express";
 import { ENV } from "./env";
 
 type CachedSignedUrl = {
@@ -78,6 +78,37 @@ async function getSignedUrl(key: string) {
 }
 
 export function registerStorageProxy(app: Express) {
+  const streamPublicImage = async (key: string, res: ExpressResponse) => {
+    if (!key || (!key.startsWith("products/") && !key.startsWith("anabolics-africa-product-image-pending_"))) {
+      res.status(404).end();
+      return;
+    }
+    if (!ENV.forgeApiUrl || !ENV.forgeApiKey) {
+      res.status(500).send("Storage proxy not configured");
+      return;
+    }
+    try {
+      const url = await getSignedUrl(key);
+      const upstream = await fetch(url, { redirect: "follow", signal: AbortSignal.timeout(60_000) });
+      if (!upstream.ok || !upstream.body) throw new Error(`Storage object unavailable (${upstream.status})`);
+      const contentType = upstream.headers.get("content-type");
+      const contentLength = upstream.headers.get("content-length");
+      if (contentType) res.set("Content-Type", contentType);
+      if (contentLength) res.set("Content-Length", contentLength);
+      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=60");
+      res.set("X-Content-Type-Options", "nosniff");
+      res.end(Buffer.from(await upstream.arrayBuffer()));
+    } catch (err) {
+      console.error("[StorageProxy] failed:", err);
+      res.status(502).send(err instanceof Error ? err.message : "Storage proxy error");
+    }
+  };
+
+  app.get("/api/public-product-image/*", async (req, res) => {
+    const key = decodeURIComponent((req.params as Record<string, string>)[0] ?? "").replace(/^\/+/, "");
+    await streamPublicImage(key, res);
+  });
+
   app.get("/manus-storage/*", async (req, res) => {
     const key = (req.params as Record<string, string>)[0];
     if (!key) {
@@ -97,27 +128,6 @@ export function registerStorageProxy(app: Express) {
       return;
     }
 
-    try {
-      const url = await getSignedUrl(key);
-      const upstream = await fetch(url, {
-        redirect: "follow",
-        signal: AbortSignal.timeout(60_000),
-      });
-      if (!upstream.ok || !upstream.body) {
-        throw new Error(`Storage object unavailable (${upstream.status})`);
-      }
-
-      const contentType = upstream.headers.get("content-type");
-      const contentLength = upstream.headers.get("content-length");
-      if (contentType) res.set("Content-Type", contentType);
-      if (contentLength) res.set("Content-Length", contentLength);
-      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=60");
-      res.set("X-Content-Type-Options", "nosniff");
-      const payload = Buffer.from(await upstream.arrayBuffer());
-      res.end(payload);
-    } catch (err) {
-      console.error("[StorageProxy] failed:", err);
-      res.status(502).send(err instanceof Error ? err.message : "Storage proxy error");
-    }
+    await streamPublicImage(key, res);
   });
 }

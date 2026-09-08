@@ -4,6 +4,12 @@ import { useWatermark } from "@/contexts/WatermarkContext";
 
 const PRODUCT_FALLBACK_IMAGE = "/manus-storage/anabolics-africa-product-image-pending_8ff48682.png";
 
+function resolveProductImageSrc(src: string) {
+  if (!src.startsWith("/manus-storage/products/")) return src;
+  const key = src.slice("/manus-storage/".length).split("?")[0];
+  return `/api/public-product-image/${key}`;
+}
+
 type ProductImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "alt" | "className" | "src"> & {
   src: string;
   alt: string;
@@ -27,12 +33,12 @@ export default function ProductImage({
 }: ProductImageProps) {
   const { isEnabled, watermarkText, logoUrl } = useWatermark();
   const { loading, decoding, ...restImageProps } = imageProps;
-  const [displaySrc, setDisplaySrc] = useState(src);
+  const [displaySrc, setDisplaySrc] = useState(() => resolveProductImageSrc(src));
   const [imageUnavailable, setImageUnavailable] = useState(false);
   const [retriedPrimary, setRetriedPrimary] = useState(false);
 
   useEffect(() => {
-    setDisplaySrc(src);
+    setDisplaySrc(resolveProductImageSrc(src));
     setImageUnavailable(false);
     setRetriedPrimary(false);
   }, [src]);
@@ -43,9 +49,9 @@ export default function ProductImage({
       return;
     }
     if (!retriedPrimary) {
-      const separator = src.includes("?") ? "&" : "?";
+      const separator = displaySrc.includes("?") ? "&" : "?";
       setRetriedPrimary(true);
-      setDisplaySrc(`${src}${separator}imageRetry=1`);
+      setDisplaySrc(`${displaySrc}${separator}imageRetry=1`);
       return;
     }
     setDisplaySrc(PRODUCT_FALLBACK_IMAGE);

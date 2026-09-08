@@ -1010,4 +1010,11 @@
 - [x] Add a prominent top search field while retaining the sidebar search
 - [x] Synchronize both search fields with the same filtering logic, including an accessible clear action
 - [x] Add regression coverage and verify desktop and 390px mobile behavior
-- [ ] Save a checkpoint for the top catalogue search enhancement
+- [x] Save checkpoint `6f4e7311` for the top catalogue search enhancement
+
+## Phase 149: Email/Password Customer Image Regression
+- [x] Reproduce the customer email/password image failure and compare it with the Manus admin session; the failure was isolated to the published storage/image path used by customer cards
+- [x] Trace image URLs, cookies, cache headers, and storage responses across both sessions
+- [x] Fix image delivery independently of authentication method by routing product storage assets through `/api/public-product-image/*`
+- [x] Add regression coverage and verify the endpoint returns image bytes on the running preview; TypeScript, focused regressions, and production build passed
+- [ ] Save a production-ready checkpoint and report deployment status
