@@ -33,6 +33,9 @@ describe("Products catalog dedicated HD Labs quick filter", () => {
 
   it("preserves search, category, clear-filters, and mobile drawer support", () => {
     expect(productsCode).toContain("product-search");
+    expect(productsCode).toContain("catalog-top-search");
+    expect(productsCode).toContain("Search the product catalogue");
+    expect(productsCode).toContain("Clear catalogue search");
     expect(productsCode).toContain("selectedCategory");
     expect(productsCode).toContain("clearFilters");
     expect(productsCode).toContain("mobileFiltersOpen");

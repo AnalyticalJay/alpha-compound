@@ -1003,4 +1003,11 @@
 - [x] Add automatic idle refresh for new deployments without interrupting forms or checkout; protected routes and non-empty form fields defer the reload
 - [x] Add query-based cache-busting for stale frontend bundles and preserve the manual refresh fallback
 - [x] Add regression coverage and complete TypeScript, full Vitest, production build, desktop, and 390px mobile verification
-- [x] Save checkpoint `b543fcde` for the automatic cache-busting implementation
+- [x] Save checkpoint `c431623d` for the hardened automatic cache-busting implementation
+
+## Phase 148: Top Catalogue Search Bar
+- [x] Inspect the current catalogue search state and responsive product-grid layout
+- [x] Add a prominent top search field while retaining the sidebar search
+- [x] Synchronize both search fields with the same filtering logic, including an accessible clear action
+- [x] Add regression coverage and verify desktop and 390px mobile behavior
+- [ ] Save a checkpoint for the top catalogue search enhancement

@@ -230,6 +230,30 @@ export default function Products() {
           <div className="grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)]">
             <aside className="sticky top-24 hidden h-fit rounded border border-[#1E293B] bg-[#111111] p-5 lg:block">{filterPanel}</aside>
             <main className="min-w-0">
+              <div className="mb-5">
+                <label htmlFor="catalog-top-search" className="sr-only">Search the product catalogue</label>
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0EA5E9]" />
+                  <Input
+                    id="catalog-top-search"
+                    aria-label="Search the product catalogue"
+                    placeholder="Search the catalogue by product, compound, or dosage"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                    className="min-h-12 border-[#0EA5E9]/35 bg-[#111111] pl-12 pr-10 text-sm text-white placeholder:text-[#64748B] shadow-[0_0_24px_rgba(14,165,233,0.08)] focus:border-[#0EA5E9] focus:ring-[#0EA5E9]/20"
+                  />
+                  {search && (
+                    <button
+                      type="button"
+                      aria-label="Clear catalogue search"
+                      onClick={() => setSearch("")}
+                      className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-[#94A3B8] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EA5E9]"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
               <div className="mb-5 hidden items-center justify-between lg:flex">
                 <div className="flex flex-wrap items-center gap-2">
                   {search && <span className="rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 px-3 py-1 text-xs font-semibold text-[#7DD3FC]">Search: {search}</span>}
