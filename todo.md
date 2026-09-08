@@ -1018,3 +1018,14 @@
 - [x] Fix image delivery independently of authentication method by routing product storage assets through `/api/public-product-image/*` and inferring browser-renderable image MIME types when storage returns `application/octet-stream`
 - [x] Add regression coverage and verify the endpoint returns image bytes on the running preview; TypeScript, focused regressions, and production build passed
 - [x] Save checkpoint `3aec4d67` and report deployment status
+
+## Phase 150: In-App Event Notifications
+- [x] Review existing notification schema, helpers, and dashboard badge patterns
+- [x] Add user-specific notification persistence with unread/read states
+- [x] Trigger admin notification for new quote submission
+- [x] Trigger customer notification for quote approval
+- [x] Trigger admin notification for payment received through EFT and PayFast ITN
+- [x] Trigger customer notification for order shipped, including status-based and shipping-update paths
+- [x] Use the existing notification inbox, unread count, mark-read action, and admin/customer notification routes for desktop and mobile
+- [x] Add focused regression coverage and verify the existing quote, payment, shipping, and role-access workflows
+- [ ] Save a checkpoint for in-app notifications

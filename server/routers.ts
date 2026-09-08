@@ -549,6 +549,12 @@ export const appRouter = router({
           title: "New Quote Request",
           content: `Quote #${quoteId} submitted by ${ctx.user.fullName} (${ctx.user.email}) for review.`,
         }).catch(() => {});
+        await notifyAllAdmins({
+          orderId: quoteId,
+          type: "quote",
+          title: `New quote submitted: #${quoteId}`,
+          body: `${ctx.user.fullName || "A customer"} submitted a quote for admin review.`,
+        });
 
         return { quoteId, total: total.toFixed(2), deliveryFee: delivery.fee.toFixed(2), status: "quote_pending" as const };
       }),
@@ -787,7 +793,22 @@ export const appRouter = router({
         status: z.enum(["pending", "quote_pending", "quote_approved", "quote_rejected", "awaiting_payment", "paid", "processing", "shipped", "completed", "cancelled"]),
         notes: z.string().optional(),
       }))
-      .mutation(({ input }) => isE2ETestMode() ? updateE2EOrderStatus(input.orderId, input.status) : updateOrderStatus(input.orderId, input.status, input.notes)),
+      .mutation(async ({ input }) => {
+        if (isE2ETestMode()) return updateE2EOrderStatus(input.orderId, input.status);
+        const existing = await getOrderById(input.orderId);
+        if (!existing) throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
+        await updateOrderStatus(input.orderId, input.status, input.notes);
+        if (input.status === "shipped" && existing.status !== "shipped") {
+          await createNotification({
+            userId: existing.userId,
+            orderId: input.orderId,
+            type: "shipping",
+            title: `Order #${input.orderId} shipped`,
+            body: input.notes || "Your order has been shipped and is now on its way.",
+          });
+        }
+        return { success: true };
+      }),
 
     adminRefreshShiplogicTracking: adminProcedure
       .input(z.object({ orderId: z.number() }))

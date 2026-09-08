@@ -1067,6 +1067,12 @@ export async function confirmEftPayment(orderId: number) {
     actorUserId: null,
     note: "EFT payment confirmed by an administrator.",
   });
+  await notifyAllAdmins({
+    orderId,
+    type: "payment",
+    title: `Payment received for Quote #${orderId}`,
+    body: "An EFT payment was confirmed and the order is ready for fulfilment.",
+  });
 }
 
 export async function updateOrderPayment(
@@ -1104,6 +1110,14 @@ export async function updateOrderPayment(
     reference: payfastReference,
     note: paymentStatus === "paid" ? `${methodLabel} ITN confirmed payment.` : `${methodLabel} ITN reported a failed payment; the quote is ready to retry.`,
   });
+  if (paymentStatus === "paid") {
+    await notifyAllAdmins({
+      orderId: order[0].id,
+      type: "payment",
+      title: `Payment received for Quote #${order[0].id}`,
+      body: `${methodLabel} confirmed payment and the order is ready for fulfilment.`,
+    });
+  }
   await createNotification({
     userId: order[0].userId,
     orderId: order[0].id,
