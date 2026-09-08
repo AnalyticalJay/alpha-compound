@@ -91,7 +91,22 @@ export function registerStorageProxy(app: Express) {
       const url = await getSignedUrl(key);
       const upstream = await fetch(url, { redirect: "follow", signal: AbortSignal.timeout(60_000) });
       if (!upstream.ok || !upstream.body) throw new Error(`Storage object unavailable (${upstream.status})`);
-      const contentType = upstream.headers.get("content-type");
+      const upstreamContentType = upstream.headers.get("content-type");
+      const extension = key.toLowerCase().split("?")[0].split(".").pop();
+      const inferredContentType = extension === "png"
+        ? "image/png"
+        : extension === "jpg" || extension === "jpeg"
+          ? "image/jpeg"
+          : extension === "webp"
+            ? "image/webp"
+            : extension === "gif"
+              ? "image/gif"
+              : extension === "svg"
+                ? "image/svg+xml"
+                : undefined;
+      const contentType = upstreamContentType && upstreamContentType !== "application/octet-stream"
+        ? upstreamContentType
+        : inferredContentType ?? upstreamContentType;
       const contentLength = upstream.headers.get("content-length");
       if (contentType) res.set("Content-Type", contentType);
       if (contentLength) res.set("Content-Length", contentLength);

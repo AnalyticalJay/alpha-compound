@@ -1015,6 +1015,6 @@
 ## Phase 149: Email/Password Customer Image Regression
 - [x] Reproduce the customer email/password image failure and compare it with the Manus admin session; the failure was isolated to the published storage/image path used by customer cards
 - [x] Trace image URLs, cookies, cache headers, and storage responses across both sessions
-- [x] Fix image delivery independently of authentication method by routing product storage assets through `/api/public-product-image/*`
+- [x] Fix image delivery independently of authentication method by routing product storage assets through `/api/public-product-image/*` and inferring browser-renderable image MIME types when storage returns `application/octet-stream`
 - [x] Add regression coverage and verify the endpoint returns image bytes on the running preview; TypeScript, focused regressions, and production build passed
 - [x] Save checkpoint `3aec4d67` and report deployment status
