@@ -1017,4 +1017,4 @@
 - [x] Trace image URLs, cookies, cache headers, and storage responses across both sessions
 - [x] Fix image delivery independently of authentication method by routing product storage assets through `/api/public-product-image/*`
 - [x] Add regression coverage and verify the endpoint returns image bytes on the running preview; TypeScript, focused regressions, and production build passed
-- [ ] Save a production-ready checkpoint and report deployment status
+- [x] Save checkpoint `3aec4d67` and report deployment status

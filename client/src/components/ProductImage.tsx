@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState, type ImgHTMLAttributes } from "react";
 import { useWatermark } from "@/contexts/WatermarkContext";
 
-const PRODUCT_FALLBACK_IMAGE = "/manus-storage/anabolics-africa-product-image-pending_8ff48682.png";
+const PRODUCT_FALLBACK_IMAGE = "/api/public-product-image/anabolics-africa-product-image-pending_8ff48682.png";
 
 function resolveProductImageSrc(src: string) {
   if (!src.startsWith("/manus-storage/products/")) return src;
