@@ -1,7 +1,8 @@
 import { createHash, timingSafeEqual } from "node:crypto";
-import { updateOrderPayment } from "./db";
+import { markPayfastItnAttemptFailed, markPayfastItnAttemptInvalid, markPayfastItnAttemptProcessed, markPayfastItnAttemptValidated, recordPayfastItnAttempt, updateOrderPayment } from "./db";
 
 const PAYFAST_PROCESS_URL = "https://www.payfast.co.za/eng/process";
+const PAYFAST_ITN_VALIDATE_URL = "https://www.payfast.co.za/eng/query/validate";
 const TRUSTED_CHECKOUT_ORIGINS = new Set([
   "https://anabolicsafrica.co.za",
   "https://www.anabolicsafrica.co.za",
@@ -115,19 +116,62 @@ export function verifyPayFastSignature(payload: PayFastItnPayload) {
   return receivedBuffer.length === expectedBuffer.length && timingSafeEqual(receivedBuffer, expectedBuffer);
 }
 
-export async function handlePayFastItn(payload: PayFastItnPayload) {
-  if (!verifyPayFastSignature(payload)) {
-    throw new Error("Invalid PayFast signature");
+export async function validatePayFastNotification(payload: PayFastItnPayload) {
+  const validationPayload = Object.entries(payload)
+    .filter(([key, value]) => key !== "signature" && value !== undefined)
+    .map(([key, value]) => `${key}=${formEncode(String(value))}`)
+    .join("&");
+  let response: Response;
+  try {
+    response = await fetch(PAYFAST_ITN_VALIDATE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "text/plain" },
+      body: validationPayload,
+      signal: AbortSignal.timeout(10_000),
+    });
+  } catch {
+    throw new Error("PayFast validation service could not be reached");
   }
-  const { merchantId } = getPayFastCredentials();
-  if (payload.merchant_id?.trim() !== merchantId) {
-    throw new Error("Invalid PayFast merchant");
-  }
-  const reference = payload.m_payment_id?.trim();
-  if (!reference) throw new Error("Missing PayFast payment reference");
+  if (!response.ok) throw new Error(`PayFast validation returned HTTP ${response.status}`);
+  if ((await response.text()).trim() !== "VALID") throw new Error("PayFast server validation failed");
+  return true;
+}
 
-  const amount = normalizeAmount(payload.amount_gross);
+export async function handlePayFastItn(payload: PayFastItnPayload) {
   const paymentStatus = payload.payment_status === "COMPLETE" ? "paid" : "failed";
-  await updateOrderPayment(reference, paymentStatus, amount);
-  return { success: true, paymentStatus } as const;
+  const reference = payload.m_payment_id?.trim() || null;
+  const rawAmount = payload.amount_gross?.trim() || null;
+  let amount: string | null = null;
+  try {
+    amount = rawAmount ? normalizeAmount(rawAmount) : null;
+  } catch {
+    amount = null;
+  }
+  const attemptId = await recordPayfastItnAttempt({
+    payfastReference: reference,
+    pfPaymentId: payload.pf_payment_id?.trim() || null,
+    merchantId: payload.merchant_id?.trim() || null,
+    paymentStatus: payload.payment_status?.trim() || "UNKNOWN",
+    amountGross: amount,
+    validationStatus: "pending",
+  });
+  try {
+    if (!verifyPayFastSignature(payload)) throw new Error("Invalid PayFast signature");
+    const { merchantId } = getPayFastCredentials();
+    if (payload.merchant_id?.trim() !== merchantId) throw new Error("Invalid PayFast merchant");
+    if (!reference) throw new Error("Missing PayFast payment reference");
+    if (!amount) throw new Error("Missing PayFast payment amount");
+    await validatePayFastNotification(payload);
+    if (attemptId) await markPayfastItnAttemptValidated(attemptId);
+    await updateOrderPayment(reference, paymentStatus, amount);
+    if (attemptId) await markPayfastItnAttemptProcessed(attemptId);
+    return { success: true, paymentStatus } as const;
+  } catch (error) {
+    if (attemptId) {
+      const message = error instanceof Error ? error.message : "PayFast ITN processing failed";
+      if (message.includes("signature") || message.includes("merchant") || message.includes("Missing PayFast payment reference") || message.includes("Missing PayFast payment amount")) await markPayfastItnAttemptInvalid(attemptId, message);
+      else await markPayfastItnAttemptFailed(attemptId, message);
+    }
+    throw error;
+  }
 }

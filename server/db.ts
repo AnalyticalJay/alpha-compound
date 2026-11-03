@@ -8,6 +8,7 @@ import {
   orderComments,
   orderItems,
   notifications,
+  payfastItnAttempts,
   paymentEvents,
   orders,
   productImages,
@@ -726,6 +727,66 @@ export async function recordPaymentEvent(data: {
     actorUserId: data.actorUserId ?? null,
   });
   return (result as unknown as { insertId: number }).insertId;
+}
+
+export type PayfastItnAttemptInput = {
+  payfastReference: string | null;
+  pfPaymentId: string | null;
+  merchantId: string | null;
+  paymentStatus: string;
+  amountGross: string | null;
+  validationStatus: "pending" | "valid" | "invalid";
+  processingStatus?: "pending" | "processed" | "failed";
+  failureReason?: string | null;
+};
+
+export async function recordPayfastItnAttempt(data: PayfastItnAttemptInput) {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db.insert(payfastItnAttempts).values({
+    ...data,
+    processingStatus: data.processingStatus ?? "pending",
+    failureReason: data.failureReason?.slice(0, 512) ?? null,
+    lastAttemptAt: new Date(),
+  });
+  return (result as unknown as { insertId: number }).insertId;
+}
+
+export async function markPayfastItnAttemptProcessed(attemptId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(payfastItnAttempts).set({ processingStatus: "processed", processedAt: new Date(), lastAttemptAt: new Date() }).where(eq(payfastItnAttempts.id, attemptId));
+}
+
+export async function markPayfastItnAttemptValidated(attemptId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(payfastItnAttempts).set({ validationStatus: "valid", lastAttemptAt: new Date() }).where(eq(payfastItnAttempts.id, attemptId));
+}
+
+export async function markPayfastItnAttemptInvalid(attemptId: number, failureReason: string) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(payfastItnAttempts).set({ validationStatus: "invalid", processingStatus: "failed", failureReason: failureReason.slice(0, 512), lastAttemptAt: new Date() }).where(eq(payfastItnAttempts.id, attemptId));
+}
+
+export async function markPayfastItnAttemptFailed(attemptId: number, failureReason: string) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(payfastItnAttempts).set({ processingStatus: "failed", failureReason: failureReason.slice(0, 512), lastAttemptAt: new Date(), retryCount: sql`${payfastItnAttempts.retryCount} + 1` }).where(eq(payfastItnAttempts.id, attemptId));
+}
+
+export async function getPayfastItnAttempts() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(payfastItnAttempts).orderBy(desc(payfastItnAttempts.createdAt)).limit(100);
+}
+
+export async function getPayfastItnAttempt(attemptId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db.select().from(payfastItnAttempts).where(eq(payfastItnAttempts.id, attemptId)).limit(1);
+  return result[0] ?? null;
 }
 
 export async function getPaymentEvents(orderId: number) {

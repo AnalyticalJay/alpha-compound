@@ -4,9 +4,27 @@ import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   updateOrderPayment: vi.fn(async () => undefined),
+  recordPayfastItnAttempt: vi.fn(async () => 7),
+  markPayfastItnAttemptProcessed: vi.fn(async () => undefined),
+  markPayfastItnAttemptValidated: vi.fn(async () => undefined),
+  markPayfastItnAttemptInvalid: vi.fn(async () => undefined),
+  markPayfastItnAttemptFailed: vi.fn(async () => undefined),
+  validatePayFastNotification: vi.fn(async () => true),
 }));
 
-vi.mock("./db", () => ({ updateOrderPayment: mocks.updateOrderPayment }));
+vi.mock("./db", () => ({
+  updateOrderPayment: mocks.updateOrderPayment,
+  recordPayfastItnAttempt: mocks.recordPayfastItnAttempt,
+  markPayfastItnAttemptProcessed: mocks.markPayfastItnAttemptProcessed,
+  markPayfastItnAttemptValidated: mocks.markPayfastItnAttemptValidated,
+  markPayfastItnAttemptInvalid: mocks.markPayfastItnAttemptInvalid,
+  markPayfastItnAttemptFailed: mocks.markPayfastItnAttemptFailed,
+}));
+
+vi.mock("./payfast", async () => {
+  const actual = await vi.importActual<typeof import("./payfast")>("./payfast");
+  return { ...actual, validatePayFastNotification: mocks.validatePayFastNotification };
+});
 
 import { createPayFastSignature } from "./payfast";
 import { registerPayFastRoutes } from "./payfastRoute";
@@ -14,8 +32,13 @@ import { registerPayFastRoutes } from "./payfastRoute";
 describe("PayFast ITN route", () => {
   let server: Server;
   let baseUrl = "";
+  const nativeFetch = globalThis.fetch;
 
   beforeAll(async () => {
+    globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      if (String(input).includes("www.payfast.co.za/eng/query/validate")) return new Response("VALID", { status: 200 });
+      return nativeFetch(input, init);
+    }) as typeof fetch;
     const app = express();
     app.use(express.urlencoded({ extended: true }));
     registerPayFastRoutes(app);
@@ -28,6 +51,7 @@ describe("PayFast ITN route", () => {
   });
 
   afterAll(async () => {
+    globalThis.fetch = nativeFetch;
     await new Promise<void>((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
   });
 
@@ -49,6 +73,8 @@ describe("PayFast ITN route", () => {
     expect(response.status).toBe(200);
     expect(await response.text()).toBe("OK");
     expect(mocks.updateOrderPayment).toHaveBeenCalledWith("AA-42-123", "paid", "450.00");
+    expect(mocks.markPayfastItnAttemptValidated).toHaveBeenCalledWith(7);
+    expect(mocks.markPayfastItnAttemptProcessed).toHaveBeenCalledWith(7);
   });
 
   it("rejects an ITN whose signed parameter order was changed", async () => {

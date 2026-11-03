@@ -950,11 +950,7 @@
 - [x] Document client-owned steps that remain blocked on matched credentials and an authorised R10 payment
 
 ## Phase 139: Remove Contact Number
-- [ ] Locate every contact telephone number in public pages, footer/header content, account forms, admin views, metadata, and tests
-- [ ] Remove the displayed contact number while preserving required delivery and address fields
-- [ ] Add regression coverage ensuring the contact number is absent from site-facing content
-- [ ] Verify representative public, customer, and admin routes
-- [ ] Save a checkpoint for the contact-number removal
+- [x] Cancelled by the user; this request belonged to another website and no contact-number changes were made to Anabolics Africa
 
 ## Phase 140: EQUIJECT 200 and HD BPC-157 Image Persistence
 - [x] Trace the saved image records, admin upload mutation, and storage URLs for EQUIJECT 200 and HD BPC-157
@@ -1029,3 +1025,12 @@
 - [x] Use the existing notification inbox, unread count, mark-read action, and admin/customer notification routes for desktop and mobile
 - [x] Add focused regression coverage and verify the existing quote, payment, shipping, and role-access workflows
 - [x] Save checkpoint `01aa6b28` for in-app notifications
+
+## Phase 151: PayFast ITN Processing and Recovery
+- [ ] Reproduce the reported external-success/internal-unpaid scenario using a disposable signed callback without initiating a live charge
+- [ ] Add PayFast server-to-server validation against the official live validation endpoint before applying payment state
+- [ ] Persist callback attempts and processing failures without storing credentials or sensitive payment data
+- [ ] Add an administrator-only retry view and retry mutation for recoverable PayFast callbacks
+- [ ] Make callback processing idempotent and preserve a fast HTTP 200 acknowledgement for accepted notifications
+- [ ] Add focused regression coverage for valid, invalid, delayed, duplicate, and validation-failure callbacks
+- [ ] Verify TypeScript, tests, production build, and admin/customer payment-state behavior

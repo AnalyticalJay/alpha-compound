@@ -159,6 +159,27 @@ export const paymentEvents = mysqlTable("payment_events", {
 
 export type PaymentEvent = typeof paymentEvents.$inferSelect;
 
+// ─── PayFast ITN Attempts ──────────────────────────────────────────────────────
+// Stores only the non-sensitive callback fields needed for audit and safe retry.
+export const payfastItnAttempts = mysqlTable("payfast_itn_attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  payfastReference: varchar("payfastReference", { length: 255 }),
+  pfPaymentId: varchar("pfPaymentId", { length: 128 }),
+  merchantId: varchar("merchantId", { length: 32 }),
+  paymentStatus: varchar("paymentStatus", { length: 32 }).notNull(),
+  amountGross: decimal("amountGross", { precision: 10, scale: 2 }),
+  validationStatus: mysqlEnum("validationStatus", ["pending", "valid", "invalid"]).default("pending").notNull(),
+  processingStatus: mysqlEnum("processingStatus", ["pending", "processed", "failed"]).default("pending").notNull(),
+  failureReason: varchar("failureReason", { length: 512 }),
+  retryCount: int("retryCount").default(0).notNull(),
+  lastAttemptAt: timestamp("lastAttemptAt"),
+  processedAt: timestamp("processedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PayfastItnAttempt = typeof payfastItnAttempts.$inferSelect;
+
 // ─── Notifications ────────────────────────────────────────────────────────────
 export const notifications = mysqlTable("notifications", {
   id: int("id").autoincrement().primaryKey(),

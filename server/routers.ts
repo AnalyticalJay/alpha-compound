@@ -41,10 +41,15 @@ import {
   getUserById,
   getWatermarkSettings,
   markNotificationRead,
+  getPayfastItnAttempt,
+  getPayfastItnAttempts,
+  markPayfastItnAttemptFailed,
+  markPayfastItnAttemptProcessed,
   notifyAllAdmins,
   removeCartItem,
   reviewQuote,
   recordPaymentEvent,
+  updateOrderPayment,
   setPrimaryImage,
   setCategoryPromotedProduct,
   updateCategory,
@@ -918,6 +923,26 @@ export const appRouter = router({
         analytics: buildAdminAnalytics(allOrders),
       };
     }),
+
+    payfastItnAttempts: adminProcedure.query(() => getPayfastItnAttempts()),
+
+    retryPayfastItn: adminProcedure
+      .input(z.object({ attemptId: z.number().int().positive() }))
+      .mutation(async ({ input }) => {
+        const attempt = await getPayfastItnAttempt(input.attemptId);
+        if (!attempt) throw new TRPCError({ code: "NOT_FOUND", message: "PayFast callback record not found." });
+        if (attempt.validationStatus !== "valid") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Only a server-validated PayFast callback can be retried." });
+        if (attempt.processingStatus === "processed") return { success: true, alreadyProcessed: true };
+        if (!attempt.payfastReference || !attempt.amountGross) throw new TRPCError({ code: "BAD_REQUEST", message: "The callback record is missing a payment reference or amount." });
+        try {
+          await updateOrderPayment(attempt.payfastReference, attempt.paymentStatus === "COMPLETE" ? "paid" : "failed", Number(attempt.amountGross).toFixed(2));
+          await markPayfastItnAttemptProcessed(attempt.id);
+          return { success: true, alreadyProcessed: false };
+        } catch (error) {
+          await markPayfastItnAttemptFailed(attempt.id, error instanceof Error ? error.message : "PayFast retry failed");
+          throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "PayFast callback retry failed. Review the callback record and order state." });
+        }
+      }),
   }),
 
   // ─── Delivery ─────────────────────────────────────────────────────────────

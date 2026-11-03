@@ -1,10 +1,11 @@
 import { trpc } from "@/lib/trpc";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CreditCard, ExternalLink, ShieldCheck, WalletCards } from "lucide-react";
+import { AlertTriangle, CreditCard, ExternalLink, RotateCcw, ShieldCheck, WalletCards } from "lucide-react";
 import { Link } from "wouter";
 import { format } from "date-fns";
 import { useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const PAYMENT_FILTERS = ["all", "pending", "awaiting_eft", "paid", "failed"] as const;
 
@@ -24,6 +25,8 @@ function PaymentStatusBadge({ status }: { status: string }) {
 export default function AdminPayments() {
   const [filter, setFilter] = useState<PaymentFilter>("all");
   const ordersQuery = trpc.orders.adminList.useQuery();
+  const itnQuery = trpc.admin.payfastItnAttempts.useQuery(undefined, { refetchInterval: 30000 });
+  const retryItn = trpc.admin.retryPayfastItn.useMutation({ onSuccess: () => itnQuery.refetch() });
   const orders = ordersQuery.data ?? [];
   const filteredOrders = useMemo(() => filter === "all" ? orders : orders.filter((order) => order.paymentStatus === filter), [filter, orders]);
   const paidCount = orders.filter((order) => order.paymentStatus === "paid").length;
@@ -45,6 +48,17 @@ export default function AdminPayments() {
         <div className="glass-card rounded-xl p-4"><p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Transactions</p><p className="mt-2 text-2xl font-black text-white">{orders.length}</p></div>
         <div className="glass-card rounded-xl p-4"><p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Paid quotes</p><p className="mt-2 text-2xl font-black text-emerald-300">{paidCount}</p></div>
         <div className="glass-card rounded-xl p-4"><p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Paid value</p><p className="mt-2 text-2xl font-black text-[#38BDF8]">R{totalValue.toFixed(2)}</p></div>
+      </div>
+
+      <div className="glass-card rounded-xl p-4 sm:p-6">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex items-start gap-3"><AlertTriangle className="mt-0.5 h-4 w-4 text-orange-300" /><div><h2 className="font-bold">PayFast callback recovery</h2><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Server-validated callbacks are retained here if the order update fails, so an administrator can safely retry without charging the customer again.</p></div></div>
+          <span className="text-xs text-muted-foreground">{(itnQuery.data ?? []).filter((attempt) => attempt.processingStatus !== "processed").length} need attention</span>
+        </div>
+        {itnQuery.isLoading ? <div className="h-16 animate-pulse rounded-lg bg-accent/20" /> : (itnQuery.data ?? []).length === 0 ? <p className="rounded-lg border border-border/30 bg-background/20 p-4 text-xs text-muted-foreground">No PayFast callback attempts have been recorded yet.</p> : <div className="space-y-3">{(itnQuery.data ?? []).slice(0, 8).map((attempt) => {
+          const canRetry = attempt.validationStatus === "valid" && attempt.processingStatus !== "processed";
+          return <div key={attempt.id} className="rounded-lg border border-border/30 bg-background/20 p-3 sm:p-4"><div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"><div className="min-w-0"><p className="text-xs font-black uppercase tracking-wide text-primary">Callback #{attempt.id}</p><p className="mt-1 break-all text-sm font-bold">{attempt.payfastReference ?? "No payment reference"}</p><p className="mt-1 text-xs text-muted-foreground">{attempt.paymentStatus} · {attempt.amountGross ? `R${Number(attempt.amountGross).toFixed(2)}` : "amount unavailable"} · {format(new Date(attempt.createdAt), "d MMM yyyy, HH:mm")}</p></div><div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-wide"><span className={attempt.validationStatus === "valid" ? "rounded border border-emerald-400/30 bg-emerald-400/10 px-2 py-1 text-emerald-300" : "rounded border border-rose-400/30 bg-rose-400/10 px-2 py-1 text-rose-300"}>{attempt.validationStatus} callback</span><span className="rounded border border-border/40 px-2 py-1 text-muted-foreground">{attempt.processingStatus}</span></div></div>{attempt.failureReason && <p className="mt-2 text-xs text-orange-200">{attempt.failureReason}</p>}{canRetry && <Button type="button" size="sm" className="mt-3 min-h-10 gap-2 bg-[#0EA5E9] text-xs font-bold uppercase tracking-wide text-white hover:bg-[#0284C7]" disabled={retryItn.isPending} onClick={() => retryItn.mutate({ attemptId: attempt.id })}><RotateCcw className={`h-3.5 w-3.5 ${retryItn.isPending ? "animate-spin" : ""}`} />{retryItn.isPending ? "Retrying…" : "Retry order update"}</Button>}</div>;
+        })}</div>}
       </div>
 
       <div className="glass-card rounded-xl p-4 sm:p-6">
