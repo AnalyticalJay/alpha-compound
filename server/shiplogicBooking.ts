@@ -4,6 +4,7 @@ import {
   getUserById,
   markShiplogicBookingFailed,
   markShiplogicBookingPending,
+  notifyAllAdmins,
   persistShiplogicBooking,
   recordPaymentEvent,
 } from "./db";
@@ -60,6 +61,8 @@ export async function bookShiplogicOrder(orderId: number, actorUserId: number | 
   } catch (error) {
     const message = error instanceof Error ? error.message : "Shiplogic booking failed.";
     await markShiplogicBookingFailed(orderId, message).catch(() => {});
+    await recordPaymentEvent({ orderId, eventType: "shipping_booking_failed", paymentStatus: "paid", amount: order.totalAmount, actorUserId, note: message }).catch(() => {});
+    await notifyAllAdmins({ orderId, type: "shipping", title: `Shiplogic booking failed for Quote #${orderId}`, body: `${message} Review the order and retry once the courier settings or delivery details are corrected.` }).catch(() => {});
     throw error;
   }
 }

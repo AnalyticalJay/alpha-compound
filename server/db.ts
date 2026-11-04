@@ -1,4 +1,4 @@
-import { eq, and, asc, desc, inArray, sql } from "drizzle-orm";
+import { eq, and, asc, desc, inArray, isNull, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   cartItems,
@@ -1088,7 +1088,8 @@ export async function markShiplogicBookingPending(orderId: number) {
   const current = await db.select({ bookingStatus: shippingDetails.bookingStatus, trackingNumber: shippingDetails.trackingNumber }).from(shippingDetails).where(eq(shippingDetails.orderId, orderId)).limit(1);
   if (!current[0]) throw new Error("Shipping address not found for order");
   if (current[0].bookingStatus === "booked" || current[0].trackingNumber) throw new Error("This order already has a Shiplogic waybill");
-  await db.update(shippingDetails).set({ bookingStatus: "pending", bookingAttemptedAt: new Date(), bookingLastError: null }).where(eq(shippingDetails.orderId, orderId));
+  const result = await db.update(shippingDetails).set({ bookingStatus: "pending", bookingAttemptedAt: new Date(), bookingLastError: null }).where(and(eq(shippingDetails.orderId, orderId), isNull(shippingDetails.trackingNumber), inArray(shippingDetails.bookingStatus, ["not_requested", "failed"])));
+  if (Number((result as unknown as { affectedRows?: number }).affectedRows ?? 0) !== 1) throw new Error("A Shiplogic booking is already in progress. Refresh the order before retrying.");
 }
 
 export async function persistShiplogicBooking(data: { orderId: number; shipmentId?: string | null; trackingReference: string; providerStatus: string; trackingUrl: string }) {
