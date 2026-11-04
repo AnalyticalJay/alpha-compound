@@ -1027,10 +1027,19 @@
 - [x] Save checkpoint `01aa6b28` for in-app notifications
 
 ## Phase 151: PayFast ITN Processing and Recovery
-- [ ] Reproduce the reported external-success/internal-unpaid scenario using a disposable signed callback without initiating a live charge
-- [ ] Add PayFast server-to-server validation against the official live validation endpoint before applying payment state
-- [ ] Persist callback attempts and processing failures without storing credentials or sensitive payment data
-- [ ] Add an administrator-only retry view and retry mutation for recoverable PayFast callbacks
-- [ ] Make callback processing idempotent and preserve a fast HTTP 200 acknowledgement for accepted notifications
-- [ ] Add focused regression coverage for valid, invalid, delayed, duplicate, and validation-failure callbacks
-- [ ] Verify TypeScript, tests, production build, and admin/customer payment-state behavior
+- [x] Reproduce the reported external-success/internal-unpaid scenario using a disposable signed callback without initiating a live charge
+- [x] Add PayFast server-to-server validation against the official live validation endpoint before applying payment state
+- [x] Persist callback attempts and processing failures without storing credentials or sensitive payment data
+- [x] Add an administrator-only retry view and retry mutation for recoverable PayFast callbacks
+- [x] Make callback processing idempotent and preserve a fast HTTP 200 acknowledgement for accepted notifications
+- [x] Add focused regression coverage for valid, invalid, delayed, duplicate, and validation-failure callbacks
+- [x] Verify TypeScript, tests, production build, and admin/customer payment-state behavior
+
+## Phase 152: Post-Payment Shiplogic Booking Automation
+- [x] Confirm the official Shiplogic shipment-creation and booking contract, including required collection and delivery fields; findings saved in `shiplogic-booking-research.md`
+- [x] Add a server-side booking client that never exposes the Flash Parcels credential and safely handles duplicate booking attempts
+- [x] Add an administrator-controlled post-payment booking action with a clear non-automated fallback
+- [x] Persist the returned waybill/tracking number and immediately expose it in the customer order dashboard through the existing shipping detail query
+- [x] Add regression coverage for paid-order gating, booking success, provider failure handling, and duplicate protection
+- [x] Validate the booking client, admin action, PayFast handoff, full Vitest suite, and production build without creating a live courier booking
+- [ ] Configure and verify the client-owned Shiplogic service level, collection address/contact, parcel dimensions/weight, and `SHIPLOGIC_AUTO_BOOK_AFTER_PAYMENT`; keep automatic booking disabled until these values are confirmed

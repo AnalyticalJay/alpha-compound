@@ -70,7 +70,8 @@ import { eq } from "drizzle-orm";
 import { ENV } from "./_core/env";
 import { countPendingQuotes } from "../shared/adminStats";
 import { buildAdminAnalytics } from "../shared/adminAnalytics";
-import { ShiplogicError, shiplogicTrackingUrl, trackShiplogicShipment } from "./shiplogic";
+import { ShiplogicError, trackShiplogicShipment } from "./shiplogic";
+import { bookShiplogicOrder } from "./shiplogicBooking";
 import { assertTrustedPayFastOrigin, handlePayFastItn } from "./payfast";
 import {
   decodeBase64File,
@@ -751,6 +752,11 @@ export const appRouter = router({
         const quote = await getOrderById(input.orderId);
         if (!quote) throw new TRPCError({ code: "NOT_FOUND", message: "Quote not found" });
         await confirmEftPayment(input.orderId);
+        if (ENV.shiplogicAutoBookAfterPayment) {
+          await bookShiplogicOrder(input.orderId).catch((error) => {
+            console.error("[Shiplogic] Automatic post-EFT booking failed:", error instanceof Error ? error.message : error);
+          });
+        }
         await createNotification({ userId: quote.userId, orderId: input.orderId, type: "payment", title: `Payment received for Quote #${input.orderId}`, body: "Your EFT payment was confirmed and your order is now being prepared." });
         return { success: true };
       }),
@@ -835,6 +841,23 @@ export const appRouter = router({
           const message = error instanceof ShiplogicError ? error.message : "Shiplogic tracking could not be refreshed.";
           await markShiplogicTrackingError(input.orderId, message).catch(() => {});
           if (error instanceof ShiplogicError && error.code === "provider_rejected") throw new TRPCError({ code: "PRECONDITION_FAILED", message });
+          throw new TRPCError({ code: "BAD_GATEWAY", message });
+        }
+      }),
+
+    adminBookShiplogicShipment: adminProcedure
+      .input(z.object({ orderId: z.number() }))
+      .mutation(async ({ ctx, input }) => {
+        if (isE2ETestMode()) return { success: true, provider: "shiplogic", trackingReference: "E2E-WAYBILL", shipmentId: "e2e-shipment" };
+        const order = await getOrderById(input.orderId);
+        if (!order) throw new TRPCError({ code: "NOT_FOUND", message: "Order not found." });
+        if (order.paymentStatus !== "paid") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Shiplogic booking is available after payment is confirmed." });
+        try {
+          return await bookShiplogicOrder(input.orderId, ctx.user.id);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "Shiplogic booking failed.";
+          if (error instanceof ShiplogicError && ["already_booked", "not_ready"].includes(error.code)) throw new TRPCError({ code: "PRECONDITION_FAILED", message });
+          if (error instanceof ShiplogicError && error.code === "provider_rejected") throw new TRPCError({ code: "UNAUTHORIZED", message });
           throw new TRPCError({ code: "BAD_GATEWAY", message });
         }
       }),

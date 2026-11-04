@@ -1,5 +1,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { markPayfastItnAttemptFailed, markPayfastItnAttemptInvalid, markPayfastItnAttemptProcessed, markPayfastItnAttemptValidated, recordPayfastItnAttempt, updateOrderPayment } from "./db";
+import { ENV } from "./_core/env";
+import { bookShiplogicOrder } from "./shiplogicBooking";
 
 const PAYFAST_PROCESS_URL = "https://www.payfast.co.za/eng/process";
 const PAYFAST_ITN_VALIDATE_URL = "https://www.payfast.co.za/eng/query/validate";
@@ -163,7 +165,12 @@ export async function handlePayFastItn(payload: PayFastItnPayload) {
     if (!amount) throw new Error("Missing PayFast payment amount");
     await validatePayFastNotification(payload);
     if (attemptId) await markPayfastItnAttemptValidated(attemptId);
-    await updateOrderPayment(reference, paymentStatus, amount);
+    const paymentResult = await updateOrderPayment(reference, paymentStatus, amount);
+    if (paymentStatus === "paid" && !paymentResult.alreadyPaid && ENV.shiplogicAutoBookAfterPayment) {
+      await bookShiplogicOrder(paymentResult.orderId).catch((bookingError) => {
+        console.error("[Shiplogic] Automatic post-payment booking failed:", bookingError instanceof Error ? bookingError.message : bookingError);
+      });
+    }
     if (attemptId) await markPayfastItnAttemptProcessed(attemptId);
     return { success: true, paymentStatus } as const;
   } catch (error) {

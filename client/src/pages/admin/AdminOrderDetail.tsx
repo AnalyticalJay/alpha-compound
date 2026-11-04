@@ -96,6 +96,15 @@ export default function AdminOrderDetail() {
     onError: (error) => toast.error(error.message),
   });
 
+  const bookShiplogic = trpc.orders.adminBookShiplogicShipment.useMutation({
+    onSuccess: () => {
+      toast.success("Flash Parcels shipment booked and waybill saved");
+      utils.orders.adminDetail.invalidate({ orderId: parseInt(orderId ?? "0") });
+      utils.orders.adminList.invalidate();
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
   const updateItemAvailability = trpc.orders.adminUpdateItemAvailability.useMutation({
     onSuccess: () => {
       toast.success("Quote item availability updated");
@@ -303,6 +312,7 @@ export default function AdminOrderDetail() {
               <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Tracking URL<input value={trackingUrl} onChange={(event) => setTrackingUrl(event.target.value)} placeholder="https://courier.example/track/..." className="mt-1 min-h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
               <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground">Customer-facing notes<textarea value={shippingNotes} onChange={(event) => setShippingNotes(event.target.value)} rows={3} placeholder="Add dispatch or delivery instructions" className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground" /></label>
               <Button type="button" className="min-h-11 w-full bg-[#0EA5E9] font-bold text-white hover:bg-[#0284C7]" onClick={() => updateShipping.mutate({ orderId: order.id, courierName, trackingProvider, trackingNumber, trackingUrl, shippingStatus: shippingStatus as "pending" | "packed" | "dispatched" | "in_transit" | "out_for_delivery" | "delivered" | "returned", shippingNotes })} disabled={updateShipping.isPending}><Truck className="mr-2 h-4 w-4" />{updateShipping.isPending ? "Saving tracking…" : "Save shipping update"}</Button>
+              {order.paymentStatus === "paid" && trackingProvider === "shiplogic" && !order.shipping.trackingNumber && <div className="rounded-lg border border-[#38BDF8]/20 bg-[#38BDF8]/5 p-3"><div className="flex items-center justify-between gap-3"><div><p className="text-xs font-bold uppercase tracking-wide text-[#38BDF8]">Flash Parcels booking</p><p className="mt-1 text-xs text-muted-foreground">After booking, Shiplogic returns the waybill and it is shown automatically in the customer dashboard.</p></div><Badge className="border-border/40 bg-background/40 text-xs capitalize">{(order.shipping.bookingStatus ?? "not_requested").replaceAll("_", " ")}</Badge></div>{order.shipping.bookingLastError && <p className="mt-2 text-xs text-red-300">Last attempt: {order.shipping.bookingLastError}</p>}<Button type="button" variant="outline" className="mt-3 min-h-10 w-full border-[#38BDF8]/40 font-bold text-[#38BDF8]" onClick={() => bookShiplogic.mutate({ orderId: order.id })} disabled={bookShiplogic.isPending || order.shipping.bookingStatus === "pending"}><Truck className="mr-2 h-4 w-4" />{bookShiplogic.isPending ? "Booking with Flash Parcels…" : order.shipping.bookingStatus === "failed" ? "Retry Shiplogic booking" : "Book Flash Parcels shipment"}</Button></div>}
               {trackingProvider === "shiplogic" && trackingNumber.trim() && order.paymentStatus === "paid" && <Button type="button" variant="outline" className="min-h-11 w-full border-[#38BDF8]/40 font-bold text-[#38BDF8]" onClick={() => refreshShiplogic.mutate({ orderId: order.id })} disabled={refreshShiplogic.isPending}><RefreshCw className={`mr-2 h-4 w-4 ${refreshShiplogic.isPending ? "animate-spin" : ""}`} />{refreshShiplogic.isPending ? "Refreshing Flash tracking…" : "Refresh Flash tracking"}</Button>}
             </div>
           </div>

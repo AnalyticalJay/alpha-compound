@@ -3,7 +3,7 @@ import { createServer, type Server } from "node:http";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
-  updateOrderPayment: vi.fn(async () => undefined),
+  updateOrderPayment: vi.fn(async () => ({ orderId: 42, paymentStatus: "paid", alreadyPaid: false })),
   recordPayfastItnAttempt: vi.fn(async () => 7),
   markPayfastItnAttemptProcessed: vi.fn(async () => undefined),
   markPayfastItnAttemptValidated: vi.fn(async () => undefined),

@@ -16,6 +16,19 @@ describe("Shiplogic delivery UI contracts", () => {
     expect(admin).toContain("order.paymentStatus === \"paid\"");
   });
 
+  it("exposes an idempotent paid-order booking action that displays the returned waybill", () => {
+    const router = read("server/routers.ts");
+    const booking = read("server/shiplogicBooking.ts");
+    const admin = read("client/src/pages/admin/AdminOrderDetail.tsx");
+    expect(router).toContain("adminBookShiplogicShipment: adminProcedure");
+    expect(router).toContain("Shiplogic booking is available after payment is confirmed.");
+    expect(booking).toContain("order.shipping.bookingStatus === \"booked\"");
+    expect(booking).toContain("persistShiplogicBooking");
+    expect(admin).toContain("Book Flash Parcels shipment");
+    expect(admin).toContain("Retry Shiplogic booking");
+    expect(admin).toContain("waybill");
+  });
+
   it("exposes provider status and safe event history to the customer order view", () => {
     const db = read("server/db.ts");
     const customer = read("client/src/pages/OrderDetail.tsx");

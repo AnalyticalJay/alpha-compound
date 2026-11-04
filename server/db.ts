@@ -1082,6 +1082,37 @@ export async function updateShippingDetails(data: {
   }
 }
 
+export async function markShiplogicBookingPending(orderId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const current = await db.select({ bookingStatus: shippingDetails.bookingStatus, trackingNumber: shippingDetails.trackingNumber }).from(shippingDetails).where(eq(shippingDetails.orderId, orderId)).limit(1);
+  if (!current[0]) throw new Error("Shipping address not found for order");
+  if (current[0].bookingStatus === "booked" || current[0].trackingNumber) throw new Error("This order already has a Shiplogic waybill");
+  await db.update(shippingDetails).set({ bookingStatus: "pending", bookingAttemptedAt: new Date(), bookingLastError: null }).where(eq(shippingDetails.orderId, orderId));
+}
+
+export async function persistShiplogicBooking(data: { orderId: number; shipmentId?: string | null; trackingReference: string; providerStatus: string; trackingUrl: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(shippingDetails).set({
+    trackingProvider: "shiplogic",
+    trackingNumber: data.trackingReference,
+    trackingUrl: data.trackingUrl,
+    providerShipmentId: data.shipmentId ?? null,
+    bookingStatus: "booked",
+    bookingAttemptedAt: new Date(),
+    bookedAt: new Date(),
+    bookingLastError: null,
+    shippingStatus: data.providerStatus === "submitted" ? "packed" : undefined,
+  }).where(eq(shippingDetails.orderId, data.orderId));
+}
+
+export async function markShiplogicBookingFailed(orderId: number, message: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(shippingDetails).set({ bookingStatus: "failed", bookingAttemptedAt: new Date(), bookingLastError: message.slice(0, 512) }).where(eq(shippingDetails.orderId, orderId));
+}
+
 export async function updateOrderStatus(
   orderId: number,
   status: "pending" | "quote_pending" | "quote_approved" | "quote_rejected" | "awaiting_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled",
@@ -1147,7 +1178,7 @@ export async function updateOrderPayment(
   if (!order[0]) throw new Error("Payment reference not found");
   const expectedAmount = Number.parseFloat(order[0].totalAmount).toFixed(2);
   if (receivedAmount !== expectedAmount) throw new Error("PayFast payment amount does not match the approved quote");
-  if (order[0].paymentStatus === "paid") return;
+  if (order[0].paymentStatus === "paid") return { orderId: order[0].id, paymentStatus: "paid" as const, alreadyPaid: true as const };
   if (order[0].status !== "awaiting_payment" || !["payfast", "eft"].includes(order[0].paymentMethod ?? "")) {
     throw new Error("Quote is not awaiting a PayFast payment");
   }
@@ -1186,6 +1217,7 @@ export async function updateOrderPayment(
     title: paymentStatus === "paid" ? `Payment received for Quote #${order[0].id}` : `Payment update for Quote #${order[0].id}`,
     body: paymentStatus === "paid" ? `Your ${methodLabel} payment was confirmed and your order is now being prepared.` : `Your ${methodLabel} payment was not completed. Choose a payment option to try again.`,
   });
+  return { orderId: order[0].id, paymentStatus, alreadyPaid: false as const };
 }
 
 export async function createNotification(data: { userId: number; orderId?: number | null; type: "quote" | "payment" | "shipping" | "invoice" | "system"; title: string; body: string }) {
