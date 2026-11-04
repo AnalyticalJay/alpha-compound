@@ -22,12 +22,30 @@ function PaymentStatusBadge({ status }: { status: string }) {
   return <Badge className={`border text-[10px] uppercase tracking-wide ${tone}`}>{status.replaceAll("_", " ")}</Badge>;
 }
 
+type PayFastAttemptSummary = {
+  payfastReference: string | null;
+  validationStatus: string;
+  processingStatus: string;
+  failureReason: string | null;
+};
+
+function PayFastWebhookBadge({ order, attempts }: { order: { paymentMethod?: string | null; payfastReference?: string | null; paymentStatus: string }; attempts: PayFastAttemptSummary[] }) {
+  if (order.paymentMethod !== "payfast" && !order.payfastReference) return null;
+  const attempt = [...attempts].reverse().find((candidate) => candidate.payfastReference === order.payfastReference);
+  if (!attempt) return <Badge title="No matching PayFast ITN callback has been recorded" className="border border-orange-400/30 bg-orange-400/10 text-[10px] uppercase tracking-wide text-orange-300">Webhook not received</Badge>;
+  if (attempt.validationStatus === "invalid") return <Badge title={attempt.failureReason ?? "PayFast rejected this callback"} className="border border-rose-400/30 bg-rose-400/10 text-[10px] uppercase tracking-wide text-rose-300">Webhook rejected</Badge>;
+  if (attempt.processingStatus === "processed") return <Badge title="PayFast ITN was server-validated and the order update completed" className="border border-emerald-400/30 bg-emerald-400/10 text-[10px] uppercase tracking-wide text-emerald-300">Webhook confirmed</Badge>;
+  if (attempt.processingStatus === "failed") return <Badge title={attempt.failureReason ?? "PayFast callback was validated but the order update failed"} className="border border-orange-400/30 bg-orange-400/10 text-[10px] uppercase tracking-wide text-orange-300">Webhook failed</Badge>;
+  return <Badge title="PayFast callback is recorded but the order update is still pending" className="border border-sky-400/30 bg-sky-400/10 text-[10px] uppercase tracking-wide text-sky-300">Webhook pending</Badge>;
+}
+
 export default function AdminPayments() {
   const [filter, setFilter] = useState<PaymentFilter>("all");
   const ordersQuery = trpc.orders.adminList.useQuery();
   const itnQuery = trpc.admin.payfastItnAttempts.useQuery(undefined, { refetchInterval: 30000 });
   const retryItn = trpc.admin.retryPayfastItn.useMutation({ onSuccess: () => itnQuery.refetch() });
   const orders = ordersQuery.data ?? [];
+  const itnAttempts = (itnQuery.data ?? []) as PayFastAttemptSummary[];
   const filteredOrders = useMemo(() => filter === "all" ? orders : orders.filter((order) => order.paymentStatus === filter), [filter, orders]);
   const paidCount = orders.filter((order) => order.paymentStatus === "paid").length;
   const awaitingCount = orders.filter((order) => order.paymentStatus === "awaiting_eft" || order.status === "awaiting_payment").length;
@@ -68,8 +86,8 @@ export default function AdminPayments() {
         </div>
 
         {ordersQuery.isLoading ? <div className="space-y-3">{[...Array(4)].map((_, index) => <div key={index} className="h-16 animate-pulse rounded-lg bg-accent/20" />)}</div> : filteredOrders.length === 0 ? <div className="py-12 text-center"><CreditCard className="mx-auto mb-3 h-10 w-10 text-muted-foreground opacity-30" /><p className="text-sm text-muted-foreground">No payment records match this filter.</p></div> : <>
-          <div className="hidden overflow-x-auto md:block"><table className="w-full min-w-[760px]"><thead><tr className="border-b border-border/40 text-left text-xs text-muted-foreground"><th className="p-3 font-medium">Quote</th><th className="p-3 font-medium">Customer</th><th className="p-3 font-medium">Method</th><th className="p-3 font-medium">Amount</th><th className="p-3 font-medium">Status</th><th className="p-3 font-medium">Updated</th><th className="p-3" /></tr></thead><tbody>{filteredOrders.map((order) => <tr key={order.id} className="border-b border-border/20"><td className="p-3 text-sm font-bold text-primary">#{order.id}</td><td className="p-3"><p className="text-sm font-medium">{order.userFullName ?? "—"}</p><p className="text-xs text-muted-foreground">{order.userEmail}</p></td><td className="p-3 text-xs uppercase text-muted-foreground">{order.paymentMethod ?? "—"}</td><td className="p-3 text-sm font-bold">R{parseFloat(order.totalAmount).toFixed(2)}</td><td className="p-3"><PaymentStatusBadge status={order.paymentStatus} /></td><td className="p-3 text-xs text-muted-foreground">{format(new Date(order.updatedAt ?? order.createdAt), "d MMM yyyy, HH:mm")}</td><td className="p-3 text-right"><Link href={`/admin/orders/${order.id}`} className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">History <ExternalLink className="h-3 w-3" /></Link></td></tr>)}</tbody></table></div>
-          <div className="space-y-3 md:hidden">{filteredOrders.map((order) => <Link key={order.id} href={`/admin/orders/${order.id}`} className="block rounded-lg border border-border/30 bg-background/30 p-4 no-underline"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-bold text-primary">Quote #{order.id}</p><p className="mt-1 text-xs text-muted-foreground">{order.userFullName ?? "—"}</p></div><PaymentStatusBadge status={order.paymentStatus} /></div><div className="mt-3 flex items-center justify-between text-xs"><span className="uppercase text-muted-foreground">{order.paymentMethod ?? "No method"}</span><span className="font-bold text-white">R{parseFloat(order.totalAmount).toFixed(2)}</span></div><p className="mt-2 text-[11px] text-muted-foreground">Open transaction history <ExternalLink className="ml-1 inline h-3 w-3" /></p></Link>)}</div>
+          <div className="hidden overflow-x-auto md:block"><table className="w-full min-w-[860px]"><thead><tr className="border-b border-border/40 text-left text-xs text-muted-foreground"><th className="p-3 font-medium">Quote</th><th className="p-3 font-medium">Customer</th><th className="p-3 font-medium">Method</th><th className="p-3 font-medium">Amount</th><th className="p-3 font-medium">Order status</th><th className="p-3 font-medium">PayFast webhook</th><th className="p-3 font-medium">Updated</th><th className="p-3" /></tr></thead><tbody>{filteredOrders.map((order) => <tr key={order.id} className="border-b border-border/20"><td className="p-3 text-sm font-bold text-primary">#{order.id}</td><td className="p-3"><p className="text-sm font-medium">{order.userFullName ?? "—"}</p><p className="text-xs text-muted-foreground">{order.userEmail}</p></td><td className="p-3 text-xs uppercase text-muted-foreground">{order.paymentMethod ?? "—"}</td><td className="p-3 text-sm font-bold">R{parseFloat(order.totalAmount).toFixed(2)}</td><td className="p-3"><PaymentStatusBadge status={order.paymentStatus} /></td><td className="p-3"><PayFastWebhookBadge order={order} attempts={itnAttempts} /></td><td className="p-3 text-xs text-muted-foreground">{format(new Date(order.updatedAt ?? order.createdAt), "d MMM yyyy, HH:mm")}</td><td className="p-3 text-right"><Link href={`/admin/orders/${order.id}`} className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">History <ExternalLink className="h-3 w-3" /></Link></td></tr>)}</tbody></table></div>
+          <div className="space-y-3 md:hidden">{filteredOrders.map((order) => <Link key={order.id} href={`/admin/orders/${order.id}`} className="block rounded-lg border border-border/30 bg-background/30 p-4 no-underline"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-bold text-primary">Quote #{order.id}</p><p className="mt-1 text-xs text-muted-foreground">{order.userFullName ?? "—"}</p></div><PaymentStatusBadge status={order.paymentStatus} /></div><div className="mt-3 flex items-center justify-between text-xs"><span className="uppercase text-muted-foreground">{order.paymentMethod ?? "No method"}</span><span className="font-bold text-white">R{parseFloat(order.totalAmount).toFixed(2)}</span></div><div className="mt-3"><PayFastWebhookBadge order={order} attempts={itnAttempts} /></div><p className="mt-2 text-[11px] text-muted-foreground">Open transaction history <ExternalLink className="ml-1 inline h-3 w-3" /></p></Link>)}</div>
         </>}
       </div>
     </div>
