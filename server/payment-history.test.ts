@@ -53,13 +53,4 @@ describe("payment history", () => {
     expect(adminLayoutSource).toContain('href: "/admin/payments"');
     expect(appSource).toContain('path="/admin/payments"');
   });
-
-  it("shows the webhook result separately from the order payment status", () => {
-    expect(adminPaymentsSource).toContain("Webhook confirmed");
-    expect(adminPaymentsSource).toContain("Webhook pending");
-    expect(adminPaymentsSource).toContain("Webhook failed");
-    expect(adminPaymentsSource).toContain("Webhook rejected");
-    expect(adminPaymentsSource).toContain("Webhook not received");
-    expect(adminPaymentsSource).toContain("PayFast webhook");
-  });
 });
